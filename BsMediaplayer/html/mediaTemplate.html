@@ -1,0 +1,85 @@
+<!DOCTYPE HTML>
+<html style="overflow: auto;">
+    <head>
+        <title>BsWatch Video</title>
+        <link href="https://bs.to/favicon.ico" type="image/x-icon" rel="shortcut icon" />
+        <link id="defineColors" rel="stylesheet"/>
+        <link rel="stylesheet" href="https://kartoffeleintopf.github.io/Pr0jectWatch/BsMediaplayer/styles/mediaPlayerStyles.css" />
+    </head>
+    
+    <body style="opacity:0.99; visibility:hidden;">
+        <div id="mediaplayer">
+            <div id="curProc" style="left:100%;">
+                <video style="display:none;" id="preview" muted="" preload="auto"></video>
+                <div id="canvasContainer"></div>
+                <span id="previewText">00:00</span>
+            </div>
+            <div id="clicklayer" class="hide show" style="opacity: 0;"></div>
+            <div class="loader"></div>
+            <div id="infoPanel" class="hide show">
+                <div id="topInfo">
+                    <span id="max">0/0</span>
+                    <span id="sea">Season 1</span>
+                    <span id="ser">Serie</span>
+                    <span id="tit">Episode 1</span>
+                </div>
+                <div id="topLayer">
+                    <progress id="darkPlane" value="0" min="0" max="100"></progress>
+                    <span id="showPerc">0%</span>
+                </div>
+            </div>
+            <video id="vid" preload="auto">Das Video Kann In Deinem Browser Nicht Abgespielt Werden!</video>
+            <div id="video-controls" class="hide show">
+                <table>
+                    <tbody>
+                        <tr id="bars">
+                            <td colspan="10">
+                                <canvas id="buffer" width="1778.152" height="5"></canvas>
+                                <progress id="progress" value="1.697888" min="0" max="1778.152"></progress>
+                            </td>
+                        </tr>
+                        <tr id="playcontrols">
+                            <td id="playpause">
+                                <svg height="35" width="35">
+                                    <polygon points="8,5 8,30 28,18"></polygon>
+                                </svg>
+                            </td>
+                            <td id="timeShow">29:38 / 00:01</td>
+                            <td id="mute">
+                                <svg height="35" width="35">
+                                    <polygon points="1,12 1,21 8,21 17,29 17,5 9,12"></polygon>
+                                    <polyline points="21,12 23,14 23,17 23,20 21,22" style="fill:none; stroke-width:3;"></polyline>
+                                    <polyline points="24,26 27,22 28,17 27,12 24,8" style="fill:none; stroke-width:3;"></polyline>
+                                    <polyline points="28,5 31,9 33,17 31,25 28,30" style="fill:none; stroke-width:3;"></polyline>
+                                </svg>
+                            </td>
+                            <td id="volumeCol">
+                                <progress tabindex="-1" id="volume" value="70" min="0" max="100"></progress>
+                            </td>
+                            <td></td>
+                            <td id="autoplayChange">A</td>
+                            <td id="plus">+</td>
+                            <td id="speed">100%</td>
+                            <td id="minus">-</td>
+                            <td id="fullscreen">
+                                <svg height="35" width="35">
+                                    <polygon points="10,15 10,10 15,10 15,7 7,7 7,15"></polygon>
+                                    <polygon points="10,20 10,25 15,25 15,28 7,28 7,20"></polygon>
+                                    <polygon points="20,25 25,25 25,20 28,20 28,28 20,28"></polygon>
+                                    <polygon points="20,10 25,10 25,15 28,15 28,7 20,7"></polygon>
+                                </svg>
+                            </td>
+                            <td id="close">
+                                <svg height="35" width="35">
+                                    <polygon points="9,6 6,9 26,29 29,26"></polygon>
+                                    <polygon points="6,26 9,29 29,9 26,6"></polygon>
+                                </svg>
+                            </td>
+                         </tr>
+                    </tbody>
+                </table>
+            </div>
+            <span id="infotext" class="hideText"></span>
+        </div>
+    </body>
+</html>

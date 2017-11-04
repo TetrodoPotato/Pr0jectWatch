@@ -1,0 +1,433 @@
+:root {
+    /*Optional For Structure*/
+    --BaseFont:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --SpecialFont:Impact,sans-serif;
+    --DefaultTextSize:14px;
+    
+    --BackBase:#2196F3;
+    --BackHover:#33adff;
+    --BackClick:#1d6799;
+    
+    --TextBase:#FFF;
+    --TextHover:#FFF;
+    --TextClick:#FFF;
+    
+    --LightBase:#FFF;
+    --LightHover:#CCC;
+    --LightClick:#AAA;
+    
+    --DarkBase:#000;
+    --DarkHover:#444;
+    --DarkClick:#888;
+    
+    --PrimaryColor:#000;
+    --SecondaryColor:#FFF;
+    --ThirdColor:#2196F3;
+    --FourthColor:#CCC;
+    /*----------------------*/
+    
+    /*Main Site Defaults*/
+    --SiteFontSize:var(--DefaultTextSize);
+    --SiteFontFamily:var(--BaseFont);
+    --BackgroundColor:var(--SecondaryColor);
+    
+    /*Menu*/
+    --MenuBackgroundColor:var(--PrimaryColor);
+    
+    /*Logo*/
+    --LogoFont:20px var(--SpecialFont);
+    --LogoFontColor:var(--TextBase);
+    
+    /*Main Menu Login Section*/
+    --MenuLoginUsernameFont:var(--DefaultTextSize) var(--BaseFont);
+    
+    --MenuLoginUsernameColor:var(--LightBase);
+    --MenuLoginUsernameColorHover:var(--LightHover);
+    --MenuLoginUsernameColorClick:var(--BackBase);
+    
+    --MenuLoginText:var(--TextBase);
+    --MenuLoginTextHover:var(--TextHover);
+    --MenuLoginTextClick:var(--TextClick);
+    
+    --MenuLoginBackground:var(--BackBase);
+    --MenuLoginBackgroundHover:var(--BackHover);
+    --MenuLoginBackgroundClick:var(--BackClick);
+    
+    /*Show-Hide Sidemenu Button*/
+    --MenuIconBackground:transparent;
+    --MenuIconBackgroundHover:var(--DarkHover);
+    --MenuIconBackgroundClick:var(--DarkClick);
+    
+    --MenuIconColor:var(--LightBase);
+    --MenuIconColorHover:var(--LightHover);
+    --MenuIconColorClick:var(--LightClick);
+    
+    /*Menu Progressbar*/
+    --MenuProgressbarBackgroundColor:var(--FourthColor);
+    --MenuProgressbarBarColor:var(--ThirdColor);
+    
+    /*Slide Checkbox*/
+    --SliderUncheckedBackground:var(--FourthColor);
+    --SliderCheckedBackground:var(--ThirdColor);
+    --SliderDotColorUnchecked:var(--SecondaryColor);
+    --SliderDotColorChecked:var(--SecondaryColor);
+    
+    /*Autoplay Text*/
+    --MenuAutoplayText:var(--SecondaryColor);
+    --MenuAutoplayFont:var(--DefaultTextSize) Impact,sans-serif;
+    
+    /*Searchbox*/
+    --MenuSearchLogoBackgroundColor:transparent;
+    --MenuSearchLogoBackgroundColorFocus:transparent;
+    
+    --MenuSearchLogoColor:var(--FourthColor);
+    --MenuSearchLogoColorFocus:var(--ThirdColor);
+    
+    --MenuSearchBoxBackgroundColor:#222;
+    --MenuSearchBoxTextColor:var(--SecondaryColor);
+    --MenuSearchBoxTextFont:var(--DefaultTextSize) var(--SpecialFont);
+    
+    /*Sidemenu Show Hide Arrow*/
+    --MenuShowHideContainerColor:var(--LightBase);
+    --MenuShowHideContainerColorHover:var(--LightHover);
+    --MenuShowHideContainerColorClick:var(--LightClick);
+    
+    /*None Click Overlay*/
+    --ClickOverlayBackgroundColor:rgba(0,0,0,0.8);
+    
+    /*Login Dialog Window*/
+    --LoginDialogBackgroundColor:var(--SecondaryColor);
+    --LoginTextBoxBackgroundColor:#EEE;
+    --LoginTextBoxTextColor:#000;
+    --LoginTextBoxTextFont:var(--DefaultTextSize) var(--SpecialFont);
+    
+    --LoginButtonsTextFont:var(--DefaultTextSize) var(--BaseFont);
+    --LoginKeepLogTextFont:var(--DefaultTextSize) var(--SpecialFont);
+    --LoginKeepLogTextColor:#000;
+    
+    --LoginButtonsTextColor:var(--TextBase);
+    --LoginButtonsTextColorHover:var(--TextHover);
+    --LoginButtonsTextColorClick:var(--TextClick);
+    
+    --LoginButtonBackgroundColor:var(--DarkBase);
+    --LoginButtonBackgroundColorHover:var(--DarkHover);
+    --LoginButtonBackgroundColorClick:var(--DarkClick);
+    
+    /*Side Menu Navigation*/
+    --SideMenuBackgroundColor:var(--SecondaryColor);
+    --SideMenuTitelTextFont:12px var(--BaseFont);
+    --SideMenuTitelTextFontColor:#AAA;
+    --SideMenuBottomLineColor:var(--FourthColor);
+    --SideMenuNavigationFont:16px var(--BaseFont);
+    
+    --SideMenuNavigationTextColor:#000;
+    --SideMenuNavigationTextColorHover:#000;
+    --SideMenuNavigationTextColorClick:#000;
+    
+    --SideMenuNavigationBackground:transparent;
+    --SideMenuNavigationBackgroundHover:#EEE;
+    --SideMenuNavigationBackgroundClick:#DDD;  
+    
+    --SideMenuIconColor:var(--FourthColor);
+    --SideMenuIconColorHover:var(--BackHover);
+    --SideMenuIconColorClick:var(--BackClick);
+    
+    /*Favorite Get-Set Buttons*/
+    --SideMenuSyncButtonTextFont:var(--DefaultTextSize) var(--BaseFont);;
+    
+    --SideMenuSyncButtonBackgroundColor:var(--BackBase);
+    --SideMenuSyncButtonBackgroundColorHover:var(--BackHover);
+    --SideMenuSyncButtonBackgroundColorClick:var(--BackClick);
+    
+    --SideMenuSyncButtonTextColor:var(--TextBase);
+    --SideMenuSyncButtonTextColorHover:var(--TextHover);
+    --SideMenuSyncButtonTextColorClick:var(--TextClick);
+    
+    /*Loading Circle*/
+    --LoadingCircle90Color:var(--ThirdColor);
+    --LoadingCircle270Color:#DDD;
+    
+    /*Favorite Menu*/
+    --FavoriteMenuRowTextFont:var(--DefaultTextSize) var(--BaseFont);
+    
+    --FavoriteMenuRowBackgroundColor:transparent;
+    --FavoriteMenuRowBackgroundColorHover:#EEE;
+    --FavoriteMenuRowBackgroundColorClick:#DDD;
+    
+    --FavoriteMenuCloseColBackgroundColor:var(--PrimaryColor);
+    --FavoriteMenuCloseColBackgroundColorHover:var(--PrimaryColor);
+    --FavoriteMenuCloseColBackgroundColorClick:var(--PrimaryColor);
+    
+    --FavoriteMenuCloseIconColor:#FFF;
+    --FavoriteMenuCloseIconColorHover:#2196F3;
+    --FavoriteMenuCloseIconColorClick:#33adff;
+    
+    --FavoriteMenuNameColTextColor:#000;
+    --FavoriteMenuNameColTextColorHover:#000;
+    --FavoriteMenuNameColTextColorClick:#000;
+
+    --FavoriteMenuSeasonColTextColor:#AAA;   
+    --FavoriteMenuSeasonColBackgroundcolorWatched:var(--BackBase);
+    --FavoriteMenuSeasonColTextColorWatched:#FFF;
+    
+    --FavoriteMenuMessageTextFont:var(--DefaultTextSize) var(--BaseFont);    
+    --FavoriteMenuMessageTextColor:#2196F3;
+
+    /*ListRowSegment Series/Episodes*/
+    --ListRowSegmentPrimaryBackgroundColor:#FFF;
+    --ListRowSegmentPrimaryBackgroundColorHover:#EEE;
+    --ListRowSegmentPrimaryBackgroundColorClick:#DDD;
+    
+    --ListRowSegmentSecondaryBackgroundColor:var(--PrimaryColor);
+    
+    --ListRowSegmentUnwatchedBackgroundColor:var(--FourthColor);
+    --ListRowSegmentWatchedBackgroundColor:var(--ThirdColor);
+    
+    --ListRowSegmentTitleTextFont:18px var(--BaseFont);
+    
+    --ListRowSegmentTitleTextColor:#666;
+    --ListRowSegmentTitleTextColorHover:#666;
+    --ListRowSegmentTitleTextColorClick:#666;
+    
+    --ListRowSegmentGenreTextFont:var(--DefaultTextSize) var(--BaseFont);
+    --ListRowSegmentGenreTextColor:#FFF;
+    
+    --ListRowSegmentNoFavIcon:#FFF;
+    --ListRowSegmentNoFavIconHover:#DDD;
+    --ListRowSegmentNoFavIconClick:#BBB;
+    
+    --ListRowSegmentFavIcon:var(--BackBase);
+    --ListRowSegmentFavIconHover:var(--BackHover);
+    --ListRowSegmentFavIconClick:var(--BackClick);
+    
+    --ListRowSegmentTickIconColor:var(--LightBase);
+    --ListRowSegmentTickIconColorHover:var(--LightHover);
+    --ListRowSegmentTickIconColorClick:var(--LightClick);
+    
+    --ListRowSegmentTickIconColorChecked:var(--BackBase);
+    --ListRowSegmentTickIconColorCheckedHover:var(--BackHover);
+    --ListRowSegmentTickIconColorCheckedClick:var(--BackClick);
+    
+    --ListRowSegmentNoneLoadedPictureBackgroundColor:#444;
+    
+    --ListRowSegmentIndexFont:16px var(--BaseFont);
+    --ListRowSegmentIndexColor:var(--SecondaryColor);
+    
+    /*Serieslist Side*/
+    --SeriesListSideContainerSortingButtonTextFont:var(--DefaultTextSize) var(--BaseFont);
+    
+    --SeriesListSideContainerSortingButtonTextColor:var(--LightBase);
+    --SeriesListSideContainerSortingButtonTextColorHover:var(--LightHover);
+    --SeriesListSideContainerSortingButtonTextColorClick:var(--LightClick);
+    
+    --SeriesListSideContainerSortingButtonBackgroundColor:var(--PrimaryColor);
+    --SeriesListSideContainerSortingButtonBackgroundColorHover:var(--PrimaryColor);
+    --SeriesListSideContainerSortingButtonBackgroundColorClick:var(--PrimaryColor);
+    
+    /*Titel*/
+    --MainSiteTitelTextFont:25px var(--BaseFont);
+    --MainSiteTitelTextColor:#999;
+    --SideSiteTitelTextFont:20px var(--BaseFont);
+    --SideSiteTitelTextColor:#999;
+    
+    /*EpisodeList Side*/
+    --EpisodeListSideContainerInfoDescriptionTextFont:var(--DefaultTextSize) var(--BaseFont);
+    --EpisodeListSideContainerInfoDescriptionTextColor:var(--DarkBase);
+    
+    --EpisodeListSideContainerInfoTableTextFont:var(--DefaultTextSize) var(--BaseFont);
+    
+    --EpisodeListSideContainerInfotableTextColorFirst:var(--DarkBase);
+    --EpisodeListSideContainerInfotableTextColorSecond:var(--DarkBase);
+    
+    --EpisodeListSideContainerWatchButtonTextFont:var(--DefaultTextSize) var(--BaseFont);
+    
+    --EpisodeListSideContainerWatchButtonTextColor:#FFF;
+    --EpisodeListSideContainerWatchButtonTextColorHover:#FFF;
+    --EpisodeListSideContainerWatchButtonTextColorClick:#FFF;
+    
+    --EpisodeListSideContainerWatchButtonBackgroundColor:var(--BackBase);
+    --EpisodeListSideContainerWatchButtonBackgroundColorHover:var(--BackHover);
+    --EpisodeListSideContainerWatchButtonBackgroundColorClick:var(--BackClick);
+    
+    /*EpisodeList Autoplay Window*/
+    --EpisodeListAutoplaySideBackgroundColor:#FFF;
+    
+    --EpisodeListAutoplayTextBackgroundColor:#CCC;
+    --EpisodeListAutoplayTextFont:18px var(--BaseFont);
+    --EpisodeListAutoplayTextColor:#000;
+    
+    --EpisodeListAutoplayNumberTextColor:var(--BackClick);
+    
+    --EpisodeListAutoplayNextInfoTextFont:var(--DefaultTextSize) var(--BaseFont);
+    --EpisodeListAutoplayNextInfoTextColor:#000;
+    
+    --EpisodeListAutoplayButtonTextFont:var(--DefaultTextSize) var(--BaseFont);
+    
+    --EpisodeListAutoplayButtonTextColor:#FFF;
+    --EpisodeListAutoplayButtonTextColorHover:#FFF;
+    --EpisodeListAutoplayButtonTextColorClick:#FFF;
+    
+    --EpisodeListAutoplayButtonTextBackgroundColor:var(--BackBase);
+    --EpisodeListAutoplayButtonTextBackgroundColorHover:var(--BackHover);
+    --EpisodeListAutoplayButtonTextBackgroundColorClick:var(--BackClick);
+    
+    /*Seasonlist*/
+    --SeasonListTextFont:var(--DefaultTextSize) var(--BaseFont);
+    --SeasonListFixedBackgroundColor:#FFF;
+    
+    --SeasonListSegmentUnwatchedBackgroundColor:var(--DarkBase);
+    --SeasonListSegmentUnwatchedBackgroundColorHover:var(--DarkHover);
+    --SeasonListSegmentUnwatchedBackgroundColorClick:var(--DarkClick);
+    
+    --SeasonListSegmentWatchedBackgroundColor:var(--BackBase);
+    --SeasonListSegmentWatchedBackgroundColorHover:var(--BackHover);
+    --SeasonListSegmentWatchedBackgroundColorClick:var(--BackClick);
+    
+    --SeasonListSegmentActiveBackgroundColor:#888;
+    --SeasonListSegmentActiveBackgroundColorHover:#AAA;
+    --SeasonListSegmentActiveBackgroundColorClick:#CCC;
+    
+    --SeasonListSegmentActiveWatchedBackgroundColor:#47698e;
+    --SeasonListSegmentActiveWatchedBackgroundColorHover:#47868e;
+    --SeasonListSegmentActiveWatchedBackgroundColorClick:#475b8e;
+    
+    --SeasonListSegmentTextColor:#FFF;
+    --SeasonListSegmentTextColorHover:#FFF;
+    --SeasonListSegmentTextColorClick:#FFF;
+    
+    --SeasonListFavNoFav:var(--LightBase);
+    --SeasonListFavNoFavHover:var(--LightHover);
+    --SeasonListFavNoFavClick:var(--LightClick);
+    
+    --SeasonListFavFav:var(--BackBase);
+    --SeasonListFavFavHover:var(--BackHover);
+    --SeasonListFavFavClick:var(--BackClick);
+    
+    --SeasonListFavThisFav:#fffa00;
+    --SeasonListFavThisFavHover:#ffe100;
+    --SeasonListFavThisFavClick:#ffbb00;
+    
+    /*Dialog Window*/
+    --DialogWindowCloseIconColor:var(--LightBase);
+    --DialogWindowCloseIconColorHover:var(--LightHover);
+    --DialogWindowCloseIconColorClick:var(--LightClick);
+    
+    --DialogWindowBackgroundColor:var(--SecondaryColor);
+    --DialogWindowTextColor:#444;
+    --DialogWindowTextFont:var(--DefaultTextSize) var(--BaseFont);
+    --DialogWindowLineColor:#CCC;
+    
+    /*Settings*/
+    --SettingsHosterSortTextFont:var(--DefaultTextSize) var(--BaseFont);
+    --SettingsHosterSortIndexBackgroundColor:#000;
+    --SettingsHosterSortIndexTextColor:#FFF;
+    --SettingsHosterSortNameBackgroundColor:#FFF;
+    --SettingsGhostBackgroundColor:#EEE;
+    
+    --SettingsTitleTextColor:#AAA;
+    --SettingsTitleTextFont:var(--DefaultTextSize) var(--BaseFont);
+    
+    --SettingsStyleDropdownTextFont:var(--DefaultTextSize) var(--BaseFont);
+    --SettingsStyleDropdownTextColor:#FFF;
+    --SettingsStyleDropdownBackgroundColor:#000;
+    --SettingsStyleDropdownOptionTextColor:#000;
+    --SettingsStyleDropdownOptionBackgroundColor:#EEE;
+    
+    --SettingsStyleDropdownCustomTextFont:var(--DefaultTextSize) var(--BaseFont);
+    --SettingsStyleDropdownCustomTextColor:#CCC;
+    
+    --SettingsStyleTextFieldTextFont:var(--DefaultTextSize) var(--BaseFont);
+    --SettingsStyleTextFieldTextColor:#000;
+    --SettingsStyleTextFieldBackgroundColor:#EEE;
+    
+    --SettingsStyleApplyButtonBackgroundColor:var(--BackBase);
+    --SettingsStyleApplyButtonBackgroundColorHover:var(--BackHover);
+    --SettingsStyleApplyButtonBackgroundColorClick:var(--BackClick);
+    
+    --SettingsStyleApplyButtonTextColor:#FFF;  
+    --SettingsStyleApplyButtonTextColorHover:#FFF;
+    --SettingsStyleApplyButtonTextColorClick:#FFF;
+    
+    --SettingsGeneralItemBackgroundColor:#EEE;
+    --SettingsGeneralItemTextColor:#000;
+    --SettingsGeneralItemTextFont:var(--DefaultTextSize) var(--BaseFont);
+    
+    --SettingsGeneralInputTextFont:var(--DefaultTextSize) var(--BaseFont);
+    --SettingsGeneralInputTextColor:#000;
+    --SettingsGeneralInputBackgroundColor:#CCC;
+    
+    --SettingsGeneralButtonBackgroundColor:var(--BackBase);
+    --SettingsGeneralButtonTextColor:#FFF;
+    
+    --SettingsGeneralButtonBackgroundColorHover:var(--BackHover);
+    --SettingsGeneralButtonTextColorHover:#FFF;
+    
+    --SettingsGeneralButtonBackgroundColorClick:var(--BackClick);
+    --SettingsGeneralButtonTextColorClick:#FFF;
+    
+    /*Waithoster Main*/
+    --WaitHosterButtonTextFont:var(--DefaultTextSize) var(--BaseFont);
+    
+    --WaitHosterButtonTextColor:#FFF;
+    --WaitHosterButtonTextColorHover:#FFF;
+    --WaitHosterButtonTextColorClick:#FFF;
+    
+    --WaitHosterButtonBackgroundColor:var(--BackBase);
+    --WaitHosterButtonBackgroundColorHover:var(--BackHover);
+    --WaitHosterButtonBackgroundColorClick:var(--BackClick);
+    
+    /*Config - Log - Waithoster Sidecontent*/
+    --LastWatchedSideContainerSortingButtonTextFont:var(--DefaultTextSize) var(--BaseFont);
+    
+    --LastWatchedSideContainerTextColor:var(--LightBase);
+    --LastWatchedSideContainerTextColorHover:var(--LightHover);
+    --LastWatchedSideContainerTextColorClick:var(--LightClick);
+    
+    --LastWatchedSideContainerBackgroundColor:var(--PrimaryColor);
+    --LastWatchedSideContainerBackgroundColorHover:var(--PrimaryColor);
+    --LastWatchedSideContainerBackgroundColorClick:var(--PrimaryColor);
+    
+    /*Mediaplayer Styles*/
+    --MediaplayerDefaultFont:16px var(--BaseFont);
+    --MediaplayerInfoTextColor:var(--BackBase);
+    --MediaplayerInfoTextFont:20px var(--BaseFont);
+    
+    --MediaplayerProgressBarsColor:rgba(255, 255, 255 ,0.8);
+    --MediaplayerProgressBarsBackgroundColor:rgba(150,150,150,0.5);
+    
+    --MediaplayerVideoBackgroundColor:#000;
+    --MediaplayerDimLayerColor:#000;
+    
+    --MediaplayerTimeSelectTextColor:#FFF;
+    
+    --MediaplayerControlsBackgroundColor:rgba(22,22,24,0.8);
+    
+    --MediaplayerButtonsColor:var(--BackBase);
+    --MediaplayerButtonsColorHover:var(--BackHover);
+    --MediaplayerButtonsColorClick:var(--BackClick);
+    
+    --MediaplayerDisplayTimeTextColor:#CCC;
+    --MediaplayerDisplaySpeedTextColor:#CCC;
+    
+    --MediaplayerDimBarColor:#FFF;
+    --MediaplayerDimBarBackgroundcolor:#0A0A0A; 
+    --MediaplayerDimPercentageColor:#CCC;
+   
+    --MediaplayerEpisodeInfoTextColor:#CCC;   
+    --MediaplayerEpisodeInfoHighlightTextColor:var(--BackBase);
+    
+    --MediaplayerLoading270Color:transparent;
+    --MediaplayerLoading90Color:var(--BackBase);
+    
+    --MediaplayerAutoplayToggleOnColor:var(--BackBase);
+    --MediaplayerAutoplayToggleOnColorHover:var(--BackHover);
+    --MediaplayerAutoplayToggleOnColorClick:var(--BackClick);
+    
+    --MediaplayerAutoplayToggleOffColor:var(--LightBase);
+    --MediaplayerAutoplayToggleOffColorHover:var(--LightHover);
+    --MediaplayerAutoplayToggleOffColorClick:var(--LightClick);
+}
+
+body {
+    visibility:visible !important;
+}

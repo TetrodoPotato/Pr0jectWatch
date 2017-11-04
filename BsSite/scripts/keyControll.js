@@ -38,7 +38,7 @@ var focusNextMenu = function (direction) {
  */
 var getNextTabIndex = function (mainContainerId, currentElement, direction) {
     var elems = $('#' + mainContainerId + ' [tabindex]:visible');
-    if ($(currentElement).length == 0 || !$(currentElement).is(':visible')) {
+    if ($(currentElement).length == 0 || !$(currentElement).is(':visible') || !$(currentElement).is('#' + mainContainerId + ' [tabindex]:visible')) {
         return elems.first();
     } else if (!$(currentElement).is(':focus')) {
         return currentElement;

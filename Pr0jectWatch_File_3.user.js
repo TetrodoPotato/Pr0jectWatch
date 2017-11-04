@@ -44,11 +44,14 @@ var onDocumentLoaded = function () {
 
     //Setting
     if (getData('scrollUnwatched', false)) {
-        var offSet = $(".seriesContainer:not(.episodeWatched):first").offset()
+        if($(".seriesContainer:not(.episodeWatched):first").length) {
+            var offSet = $(".seriesContainer:not(.episodeWatched):first").offset()
             $('html, body').animate({
                 scrollTop: (((typeof offSet !== 'undefined') ? offSet.top : 0) - 300)
             }, 2000);
-        lastFocusList = $(".seriesContainer:not(.episodeWatched):first");
+        }
+        
+        window.lastFocusList = $(".seriesContainer:not(.episodeWatched):first");
     }
 
     if (getData('autoplay', false)) {

@@ -138,7 +138,7 @@ var onDocumentLoaded = function () {
 var onBeforeDocumentLoad = function () {
     //Stop old Video : Parallel Fix
     var stopFrame = $('video');
-    if (stopFrame.lenght != 0) {
+    if (stopFrame.length != 0) {
         stopFrame[0].pause();
     }
 }
@@ -586,7 +586,9 @@ var playpause = function () {
  * @return {String}
  */
 var zeroFill = function (str, width) {
-    return ('00000000000' + str).slice(-1 * width);
+    str = '' + str;
+    var  newWidth = (width < str.length) ? str.length : width;
+    return ('00000000000' + str).slice(-1 * newWidth);
 }
 
 /**

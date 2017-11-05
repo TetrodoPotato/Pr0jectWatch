@@ -49,9 +49,9 @@ var onDocumentLoaded = function () {
             $('html, body').animate({
                 scrollTop: (((typeof offSet !== 'undefined') ? offSet.top : 0) - 300)
             }, 2000);
+            
+            window.lastFocusList = $(".seriesContainer:not(.episodeWatched):first");
         }
-        
-        window.lastFocusList = $(".seriesContainer:not(.episodeWatched):first");
     }
 
     if (getData('autoplay', false)) {

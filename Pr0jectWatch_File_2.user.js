@@ -2,7 +2,7 @@
 // @name        Project Watch - File 2
 // @icon 		https://bs.to/opengraph.jpg
 // @namespace   https://bs.to/
-// @include     https://bs.to/serie-genre *
+// @include     https://bs.to/serie-genre
 // @version    	1.0
 // @description	SeriesList
 // @author     	Kartoffeleintopf

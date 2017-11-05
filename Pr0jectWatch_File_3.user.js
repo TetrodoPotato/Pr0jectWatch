@@ -244,7 +244,7 @@ var constructSeasonList = function (obj) {
 
     var partLink = 'https://bs.to/serie/' + getSeriesId() + '/';
     $.each(obj, function (index, value) {
-        $row.append('<td class="' + ((value.state !== '') ? ((value.state !== 'special') ? value.state : 'unwatched special') : 'unwatched') + '" href="' + (partLink + value.index) + '">' + (value.index ? value.index : 'Specials') + '</a>');
+        $row.append('<td class="' + value.state + '" href="' + (partLink + value.index) + '">' + (value.index ? value.index : 'Specials') + '</a>');
     });
 }
 
@@ -259,7 +259,7 @@ var getSeasonObjects = function () {
 
         obj.push({
             index: (!isNaN(target.text())) ? parseInt(target.text()) : 0,
-            state: (target.is('.active, .watched, .special')) ? ((target.attr('class') == 'active') ? 'active unwatched' : target.attr('class')) : ''
+            state: ((!target.attr('class').includes('watched')) ? (target.attr('class') + ' unwatched') : target.attr('class'))
         });
     });
     return obj;
@@ -343,6 +343,7 @@ var getInfoTable = function () {
  */
 var initAutoplay = function () {
     if (!autoplayIsValid()) {
+        $('#autoplay').prop('checked',false);
         return false;
     }
 

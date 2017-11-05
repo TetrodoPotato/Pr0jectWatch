@@ -21,12 +21,11 @@
 
 /*
  * Global Setting Variables.
-*/
+ */
 var previewSteps = 60;
 var closeEnd = true;
 var enablePreview = true;
 var timeShow = 3;
-
 
 /**
  * GM_setValue with new or old Api
@@ -82,7 +81,7 @@ var setEpisodeVariables = async function () {
     await setGMValue('closeEnd', jDecode(getGetter('closeEnd')) == 'true');
     await setGMValue('enablePreview', jDecode(getGetter('enablePreview')) == 'true');
     await setGMValue('timeShow', parseInt(jDecode(getGetter('timeShow'))));
-    
+
     window.location = getGetter('redirect');
 }
 
@@ -101,14 +100,14 @@ if (/^https:\/\/bs.to\/data.*?$/.test(window.location.href)) {
 var onDocumentReady = async function () {
     await replaceStyleColors();
     await setSetting();
-    
+
     fillTopText();
     $('#vid').attr('src', window.location.href);
-    
-    if(enablePreview){
+
+    if (enablePreview) {
         loadVideoTimelinePreview();
     }
-    
+
     toggleAutoplay(await getGMValue('autoplay', false));
     updateDark(await getGMValue('lastDark', 0));
 
@@ -119,10 +118,10 @@ var onDocumentReady = async function () {
 }
 
 var setSetting = async function () {
-    previewSteps = await getGMValue('previewSteps',60);
+    previewSteps = await getGMValue('previewSteps', 60);
     closeEnd = await getGMValue('closeEnd', true);
-    enablePreview = await getGMValue('enablePreview',true);
-    timeShow = await getGMValue('timeShow',3);
+    enablePreview = await getGMValue('enablePreview', true);
+    timeShow = await getGMValue('timeShow', 3);
 }
 
 /**
@@ -137,10 +136,9 @@ var onDocumentLoaded = function () {
  */
 var onBeforeDocumentLoad = function () {
     //Stop old Video : Parallel Fix
-    var stopFrame = $('video');
-    if (stopFrame.length != 0) {
-        stopFrame[0].pause();
-    }
+    $('video').each(function () {
+        $(this).remove();
+    });
 }
 
 /**
@@ -394,7 +392,7 @@ var addInterfaceEventhandler = async function () {
  */
 var addVideoEventhandler = async function () {
     $('#vid').bind('ended', function () {
-        if(closeEnd){
+        if (closeEnd) {
             closeVideo();
         }
     });
@@ -587,7 +585,7 @@ var playpause = function () {
  */
 var zeroFill = function (str, width) {
     str = '' + str;
-    var  newWidth = (width < str.length) ? str.length : width;
+    var newWidth = (width < str.length) ? str.length : width;
     return ('00000000000' + str).slice(-1 * newWidth);
 }
 
@@ -809,6 +807,10 @@ var toggleAutoplay = function (state) {
  * Loads an Video and Buffers Frame for Each Preview Step (Default : 60 Steps)
  */
 var loadVideoTimelinePreview = function () {
+    if(typeof window.PrevErrors === 'undefined'){
+        window.PrevErrors = 0;
+    }
+    
     $('#preview').attr('src', window.location.href);
 
     $('#preview').bind('loadedmetadata', function () {
@@ -816,10 +818,21 @@ var loadVideoTimelinePreview = function () {
         var duration = video.duration;
         var curLoadingTime = 0;
         var count = 0;
+        var currentErr = window.PrevErrors;
+
+        $('#canvasContainer').empty();
 
         var intervalFunction = async function () {
+
+            if (window.PrevErrors > currentErr) {
+                return false;
+            }
+
             if (isTimeBuffered(video, curLoadingTime)) {
-                await drawVidToCanvasAndAppend(video, 'canvasContainer');
+                await drawVidToCanvasAndAppend(video, 'canvasContainer', currentErr);
+                if (window.PrevErrors > currentErr) {
+                    return false;
+                }
                 video.currentTime = curLoadingTime += (duration / previewSteps);
                 count++;
             }
@@ -835,6 +848,8 @@ var loadVideoTimelinePreview = function () {
     });
 
     $('#preview').bind('error', function () {
+        $("#preview").unbind();
+        console.log('Prev.Error: ' + (++window.PrevErrors));
         loadVideoTimelinePreview();
     });
 }
@@ -844,7 +859,7 @@ var loadVideoTimelinePreview = function () {
  * @param video {Element} - Video element.
  * @param appendTargetId {String} - id if target to append.
  */
-var drawVidToCanvasAndAppend = function (video, appendTargetId) {
+var drawVidToCanvasAndAppend = function (video, appendTargetId, err) {
     return new Promise((resolve, reject) => {
         var scale = video.videoHeight / 100;
 
@@ -858,10 +873,13 @@ var drawVidToCanvasAndAppend = function (video, appendTargetId) {
         var ctx = newCanvas[0].getContext('2d');
 
         var draw = function () {
+            if (window.PrevErrors > err) {
+                return false;
+            }
+
             ctx.drawImage(video, 0, 0);
 
             if (!isCanvasDrawn(newCanvas[0])) {
-                video.currentTime += 1
                 setTimeout(draw, 100);
             } else {
                 resolve(true);

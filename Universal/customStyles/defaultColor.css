@@ -330,7 +330,7 @@
     
     --SettingsTitleTextColor:#AAA;
     --SettingsTitleTextFont:var(--DefaultTextSize) var(--BaseFont);
-    --SettingsDropdownArrowColor:#FFF;
+    --SettingsDropdownArrowColor:#000;
     
     --SettingsStyleDropdownTextFont:var(--DefaultTextSize) var(--BaseFont);
     --SettingsStyleDropdownTextColor:#FFF;

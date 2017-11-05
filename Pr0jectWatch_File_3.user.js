@@ -256,6 +256,9 @@ var getSeasonObjects = function () {
     var obj = [];
     $('#seasons li').each(function () {
         var target = $(this);
+        if(typeof target.attr('class') === 'undefined'){
+            target.attr('class','')
+        }
 
         obj.push({
             index: (!isNaN(target.text())) ? parseInt(target.text()) : 0,

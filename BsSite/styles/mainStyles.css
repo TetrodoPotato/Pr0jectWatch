@@ -933,7 +933,7 @@ input:checked + .slider:before {
     /*Minus .genrePicContainer height*/
     height: 45px;
     
-    box-shadow: -2px 2px 4px #CCC;
+    box-shadow: -2px 2px 4px rgba(0,0,0,0.8);
     cursor:pointer;
     overflow:hidden;
 }
@@ -1592,7 +1592,7 @@ input:checked + .slider:before {
     background-color:var(--SeasonListSegmentWatchedBackgroundColorClick);
 }
 
-#seasonTable .unwatched, #seasonTable .special:not[.watched] {
+#seasonTable .unwatched, #seasonTable .special:not(.watched) {
     background-color:var(--SeasonListSegmentUnwatchedBackgroundColor);
 }
 
@@ -1737,7 +1737,8 @@ input:checked + .slider:before {
     width: -o-calc(100%  - 40px);
     width: calc(100%  - 40px);
     
-    padding: 0 0 0 10px;    
+    padding: 0 0 0 10px;   
+    color:var(--SettingsHosterSortNameTextColor);    
 }
 
 #hosterSortContainer li[sup="true"] .hosterName {
@@ -1750,6 +1751,8 @@ input:checked + .slider:before {
     color:var(--SettingsTitleTextColor);
     font:var(--SettingsTitleTextFont);
     line-height:30px;
+    
+    fill:var(--SettingsDropdownArrowColor);
     
     cursor:pointer;
 }

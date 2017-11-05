@@ -26,7 +26,8 @@ var defaultHoster = ((arr, n) => arr.map(x => x[n]))(hosterSupport, 0);
  * Definded Colorstyles
  */
 var styleColors = {
-    Default: 'https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/customStyles/defaultColor.css'
+    Default: 'https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/customStyles/defaultColor.css',
+    DefaultDark: 'https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/customStyles/defaultColorDark.css'
 }
 
 /**

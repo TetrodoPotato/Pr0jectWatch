@@ -21,7 +21,7 @@
     --DarkClick:#888;
     
     --PrimaryColor:#000;
-    --SecondaryColor:#FFF;
+    --SecondaryColor:#161617;
     --ThirdColor:#2196F3;
     --FourthColor:#CCC;
     /*----------------------*/
@@ -73,7 +73,7 @@
     --SliderDotColorChecked:var(--SecondaryColor);
     
     /*Autoplay Text*/
-    --MenuAutoplayText:var(--SecondaryColor);
+    --MenuAutoplayText:#FFF;
     --MenuAutoplayFont:var(--DefaultTextSize) Impact,sans-serif;
     
     /*Searchbox*/
@@ -84,7 +84,7 @@
     --MenuSearchLogoColorFocus:var(--ThirdColor);
     
     --MenuSearchBoxBackgroundColor:#222;
-    --MenuSearchBoxTextColor:var(--SecondaryColor);
+    --MenuSearchBoxTextColor:#FFF;
     --MenuSearchBoxTextFont:var(--DefaultTextSize) var(--SpecialFont);
     
     /*Sidemenu Show Hide Arrow*/
@@ -97,13 +97,13 @@
     
     /*Login Dialog Window*/
     --LoginDialogBackgroundColor:var(--SecondaryColor);
-    --LoginTextBoxBackgroundColor:#EEE;
-    --LoginTextBoxTextColor:#000;
+    --LoginTextBoxBackgroundColor:#222;
+    --LoginTextBoxTextColor:#FFF;
     --LoginTextBoxTextFont:var(--DefaultTextSize) var(--SpecialFont);
     
     --LoginButtonsTextFont:var(--DefaultTextSize) var(--BaseFont);
     --LoginKeepLogTextFont:var(--DefaultTextSize) var(--SpecialFont);
-    --LoginKeepLogTextColor:#000;
+    --LoginKeepLogTextColor:#FFF;
     
     --LoginButtonsTextColor:var(--TextBase);
     --LoginButtonsTextColorHover:var(--TextHover);
@@ -117,16 +117,16 @@
     --SideMenuBackgroundColor:var(--SecondaryColor);
     --SideMenuTitelTextFont:12px var(--BaseFont);
     --SideMenuTitelTextFontColor:#AAA;
-    --SideMenuBottomLineColor:var(--FourthColor);
+    --SideMenuBottomLineColor:#000;
     --SideMenuNavigationFont:16px var(--BaseFont);
     
-    --SideMenuNavigationTextColor:#000;
-    --SideMenuNavigationTextColorHover:#000;
-    --SideMenuNavigationTextColorClick:#000;
+    --SideMenuNavigationTextColor:#FFF;
+    --SideMenuNavigationTextColorHover:#FFF;
+    --SideMenuNavigationTextColorClick:#FFF;
     
     --SideMenuNavigationBackground:transparent;
-    --SideMenuNavigationBackgroundHover:#EEE;
-    --SideMenuNavigationBackgroundClick:#DDD;  
+    --SideMenuNavigationBackgroundHover:#222;
+    --SideMenuNavigationBackgroundClick:#444;  
     
     --SideMenuIconColor:var(--FourthColor);
     --SideMenuIconColorHover:var(--BackHover);
@@ -145,14 +145,14 @@
     
     /*Loading Circle*/
     --LoadingCircle90Color:var(--ThirdColor);
-    --LoadingCircle270Color:#DDD;
+    --LoadingCircle270Color:#222;
     
     /*Favorite Menu*/
     --FavoriteMenuRowTextFont:var(--DefaultTextSize) var(--BaseFont);
     
     --FavoriteMenuRowBackgroundColor:transparent;
-    --FavoriteMenuRowBackgroundColorHover:#EEE;
-    --FavoriteMenuRowBackgroundColorClick:#DDD;
+    --FavoriteMenuRowBackgroundColorHover:#222;
+    --FavoriteMenuRowBackgroundColorClick:#444;
     
     --FavoriteMenuCloseColBackgroundColor:var(--PrimaryColor);
     --FavoriteMenuCloseColBackgroundColorHover:var(--PrimaryColor);
@@ -162,9 +162,9 @@
     --FavoriteMenuCloseIconColorHover:#2196F3;
     --FavoriteMenuCloseIconColorClick:#33adff;
     
-    --FavoriteMenuNameColTextColor:#000;
-    --FavoriteMenuNameColTextColorHover:#000;
-    --FavoriteMenuNameColTextColorClick:#000;
+    --FavoriteMenuNameColTextColor:#FFF;
+    --FavoriteMenuNameColTextColorHover:#FFF;
+    --FavoriteMenuNameColTextColorClick:#FFF;
 
     --FavoriteMenuSeasonColTextColor:#AAA;   
     --FavoriteMenuSeasonColBackgroundcolorWatched:var(--BackBase);
@@ -174,9 +174,9 @@
     --FavoriteMenuMessageTextColor:#2196F3;
 
     /*ListRowSegment Series/Episodes*/
-    --ListRowSegmentPrimaryBackgroundColor:#FFF;
-    --ListRowSegmentPrimaryBackgroundColorHover:#EEE;
-    --ListRowSegmentPrimaryBackgroundColorClick:#DDD;
+    --ListRowSegmentPrimaryBackgroundColor:#222;
+    --ListRowSegmentPrimaryBackgroundColorHover:#444;
+    --ListRowSegmentPrimaryBackgroundColorClick:#666;
     
     --ListRowSegmentSecondaryBackgroundColor:var(--PrimaryColor);
     
@@ -185,9 +185,9 @@
     
     --ListRowSegmentTitleTextFont:18px var(--BaseFont);
     
-    --ListRowSegmentTitleTextColor:#666;
-    --ListRowSegmentTitleTextColorHover:#666;
-    --ListRowSegmentTitleTextColorClick:#666;
+    --ListRowSegmentTitleTextColor:#FFF;
+    --ListRowSegmentTitleTextColorHover:#FFF;
+    --ListRowSegmentTitleTextColorClick:#FFF;
     
     --ListRowSegmentGenreTextFont:var(--DefaultTextSize) var(--BaseFont);
     --ListRowSegmentGenreTextColor:#FFF;
@@ -232,12 +232,12 @@
     
     /*EpisodeList Side*/
     --EpisodeListSideContainerInfoDescriptionTextFont:var(--DefaultTextSize) var(--BaseFont);
-    --EpisodeListSideContainerInfoDescriptionTextColor:var(--DarkBase);
+    --EpisodeListSideContainerInfoDescriptionTextColor:#FFF;
     
     --EpisodeListSideContainerInfoTableTextFont:var(--DefaultTextSize) var(--BaseFont);
     
-    --EpisodeListSideContainerInfotableTextColorFirst:var(--DarkBase);
-    --EpisodeListSideContainerInfotableTextColorSecond:var(--DarkBase);
+    --EpisodeListSideContainerInfotableTextColorFirst:#FFF;
+    --EpisodeListSideContainerInfotableTextColorSecond:#FFF;
     
     --EpisodeListSideContainerWatchButtonTextFont:var(--DefaultTextSize) var(--BaseFont);
     
@@ -250,16 +250,16 @@
     --EpisodeListSideContainerWatchButtonBackgroundColorClick:var(--BackClick);
     
     /*EpisodeList Autoplay Window*/
-    --EpisodeListAutoplaySideBackgroundColor:#FFF;
+    --EpisodeListAutoplaySideBackgroundColor:#161617;
     
-    --EpisodeListAutoplayTextBackgroundColor:#CCC;
+    --EpisodeListAutoplayTextBackgroundColor:#444;
     --EpisodeListAutoplayTextFont:18px var(--BaseFont);
-    --EpisodeListAutoplayTextColor:#000;
+    --EpisodeListAutoplayTextColor:#FFF;
     
     --EpisodeListAutoplayNumberTextColor:var(--BackClick);
     
     --EpisodeListAutoplayNextInfoTextFont:var(--DefaultTextSize) var(--BaseFont);
-    --EpisodeListAutoplayNextInfoTextColor:#000;
+    --EpisodeListAutoplayNextInfoTextColor:#FFF;
     
     --EpisodeListAutoplayButtonTextFont:var(--DefaultTextSize) var(--BaseFont);
     
@@ -273,7 +273,7 @@
     
     /*Seasonlist*/
     --SeasonListTextFont:var(--DefaultTextSize) var(--BaseFont);
-    --SeasonListFixedBackgroundColor:#FFF;
+    --SeasonListFixedBackgroundColor:#161617;
     
     --SeasonListSegmentUnwatchedBackgroundColor:var(--DarkBase);
     --SeasonListSegmentUnwatchedBackgroundColorHover:var(--DarkHover);
@@ -313,9 +313,9 @@
     --DialogWindowCloseIconColorClick:var(--LightClick);
     
     --DialogWindowBackgroundColor:var(--SecondaryColor);
-    --DialogWindowTextColor:#444;
+    --DialogWindowTextColor:#FFF;
     --DialogWindowTextFont:var(--DefaultTextSize) var(--BaseFont);
-    --DialogWindowLineColor:#CCC;
+    --DialogWindowLineColor:#000;
     
     /*Settings*/
     --SettingsHosterSortTextFont:var(--DefaultTextSize) var(--BaseFont);
@@ -323,8 +323,8 @@
     --SettingsHosterSortIndexBackgroundColor:#000;
     --SettingsHosterSortIndexTextColor:#FFF;
     
-    --SettingsHosterSortNameBackgroundColor:#FFF;
-    --SettingsHosterSortNameTextColor:#000;
+    --SettingsHosterSortNameBackgroundColor:#222;
+    --SettingsHosterSortNameTextColor:#FFF;
     
     --SettingsGhostBackgroundColor:#EEE;
     
@@ -333,17 +333,17 @@
     --SettingsDropdownArrowColor:#FFF;
     
     --SettingsStyleDropdownTextFont:var(--DefaultTextSize) var(--BaseFont);
-    --SettingsStyleDropdownTextColor:#FFF;
-    --SettingsStyleDropdownBackgroundColor:#000;
-    --SettingsStyleDropdownOptionTextColor:#000;
-    --SettingsStyleDropdownOptionBackgroundColor:#EEE;
+    --SettingsStyleDropdownTextColor:#000;
+    --SettingsStyleDropdownBackgroundColor:#FFF;
+    --SettingsStyleDropdownOptionTextColor:#FFF;
+    --SettingsStyleDropdownOptionBackgroundColor:#333;
     
     --SettingsStyleDropdownCustomTextFont:var(--DefaultTextSize) var(--BaseFont);
     --SettingsStyleDropdownCustomTextColor:#CCC;
     
     --SettingsStyleTextFieldTextFont:var(--DefaultTextSize) var(--BaseFont);
-    --SettingsStyleTextFieldTextColor:#000;
-    --SettingsStyleTextFieldBackgroundColor:#EEE;
+    --SettingsStyleTextFieldTextColor:#FFF;
+    --SettingsStyleTextFieldBackgroundColor:#222;
     
     --SettingsStyleApplyButtonBackgroundColor:var(--BackBase);
     --SettingsStyleApplyButtonBackgroundColorHover:var(--BackHover);
@@ -353,13 +353,13 @@
     --SettingsStyleApplyButtonTextColorHover:#FFF;
     --SettingsStyleApplyButtonTextColorClick:#FFF;
     
-    --SettingsGeneralItemBackgroundColor:#EEE;
-    --SettingsGeneralItemTextColor:#000;
+    --SettingsGeneralItemBackgroundColor:#222;
+    --SettingsGeneralItemTextColor:#FFF;
     --SettingsGeneralItemTextFont:var(--DefaultTextSize) var(--BaseFont);
     
     --SettingsGeneralInputTextFont:var(--DefaultTextSize) var(--BaseFont);
-    --SettingsGeneralInputTextColor:#000;
-    --SettingsGeneralInputBackgroundColor:#CCC;
+    --SettingsGeneralInputTextColor:#FFF;
+    --SettingsGeneralInputBackgroundColor:#444;
     
     --SettingsGeneralButtonBackgroundColor:var(--BackBase);
     --SettingsGeneralButtonTextColor:#FFF;

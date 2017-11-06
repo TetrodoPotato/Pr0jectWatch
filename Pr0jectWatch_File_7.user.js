@@ -5,7 +5,9 @@
 // @include		/^https:\/\/bs.to\/data.*$/
 // @include     /^https:\/\/delivery\-\-.+$/
 // @include     /^.*oloadcdn\.net.*$/
-// @include     /^.*fruithosted\.net.*/
+// @include     /^.*fruithosted\.net.*$/
+// @include     /^.*thevideo\.me.*$/
+// @include     /^.*198\.16\.68\.202.*$/
 // @version    	1
 // @description	SeriesList
 // @author     	Kartoffeleintopf
@@ -81,7 +83,10 @@ var setEpisodeVariables = async function () {
     await setGMValue('closeEnd', jDecode(getGetter('closeEnd')) == 'true');
     await setGMValue('enablePreview', jDecode(getGetter('enablePreview')) == 'true');
     await setGMValue('timeShow', parseInt(jDecode(getGetter('timeShow'))));
-
+    
+    //RESET ERROR
+    await setGMValue('isError', false);
+    
     window.location = getGetter('redirect');
 }
 
@@ -177,13 +182,13 @@ var failed = function (e) {
         window.timer--;
     }
 
-    window.setTimeout(function () {
+    window.setTimeout(async function () {
         if (window.timer > 3) {
-            if (getData("isError", false)) {
-                setData("isError", false);
+            if (await getGMValue("isError", false)) {
+                await setGMValue("isError", false);
                 window.location = 'https://bs.to/?error';
             } else {
-                setData("isError", true);
+                await setGMValue("isError", true);
                 location.reload();
                 if (e.target.error.code == e.target.error.MEDIA_ERR_NETWORK) {
                     $('#vid').one('play', function () {
@@ -671,8 +676,8 @@ var exitFullscreen = function () {
 /**
  * Close the Video and get back to the episodes
  */
-var closeVideo = function () {
-    setCookie('isError', false, false);
+var closeVideo = async function () {
+    await setGMValue('isError', false);
     window.location = 'https://bs.to/?next' + ((typeof window.autoP === 'boolean') ? ('&autoplay=' + window.autoP) : '');
 }
 

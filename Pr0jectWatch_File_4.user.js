@@ -125,6 +125,7 @@ var onDocumentReady = function () {
                     window.location = 'https://bs.to/?next';
                 }
             }, 200);
+        $('.hoster-player:first').attr('href','https://www.google.de/');
     }
 
     $('#contentContainer').empty().append('<h1 class="mainSiteTitle">Open Hosterwindow</h1>').append('<button id="nextButton">Next Episode</button>').find('#nextButton').bind('click', function () {

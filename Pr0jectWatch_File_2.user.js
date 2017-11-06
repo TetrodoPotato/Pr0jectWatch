@@ -145,7 +145,7 @@ var getIdNames = function () {
 var createProgressbar = function () {
     $('body').append($("<div>", {
             'id': 'progressTable',
-            'style': 'position:fixed; z-index:99999; width:100%; height:100%; top:0; left:0; background-color:#000;'
+            'style': 'position:fixed; z-index:9999999999; width:100%; height:100%; top:0; left:0; background-color:#000;'
         }).append('<div id="progressbar" style="height:20px; background-color:#FFF; width:0%;"></div>'));
 }
 

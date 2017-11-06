@@ -5,6 +5,7 @@
 // @include     /^https:\/\/openload\.co\/embed\/.+$/
 // @include     /^https:\/\/vivo\.sx\/.+$/
 // @include     /^https:\/\/streamango\.com\/embed\/.+$/
+// @include     /^http:\/\/vidto\.me\/.+$/
 // @version    	1.0
 // @description	Hoster Parser
 // @author     	Kartoffeleintopf
@@ -17,18 +18,15 @@ makeBlackPage();
 document.documentElement.style.overflow = 'hidden';
 
 var parseOpenload = function () {
-    $(document).ready(function () {
-        //Get the api ticket of the mp4 file
-        var elem = $('#streamurl');
-        if (elem.length != 0) {
-            if (elem.text() != "HERE IS THE LINK") {
-                window.location = 'https://openload.co/stream/' + elem.text() + '?mime=true';
-                return;
-            }
+    //Get the api ticket of the mp4 file
+    var elem = $('#streamurl');
+    if (elem.length != 0) {
+        if (elem.text() != "HERE IS THE LINK") {
+            window.location = 'https://openload.co/stream/' + elem.text() + '?mime=true';
+            return;
         }
-        window.location = 'https://bs.to/?error';
-    }); 
-    
+    }
+    window.location = 'https://bs.to/?error';
 }
 
 var parseVivo = function () {
@@ -59,25 +57,63 @@ var parseVivo = function () {
             }
         }
     }
-    
-    //When document loaded
-    $(document).ready(function () {
-        //Start the redirect process
-        setTimeout(startRedirect, 1000);
-    });
+
+    //Start the redirect process
+    setTimeout(startRedirect, 1000);
 }
 
 var parseStreamango = function () {
-     $(document).ready(function () {
-        window.location = $('video').attr('src');
-    });   
+    window.location = $('video').attr('src');
 }
 
-if (/^https:\/\/openload\.co\/embed\/.+$/.test(window.location.href)) {
-    parseOpenload();
-} else if (/^https:\/\/vivo\.sx\/.+$/.test(window.location.href)) {
-    parseVivo();
-} else if (/^https:\/\/streamango\.com\/embed\/.+$/.test(window.location.href)) {
-    parseStreamango();
+/*NOT SUPPORTET MEDIAPLAYER GET ERROR NOTHING LOADS*/
+var parseTheVideo = function () {
+    var t = 0;
+    var timer = setInterval(function () {
+        var nextLink = $('video').attr('src');
+        if(typeof nextLink !== 'undefined'){
+            window.location = nextLink;
+            clearInterval(timer);
+        }
+        if(++t > 100) {
+            clearInterval(timer);
+            window.location = 'https://bs.to/?error';
+        }
+    },100);
+    
 }
 
+var parseVidto = function () {
+    var t = 0;
+    var timer = setInterval(function () {
+        var nextButton = $('#btn_download'); 
+        if(nextButton.length){
+            nextButton.click();
+        } else {
+            var nextLink = $('video:first').attr('src');
+            if(typeof nextLink !== 'undefined'){
+                window.location = nextLink;
+                clearInterval(timer);
+            }
+        }
+        
+        if(++t > 100) {
+            clearInterval(timer);
+            window.location = 'https://bs.to/?error';
+        }
+    },100);
+}
+
+$(document).ready(function () {
+    if (/^https:\/\/openload\.co\/embed\/.+$/.test(window.location.href)) {
+        parseOpenload();
+    } else if (/^https:\/\/vivo\.sx\/.+$/.test(window.location.href)) {
+        parseVivo();
+    } else if (/^https:\/\/streamango\.com\/embed\/.+$/.test(window.location.href)) {
+        parseStreamango();
+    } else if (/^https:\/\/thevideo\.io\/embed.+$/.test(window.location.href)) {
+        parseTheVideo();
+    }  else if (/^http:\/\/vidto\.me\/.+$/.test(window.location.href)) {
+        parseVidto();
+    }
+});

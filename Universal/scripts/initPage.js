@@ -15,7 +15,7 @@ var initMediaplayer = function () {
 /**
  * Hoster Support.
  */
-var hosterSupport = [['OpenLoadHD', true], ['Streamango', true], ['OpenLoad', true], ['Vivo', true], ['AuroraVid', false], ['FlashX', false], ['TheVideo', false], ['Vidto', false], ['YouWatch', false], ['CloudTime', false]]; 
+var hosterSupport = [['OpenLoadHD', true], ['Streamango', true], ['OpenLoad', true], ['TheVideo', true], ['Vivo', true], ['AuroraVid', false], ['FlashX', false], ['Vidto', false], ['YouWatch', false], ['CloudTime', false]]; 
 
 /**
  * Get Default Hoster.
@@ -146,7 +146,7 @@ var makeBlackPage = function () {
     //Black page over original
     var $black = $("<div>", {
             'id': 'blackP',
-            'style': 'width:100%; height:100%; position:fixed; top:0; left:0; background:#000; z-index:99'
+            'style': 'width:100%; height:100%; position:fixed; top:0; left:0; background:#000; z-index:9999999'
         });
     $(document.documentElement).append($black);
     document.documentElement.style.overflow = 'hidden'; // firefox, chrome

@@ -176,6 +176,11 @@ var setEpisodeEvents = function () {
         makePageCall('https://bs.to/serie/' + getSeriesId() + '/' + getSeason() + '/' + 'watch:all', function () {
             $('.seriesContainer ').addClass('episodeWatched');
             $('.active').toggleClass('watched', ($(".seriesContainer:not(.episodeWatched)").length == 0));
+            if ($('.active:first').hasClass('watched')) {
+                $('.active').removeClass('unwatched');
+            } else {
+                $('.active').addClass('unwatched');
+            }
             syncSeries();
         });
     });
@@ -184,6 +189,11 @@ var setEpisodeEvents = function () {
         makePageCall('https://bs.to/serie/' + getSeriesId() + '/' + getSeason() + '/' + 'unwatch:all', function () {
             $('.seriesContainer ').removeClass('episodeWatched');
             $('.active').toggleClass('watched', ($(".seriesContainer:not(.episodeWatched)").length == 0));
+            if ($('.active:first').hasClass('watched')) {
+                $('.active').removeClass('unwatched');
+            } else {
+                $('.active').addClass('unwatched');
+            }
             syncSeries();
         });
     });
@@ -216,8 +226,10 @@ var constructEpisodeList = function (list) {
     });
 
     $('.active').toggleClass('watched', ($(".seriesContainer:not(.episodeWatched)").length == 0));
-    if ($('.active').hasClass('watched')) {
+    if ($('.active:first').hasClass('watched')) {
         $('.active').removeClass('unwatched');
+    } else {
+        $('.active').addClass('unwatched');
     }
 }
 

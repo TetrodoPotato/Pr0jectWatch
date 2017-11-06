@@ -99,7 +99,7 @@ var changeSeason = function (direction) {
  * @param element {Element} - element.
  */
 var scrollToElement = function (element) {
-    $(window).scrollTop(($(element).offset().top) - 140);
+    $(window).scrollTop(($(element).offset().top) - 200);
 }
 
 /**

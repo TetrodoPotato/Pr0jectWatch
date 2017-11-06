@@ -20,9 +20,9 @@ var redirectStart = function () {
     makeBlackPage();
 
     //Get the current lastplayed episode
-    var series = getData('lastSeries');
-    var season = getData('lastSeason');
-    var episode = getData('lastEpisode');
+    var series = getData('lastSeries','none');
+    var season = getData('lastSeason','none');
+    var episode = getData('lastEpisode','none');
 
     //Check error on cookies and fuck you
     if (/^https:\/\/bs.to(\/home)?\/?$/.test(window.location.href)) {
@@ -43,9 +43,7 @@ var redirectStart = function () {
     } else if (/^https:\/\/bs.to\/\?logout[^]*$/.test(window.location.href)) {
         setData('beforeLogout', jDecode(getGetter('redirect', 'https://bs.to/')));
         window.location = 'https://bs.to/logout';
-    } else if (typeof series === 'undefined' ||
-        typeof season === 'undefined' ||
-        typeof episode === 'undefined') {
+    } else if (series === 'none' || season === 'none' || episode === 'none') {
 
         alert('Enable cookies!!!');
         setData('autoplay', false);

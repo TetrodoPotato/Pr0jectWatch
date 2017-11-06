@@ -1598,7 +1598,7 @@ input:checked + .slider:before {
     background-color:var(--SeasonListSegmentWatchedBackgroundColorClick);
 }
 
-#seasonTable .unwatched, #seasonTable .special:not(.watched) {
+#seasonTable .unwatched, #seasonTable .special.unwatched:not(.active) {
     background-color:var(--SeasonListSegmentUnwatchedBackgroundColor);
 }
 

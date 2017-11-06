@@ -176,13 +176,13 @@ var updateProgressbar = async function (e) {
  * @return {String} seriesrow as DOM-String.
  */
 var seriesRowRaw = function (fullname, genre, picID, isFav, isSynced, seriesId, isWatched) {
-    return '<div tabindex="-1" seriesId="' + seriesId + '" class="seriesContainer search"><div class="buttonContainer"><svg class="favIcon ' + ((isFav) ? 'Fav' : 'noFav') + '" viewBox="0 0 25 25"><g>' +
+    return '<div tabindex="-1" seriesId="' + seriesId + '" class="seriesContainer search"><div class="buttonContainer"><svg title="Toggle Favorite-state Of Series" class="favIcon ' + ((isFav) ? 'Fav' : 'noFav') + '" viewBox="0 0 25 25"><g>' +
     '<path d="M12.6 0 L15.6 9 L24.9 9 L17.5 15.5 L20 24.9 L12.6 19.4 L4.5 24.7 L7.5 15.6 L0 9.2 L9.3 9 Z" /></g></svg>' +
-    '<svg class="seriesTick ' + ((isSynced) ? 'tickCheck' : '') + '" viewBox="0 0 25 25"><g><path d="M3.5 7.8 L8.9 13.3 L21.8 0 L24.9 3.2 L8.9 19.6 L0 11.4 Z" />' +
+    '<svg title="Sync Series" class="seriesTick ' + ((isSynced) ? 'tickCheck' : '') + '" viewBox="0 0 25 25"><g><path d="M3.5 7.8 L8.9 13.3 L21.8 0 L24.9 3.2 L8.9 19.6 L0 11.4 Z" />' +
     '</g></svg></div><div class="nonButtonContainer"><div class="nameWatchedContainer"><div class="watchedContainer ' + ((isWatched) ? 'watchedSeries' : '') + '">' +
     '</div><div class="titleContainer">' + fullname + '</div></div><div class="alignContainerGenre"><div class="genrePicContainer">' +
     '<div class="genreTriangeContainer"><div class="triangle"></div><div class="genreContainer">' + genre + '</div></div>' +
-    '<div class="pictureContainer"><img src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" ' + ((picID !== null) ? ('data-id="' + picID + '"') : '') + ' class="seriesPicture"/></div></div></div></div></div>';
+    '<div class="pictureContainer"><img title="Big Picture" src="data:image/gif;base64,R0lGODlhAQABAIAAAAAAAP///yH5BAEAAAAALAAAAAABAAEAAAIBRAA7" ' + ((picID !== null) ? ('data-id="' + picID + '"') : '') + ' class="seriesPicture"/></div></div></div></div></div>';
 }
 
 /**

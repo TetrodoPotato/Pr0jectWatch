@@ -211,7 +211,7 @@
     --ListRowSegmentNoneLoadedPictureBackgroundColor:#444;
     
     --ListRowSegmentIndexFont:16px var(--BaseFont);
-    --ListRowSegmentIndexColor:var(--SecondaryColor);
+    --ListRowSegmentIndexColor:#FFF;
     
     /*Serieslist Side*/
     --SeriesListSideContainerSortingButtonTextFont:var(--DefaultTextSize) var(--BaseFont);

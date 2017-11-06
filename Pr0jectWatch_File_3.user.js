@@ -206,7 +206,7 @@ var constructEpisodeList = function (list) {
         $.each(curObj.hoster, function (index, value) {
             var hoster = curObj.hoster[index];
             var linkLink = 'https://bs.to/serie/' + seriesId + '/' + season + '/' + curObj.episodeId + '/' + hoster;
-            var hostLink = '<a class="hosterIcon ' + hoster + '" href="' + linkLink + '"></a>';
+            var hostLink = '<a title="Open ' + hoster + '" class="hosterIcon ' + hoster + '" href="' + linkLink + '"></a>';
 
             hosterObj += hostLink;
         });
@@ -298,7 +298,7 @@ var getEpisodeInfo = function () {
  * @return {String}
  */
 var episodeRowRaw = function (index, episodeID, nameDE, nameOR, watched, hosterObj, isLoggedIn) {
-    return '<div tabindex="-1" episodeId="' + episodeID + '" class="seriesContainer' + ((watched) ? ' episodeWatched' : '') + ' search"><div class="buttonContainer"><svg ' + ((!isLoggedIn) ? 'style="display:none"' : '') + ' class="watchIcon" viewBox="0 0 30 30"><g>' +
+    return '<div tabindex="-1" episodeId="' + episodeID + '" class="seriesContainer' + ((watched) ? ' episodeWatched' : '') + ' search"><div class="buttonContainer"><svg title="Toggle Watchstate" ' + ((!isLoggedIn) ? 'style="display:none"' : '') + ' class="watchIcon" viewBox="0 0 30 30"><g>' +
     '<path d="M0,15.089434 C0,16.3335929 5.13666091,24.1788679 14.9348958,24.1788679 C24.7325019,24.1788679 29.8697917,16.3335929' +
     ' 29.8697917,15.089434 C29.8697917,13.8456167 24.7325019,6 14.9348958,6 C5.13666091,6 0,13.8456167 0,15.089434 Z M14.9348958,22.081464 ' +
     'C11.2690863,22.081464 8.29688487,18.9510766 8.29688487,15.089434 C8.29688487,11.2277914 11.2690863,8.09740397 14.9348958,8.09740397 ' +

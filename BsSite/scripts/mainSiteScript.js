@@ -125,7 +125,7 @@ $('#search').bind('input', searchEv);
 //Change LoginButton to Username
 if (isLoggedIn()) {
     var username = $('#navigation').find('strong:first-of-type').html();
-    $('#login').html('<a href="https://bs.to/?logout&redirect=' + encodeURI(window.location.href) + '">' + username + '</a>').attr('isLoggedIn', 'true');
+    $('#login').html('<a title="Logout" href="https://bs.to/?logout&redirect=' + encodeURI(window.location.href) + '">' + username + '</a>').attr('isLoggedIn', 'true');
 }
 
 var updateSeriesListFavorite = function (obj) {

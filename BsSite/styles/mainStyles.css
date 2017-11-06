@@ -49,6 +49,12 @@ html, body {
     margin: 8px 16px 8px 0;
 }
 
+#menuIconHoverExtender {
+    padding: 0 0 8px 0;
+    height: 32px;
+    width: 32px;
+}
+
 .menuIcon {
     height: 32px;
     width: 32px;
@@ -486,7 +492,7 @@ input:checked + .slider:before {
     transition: opacity 0.2s ease-out, left 0s linear 0.2s;
 }
 
-#menuBurgerContainer[ison="true"] #sideMenu{
+#menuBurgerContainer[ison="true"] #sideMenu, #menuIconHoverExtender:hover + #sideMenu, #sideMenu:hover {
     left:0;
 }
 
@@ -899,28 +905,28 @@ input:checked + .slider:before {
 
 .seriesContainer {
     width:100%;
-    height:100px;
+    height:67px;
     
-    margin:0 0 20px 0;
+    margin:0 0 5px 0;
 }
 
 .nonButtonContainer {
     /*Minus .buttonContainer width*/
-    width: -moz-calc(100%  - 60px); 
-    width: -webkit-calc(100%  - 60px);
-    width: -o-calc(100%  - 60px);
-    width: calc(100%  - 60px);
+    width: -moz-calc(100%  - 40px); 
+    width: -webkit-calc(100%  - 40px);
+    width: -o-calc(100%  - 40px);
+    width: calc(100%  - 40px);
     
     /*Minus .buttonContainer is Higher*/
-    height: 80px;
+    height: auto;
     
     float:left;
-    margin:20px 0 0 0;
+    margin:12px 0 0 0;
 }
 
 .buttonContainer {
-    width:60px;
-    height:100px;
+    width:40px;
+    height:67px;
     float:right;
     
     background-color:var(--ListRowSegmentSecondaryBackgroundColor);
@@ -931,7 +937,7 @@ input:checked + .slider:before {
     width: 100%;
     
     /*Minus .genrePicContainer height*/
-    height: 45px;
+    height: 30px;
     
     box-shadow: -2px 2px 4px rgba(0,0,0,0.8);
     cursor:pointer;
@@ -945,18 +951,18 @@ input:checked + .slider:before {
     width: -o-calc(100%  - 60px);
     width: calc(100%  - 60px);
     
-    height:35px;
+    height:20px;
     float:right;
 }
 
 .genreTriangeContainer {
-    height:35px;
+    height:25px;
     
     /*Minus .pictureContainer width*/
-    width: -moz-calc(100%  - 25px);
-    width: -webkit-calc(100%  - 25px);
-    width: -o-calc(100%  - 25px);
-    width: calc(100%  - 25px);
+    width: -moz-calc(100%  - 17.5px);
+    width: -webkit-calc(100%  - 17.5px);
+    width: -o-calc(100%  - 17.5px);
+    width: calc(100%  - 17.5px);
     
     float:left;
     position:relativ;
@@ -968,21 +974,21 @@ input:checked + .slider:before {
     width:0px;
     height:0px;
     
-    margin:-35px 0px 0px 0px;
+    margin:-25px 0px 0px 0px;
     float:left;
-    
+
     border-style: solid;
-    border-width: 35px 35px 35px 0;
+    border-width: 25px 25px 25px 0;
     border-color: transparent var(--ListRowSegmentSecondaryBackgroundColor) transparent transparent;
 }
 
 .genreContainer {
-    width: -moz-calc(100%  - 35px);
-    width: -webkit-calc(100%  - 35px);
-    width: -o-calc(100%  - 35px);
-    width: calc(100%  - 35px);
+    width: -moz-calc(100%  - 25px);
+    width: -webkit-calc(100%  - 25px);
+    width: -o-calc(100%  - 25px);
+    width: calc(100%  - 25px);
     
-    height:35px;
+    height:25px;
     float:right;
     
     overflow:hidden;
@@ -993,20 +999,20 @@ input:checked + .slider:before {
     
     font:var(--ListRowSegmentGenreTextFont);
     color:var(--ListRowSegmentGenreTextColor);
-    line-height:35px;
+    line-height:25px;
     font-weight:bold;
 }
 
 .pictureContainer {
-    height:35px;
-    width:25px; /*height * 0.7*/
+    height:25px;
+    width:17.5px; /*height * 0.7*/
     float:right;
     
     background-color:var(--ListRowSegmentSecondaryBackgroundColor);
 }
 
 .watchedContainer {
-    height:45px;
+    height:30px;
     width:10px;
     
     float:left;
@@ -1020,7 +1026,7 @@ input:checked + .slider:before {
 }
 
 .titleContainer {
-    height:45px;
+    height:30px;
     
     /*Minus .watchedContainer width and padding*/
     width: -moz-calc(100%  - 50px);
@@ -1038,7 +1044,7 @@ input:checked + .slider:before {
     text-overflow: ellipsis;
     font:var(--ListRowSegmentTitleTextFont);
     color:var(--ListRowSegmentTitleTextColor);
-    line-height:45px;
+    line-height:30px;
     font-weight:bold;
     
     -webkit-transition: color 0.2s, background-color 0.2s;
@@ -1046,8 +1052,8 @@ input:checked + .slider:before {
 }
 
 .seriesPicture {
-    height:35px;
-    width:25px;
+    height:25px;
+    width:17.5px;
     background-color:var(--ListRowSegmentSecondaryBackgroundColor);
     
     margin:0px 0px 0px 0px;
@@ -1063,22 +1069,22 @@ input:checked + .slider:before {
 }
 
 .seriesPicture[data-id]:hover {
-    height:175px;
-    width:125px;
-    margin:-140px 0px 0px -40px;
+    height:120px;
+    width:84px;
+    margin:-95px 0px 0px -27px;
 }
 
 .favIcon {
-    width:30px;
-    height:30px;
-    padding:15px;
+    width:20px;
+    height:20px;
+    padding:10px 9px 0 11px;
     cursor:pointer;
 }
 
 .seriesTick {
     width:16px;
     height:16px;
-    padding: 10px 21px 9px 22px;
+    padding: 10px 11px 5px 13px;
     fill:var(--ListRowSegmentTickIconColor);
     cursor:pointer;
 
@@ -1246,12 +1252,12 @@ input:checked + .slider:before {
 }
 
 .hosterContainer {
-    width: -moz-calc(100%  - 55px);
-    width: -webkit-calc(100%  - 55px);
-    width: -o-calc(100%  - 55px);
-    width: calc(100%  - 55px);
+    width: -moz-calc(100%  - 45px);
+    width: -webkit-calc(100%  - 45px);
+    width: -o-calc(100%  - 45px);
+    width: calc(100%  - 45px);
     
-    height:35px;
+    height:25px;
     float:right;
     
     padding: 0 20px 0 0;
@@ -1268,7 +1274,7 @@ input:checked + .slider:before {
 }
 
 .hosterTriangeContainer {
-    height:35px;
+    height:25px;
     
     /*Minus .pictureContainer width*/
     width: 100%;
@@ -1280,9 +1286,9 @@ input:checked + .slider:before {
 }
 
 .watchIcon {
-    width:30px;
+    width:24px;
     height:30px;
-    padding:15px 15px 0px 15px;
+    padding:3px 7px 0px 8px;
     cursor:pointer;
     fill:var(--ListRowSegmentNoFavIcon);
     
@@ -1299,7 +1305,7 @@ input:checked + .slider:before {
 }
 
 .watchedEpiContainer {
-    height:45px;
+    height:30px;
     width:10px;
     
     float:left;
@@ -1327,10 +1333,10 @@ input:checked + .slider:before {
 .indexCont {
     color:var(--ListRowSegmentIndexColor);
     text-align:center;
-    width:60px;
+    width:40px;
     font:var(--ListRowSegmentIndexFont);
     font-weight:bold;
-    margin:15px 0 0 0;
+    margin:5px 0 0 0;
 }
 
 .hosterIcon {
@@ -1339,7 +1345,7 @@ input:checked + .slider:before {
     width:20px;
     background-image: url(https://bs.to/public/img/icons.v33.png);
     background-size: 960px 20px;
-    margin:7px;
+    margin:0 7px;
 }
 
 .Vivo {

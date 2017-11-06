@@ -13,16 +13,17 @@
         <div id="topMenu">
             <div id="subHead">
                 <div id="menuBurgerContainer" isOn="false">
-                    <div class="menuIcon">
-                        <svg viewBox="0 0 24 24" >
-                            <g>
-                                <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
-                            </g>
-                        </svg>
+                    <div id="menuIconHoverExtender" title="Open Sidemenu">
+                        <div class="menuIcon">
+                            <svg viewBox="0 0 24 24" >
+                                <g>
+                                    <path d="M3 18h18v-2H3v2zm0-5h18v-2H3v2zm0-7v2h18V6H3z"></path>
+                                </g>
+                            </svg>
+                        </div>
                     </div>
                     
 <!-- Sidemenu Start -->
-                    <div id="menuClickLayer"></div>
                     <div id="sideMenu">
                         <div id="noneScroll">
                             <div id="sideMenuNavigation">
@@ -71,17 +72,18 @@
                                 </div>
                                 <div id="favMessageLayer">Text</div>
                                 <div id="syncbuttons">
-                                    <button id="get" class="syncButton">Load</button>
-                                    <button id="set" class="syncButton">Save</button>
+                                    <button title="Load Favorites From Account" id="get" class="syncButton">Load</button>
+                                    <button title="Save Favorites To Account" id="set" class="syncButton">Save</button>
                                 </div>
                                 <div id="favReload" style="display:none;" ></div>
                             </div>
                         </div>
                     </div>
+                    <div id="menuClickLayer"></div>
 <!-- Sidemenu End -->
 
                 </div>
-                <div id="logoContainer">PR0JECT WATCH</div>
+                <a title="Serieslist" href="https://bs.to/"><div id="logoContainer">PR0JECT WATCH</div></a>
                 
                 <div id="searchContainer">
                     <div id="searchBox">
@@ -98,7 +100,7 @@
                 
                 <div id="autoplayContainer">
                     <span id="autoText">Autoplay</span>
-                    <label class="switch">
+                    <label title="Toggle Autoplay" class="switch">
                         <input id="autoplay" type="checkbox"/>
                         <span class="slider round"></span>
                     </label>
@@ -132,7 +134,7 @@
 
                 </div>
                 
-                <div id="arrowContainer">                 
+                <div title="Toggle Sidepage Visibility" id="arrowContainer">                 
                     <svg viewBox="0 0 30 30">
                         <g>
                             <path d="M10 0 L25 15 L10 30 L5 25 L15 15 L5 5 Z" />

@@ -107,6 +107,10 @@ html, body {
     height: 24px;
     margin-top: 12px;
 
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    
     font:var(--LogoFont);
     color:var(--LogoFontColor);
 }
@@ -232,11 +236,18 @@ html, body {
 }
 
 #login a, #login a:link, #login a:visited {
+    width:100%;   
+    display:block;
+    
     text-decoration: none;
     font:var(--MenuLoginUsernameFont);
     font-weight:bold;
     color: var(--MenuLoginUsernameColor);
     line-height:30px;
+    
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
     
     -webkit-transition: color 0.2s;
     transition: color 0.2s;
@@ -1598,7 +1609,7 @@ input:checked + .slider:before {
     background-color:var(--SeasonListSegmentWatchedBackgroundColorClick);
 }
 
-#seasonTable .unwatched, #seasonTable .special.unwatched:not(.active) {
+#seasonTable .unwatched {
     background-color:var(--SeasonListSegmentUnwatchedBackgroundColor);
 }
 
@@ -2028,12 +2039,12 @@ input:checked + .slider:before {
 
 #logTable {
     width:100%;
-    font:;
+    font:var(--LogTableTextFont);
 }
 
 #logTable th {
-    background-color:#000;
-    color:#FFF;
+    background-color:var(--LogTableHeaderBackgroundColor);
+    color:var(--LogTableHeaderTextColor);
 }
 
 #logTable th, #logTable td {
@@ -2041,11 +2052,13 @@ input:checked + .slider:before {
 }
 
 #logTable tr:nth-child(even) {
-    background-color:#EEE;
+    background-color:var(--LogTableEvenRowBackgroundColor);
+    color:var(--LogTableEvenRowTextColor);
 }
 
 #logTable tr:nth-child(odd) {
-    background-color:#CCC;
+    background-color:var(--LogTableOddRowBackgroundColor);
+    color:var(--LogTableOddRowTextColor);
 }
 
 #nextButton {

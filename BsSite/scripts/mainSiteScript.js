@@ -209,39 +209,46 @@ var addFavEvents = function () {
 }
 
 var updateFavNSync = async function () {
-    if (typeof getFavorites !== 'function') {
+    if (typeof getData !== 'function') {
         setTimeout(updateFavNSync, 1000);
         return false;
     }
 
-    if (window.location.href !== 'https://bs.to/serie-genre') {
-        var list = getFavorites().filter(obj => obj.IsWatched == true);
-        await new Promise(resolve => {
-            var listProc = 0;
-            var index = 0;
+    if (getData('syncFavMenu', true)) {
+        if (typeof getFavorites !== 'function') {
+            setTimeout(updateFavNSync, 1000);
+            return false;
+        }
 
-            var syncOne = function () {
-                var i = index;
-                $.get('https://bs.to/serie/' + list[i].Id, function (result) {
-                    updateEntry({
-                        Id: list[i].Id,
-                        Genre: $(result).find('.infos:first div:first p:first span').append(' ').text().trim(),
-                        SeriesIndex: $(result).find('img:first').attr('src').split('/')[4].split('.')[0],
-                        IsWatched: ((isLoggedIn()) ? ($(result).find('.seasons li:not(.watched), .episodes tr:not(.watched)').length < 2) : null),
-                        IsSynced: true
+        if (window.location.href !== 'https://bs.to/serie-genre') {
+            var list = getFavorites().filter(obj => obj.IsWatched == true);
+            await new Promise(resolve => {
+                var listProc = 0;
+                var index = 0;
+
+                var syncOne = function () {
+                    var i = index;
+                    $.get('https://bs.to/serie/' + list[i].Id, function (result) {
+                        updateEntry({
+                            Id: list[i].Id,
+                            Genre: $(result).find('.infos:first div:first p:first span').append(' ').text().trim(),
+                            SeriesIndex: $(result).find('img:first').attr('src').split('/')[4].split('.')[0],
+                            IsWatched: ((isLoggedIn()) ? ($(result).find('.seasons li:not(.watched), .episodes tr:not(.watched)').length < 2) : null),
+                            IsSynced: true
+                        });
+
+                        if (++listProc >= list.length - 1) {
+                            resolve(true);
+                        }
                     });
 
-                    if (++listProc >= list.length - 1) {
-                        resolve(true);
+                    if (++index < list.length) {
+                        setTimeout(syncOne, 500);
                     }
-                });
-
-                if (++index < list.length) {
-                    setTimeout(syncOne, 500);
                 }
-            }
-            syncOne();
-        });
+                syncOne();
+            });
+        }
     }
 
     setTimeout(updateFavoriteMenu, 1000);

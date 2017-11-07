@@ -68,21 +68,8 @@ var fillZeros = function (str) {
 }
 
 /**
- * Removes Log-Items older than one month
+ * Removes Log-Items More Than 50 Items
  */
 var clearLog = function () {
-    var newList = [];
-
-    var curDate = new Date();
-    var curDateCounter = parseInt(fillZeros(curDate.getFullYear()) + fillZeros(curDate.getMonth()) + fillZeros(curDate.getDate));
-
-    $.each(getFullLog(), function (index, value) {
-        var date = value.date.split(' ')[0].split('/');
-        var dateCounter = parseInt(date[2] + date[1] + date[0]);
-        if ((curDateCounter - dateCounter) < 101) {
-            newList.push(value);
-        }
-    });
-
-    saveLog(newList);
+    saveLog(getFullLog().reverse().slice(0, 50).reverse());
 }

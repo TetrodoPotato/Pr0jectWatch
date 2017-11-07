@@ -83,10 +83,10 @@ var setEpisodeVariables = async function () {
     await setGMValue('closeEnd', jDecode(getGetter('closeEnd')) == 'true');
     await setGMValue('enablePreview', jDecode(getGetter('enablePreview')) == 'true');
     await setGMValue('timeShow', parseInt(jDecode(getGetter('timeShow'))));
-    
+
     //RESET ERROR
     await setGMValue('isError', false);
-    
+
     window.location = getGetter('redirect');
 }
 
@@ -411,7 +411,7 @@ var addVideoEventhandler = async function () {
         var durationMin = zeroFill(parseInt(('' + (duration / 60))), 2);
         var durationSec = zeroFill(parseInt(('' + (duration % 60))), 2);
 
-        $('#timeShow').html(durationMin + ":" + durationSec + " / " + playTimeMin + ":" + playTimeSec);
+        $('#timeShow').html(playTimeMin + ":" + playTimeSec + " / " + durationMin + ":" + durationSec);
         $('#progress').attr('max', duration).attr('value', curTime);
 
         setGMValue('lastTime', curTime);
@@ -812,10 +812,10 @@ var toggleAutoplay = function (state) {
  * Loads an Video and Buffers Frame for Each Preview Step (Default : 60 Steps)
  */
 var loadVideoTimelinePreview = function () {
-    if(typeof window.PrevErrors === 'undefined'){
+    if (typeof window.PrevErrors === 'undefined') {
         window.PrevErrors = 0;
     }
-    
+
     $('#preview').attr('src', window.location.href);
 
     $('#preview').bind('loadedmetadata', function () {

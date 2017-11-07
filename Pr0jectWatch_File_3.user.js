@@ -47,7 +47,7 @@ var onDocumentLoaded = function () {
         if($(".seriesContainer:not(.episodeWatched):first").length) {
             var offSet = $(".seriesContainer:not(.episodeWatched):first").offset()
             $('html, body').animate({
-                scrollTop: (((typeof offSet !== 'undefined') ? offSet.top : 0) - 300)
+                scrollTop: (((typeof offSet !== 'undefined') ? offSet.top : 0) - 200)
             }, 2000);
             
             window.lastFocusList = $(".seriesContainer:not(.episodeWatched):first");

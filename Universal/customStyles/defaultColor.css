@@ -431,6 +431,15 @@
     --MediaplayerAutoplayToggleOffColor:var(--LightBase);
     --MediaplayerAutoplayToggleOffColorHover:var(--LightHover);
     --MediaplayerAutoplayToggleOffColorClick:var(--LightClick);
+    
+    /*Log Table*/
+    --LogTableTextFont:var(--DefaultTextSize) var(--BaseFont);
+    --LogTableHeaderBackgroundColor:#000;
+    --LogTableHeaderTextColor:#FFF;
+    --LogTableEvenRowBackgroundColor:#EEE;
+    --LogTableEvenRowTextColor:#000;
+    --LogTableOddRowBackgroundColor:#CCC;
+    --LogTableOddRowTextColor:#000;
 }
 
 body {

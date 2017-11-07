@@ -65,13 +65,13 @@ var getNextTabIndex = function (mainContainerId, currentElement, direction) {
  * @param direction {Number} - up < 0 or down > 0
  */
 var changeSeason = function (direction) {
-    if(typeof window.countDown !== 'undefined'){
+    if (typeof window.countDown !== 'undefined') {
         clearTimeout(window.countDown);
     }
-    
+
     if ($('#seasonContainer').length) {
         window.firstActive = (typeof window.firstActive == 'undefined') ? $('#seasonTable .active:first') : window.firstActive;
-        
+
         if (direction < 0) {
             var prevElement = $('#seasonTable .active:first').prev('td');
             if (!prevElement.is("#favSeasonStar")) {
@@ -99,7 +99,9 @@ var changeSeason = function (direction) {
  * @param element {Element} - element.
  */
 var scrollToElement = function (element) {
-    $(window).scrollTop(($(element).offset().top) - 200);
+    if ($(element).length) {
+        $(window).scrollTop(($(element).offset().top) - 200);
+    }
 }
 
 /**
@@ -141,11 +143,13 @@ $(document).keydown(function (e) {
     if (e.keyCode === 27 && $('#autoplayButton').length) { //ESC | Close Next Window
         e.preventDefault();
         $('#cancelAutoplay').click();
-    } else if ($('#search').is(':focus')) { //On Search Focus
-        if (e.keyCode === 27 || e.keyCode === 13 || e.keyCode === 40 || e.keyCode === 38) { //Esc / Enter / Down / Up | End Search Focus
-            e.preventDefault();
-            $('#search').blur();
-            focusNext(1);
+    } else if ($(':focus').is('input')) { //On Search Focus
+        if ($('#search').is(':focus')) {
+            if (e.keyCode === 27 || e.keyCode === 13 || e.keyCode === 40 || e.keyCode === 38) { //Esc / Enter / Down / Up | End Search Focus
+                e.preventDefault();
+                $('#search').blur();
+                focusNext(1);
+            }
         }
     } else if (e.keyCode === 78) { //ESC | Close Next Window
         e.preventDefault();
@@ -196,7 +200,7 @@ $(document).keydown(function (e) {
     } else if (e.keyCode === 77) { // M
         e.preventDefault();
         $('#menuBurgerContainer').attr('ison', ($('#menuBurgerContainer').attr('ison') != 'true'));
-    }  else if (e.keyCode === 9) { // M
+    } else if (e.keyCode === 9) { // M
         e.preventDefault();
         $('#contentContainer').attr('ison', ($('#contentContainer').attr('ison') != 'true'));
     }

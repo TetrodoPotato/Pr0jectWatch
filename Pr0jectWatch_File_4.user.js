@@ -114,7 +114,7 @@ var onDocumentReady = function () {
         + '&autoplay=' + jEncode(getData('autoplay', false))      
         + '&closeEnd=' + jEncode(getData('closeEnd', true))
         + '&enablePreview=' + jEncode(getData('enablePreview', true))
-        + '&previewSteps=' + jEncode(getData('previewSteps', 60))
+        + '&previewSteps=' + jEncode(getData('previewSteps', 20))
         + '&timeShow=' + jEncode(getData('timeShow', 3));
         return true;
     } else {

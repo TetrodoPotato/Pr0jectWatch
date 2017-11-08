@@ -86,10 +86,14 @@ $('#set').bind('click', function (e) {
  * For {String} term {String} ">log" {function} searchEv links to {Path} '/log'
  */
 var searchEv = function (e) {
+    //Remove Info
+    $('#searchInfoText').remove();
+    
     //Check if Search is Valid
     var search = $('#search').val();
     if (search.length < getData('minCharsSearch', 3) && /^https\:\/\/bs.to\/serie-genre.*$/.test(window.location.href)) {
         $('.search').hide();
+        $('#contentContainer').append('<span id="searchInfoText">Type Min. ' + getData('minCharsSearch', 3) + ' Character For Results</span>');
     } else {
         //Searchterm
         var searchTerm = [];
@@ -116,6 +120,12 @@ var searchEv = function (e) {
                 }
             }
         });
+        
+        if($('.search').length){
+            if($('.search:visible').length == 0){
+                 $('#contentContainer').append('<span id="searchInfoText">No Results For "' +  $('#search').val() + '"</span>');
+            }
+        }
     }
 };
 

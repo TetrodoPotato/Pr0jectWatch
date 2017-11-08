@@ -203,5 +203,11 @@ $(document).keydown(function (e) {
     } else if (e.keyCode === 9) { // M
         e.preventDefault();
         $('#contentContainer').attr('ison', ($('#contentContainer').attr('ison') != 'true'));
+    } else if (e.keyCode === 79) { // O
+        e.preventDefault();
+        $('#watchAll').click();
+    } else if (e.keyCode === 80) { // P
+        e.preventDefault();
+        $('#unwatchAll').click();
     }
 });

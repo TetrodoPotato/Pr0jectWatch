@@ -207,6 +207,10 @@ var showSeriesRow = function (contentArray) {
         }
     });
 
+    if (minChars != 0) {
+        $('#contentContainer').append('<span id="searchInfoText">Type Min. ' + minChars + ' Character For Results</span>');
+    }
+
     addListEvents();
 
     if (index > 0) { // If Timieout
@@ -215,8 +219,12 @@ var showSeriesRow = function (contentArray) {
             //On display iterate over with Timeout
             var $cont = $(contentArray[index]);
 
+            //Remove Info
+            $('#searchInfoText').remove();
+
             var search = $('#search').val();
-            if (search.length < getData('minCharsSearch', 3)) {
+            if (search.length < minChars) {
+                $('#contentContainer').append('<span id="searchInfoText">Type Min. ' + minChars + ' Character For Results</span>');
                 $('.search').hide();
             } else {
                 //get the searchterm and apply
@@ -235,6 +243,12 @@ var showSeriesRow = function (contentArray) {
                 } else {
                     if (!$cont.find('.titleContainer:first').text().toLowerCase().includes(searchTerm[0])) {
                         $cont.hide();
+                    }
+                }
+
+                if ($('.search').length) {
+                    if ($('.search:visible').length == 0) {
+                        $('#contentContainer').append('<span id="searchInfoText">No Results For "' + $('#search').val() + '"</span>');
                     }
                 }
             }

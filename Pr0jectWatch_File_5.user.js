@@ -217,7 +217,7 @@ var addMediaplayerConf = function () {
     addCheckbox(target, 'closeEnd', true, 'Close On End');
     addCheckbox(target, 'enablePreview', true, 'Enable Timeline Preview');
 
-    addNumberInput(target, 'previewSteps', 60, 'Preview Image Steps', 1, 60000);
+    addNumberInput(target, 'previewSteps', 20, 'Preview Image Steps', 1, 60000);
     addNumberInput(target, 'timeShow', 3, 'Timer Time For Controlls Show Hide [Sec]', 1, 60000);
 }
 

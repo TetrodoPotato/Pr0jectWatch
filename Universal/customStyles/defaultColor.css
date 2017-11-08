@@ -213,6 +213,10 @@
     --ListRowSegmentIndexFont:16px var(--BaseFont);
     --ListRowSegmentIndexColor:var(--SecondaryColor);
     
+    /*Serieslist Main*/
+    --SeriesListSearchInfoTextTextFont:var(--DefaultTextSize) var(--BaseFont);
+    --SeriesListSearchInfoTextTextColor:#000;
+    
     /*Serieslist Side*/
     --SeriesListSideContainerSortingButtonTextFont:var(--DefaultTextSize) var(--BaseFont);
     

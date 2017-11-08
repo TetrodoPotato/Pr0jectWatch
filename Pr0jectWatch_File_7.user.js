@@ -24,7 +24,7 @@
 /*
  * Global Setting Variables.
  */
-var previewSteps = 60;
+var previewSteps = 20;
 var closeEnd = true;
 var enablePreview = true;
 var timeShow = 3;
@@ -123,7 +123,7 @@ var onDocumentReady = async function () {
 }
 
 var setSetting = async function () {
-    previewSteps = await getGMValue('previewSteps', 60);
+    previewSteps = await getGMValue('previewSteps', 20);
     closeEnd = await getGMValue('closeEnd', true);
     enablePreview = await getGMValue('enablePreview', true);
     timeShow = await getGMValue('timeShow', 3);
@@ -190,19 +190,14 @@ var failed = function (e) {
             } else {
                 await setGMValue("isError", true);
                 location.reload();
-                if (e.target.error.code == e.target.error.MEDIA_ERR_NETWORK) {
-                    $('#vid').one('play', function () {
-                        //After the Video plays
-                        $('#vid').bind('ratechange', function () {
-                            $('#speed').html(($('#vid')[0].playbackRate * 100).toFixed(0) + '%');
-                            setGMValue('lastSpeed', $('#vid')[0].playbackRate);
-                        });
-
-                        setPlayerStartupValues();
-                    });
-                }
             }
         } else {
+            if (e.target.error.code == e.target.error.MEDIA_ERR_NETWORK) { //On Network Error
+                $('#vid').one('play', function () {
+                    setPlayerStartupValues();
+                });
+            }
+
             $("#vid").attr("autoplay", "")[0].load();
             onerror();
         }

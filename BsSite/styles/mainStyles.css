@@ -2160,5 +2160,10 @@ input:checked + .slider:before {
     font-weight:bold;
 }
 
+#searchInfoText {
+    font:var(--SeriesListSearchInfoTextTextFont);
+    color:var(--SeriesListSearchInfoTextTextColor);
+}
+
 /*Pseudo Style need for fakelistener*/
 body {opacity:1 !important;}

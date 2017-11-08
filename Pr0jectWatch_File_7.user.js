@@ -19,6 +19,7 @@
 // @require 	https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/data.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
+// @downloadURL http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_7.user.js
 // ==/UserScript==
 
 /*
@@ -39,9 +40,8 @@ async function setGMValue(key, val) {
     if (typeof GM_setValue === "function") {
         GM_setValue(key, val);
     } else {
-        let buff = await GM.setValue(key, val);
+        await GM.setValue(key, val);
     }
-    return null;
 }
 
 /**
@@ -51,13 +51,11 @@ async function setGMValue(key, val) {
  * @return {String | Number} requested Value or defaut.
  */
 async function getGMValue(key, def) {
-    var returnValue = null;
     if (typeof GM_getValue === "function") {
-        returnValue = GM_getValue(key, def);
+        return GM_getValue(key, def);
     } else {
-        returnValue = await GM.getValue(key, def);
+        return await GM.getValue(key, def);
     }
-    return returnValue;
 }
 
 /**
@@ -111,6 +109,7 @@ var onDocumentReady = async function () {
 
     if (enablePreview) {
         loadVideoTimelinePreview();
+        window.videoPreview = true;
     }
 
     toggleAutoplay(await getGMValue('autoplay', false));
@@ -559,7 +558,9 @@ var showCur = function (x, seconds) {
     if (window.videoPreview == true) {
         var step = Math.floor((seconds - (seconds % ($('#preview')[0].duration / previewSteps))) / ($('#preview')[0].duration / previewSteps)); //Step
         $('#canvasContainer canvas').hide();
-        $('#canvasContainer canvas:nth-of-type(' + (step + 1) + ')').show();
+        if($('#canvasContainer canvas').length > step){
+            $('#canvasContainer canvas:nth-of-type(' + (step + 1) + ')').show();
+        }   
     }
     $('#curProc').css('left', ((x - ($('#curProc').outerWidth() / 2)) + "px"))
     $('#previewText').html(min + ":" + sec);
@@ -839,8 +840,6 @@ var loadVideoTimelinePreview = function () {
 
             if (curLoadingTime < video.duration - 1 && count < previewSteps) {
                 setTimeout(intervalFunction, 0);
-            } else {
-                window.videoPreview = true;
             }
         }
 

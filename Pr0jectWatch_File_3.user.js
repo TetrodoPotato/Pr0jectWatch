@@ -203,7 +203,7 @@ var setEpisodeEvents = function () {
         var target = $(this).closest('.seriesContainer');
         
         
-        addBottomText('Added Episode ' + target.find('.indexCont').text() + ' To The Playlist');
+        addBottomText('Added Episode ' + target.find('.indexCont').text() + ' To The Playlist',2000);
     });
 }
 
@@ -211,14 +211,15 @@ var setEpisodeEvents = function () {
  * Add an Buttontext
  */
 var addBottomText = function (msg, time) {
-    $('body:first').append('<div id="buttomText">' + msg + '</div>');
+    var target =  $('<div></div>').attr('class', 'buttomText').text(msg);
+    $('body:first').append(target);
 
     setTimeout(function () {
-        $('#buttomText').addClass('showBottomText');
+        target.addClass('showBottomText');
         setTimeout(function () {
-            $('#buttomText').removeClass('showBottomText');
+            target.removeClass('showBottomText');
             setTimeout(function () {
-                $('#buttomText').remove();
+                target.remove();
             }, 200);
         }, time);
     }, 200);

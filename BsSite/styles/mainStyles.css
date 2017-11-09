@@ -2193,7 +2193,7 @@ input:checked + .slider:before {
     color:var(--SeriesListSearchInfoTextTextColor);
 }
 
-#buttomText {
+.buttomText {
     position: fixed;
     width:100%;
     height: 30px;
@@ -2211,7 +2211,7 @@ input:checked + .slider:before {
     z-index:0;
 }
 
-#buttomText.showBottomText {
+.buttomText.showBottomText {
     bottom:0px;
 }
 

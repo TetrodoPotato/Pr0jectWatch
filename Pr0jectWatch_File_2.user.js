@@ -59,9 +59,58 @@ var onDocumentLoaded = function () {
     var newSearch = getGetter('search');
     if(typeof newSearch !== 'undefined') {
         $('#search').val(jDecode(newSearch));
-        $('#search').click();
+        searchEv();
     }
 }
+
+/**
+ * Controlls the searchbar and checks the {DOM} contentContainer for tables with {DOM} child {id} 1.
+ * Set display {String} "none" to {DOM} children without {String} searchterm.
+ * For {String} term {String} ">log" {function} searchEv links to {Path} '/log'
+ */
+var searchEv = function (e) {
+    //Remove Info
+    $('#searchInfoText').remove();
+
+    //Check if Search is Valid
+    var search = $('#search').val();
+    if (search.length < getData('minCharsSearch', 3) && /^https\:\/\/bs.to\/serie-genre.*$/.test(window.location.href)) {
+        $('.search').hide();
+        $('#contentContainer').append('<span id="searchInfoText">Type Min. ' + getData('minCharsSearch', 3) + ' Character For Results</span>');
+    } else {
+        //Searchterm
+        var searchTerm = [];
+        $.each(search.toLowerCase().split('genre:'), (index, value) => searchTerm.push(value.trim()));
+
+        var searchGenre = (searchTerm.length > 1) ? true : false;
+        $('.search').each(function (index, value) {
+            var target = $(this);
+            if (searchGenre) {
+                if (!target.find('.genreContainer:first').text().toLowerCase().includes(searchTerm[1])) {
+                    target.hide();
+                } else {
+                    if (!target.find('.titleContainer:first').text().toLowerCase().includes(searchTerm[0])) {
+                        target.hide();
+                    } else {
+                        target.show();
+                    }
+                }
+            } else {
+                if (!target.find('.titleContainer:first').text().toLowerCase().includes(searchTerm[0])) {
+                    target.hide();
+                } else {
+                    target.show();
+                }
+            }
+        });
+
+        if ($('.search').length) {
+            if ($('.search:visible').length == 0) {
+                $('#contentContainer').append('<span id="searchInfoText">No Results For "' + $('#search').val() + '"</span>');
+            }
+        }
+    }
+};
 
 /**
  * Get the content of the file as String

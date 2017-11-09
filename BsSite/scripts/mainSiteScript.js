@@ -350,15 +350,15 @@ var initSeriesSearch = function () {
         false;
     }
 
-    if (/^https:\/\/bs\.to\/serie\-genre.*$/.test(window.location.href)) {
+    if (!/^https:\/\/bs\.to\/serie\-genre.*$/.test(window.location.href)) {
         if (!getData('episodeSearch', false)) {
-            initSeriesSearch();
+            seriesSearch();
         }
     }
 
 }
 
-var initSeriesSearch = function () {
+var seriesSearch = function () {
     $('.search').removeClass('search');
 
     $('body:first').append('<datalist id="seriesSearchList"></datalist>');

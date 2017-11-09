@@ -145,7 +145,7 @@ $(document).keydown(function (e) {
         $('#cancelAutoplay').click();
     } else if ($(':focus').is('input')) { //On Search Focus
         if ($('#search').is(':focus')) {
-            if (e.keyCode === 27 || e.keyCode === 13 || e.keyCode === 40 || e.keyCode === 38) { //Esc / Enter / Down / Up | End Search Focus
+            if (e.keyCode === 27) { //Esc / Enter / Down / Up | End Search Focus
                 e.preventDefault();
                 $('#search').blur();
                 focusNext(1);

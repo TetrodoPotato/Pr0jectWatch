@@ -192,6 +192,7 @@ var addGeneralConf = function () {
     addCheckbox(target, 'updateSeason', true, 'Update Favorised Seriesseason On New Season Watch');
     addCheckbox(target, 'playMerged', true, 'Don\'t Play [In Episode X Enthalten] - Episodes');
     addCheckbox(target, 'syncFavMenu', true, 'Enable Sync Watched Series In Favmenu [Turn Off On Mobiledevices]');
+    addCheckbox(target, 'episodeSearch', false, 'Enable Episodesearch. Seriessearch on Episodelist will be disabled');
 
     addNumberInput(target, 'autoplayTime', 5, 'Timer Time For Autoplay [Sec]', 0, 60000);
     addNumberInput(target, 'updateWaitTime', 7, 'Time Till Next Listupdate [Days]', 1, 60000);

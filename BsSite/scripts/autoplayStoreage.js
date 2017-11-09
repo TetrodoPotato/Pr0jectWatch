@@ -24,15 +24,14 @@ var savePlayList = function (FullObjectListArray) {
 /**
  *
  */
-var setPlayList = function (seriesId, season, episodeid, seriesName, episodenameDE, episodenameOR) {
+var setPlayList = function (seriesId, season, episodeid, seriesName, episodename) {
     var list = getFullPlayList();
     list.push({
         seriesID: seriesId,
         season: season,
         episodeID: episodeid,
         seriesName: seriesName,
-        episodeNameDE: episodenameDE,
-        episodeNameOR: episodenameOR
+        episodeName: episodename
     });
 
     savePlayList(list);

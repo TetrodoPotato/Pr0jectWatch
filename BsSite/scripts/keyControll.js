@@ -133,6 +133,22 @@ var favClick = function (element) {
 }
 
 /**
+ * Make Contentcontainer MaxSite or not.
+ * @param on {Boolean} - On or Off.
+ */
+var onWindowResize = function (on) {
+    if (!on) {
+        //Set Styles
+        $('#contentContainer').attr('ison', 'true');
+        $('#arrowContainer svg').addClass('off');
+    } else {
+        //Reset Styles
+        $('#contentContainer').attr('ison', 'false')
+        $('#arrowContainer svg').removeClass('off');
+    }
+}
+
+/**
  * Key Bitches
  */
 $(document).keydown(function (e) {
@@ -200,9 +216,9 @@ $(document).keydown(function (e) {
     } else if (e.keyCode === 77) { // M
         e.preventDefault();
         $('#menuBurgerContainer').attr('ison', ($('#menuBurgerContainer').attr('ison') != 'true'));
-    } else if (e.keyCode === 9) { // M
+    } else if (e.keyCode === 9) { // Tab
         e.preventDefault();
-        $('#contentContainer').attr('ison', ($('#contentContainer').attr('ison') != 'true'));
+        onWindowResize($('#arrowContainer svg').hasClass('off'));
     } else if (e.keyCode === 79) { // O
         e.preventDefault();
         $('#watchAll').click();

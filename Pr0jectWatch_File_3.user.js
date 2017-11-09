@@ -9,6 +9,7 @@
 // @run-at 		document-start
 // @require 	https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/seriesStorage.js
+// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/autoplayStoreage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/data.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/keyControll.js
@@ -201,9 +202,14 @@ var setEpisodeEvents = function () {
 
     $('.addAutoplayButton').bind('click', function () {
         var target = $(this).closest('.seriesContainer');
-        
-        
-        addBottomText('Added Episode ' + target.find('.indexCont').text() + ' To The Playlist',2000);
+
+        var seriesName = $('.mainSiteTitle:first').clone().children().remove().end().text().trim();
+        var episodeDE = $('.titleContainer:first strong:first').text().trim();
+        var episodeOR = $('.titleContainer:first i:first').text().trim();
+
+        setPlayList(getSeriesId(), getSeason(), target.attr('episodeid'), seriesName, ((episodeDE != '') ? episodeDE : episodeOR))
+
+        addBottomText('Added Episode ' + target.find('.indexCont').text() + ' To The Playlist', 2000);
     });
 }
 
@@ -211,7 +217,7 @@ var setEpisodeEvents = function () {
  * Add an Buttontext
  */
 var addBottomText = function (msg, time) {
-    var target =  $('<div></div>').attr('class', 'buttomText').text(msg);
+    var target = $('<div></div>').attr('class', 'buttomText').text(msg);
     $('body:first').append(target);
 
     setTimeout(function () {

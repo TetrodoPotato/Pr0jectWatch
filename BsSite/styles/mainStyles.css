@@ -2193,5 +2193,27 @@ input:checked + .slider:before {
     color:var(--SeriesListSearchInfoTextTextColor);
 }
 
+#buttomText {
+    position: fixed;
+    width:100%;
+    height: 30px;
+    font:var(--SeriesListBottomTextTextFont);
+    line-height: 30px;
+    
+    left:0;
+    bottom:-30px;
+    background-color: var(--SeriesListBottomTextTextBackgroundcolor);
+    color:var(--SeriesListBottomTextTextColor);
+    font-weight:bold;
+    -webkit-transition: bottom 0.2s;
+    transition: bottom 0.2s;
+    
+    z-index:0;
+}
+
+#buttomText.showBottomText {
+    bottom:0px;
+}
+
 /*Pseudo Style need for fakelistener*/
 body {opacity:1 !important;}

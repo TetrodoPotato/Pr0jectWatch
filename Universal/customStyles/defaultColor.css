@@ -221,6 +221,10 @@
     --SeriesListSearchInfoTextTextFont:var(--DefaultTextSize) var(--BaseFont);
     --SeriesListSearchInfoTextTextColor:#000;
     
+    --SeriesListBottomTextTextFont:var(--DefaultTextSize) var(--BaseFont);
+    --SeriesListBottomTextTextColor:#FFF;
+    --SeriesListBottomTextTextBackgroundcolor:#000;
+    
     /*Serieslist Side*/
     --SeriesListSideContainerSortingButtonTextFont:var(--DefaultTextSize) var(--BaseFont);
     

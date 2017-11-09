@@ -199,6 +199,29 @@ var setEpisodeEvents = function () {
         });
     });
 
+    $('.addAutoplayButton').bind('click', function () {
+        var target = $(this).closest('.seriesContainer');
+        
+        
+        addBottomText('Added Episode ' + target.find('.indexCont').text() + ' To The Playlist');
+    });
+}
+
+/**
+ * Add an Buttontext
+ */
+var addBottomText = function (msg, time) {
+    $('body:first').append('<div id="buttomText">' + msg + '</div>');
+
+    setTimeout(function () {
+        $('#buttomText').addClass('showBottomText');
+        setTimeout(function () {
+            $('#buttomText').removeClass('showBottomText');
+            setTimeout(function () {
+                $('#buttomText').remove();
+            }, 200);
+        }, time);
+    }, 200);
 }
 
 /**
@@ -322,7 +345,7 @@ var episodeRowRaw = function (index, episodeID, nameDE, nameOR, watched, hosterO
     '</g></svg><div class="indexCont">' + index + '</div></div><div class="nonButtonContainer"><div class="nameWatchedContainer"><div class="watchedEpiContainer"></div>' +
     '<div class="titleContainer">' + ((nameDE != '') ? ('<strong>' + nameDE + '</strong>') : '') + ((nameOR != '' && nameDE != '') ? ' - ' : '') + ((nameOR != '') ? ('<i>' + nameOR + '</i>') : '') +
     '</div></div><div class="alignContainerGenre"><div class="genrePicContainer"><div class="hosterTriangeContainer"><div class="triangle"></div><div class="hosterContainer">' + hosterObj + '</div>' +
-    '</div><div class="addAutoplayButton">+</div></div></div></div></div>';
+    '</div><div title="Add Episode To Playlist" class="addAutoplayButton">+</div></div></div></div></div>';
 }
 
 /**
@@ -360,6 +383,10 @@ var getInfoTable = function () {
 var initAutoplay = function () {
     if (!autoplayIsValid()) {
         $('#autoplay').prop('checked', false);
+        setData('autoplay', false);
+        setData('lastSeries', 'none');
+        setData('lastSeason', 'none');
+        setData('lastEpisode', 'none');
         return false;
     }
 

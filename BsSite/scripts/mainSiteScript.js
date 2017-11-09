@@ -376,7 +376,7 @@ var seriesSearch = function () {
             if (i !== -1) {
                 window.location = 'https://bs.to/serie/' + getFullList()[i].Id;
             } else {
-                window.location = 'https://bs.to/serie-genre?search=' + jEncode($('#search').val());
+                window.location = 'https://bs.to/serie-genre?search=' + encodeURI($('#search').val());
             }
         }
     });

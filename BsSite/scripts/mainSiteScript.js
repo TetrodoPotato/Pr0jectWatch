@@ -88,7 +88,7 @@ $('#set').bind('click', function (e) {
 var searchEv = function (e) {
     //Remove Info
     $('#searchInfoText').remove();
-    
+
     //Check if Search is Valid
     var search = $('#search').val();
     if (search.length < getData('minCharsSearch', 3) && /^https\:\/\/bs.to\/serie-genre.*$/.test(window.location.href)) {
@@ -120,16 +120,17 @@ var searchEv = function (e) {
                 }
             }
         });
-        
-        if($('.search').length){
-            if($('.search:visible').length == 0){
-                 $('#contentContainer').append('<span id="searchInfoText">No Results For "' +  $('#search').val() + '"</span>');
+
+        if ($('.search').length) {
+            if ($('.search:visible').length == 0) {
+                $('#contentContainer').append('<span id="searchInfoText">No Results For "' + $('#search').val() + '"</span>');
             }
         }
     }
 };
 
 $('#search').bind('input', searchEv);
+$('#search').bind('click', searchEv);
 
 /*CRITICAL*/
 //Change LoginButton to Username
@@ -230,7 +231,7 @@ var updateFavNSync = async function () {
             return false;
         }
 
-        if (window.location.href !== 'https://bs.to/serie-genre') {
+        if (/^https:\/\/bs\.to\/serie\-genre.*$/.test(window.location.href)) {
             var list = getFavorites().filter(obj => obj.IsWatched == true);
             await new Promise(resolve => {
                 var listProc = 0;
@@ -342,3 +343,39 @@ var initSiteState = function () {
     }
 }
 initSiteState();
+
+var initSeriesSearch = function () {
+    if (typeof getData !== 'undefined' || typeof getFullList !== 'undefined') {
+        setTimeout(initSeriesSearch, 1000);
+        false;
+    }
+
+    if (/^https:\/\/bs\.to\/serie\-genre.*$/.test(window.location.href)) {
+        if (!getData('episodeSearch', false)) {
+            initSeriesSearch();
+        }
+    }
+
+}
+
+var initSeriesSearch = function () {
+    $('.search').removeClass('search');
+
+    $('body:first').append('<datalist id="seriesSearchList"></datalist>');
+    $.each(getFullList(), function (index, value) {
+        $('#seriesSearchList').append('<option value="' + value.FullName + '">');
+    });
+    $('#search').attr('list', 'seriesSearchList');
+
+    $('#search').keyup(function (e) {
+        if (e.keyCode == 13) {
+            e.preventDefault();
+            var i = getFullList().findIndex(item => item.FullName.toLowerCase() === $('#search').val().toLowerCase());
+            if (i !== -1) {
+                window.location = 'https://bs.to/serie/' + getFullList()[i].Id;
+            } else {
+                window.location = 'https://bs.to/serie-genre?search=' + jEncode($('#search').val());
+            }
+        }
+    });
+}

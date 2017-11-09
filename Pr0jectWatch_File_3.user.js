@@ -36,10 +36,6 @@ var onDocumentReady = async function () {
 
     setEpisodeEvents();
     syncSeries();
-
-    if (!getData('episodeSearch', false)) {
-        initSeriesSearch();
-    }
 }
 
 /**
@@ -515,27 +511,4 @@ var closeAutoplay = function () {
     setData('lastSeries', 'none');
     setData('lastSeason', 'none');
     setData('lastEpisode', 'none');
-}
-
-var initSeriesSearch = function () {
-    $('.search').removeClass('search');
-
-    $('body:first').append('<datalist id="seriesSearchList"></datalist>');
-    $.each(getFullList(), function (index, value) {
-        $('#seriesSearchList').append('<option value="' + value.FullName + '">');
-    });
-    $('#search').attr('list', 'seriesSearchList');
-
-    $('textarea').keyup(function (e) {
-        if (e.keyCode == 13) {
-            e.preventDefault();
-            console.log($('#search').val().toLowerCase());
-            var i = getFullList().findIndex(item => item.FullName.toLowerCase() === $('#search').val().toLowerCase());
-            if (i !== -1) {
-                window.location = 'https://bs.to/serie/' + getFullList()[i];
-            } else {
-                window.location = 'https://bs.to/serie-genre?search=' + jEncode($('#search').val());
-            }
-        }
-    });
 }

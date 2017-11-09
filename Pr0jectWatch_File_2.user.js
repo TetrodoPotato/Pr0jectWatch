@@ -55,6 +55,14 @@ var onDocumentReady = async function () {
     updateAllWatchedSynced();
 }
 
+var onDocumentLoaded = function () {
+    var newSearch = getGetter('search');
+    if(typeof newSearch !== 'undefined') {
+        $('#search').val(jDecode(newSearch));
+        $('#search').click();
+    }
+}
+
 /**
  * Get the content of the file as String
  * @param {String} url - url of file.

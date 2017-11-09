@@ -379,3 +379,4 @@ var initSeriesSearch = function () {
         }
     });
 }
+initSeriesSearch();

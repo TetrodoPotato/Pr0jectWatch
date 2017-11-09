@@ -213,6 +213,13 @@ $(document).keydown(function (e) {
             window.location = $(':focus').attr('href');
         }
         $(':focus .favlink:first').click();
+    } else if (e.keyCode === 171 || e.keyCode === 107) { // +
+        e.preventDefault();
+        if ($(':focus .addAutoplayButton:first').length) {
+            if ($(':focus .addAutoplayButton:first').is(":visible")) {
+                watchClick($(':focus .addAutoplayButton:first'));
+            }
+        }
     } else if (e.keyCode === 77) { // M
         e.preventDefault();
         $('#menuBurgerContainer').attr('ison', ($('#menuBurgerContainer').attr('ison') != 'true'));

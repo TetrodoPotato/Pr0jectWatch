@@ -24,10 +24,11 @@ var savePlayList = function (FullObjectListArray) {
 /**
  *
  */
-var setPlayList = function (seriesId, season, episodeid, seriesName, episodename) {
+var setPlayList = function (seriesId, season, episodeid, seriesName, episodename, index) {
     var list = getFullPlayList();
     list.push({
         seriesID: seriesId,
+        episodeIndex:index,
         season: season,
         episodeID: episodeid,
         seriesName: seriesName,
@@ -45,4 +46,11 @@ var removePlayList = function (id) {
     var list = getFullPlayList();
     list.splice(list.findIndex(item => item.seriesID.toLowerCase() === id.toLowerCase()), 1);
     savePlayList(list);
+}
+
+/**
+ * Remove All Items
+ */
+var removeAllPlaylist = function () {
+    localStorage.setItem('playList', JSON.stringify([]));
 }

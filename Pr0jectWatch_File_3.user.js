@@ -207,7 +207,7 @@ var setEpisodeEvents = function () {
         var episodeDE = $('.titleContainer:first strong:first').text().trim();
         var episodeOR = $('.titleContainer:first i:first').text().trim();
 
-        setPlayList(getSeriesId(), getSeason(), target.attr('episodeid'), seriesName, ((episodeDE != '') ? episodeDE : episodeOR))
+        setPlayList(getSeriesId(), getSeason(), target.attr('episodeid'), seriesName, ((episodeDE != '') ? episodeDE : episodeOR), parseInt(target.find('.indexCont')));
 
         addBottomText('Added Episode ' + target.find('.indexCont').text() + ' To The Playlist', 2000);
     });

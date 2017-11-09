@@ -4,6 +4,7 @@
 // @namespace   https://bs.to/
 // @include     https://bs.to/log
 // @include     https://bs.to/settings
+// @include     https://bs.to/playlist
 // @version    	1.0
 // @description	Log and Settings
 // @author     	Kartoffeleintopf
@@ -25,8 +26,10 @@ initBsPage();
 var onDocumentReady = async function () {
     if (window.location.href == 'https://bs.to/log') {
         initLogCont();
-    } else {
+    } else if (window.location.href == 'https://bs.to/settings') {
         initSettingCont();
+    } else if (window.location.href == 'https://bs.to/playlist') {
+        initPlaylistCont();
     }
 
     initSideCont();
@@ -212,6 +215,9 @@ var addGeneralConf = function () {
     });
 }
 
+/**
+ * Add MediaplayerConfigs.
+ */
 var addMediaplayerConf = function () {
     var arrow = '<svg viewBox="0 0 30 30"><g><path d="M10 0 L25 15 L10 30 L5 25 L15 15 L5 5 Z" /></g></svg>';
     var target = $('#contentContainer').append('<div ison="false" class="settingContainer" id="mediaStyles"><div class="settingHeader">' + arrow + '<h3>Mediaplayer</h3></div></div>').find('#mediaStyles');
@@ -261,4 +267,11 @@ var addNumberInput = function (addContainer, saveIndex, defaultState, msg, min, 
 
         setData(saveIndex, value, true)
     });
+}
+
+/**
+ * Init Playlist Page
+ */
+var initPlaylistCont = function () {
+    
 }

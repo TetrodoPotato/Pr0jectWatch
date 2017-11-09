@@ -345,13 +345,13 @@ var initSiteState = function () {
 initSiteState();
 
 var initSeriesSearch = function () {
-    if (typeof getData !== 'undefined' || typeof getFullList !== 'undefined') {
+    if (typeof getData === 'undefined' || typeof getFullList === 'undefined') {
         setTimeout(initSeriesSearch, 1000);
         false;
     }
 
     if (!/^https:\/\/bs\.to\/serie\-genre.*$/.test(window.location.href)) {
-        if (!getData('episodeSearch', false)) {
+        if (!getData('episodeSearch', false) || !/^https:\/\/bs\.to\/serie\/[^\/]+(\/(\d+(\/((unwatch:|watch:)(\d+|all)(\/)?)?)?)?)?$/.test(window.location.href)) {
             seriesSearch();
         }
     }

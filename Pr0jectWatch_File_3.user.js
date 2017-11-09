@@ -322,7 +322,7 @@ var episodeRowRaw = function (index, episodeID, nameDE, nameOR, watched, hosterO
     '</g></svg><div class="indexCont">' + index + '</div></div><div class="nonButtonContainer"><div class="nameWatchedContainer"><div class="watchedEpiContainer"></div>' +
     '<div class="titleContainer">' + ((nameDE != '') ? ('<strong>' + nameDE + '</strong>') : '') + ((nameOR != '' && nameDE != '') ? ' - ' : '') + ((nameOR != '') ? ('<i>' + nameOR + '</i>') : '') +
     '</div></div><div class="alignContainerGenre"><div class="genrePicContainer"><div class="hosterTriangeContainer"><div class="triangle"></div><div class="hosterContainer">' + hosterObj + '</div>' +
-    '</div></div></div></div></div>';
+    '</div><div class="addAutoplayButton">+</div></div></div></div></div>';
 }
 
 /**

@@ -962,7 +962,7 @@ input:checked + .slider:before {
     width: -o-calc(100%  - 60px);
     width: calc(100%  - 60px);
     
-    height:20px;
+    height:25px;
     float:right;
 }
 
@@ -1288,7 +1288,10 @@ input:checked + .slider:before {
     height:25px;
     
     /*Minus .pictureContainer width*/
-    width: 100%;
+    width: -moz-calc(100%  - 25px);
+    width: -webkit-calc(100%  - 25px);
+    width: -o-calc(100%  - 25px);
+    width: calc(100%  - 25px);
     
     float:left;
     position:relativ;
@@ -1397,6 +1400,31 @@ input:checked + .slider:before {
 
 .CloudTime {
     background-position: -642px 0;
+}
+
+.addAutoplayButton {
+    float:left;
+    height:25px;
+    width:25px;
+    background-color:var(--ListRowSegmentSecondaryBackgroundColor);
+    color:var(--ListRowAddPlaylistIconColor);
+    text-align: center;
+    line-height: 20px;
+    font-size: 25px;
+    font-weight: 900;
+    
+    cursor:pointer;
+    
+    -webkit-transition: color 0.2s;
+    transition: color 0.2s;
+}
+
+.addAutoplayButton:hover {
+    color:var(--ListRowAddPlaylistIconColorHover);
+}
+
+.addAutoplayButton:active {
+    color:var(--ListRowAddPlaylistIconColorClick);
 }
 
 #dialogClickLayer[ison="true"] #dialogWindow * {

@@ -213,6 +213,10 @@
     --ListRowSegmentIndexFont:16px var(--BaseFont);
     --ListRowSegmentIndexColor:#FFF;
     
+    --ListRowAddPlaylistIconColor:var(--LightBase);
+    --ListRowAddPlaylistIconColorHover:var(--LightHover);
+    --ListRowAddPlaylistIconColorClick:var(--LightClick);
+    
     /*Serieslist Main*/
     --SeriesListSearchInfoTextTextFont:var(--DefaultTextSize) var(--BaseFont);
     --SeriesListSearchInfoTextTextColor:#CCC;

@@ -334,6 +334,8 @@ var initSiteState = function () {
         $('#logNav .navRow').addClass('onSite');
     } else if (navigation === 'settings') {
         $('#setNav .navRow').addClass('onSite');
+    } else if (navigation === 'playlist') {
+        $('#plyNav .navRow').addClass('onSite');
     }
 
     if (typeof getData === 'function') {

@@ -21,10 +21,7 @@ $('#dialogClickLayer, #dialogCloseIcon').bind('click', function (e) {
 $('#autoplay').bind('change', function (e) {
     setData('autoplay', this.checked, false);
     if (!this.checked) {
-        setData('lastSeries', 'none');
-        setData('lastSeason', 'none');
-        setData('lastEpisode', 'none');
-        setData('isPlayingPlaylist', false);
+        clearAutoplayBuffer();
     }
 });
 
@@ -350,7 +347,7 @@ initSiteState();
 var initSeriesSearch = function () {
     if (typeof getData === 'undefined' || typeof getFullList === 'undefined') {
         setTimeout(initSeriesSearch, 1000);
-        false;
+        return;
     }
 
     if (!/^https:\/\/bs\.to\/serie\-genre.*$/.test(window.location.href)) {

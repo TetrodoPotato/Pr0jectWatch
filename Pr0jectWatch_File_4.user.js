@@ -10,6 +10,7 @@
 // @run-at 		document-start
 // @require 	https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/data.js
+// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/playlistStorage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/seriesStorage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/logStorage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
@@ -104,6 +105,10 @@ var onDocumentReady = function () {
         }
     });
 
+    if(getData('isPlayingPlaylist', false)){
+        removePlayList(getFullPlayList()[0].episodeID);
+    }
+    
     if (supportet) {
         window.location = 'https://bs.to/data'
         + '?redirect=' + jEncode($('.hoster-player:first').attr('href')) 

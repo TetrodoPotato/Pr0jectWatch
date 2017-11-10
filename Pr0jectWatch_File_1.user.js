@@ -8,7 +8,7 @@
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
 // @require 	https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
-// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/autoplayStoreage.js
+// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/playlistStorage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/data.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
 // @downloadURL http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_1.user.js
@@ -31,10 +31,7 @@ var redirectStart = function () {
         //You know ?!
         setData('errorCode', 0);
         setData('autoplay', false);
-        setData('lastSeries', 'none');
-        setData('lastSeason', 'none');
-        setData('lastEpisode', 'none');
-        setData('isPlayingPlaylist', false);
+        clearAutoplayBuffer();
              
         if (getData('beforeLogout', 'notSet') !== 'notSet') {
             var linkRef = getData('beforeLogout', 'https://bs.to/serie-genre');
@@ -66,14 +63,11 @@ var redirectStart = function () {
         if (isAutoplay !== 'none') {
             setData('autoplay', isAutoplay == 'true');
             if(!(isAutoplay == 'true')){
-                setData('lastSeries', 'none');
-                setData('lastSeason', 'none');
-                setData('lastEpisode', 'none');
-                setData('isPlayingPlaylist', false);
+                clearAutoplayBuffer();
             }
         }
 
-        if(getData('isPlayingPlaylist', false)){            
+        if(getData('isPlayingPlaylist', false)){
             var firstPlaylist = getFullPlayList();
             
             if(firstPlaylist.length == 0) {
@@ -81,15 +75,15 @@ var redirectStart = function () {
                 return;
             }
         
-            setData('lastSeries', firstPlaylist.seriesID);
-            setData('lastSeason', firstPlaylist.season);
-            setData('lastEpisode',firstPlaylist.episodeID);
+            setData('lastSeries', firstPlaylist[0].seriesID);
+            setData('lastSeason', firstPlaylist[0].season);
+            setData('lastEpisode',firstPlaylist[0].episodeID);
             
-            series = firstPlaylist.seriesID;
-            season = firstPlaylist.season;
-            episode = firstPlaylist.episodeID;
+            series = firstPlaylist[0].seriesID;
+            season = firstPlaylist[0].season;
+            episode = firstPlaylist[0].episodeID;
             
-            removePlayList(firstPlaylist.episodeID);
+            setData('autoplay', true);
         }
         
         //Open the last season for next episode

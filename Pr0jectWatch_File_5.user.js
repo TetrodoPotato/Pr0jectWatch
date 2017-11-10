@@ -12,7 +12,7 @@
 // @require 	https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
 // @require     http://rubaxa.github.io/Sortable/Sortable.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/logStorage.js
-// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/autoplayStoreage.js
+// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/playlistStorage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/data.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/keyControll.js
@@ -297,7 +297,10 @@ var initPlaylistCont = function () {
     $('#clearAllPlaylist').bind('click', function () {
         $('#playlistList').empty();
         removeAllPlaylist();
-        $('<span id="noEntry">No Entry</span>').insertAfter('#playlistList');
+        if($('#noEntry').length == 0){
+            $('#playlistList').after('<span id="noEntry">No Entry</span>');
+        }
+        
     });
 
     $('#playlistList li .delCol').bind('click', function (e) {
@@ -306,7 +309,12 @@ var initPlaylistCont = function () {
         target.remove();
 
         if ($('#playlistList li').length == 0) {
-            $('<span id="noEntry">No Entry</span>').insertAfter('#playlistList');
+            $('#playlistList').after('<span id="noEntry">No Entry</span>');
+        } else {
+            $("#playlistList li").each(function (index, value) {
+                $(this).find('.indexCol').text(index + 1);
+                setPlayList($(this).attr('data-series'), parseInt($(this).attr('data-season')), $(this).attr('data-episode'), $(this).find('.seriesNameCol:first').text().trim(), $(this).find('.episodeCol:first span:first').text().trim(), parseInt($(this).attr('data-episodeindex')));
+            });
         }
     });
 
@@ -322,7 +330,7 @@ var initPlaylistCont = function () {
     });
     
     if ($('#playlistList li').length == 0) {
-        $('#contentContainer').append('<span id="noEntry">No Entry</span>');
+        $('#playlistList').after('<span id="noEntry">No Entry</span>');
     }
 }
 

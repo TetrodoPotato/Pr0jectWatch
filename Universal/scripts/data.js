@@ -138,3 +138,10 @@ var getData = function (key, defaultValue) {
 
     return defaultValue;
 }
+
+var clearAutoplayBuffer = function () {
+    setData('lastSeries', 'none');
+    setData('lastSeason', 'none');
+    setData('lastEpisode', 'none');
+    setData('isPlayingPlaylist', false);
+}

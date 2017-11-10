@@ -483,7 +483,15 @@ var getNextText = function () {
  */
 var autoplayIsValid = function () {
     if(getData('isPlayingPlaylist', false)) {
-        var play = $('.seriesContainer[episodeid="' + getData('lastEpisode') + '"]').prev('.seriesContainer');
+        var play = $('.seriesContainer[episodeid="' + getData('lastEpisode') + '"]');
+        if(play.length == 0){
+            play = $(".seriesContainer").filter(function() {
+                return $(this).find('indexCont').text().trim() == getData('lastEpisode').split('-')[0].trim();
+            })
+        }
+        
+        play = play.prev('.seriesContainer');
+        
         if(play.length == 0){
             setData('lastEpisode', '0x000001');
         } else {

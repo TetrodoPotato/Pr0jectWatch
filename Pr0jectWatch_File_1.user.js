@@ -8,6 +8,7 @@
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
 // @require 	https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
+// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/autoplayStoreage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/data.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
 // @downloadURL http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_1.user.js
@@ -33,6 +34,7 @@ var redirectStart = function () {
         setData('lastSeries', 'none');
         setData('lastSeason', 'none');
         setData('lastEpisode', 'none');
+        setData('isPlayingPlaylist', false);
              
         if (getData('beforeLogout', 'notSet') !== 'notSet') {
             var linkRef = getData('beforeLogout', 'https://bs.to/serie-genre');
@@ -63,8 +65,33 @@ var redirectStart = function () {
         var isAutoplay = getGetter('autoplay', 'none');
         if (isAutoplay !== 'none') {
             setData('autoplay', isAutoplay == 'true');
+            if(!(isAutoplay == 'true')){
+                setData('lastSeries', 'none');
+                setData('lastSeason', 'none');
+                setData('lastEpisode', 'none');
+                setData('isPlayingPlaylist', false);
+            }
         }
 
+        if(getData('isPlayingPlaylist', false)){            
+            var firstPlaylist = getFullPlayList();
+            
+            if(firstPlaylist.length == 0) {
+                window.location = 'https://bs.to/';
+                return;
+            }
+        
+            setData('lastSeries', firstPlaylist.seriesID);
+            setData('lastSeason', firstPlaylist.season);
+            setData('lastEpisode',firstPlaylist.episodeID);
+            
+            series = firstPlaylist.seriesID;
+            season = firstPlaylist.season;
+            episode = firstPlaylist.episodeID;
+            
+            removePlayList(firstPlaylist.episodeID);
+        }
+        
         //Open the last season for next episode
         window.location = 'https://bs.to/serie/' + series + '/' + season;
     }

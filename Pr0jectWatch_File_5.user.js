@@ -297,23 +297,31 @@ var initPlaylistCont = function () {
     $('#clearAllPlaylist').bind('click', function () {
         $('#playlistList').empty();
         removeAllPlaylist();
-        $('#contentContainer').append('<span id="noEntry">No Entry</span>');
+        $('<span id="noEntry">No Entry</span>').insertAfter('#playlistList');
     });
 
     $('#playlistList li .delCol').bind('click', function (e) {
-        console.log('NIIIGER');
-        e.stopPropagation();
-        
         var target = $(this).closest('li');
-        removePlayList(target.attr('data-series'));
+        removePlayList(target.attr('data-episode'));
         target.remove();
 
-        if ($('#playlistList').length == 0) {
-            $('#contentContainer').append('<span id="noEntry">No Entry</span>');
+        if ($('#playlistList li').length == 0) {
+            $('<span id="noEntry">No Entry</span>').insertAfter('#playlistList');
         }
     });
 
-    if ($('#playlistList').length == 0) {
+    $('#PlaylistPlay').bind('click',function(){
+        if($('#playlistList li').length != 0){
+            setData('lastSeries','notNot');
+            setData('lastSeason','notNot');
+            setData('lastEpisode','notNot');
+            setData('isPlayingPlaylist',true);
+            
+            window.location = 'https://bs.to/?next';
+        }
+    });
+    
+    if ($('#playlistList li').length == 0) {
         $('#contentContainer').append('<span id="noEntry">No Entry</span>');
     }
 }

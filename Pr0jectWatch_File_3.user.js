@@ -394,6 +394,7 @@ var initAutoplay = function () {
         setData('lastSeries', 'none');
         setData('lastSeason', 'none');
         setData('lastEpisode', 'none');
+        setData('isPlayingPlaylist', false);
         return false;
     }
 
@@ -462,7 +463,13 @@ var startAutoplayCount = function (time) {
  * Set the text with the Information for the Next Episode.
  */
 var getNextText = function () {
-    var next = $('.seriesContainer[episodeid="' + getData('lastEpisode') + '"]').next('.seriesContainer');
+    var next = null;
+    if(getData('lastEpisode') == '0x000001'){
+        next = $('.seriesContainer:first');
+    } else {
+        next = $('.seriesContainer[episodeid="' + getData('lastEpisode') + '"]').next('.seriesContainer');
+    }
+    
 
     /*Setting*/
     if (getData('playMerged', true) && next.length != 0) {
@@ -478,6 +485,16 @@ var getNextText = function () {
  * Check if Autoplay is Valid with the Set variables and Series
  */
 var autoplayIsValid = function () {
+    if(getData('isPlayingPlaylist', false)) {
+        var play = $('.seriesContainer[episodeid="' + getData('lastEpisode') + '"]').prev('.seriesContainer');
+        if(play.length == 0){
+            setData('lastEpisode', '0x000001');
+        } else {
+            setData('lastEpisode', play.attr('episodeid'));
+        }
+        return true;
+    }
+    
     if (getData('lastSeries') != getSeriesId()) {
         return false;
     } else if (getData('lastEpisode') == '0x000000') {
@@ -509,7 +526,7 @@ var autoplayIsValid = function () {
  * Plays the Next Episode
  */
 var playNextEpisode = function () {
-    if (getData('lastEpisode') == '0x000000') {
+    if (getData('lastEpisode') == '0x000000' || getData('lastEpisode') == '0x000001') {
         $('.seriesContainer:first .nameWatchedContainer:first').click();
         return true;
     }
@@ -545,4 +562,5 @@ var closeAutoplay = function () {
     setData('lastSeries', 'none');
     setData('lastSeason', 'none');
     setData('lastEpisode', 'none');
+    setData('isPlayingPlaylist', false);
 }

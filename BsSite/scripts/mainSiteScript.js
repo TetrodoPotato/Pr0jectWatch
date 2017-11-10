@@ -24,6 +24,7 @@ $('#autoplay').bind('change', function (e) {
         setData('lastSeries', 'none');
         setData('lastSeason', 'none');
         setData('lastEpisode', 'none');
+        setData('isPlayingPlaylist', false);
     }
 });
 

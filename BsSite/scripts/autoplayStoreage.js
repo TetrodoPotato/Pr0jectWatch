@@ -44,7 +44,7 @@ var setPlayList = function (seriesId, season, episodeid, seriesName, episodename
  */
 var removePlayList = function (id) {
     var list = getFullPlayList();
-    list.splice(list.findIndex(item => item.seriesID.toLowerCase() === id.toLowerCase()), 1);
+    list.splice(list.findIndex(item => item.episodeID.toLowerCase() === id.toLowerCase()), 1);
     savePlayList(list);
 }
 

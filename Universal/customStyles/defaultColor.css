@@ -471,7 +471,7 @@
     --PlaylistListInfoTextBackgroundColor:#FFF;
     
     --PlaylistListIndexTextColor:#FFF;
-    --PlaylistListIndexTextBackgroundColor:#FFF;
+    --PlaylistListIndexTextBackgroundColor:#000;
     
     --PlaylistListDeleteIconBackgroundColor:#000;
     
@@ -480,6 +480,9 @@
     --PlaylistListDeleteIconColorClick:var(--LightClick);
     
     --PlaylistListGhostBackgroundColor:#EEE;
+    
+    --PlaylistNoEntryTextFont:var(--DefaultTextSize) var(--BaseFont);
+    --PlaylistNoEntryTextColor:#000;
 }
 
 body {

@@ -280,12 +280,48 @@ var initPlaylistCont = function () {
     $.each(getFullPlayList(), function (index, value) {
         target.append(getPlaylistRow(value, index + 1));
     });
+
+    Sortable.create($("#playlistList")[0], {
+        animation: 150, // ms, animation speed moving items when sorting, `0` — without animation
+        ghostClass: "sortableGhost",
+        filter: ".delCol",
+        onUpdate: function (evt) {
+            removeAllPlaylist();
+            $("#playlistList li").each(function (index, value) {
+                $(this).find('.indexCol').text(index + 1);
+                setPlayList($(this).attr('data-series'), parseInt($(this).attr('data-season')), $(this).attr('data-episode'), $(this).find('.seriesNameCol:first').text().trim(), $(this).find('.episodeCol:first span:first').text().trim(), parseInt($(this).attr('data-episodeindex')));
+            });
+        }
+    });
+
+    $('#clearAllPlaylist').bind('click', function () {
+        $('#playlistList').empty();
+        removeAllPlaylist();
+        $('#contentContainer').append('<span id="noEntry">No Entry</span>');
+    });
+
+    $('#playlistList li .delCol').bind('click', function (e) {
+        console.log('NIIIGER');
+        e.stopPropagation();
+        
+        var target = $(this).closest('li');
+        removePlayList(target.attr('data-series'));
+        target.remove();
+
+        if ($('#playlistList').length == 0) {
+            $('#contentContainer').append('<span id="noEntry">No Entry</span>');
+        }
+    });
+
+    if ($('#playlistList').length == 0) {
+        $('#contentContainer').append('<span id="noEntry">No Entry</span>');
+    }
 }
 
 var getPlaylistRow = function (obj, index) {
     return '<li data-series="' + obj.seriesID + '" data-episodeIndex="' + obj.episodeIndex + '" data-season="' + obj.season + '" data-episode="' + obj.episodeID + '">' +
     '<div class="indexCol">' + index + '</div><div class="infoCol"><span class="seriesNameCol">' + obj.seriesName + '</span><span class="seasonCol">' + ((obj.season == 0) ? 'Specials' : ('Season ' + obj.season)) + '</span>' +
-    '<span class="episodeCol">' + obj.episodeName + '</span></div><div class="delCol"><svg viewBox="0 0 25 25"><g><path d="M5 0L12.5 7.5L20 0L25 5L17.5 12.5L25 20L20 25L12.5 17.5L5 25L0 20L7.5 12.5L0 5Z"/></g></svg></div></li>';
+    '<span class="episodeCol">' + 'Episode ' + obj.episodeIndex + ' - <span>' + obj.episodeName + '</span></span></div><div class="delCol"><svg viewBox="0 0 25 25"><g><path d="M5 0L12.5 7.5L20 0L25 5L17.5 12.5L25 20L20 25L12.5 17.5L5 25L0 20L7.5 12.5L0 5Z"/></g></svg></div></li>';
 }
 
 /*

@@ -2340,5 +2340,10 @@ input:checked + .slider:before {
     background-color: var(--PlaylistButtonTextBackgroundColorClick);
 }
 
+#noEntry {
+    font:var(--PlaylistNoEntryTextFont);
+    color:var(--PlaylistNoEntryTextColor);
+}
+
 /*Pseudo Style need for fakelistener*/
 body {opacity:1 !important;}

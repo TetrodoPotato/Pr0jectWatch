@@ -452,6 +452,34 @@
     --LogTableEvenRowTextColor:#000;
     --LogTableOddRowBackgroundColor:#CCC;
     --LogTableOddRowTextColor:#000;
+    
+    /*Playlist Styles*/
+    --PlaylistButtonTextFont:var(--DefaultTextSize) var(--BaseFont);
+    
+    --PlaylistButtonTextColor:#FFF;
+    --PlaylistButtonTextColorHover:#FFF;
+    --PlaylistButtonTextColorClick:#FFF;
+    
+    --PlaylistButtonTextBackgroundColor:var(--BackBase);
+    --PlaylistButtonTextBackgroundColorHover:var(--BackHover);
+    --PlaylistButtonTextBackgroundColorClick:var(--BackClick);
+    
+    --PlaylistListBackgroundColor:#FFF;
+    --PlaylistListTextFont::var(--DefaultTextSize) var(--BaseFont);
+    
+    --PlaylistListInfoTextColor:#000;
+    --PlaylistListInfoTextBackgroundColor:#FFF;
+    
+    --PlaylistListIndexTextColor:#FFF;
+    --PlaylistListIndexTextBackgroundColor:#FFF;
+    
+    --PlaylistListDeleteIconBackgroundColor:#000;
+    
+    --PlaylistListDeleteIconColor:var(--LightBase);
+    --PlaylistListDeleteIconColorHover:var(--LightHover);
+    --PlaylistListDeleteIconColorClick:var(--LightClick);
+    
+    --PlaylistListGhostBackgroundColor:#EEE;
 }
 
 body {

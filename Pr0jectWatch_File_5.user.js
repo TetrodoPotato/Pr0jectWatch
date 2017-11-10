@@ -12,6 +12,7 @@
 // @require 	https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
 // @require     http://rubaxa.github.io/Sortable/Sortable.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/logStorage.js
+// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/autoplayStoreage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/data.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/keyControll.js
@@ -273,5 +274,27 @@ var addNumberInput = function (addContainer, saveIndex, defaultState, msg, min, 
  * Init Playlist Page
  */
 var initPlaylistCont = function () {
-    
+    $('#contentContainer').empty().append('<h1 class="mainSiteTitle">Playlist</h1>').append('<ul id="playlistList"></ul><button id="PlaylistPlay">Play All</button><button id="clearAllPlaylist">Clear ALl</button>');
+
+    var target = $('#playlistList');
+    $.each(getFullPlayList(), function (index, value) {
+        target.append(getPlaylistRow(value, index + 1));
+    });
 }
+
+var getPlaylistRow = function (obj, index) {
+    return '<li data-series="' + obj.seriesID + '" data-episodeIndex="' + obj.episodeIndex + '" data-season="' + obj.season + '" data-episode="' + obj.episodeID + '">' +
+    '<div class="indexCol">' + index + '</div><div class="infoCol"><span class="seriesNameCol">' + obj.seriesName + '</span><span class="seasonCol">' + ((obj.season == 0) ? 'Specials' : ('Season ' + obj.season)) + '</span>' +
+    '<span class="episodeCol">' + obj.episodeName + '</span></div><div class="delCol"><svg viewBox="0 0 25 25"><g><path d="M5 0L12.5 7.5L20 0L25 5L17.5 12.5L25 20L20 25L12.5 17.5L5 25L0 20L7.5 12.5L0 5Z"/></g></svg></div></li>';
+}
+
+/*
+list.push({
+seriesID: seriesId,
+episodeIndex:index,
+season: season,
+episodeID: episodeid,
+seriesName: seriesName,
+episodeName: episodename
+});
+*/

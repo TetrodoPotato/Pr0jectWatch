@@ -204,10 +204,10 @@ var setEpisodeEvents = function () {
         var target = $(this).closest('.seriesContainer');
 
         var seriesName = $('.mainSiteTitle:first').clone().children().remove().end().text().trim();
-        var episodeDE = $('.titleContainer:first strong:first').text().trim();
-        var episodeOR = $('.titleContainer:first i:first').text().trim();
+        var episodeDE = target.find('.titleContainer:first strong:first').text().trim();
+        var episodeOR = target.find('.titleContainer:first i:first').text().trim();
 
-        setPlayList(getSeriesId(), getSeason(), target.attr('episodeid'), seriesName, ((episodeDE != '') ? episodeDE : episodeOR), parseInt(target.find('.indexCont')));
+        setPlayList(getSeriesId(), getSeason(), target.attr('episodeid'), seriesName, ((episodeDE != '') ? episodeDE : episodeOR), parseInt(target.find('.indexCont').text()));
 
         addBottomText('Added Episode ' + target.find('.indexCont').text() + ' To The Playlist', 2000);
     });

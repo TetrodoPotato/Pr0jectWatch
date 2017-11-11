@@ -131,7 +131,7 @@ var getLocalStorage = function (key) {
  * Set data value.
  * @param key {String} - Key.
  * @param value {All} - value.
- * @param perma {Boolean} - if Value is Permanent. Exist after Browserclose. 
+ * @param perma {Boolean} - if Value is Permanent. Exist after Browserclose.
  */
 var setData = function (key, value, perma) {
     if (perma) {

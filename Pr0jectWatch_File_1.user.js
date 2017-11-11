@@ -22,9 +22,9 @@ var redirectStart = function () {
     makeBlackPage();
 
     //Get the current lastplayed episode
-    var series = getData('lastSeries','none');
-    var season = getData('lastSeason','none');
-    var episode = getData('lastEpisode','none');
+    var series = getData('lastSeries', 'none');
+    var season = getData('lastSeason', 'none');
+    var episode = getData('lastEpisode', 'none');
 
     //Check error on cookies and fuck you
     if (/^https:\/\/bs.to(\/home)?\/?$/.test(window.location.href)) {
@@ -32,7 +32,7 @@ var redirectStart = function () {
         setData('errorCode', 0);
         setData('autoplay', false);
         clearAutoplayBuffer();
-             
+
         if (getData('beforeLogout', 'notSet') !== 'notSet') {
             var linkRef = getData('beforeLogout', 'https://bs.to/serie-genre');
             setData('beforeLogout', 'notSet');
@@ -61,30 +61,30 @@ var redirectStart = function () {
         var isAutoplay = getGetter('autoplay', 'none');
         if (isAutoplay !== 'none') {
             setData('autoplay', isAutoplay == 'true');
-            if(!(isAutoplay == 'true')){
+            if (!(isAutoplay == 'true')) {
                 clearAutoplayBuffer();
             }
         }
 
-        if(getData('isPlayingPlaylist', false)){
+        if (getData('isPlayingPlaylist', false)) {
             var firstPlaylist = getFullPlayList();
-            
-            if(firstPlaylist.length == 0) {
+
+            if (firstPlaylist.length == 0) {
                 window.location = 'https://bs.to/';
                 return;
             }
-        
+
             setData('lastSeries', firstPlaylist[0].seriesID);
             setData('lastSeason', firstPlaylist[0].season);
-            setData('lastEpisode',firstPlaylist[0].episodeID);
-            
+            setData('lastEpisode', firstPlaylist[0].episodeID);
+
             series = firstPlaylist[0].seriesID;
             season = firstPlaylist[0].season;
             episode = firstPlaylist[0].episodeID;
-            
+
             setData('autoplay', true);
         }
-        
+
         //Open the last season for next episode
         window.location = 'https://bs.to/serie/' + series + '/' + season;
     }

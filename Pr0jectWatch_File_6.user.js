@@ -71,38 +71,38 @@ var parseStreamango = function () {
 var parseTheVideo = function () {
     var t = 0;
     var timer = setInterval(function () {
-        var nextLink = $('video').attr('src');
-        if(typeof nextLink !== 'undefined'){
-            window.location = nextLink;
-            clearInterval(timer);
-        }
-        if(++t > 100) {
-            clearInterval(timer);
-            window.location = 'https://bs.to/?error';
-        }
-    },100);
-    
+            var nextLink = $('video').attr('src');
+            if (typeof nextLink !== 'undefined') {
+                window.location = nextLink;
+                clearInterval(timer);
+            }
+            if (++t > 100) {
+                clearInterval(timer);
+                window.location = 'https://bs.to/?error';
+            }
+        }, 100);
+
 }
 
 var parseVidto = function () {
     var t = 0;
     var timer = setInterval(function () {
-        var nextButton = $('#btn_download'); 
-        if(nextButton.length){
-            nextButton.click();
-        } else {
-            var nextLink = $('video:first').attr('src');
-            if(typeof nextLink !== 'undefined'){
-                window.location = nextLink;
-                clearInterval(timer);
+            var nextButton = $('#btn_download');
+            if (nextButton.length) {
+                nextButton.click();
+            } else {
+                var nextLink = $('video:first').attr('src');
+                if (typeof nextLink !== 'undefined') {
+                    window.location = nextLink;
+                    clearInterval(timer);
+                }
             }
-        }
-        
-        if(++t > 100) {
-            clearInterval(timer);
-            window.location = 'https://bs.to/?error';
-        }
-    },100);
+
+            if (++t > 100) {
+                clearInterval(timer);
+                window.location = 'https://bs.to/?error';
+            }
+        }, 100);
 }
 
 $(document).ready(function () {
@@ -114,7 +114,7 @@ $(document).ready(function () {
         parseStreamango();
     } else if (/^https:\/\/thevideo\.io\/embed.+$/.test(window.location.href)) {
         parseTheVideo();
-    }  else if (/^http:\/\/vidto\.me\/.+$/.test(window.location.href)) {
+    } else if (/^http:\/\/vidto\.me\/.+$/.test(window.location.href)) {
         parseVidto();
     }
 });

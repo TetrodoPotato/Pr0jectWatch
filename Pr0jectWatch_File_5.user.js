@@ -42,8 +42,8 @@ var onDocumentReady = async function () {
 var initLogCont = function () {
     $('#contentContainer').empty().append('<h1 class="mainSiteTitle">Series-Log</h1>').append('<table id="logTable"></table>');
 
-    var logItemns = (getData('reverseLog',false)) ? getFullLog().reverse() : getFullLog(); 
-    
+    var logItemns = (getData('reverseLog', false)) ? getFullLog().reverse() : getFullLog();
+
     var table = $('#logTable').append('<tr><th>Nr</th><th>Series</th><th>Season</th><th>Index</th><th>Episode German</th><th>Episode Original</th><th>Hoster</th><th>Date</th></tr>');
     $.each(logItemns, function (index, v) {
         table.append('<tr><td>' + (index + 1) + '</td><td>' + v.series + '</td><td>' + ((v.season == 0) ? 'S' : v.season) + '</td><td>' + v.episodeNr + '/' + v.episodes + '</td><td>' + v.episodeDE + '</td><td>' + v.episodeOR + '</td><td>' + v.hoster + '</td><td>' + v.date + '</td></tr>');
@@ -300,9 +300,9 @@ var initPlaylistCont = function () {
     $('#clearAllPlaylist').bind('click', function () {
         $('#playlistList').empty();
         removeAllPlaylist();
-        if($('#noEntry').length == 0){
+        if ($('#noEntry').length == 0) {
             $('#playlistList').after('<span id="noEntry">No Entry</span>');
-        }        
+        }
     });
 
     $('#playlistList li .delCol').bind('click', function (e) {
@@ -318,17 +318,17 @@ var initPlaylistCont = function () {
         }
     });
 
-    $('#PlaylistPlay').bind('click',function(){
-        if($('#playlistList li').length != 0){
-            setData('lastSeries','notNot');
-            setData('lastSeason','notNot');
-            setData('lastEpisode','notNot');
-            setData('isPlayingPlaylist',true);
-            
+    $('#PlaylistPlay').bind('click', function () {
+        if ($('#playlistList li').length != 0) {
+            setData('lastSeries', 'notNot');
+            setData('lastSeason', 'notNot');
+            setData('lastEpisode', 'notNot');
+            setData('isPlayingPlaylist', true);
+
             window.location = 'https://bs.to/?next';
         }
     });
-    
+
     if ($('#playlistList li').length == 0) {
         $('#playlistList').after('<span id="noEntry">No Entry</span>');
     }

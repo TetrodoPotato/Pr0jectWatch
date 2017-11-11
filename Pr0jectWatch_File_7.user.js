@@ -558,9 +558,9 @@ var showCur = function (x, seconds) {
     if (window.videoPreview == true) {
         var step = Math.floor((seconds - (seconds % ($('#preview')[0].duration / previewSteps))) / ($('#preview')[0].duration / previewSteps)); //Step
         $('#canvasContainer canvas').hide();
-        if($('#canvasContainer canvas').length > step){
+        if ($('#canvasContainer canvas').length > step) {
             $('#canvasContainer canvas:nth-of-type(' + (step + 1) + ')').show();
-        }   
+        }
     }
     $('#curProc').css('left', ((x - ($('#curProc').outerWidth() / 2)) + "px"))
     $('#previewText').html(min + ":" + sec);

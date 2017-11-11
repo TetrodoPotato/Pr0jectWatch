@@ -16,7 +16,7 @@ var getFullLog = function () {
 /**
  * Save log.
  * @param FullObjectListArray {Object-Array} - Full Log
- */
+*/
 var saveLog = function (FullObjectListArray) {
     localStorage.setItem('loglist', JSON.stringify(FullObjectListArray));
 }

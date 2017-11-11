@@ -42,11 +42,11 @@ var initHosterList = function () {
             }
         });
 
-        if(!hasHoster){
+        if (!hasHoster) {
             alert('No Hoster For This Episode');
             window.location = window.location + '/NoHoster';
         }
-        
+
     });
 }
 
@@ -76,27 +76,27 @@ var onDocumentReady = function () {
     var hoster = window.location.pathname.split('/')[5].split('?')[0];
 
     //Setting
-    if(getData('enableLog',true)){
+    if (getData('enableLog', true)) {
         setLog(seriesId, seriesName, season, episodeDE, episodeOR, episodeIndex, episodeMax, hoster);
     }
     //Setting
-    if(getData('autoAutoplay',false)){
+    if (getData('autoAutoplay', false)) {
         setData('autoplay', true);
     }
     //Setting
-    if(getData('updateSeason', true)){
+    if (getData('updateSeason', true)) {
         updateEntry({
             Id: seriesId,
             FavSeason: season
         });
     }
     setForAutoplay();
-    
-    if(hoster == 'NoHoster') {
+
+    if (hoster == 'NoHoster') {
         window.location = 'https://bs.to/?next';
         return true;
     }
-    
+
     var supportet = false;
     $.each(hosterSupport, function (i, supp) {
         if (supp[0] == hoster) {
@@ -105,33 +105,33 @@ var onDocumentReady = function () {
         }
     });
 
-    if(getData('isPlayingPlaylist', false)){
+    if (getData('isPlayingPlaylist', false)) {
         removePlayList(getFullPlayList()[0].episodeID);
     }
-    
+
     if (supportet) {
         window.location = 'https://bs.to/data'
-        + '?redirect=' + jEncode($('.hoster-player:first').attr('href')) 
-        + '&series=' + jEncode(seriesName)
-        + '&season=' + jEncode(season)
-        + '&episode=' + jEncode(((episodeDE != '') ? episodeDE : episodeOR))
-        + '&episodeRange=' + jEncode(episodeIndex + '/' + episodeMax)
-        + '&style=' + jEncode(getData('style', styleColors.Default))
-        + '&autoplay=' + jEncode(getData('autoplay', false))      
-        + '&closeEnd=' + jEncode(getData('closeEnd', true))
-        + '&enablePreview=' + jEncode(getData('enablePreview', true))
-        + '&previewSteps=' + jEncode(getData('previewSteps', 20))
-        + '&timeShow=' + jEncode(getData('timeShow', 3));
+             + '?redirect=' + jEncode($('.hoster-player:first').attr('href'))
+             + '&series=' + jEncode(seriesName)
+             + '&season=' + jEncode(season)
+             + '&episode=' + jEncode(((episodeDE != '') ? episodeDE : episodeOR))
+             + '&episodeRange=' + jEncode(episodeIndex + '/' + episodeMax)
+             + '&style=' + jEncode(getData('style', styleColors.Default))
+             + '&autoplay=' + jEncode(getData('autoplay', false))
+             + '&closeEnd=' + jEncode(getData('closeEnd', true))
+             + '&enablePreview=' + jEncode(getData('enablePreview', true))
+             + '&previewSteps=' + jEncode(getData('previewSteps', 20))
+             + '&timeShow=' + jEncode(getData('timeShow', 3));
         return true;
     } else {
-        var win = window.open($('.hoster-player:first').attr('href') , "Project Watch Video", "");
+        var win = window.open($('.hoster-player:first').attr('href'), "Project Watch Video", "");
         var pollTimer = window.setInterval(function () {
                 if (win.closed !== false) { // !== is required for compatibility with Opera
                     window.clearInterval(pollTimer);
                     window.location = 'https://bs.to/?next';
                 }
             }, 200);
-        $('.hoster-player:first').attr('href','https://www.google.de/');
+        $('.hoster-player:first').attr('href', 'https://www.google.de/');
     }
 
     $('#contentContainer').empty().append('<h1 class="mainSiteTitle">Open Hosterwindow</h1>').append('<button id="nextButton">Next Episode</button>').find('#nextButton').bind('click', function () {

@@ -15,7 +15,7 @@ var initMediaplayer = function () {
 /**
  * Hoster Support.
  */
-var hosterSupport = [['OpenLoadHD', true], ['Streamango', true], ['OpenLoad', true], ['TheVideo', true], ['Vivo', true], ['AuroraVid', false], ['FlashX', false], ['Vidto', false], ['YouWatch', false], ['CloudTime', false]]; 
+var hosterSupport = [['OpenLoadHD', true], ['Streamango', true], ['OpenLoad', true], ['TheVideo', true], ['Vivo', true], ['AuroraVid', false], ['FlashX', false], ['Vidto', false], ['YouWatch', false], ['CloudTime', false]];
 
 /**
  * Get Default Hoster.
@@ -41,7 +41,7 @@ var init = function (pageUrl) {
         if (typeof onBeforeDocumentLoad === 'function') {
             onBeforeDocumentLoad();
         }
-        
+
         $.get(pageUrl, function (newContent) {
             newContent = newContent.replace(/(\r\n|\n|\r)/gm, "").split('></').join('> </');
 
@@ -104,7 +104,7 @@ var replaceDocument = function (doc, oldDocument) {
 
     $('body:first').empty().append(old).prepend(newBody.innerHTML);
     $('head:first').empty().append(newHead.innerHTML);
-    
+
     copyAttributes(doc.getElementsByTagName('html')[0], document.getElementsByTagName('html')[0]);
     copyAttributes(newBody, document.body);
     copyAttributes(newHead, document.head);
@@ -157,14 +157,14 @@ var makeBlackPage = function () {
  */
 var getGetter = function (key, defaultValue) {
     var getter = window.location.search.split('?');
-    if(getter.length == 1) {
+    if (getter.length == 1) {
         return defaultValue;
     }
-    
+
     var returnVal = defaultValue;
-    $.each(getter[1].split('&'), function(index, value){
+    $.each(getter[1].split('&'), function (index, value) {
         var keyVal = value.split('=');
-        if(keyVal[0] == key){
+        if (keyVal[0] == key) {
             returnVal = (keyVal.length != 1) ? keyVal[1] : defaultValue;
             return false;
         }

@@ -60,7 +60,7 @@ var onDocumentReady = async function () {
  */
 var onDocumentLoaded = function () {
     var newSearch = getGetter('search');
-    if(typeof newSearch !== 'undefined') {
+    if (typeof newSearch !== 'undefined') {
         $('#search').val(jDecode(newSearch));
         searchEv();
     }
@@ -365,7 +365,7 @@ var addListEvents = function () {
         }
     });
 
-    $('#contentContainer').on('click', '.favIcon', function (event) {        
+    $('#contentContainer').on('click', '.favIcon', function (event) {
         var target = $(this).closest('.seriesContainer');
 
         $.get('https://bs.to/serie/' + target.attr('seriesid'), function (result) {
@@ -386,7 +386,7 @@ var addListEvents = function () {
                 Genre: newGenre,
                 SeriesIndex: seriesIndex,
                 IsWatched: ((isLoggedIn()) ? allWatched : null),
-                IsFav: $(this)find('.favIcon').toggleClass("Fav noFav").hasClass('Fav')
+                IsFav: $(this).find('.favIcon').toggleClass("Fav noFav").hasClass('Fav'),
                 IsSynced: true
             });
 

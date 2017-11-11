@@ -4,14 +4,14 @@
  */
 var getFullList = function () {
     var list = localStorage.getItem('serieslist');
-    if(!list){
+    if (!list) {
         list = [];
         localStorage.setItem('serieslist', JSON.stringify(list));
     } else {
         list = JSON.parse(list);
     }
     return list.sort((a, b) => a.FullName.localeCompare(b.FullName));
-    
+
 }
 
 /**
@@ -26,7 +26,7 @@ var saveList = function (FullObjectListArray) {
  * Update The List Async-Promise.
  * @param Object {Object-Array} - Array with all Series.
  * @param listArray {Object-Array} - Array with Name and seriesId.
- * @param callback {Function} - Function with Param:Percent Loaded 
+ * @param callback {Function} - Function with Param:Percent Loaded
  * @return Promise-Boolean.
  */
 var updateList = function (objectArray, listArray, callback) {

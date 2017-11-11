@@ -28,7 +28,7 @@ var setPlayList = function (seriesId, season, episodeid, seriesName, episodename
     var list = getFullPlayList();
     list.push({
         seriesID: seriesId,
-        episodeIndex:index,
+        episodeIndex: index,
         season: season,
         episodeID: episodeid,
         seriesName: seriesName,

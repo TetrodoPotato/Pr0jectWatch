@@ -482,7 +482,7 @@
     --PlaylistListGhostBackgroundColor:#EEE;
     
     --PlaylistNoEntryTextFont:var(--DefaultTextSize) var(--BaseFont);
-    --PlaylistNoEntryTextColor:#000;
+    --PlaylistNoEntryTextColor:#FFF;
 }
 
 body {

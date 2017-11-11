@@ -7,7 +7,7 @@
 // @include     /^.*oloadcdn\.net.*$/
 // @include     /^.*fruithosted\.net.*$/
 // @include     /^.*thevideo\.me.*$/
-// @include     /^.*198\.16\.68\.202.*$/
+// @include     /^.*\d+\.\d+\.\d+\.\d+.*\/video\.mp4$/
 // @version    	1
 // @description	SeriesList
 // @author     	Kartoffeleintopf

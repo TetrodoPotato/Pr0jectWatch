@@ -14,10 +14,21 @@ var getFullList = function () {
     
 }
 
+/**
+ * Save List.
+ * @param FullObjectListArray {Object-Array} - Full Log
+ */
 var saveList = function (FullObjectListArray) {
     localStorage.setItem('serieslist', JSON.stringify(FullObjectListArray));
 }
 
+/**
+ * Update The List Async-Promise.
+ * @param Object {Object-Array} - Array with all Series.
+ * @param listArray {Object-Array} - Array with Name and seriesId.
+ * @param callback {Function} - Function with Param:Percent Loaded 
+ * @return Promise-Boolean.
+ */
 var updateList = function (objectArray, listArray, callback) {
     var list = getFullList();
     var canuUpdateIndex = (typeof listArray !== 'undefined' && listArray !== null);
@@ -51,10 +62,18 @@ var updateList = function (objectArray, listArray, callback) {
     });
 }
 
+/**
+ * Return all Favorites.
+ * @return {Object-Array}
+ */
 var getFavorites = function () {
     return getFullList().filter(obj => obj.IsFav == true);
 }
 
+/**
+ * Update all Param of an object.
+ * @param obj {Object} - Object needed param:Id
+ */
 var updateEntry = function (obj) {
     var list = getFullList();
 

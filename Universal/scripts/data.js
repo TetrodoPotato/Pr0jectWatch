@@ -92,10 +92,20 @@ var removeCookie = function (name) {
     document.cookie = name + "=" + expires + ";path=/;domain=." + website_host;
 }
 
+/**
+ * Set Local Storage Item.
+ * @param Key {String} - Key.
+ * @param value {All} - value.
+ */
 var setLocalStorage = function (key, value) {
     localStorage[key] = value;
 }
 
+/**
+ * Get local Storage.
+ * @param key {String} - Key.
+ * @return {ALL}
+ */
 var getLocalStorage = function (key) {
     var returnVal = localStorage[key];
     if (typeof returnVal !== 'undefined') {
@@ -117,6 +127,12 @@ var getLocalStorage = function (key) {
     return undefined;
 }
 
+/**
+ * Set data value.
+ * @param key {String} - Key.
+ * @param value {All} - value.
+ * @param perma {Boolean} - if Value is Permanent. Exist after Browserclose. 
+ */
 var setData = function (key, value, perma) {
     if (perma) {
         setLocalStorage(key, value);
@@ -125,6 +141,12 @@ var setData = function (key, value, perma) {
     }
 }
 
+/**
+ * Get Data from Cookie of Localstoreage.
+ * @param key {String} - Key.
+ * @param deefaultValue {All} - Value if Value is undefinded.
+ * @return {All}
+ */
 var getData = function (key, defaultValue) {
     var value = getCookie(key);
     if (typeof value === 'undefined') {
@@ -139,6 +161,9 @@ var getData = function (key, defaultValue) {
     return defaultValue;
 }
 
+/**
+ * Clear all Autoplay Buffers
+ */
 var clearAutoplayBuffer = function () {
     setData('lastSeries', 'none');
     setData('lastSeason', 'none');

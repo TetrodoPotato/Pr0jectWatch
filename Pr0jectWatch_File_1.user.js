@@ -44,7 +44,6 @@ var redirectStart = function () {
         setData('beforeLogout', jDecode(getGetter('redirect', 'https://bs.to/')));
         window.location = 'https://bs.to/logout';
     } else if (series === 'none' || season === 'none' || episode === 'none') {
-
         alert('Enable cookies!!!');
         setData('autoplay', false);
         setData('errorCode', 0);

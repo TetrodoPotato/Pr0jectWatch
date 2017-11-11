@@ -42,8 +42,10 @@ var onDocumentReady = async function () {
 var initLogCont = function () {
     $('#contentContainer').empty().append('<h1 class="mainSiteTitle">Series-Log</h1>').append('<table id="logTable"></table>');
 
+    var logItemns = (getData('reverseLog',false)) ? getFullLog().reverse() : getFullLog(); 
+    
     var table = $('#logTable').append('<tr><th>Nr</th><th>Series</th><th>Season</th><th>Index</th><th>Episode German</th><th>Episode Original</th><th>Hoster</th><th>Date</th></tr>');
-    $.each(getFullLog(), function (index, v) {
+    $.each(logItemns, function (index, v) {
         table.append('<tr><td>' + (index + 1) + '</td><td>' + v.series + '</td><td>' + ((v.season == 0) ? 'S' : v.season) + '</td><td>' + v.episodeNr + '/' + v.episodes + '</td><td>' + v.episodeDE + '</td><td>' + v.episodeOR + '</td><td>' + v.hoster + '</td><td>' + v.date + '</td></tr>');
     });
 }
@@ -197,6 +199,7 @@ var addGeneralConf = function () {
     addCheckbox(target, 'playMerged', true, 'Don\'t Play [In Episode X Enthalten] - Episodes');
     addCheckbox(target, 'syncFavMenu', true, 'Enable Sync Watched Series In Favmenu [Turn Off On Mobiledevices]');
     addCheckbox(target, 'episodeSearch', false, 'Enable Episodesearch. Seriessearch on Episodelist will be disabled');
+    addCheckbox(target, 'reverseLog', false, 'Reverse Log');
 
     addNumberInput(target, 'autoplayTime', 5, 'Timer Time For Autoplay [Sec]', 0, 60000);
     addNumberInput(target, 'updateWaitTime', 7, 'Time Till Next Listupdate [Days]', 1, 60000);
@@ -299,21 +302,18 @@ var initPlaylistCont = function () {
         removeAllPlaylist();
         if($('#noEntry').length == 0){
             $('#playlistList').after('<span id="noEntry">No Entry</span>');
-        }
-        
+        }        
     });
 
     $('#playlistList li .delCol').bind('click', function (e) {
-        var target = $(this).closest('li');
-        removePlayList(target.attr('data-episode'));
-        target.remove();
+        removePlayList($(this).closest('li').attr('data-episode'));
+        $(this).closest('li').remove();
 
         if ($('#playlistList li').length == 0) {
             $('#playlistList').after('<span id="noEntry">No Entry</span>');
         } else {
             $("#playlistList li").each(function (index, value) {
                 $(this).find('.indexCol').text(index + 1);
-                setPlayList($(this).attr('data-series'), parseInt($(this).attr('data-season')), $(this).attr('data-episode'), $(this).find('.seriesNameCol:first').text().trim(), $(this).find('.episodeCol:first span:first').text().trim(), parseInt($(this).attr('data-episodeindex')));
             });
         }
     });
@@ -334,19 +334,14 @@ var initPlaylistCont = function () {
     }
 }
 
+/**
+ * Get an Playlist Item.
+ * @param obj {Object} - Playlist Object.
+ * @param index {Number} - Index of Listitem.
+ * @return Listitem {String}
+ */
 var getPlaylistRow = function (obj, index) {
     return '<li data-series="' + obj.seriesID + '" data-episodeIndex="' + obj.episodeIndex + '" data-season="' + obj.season + '" data-episode="' + obj.episodeID + '">' +
     '<div class="indexCol">' + index + '</div><div class="infoCol"><span class="seriesNameCol">' + obj.seriesName + '</span><span class="seasonCol">' + ((obj.season == 0) ? 'Specials' : ('Season ' + obj.season)) + '</span>' +
     '<span class="episodeCol">' + 'Episode ' + obj.episodeIndex + ' - <span>' + obj.episodeName + '</span></span></div><div class="delCol"><svg viewBox="0 0 25 25"><g><path d="M5 0L12.5 7.5L20 0L25 5L17.5 12.5L25 20L20 25L12.5 17.5L5 25L0 20L7.5 12.5L0 5Z"/></g></svg></div></li>';
 }
-
-/*
-list.push({
-seriesID: seriesId,
-episodeIndex:index,
-season: season,
-episodeID: episodeid,
-seriesName: seriesName,
-episodeName: episodename
-});
-*/

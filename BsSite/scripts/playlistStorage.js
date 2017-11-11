@@ -22,7 +22,7 @@ var savePlayList = function (FullObjectListArray) {
 }
 
 /**
- *
+ * Fuck it.
  */
 var setPlayList = function (seriesId, season, episodeid, seriesName, episodename, index) {
     var list = getFullPlayList();

@@ -43,7 +43,6 @@ var onDocumentReady = async function () {
  * Starts on new Document loaded all.
  */
 var onDocumentLoaded = function () {
-
     //Setting
     if (getData('scrollUnwatched', false)) {
         if ($(".seriesContainer:not(.episodeWatched):first").length) {
@@ -256,12 +255,7 @@ var constructEpisodeList = function (list) {
 
     });
 
-    $('.active').toggleClass('watched', ($(".seriesContainer:not(.episodeWatched)").length == 0));
-    if ($('.active:first').hasClass('watched')) {
-        $('.active').removeClass('unwatched');
-    } else {
-        $('.active').addClass('unwatched');
-    }
+    $('.active').toggleClass('watched', ($(".seriesContainer:not(.episodeWatched)").length == 0)).toggleClass('unwatched', !$('.active:first').hasClass('watched'));
 }
 
 /**
@@ -282,8 +276,7 @@ var constructSeasonList = function (obj) {
 
     var seasonIsFav = getFullList().filter(obj => obj.Id.toLowerCase() == getSeriesId().toLowerCase())[0];
 
-    var $row = $('#seasonTable tr:first');
-    $row.append('<td class="' + ((seasonIsFav.IsFav) ? ((seasonIsFav.FavSeason == getSeason()) ? 'thisSeasonFav' : 'seasonFav') : 'seasonNoFav') + '" id="favSeasonStar"><svg viewBox="0 0 25 25"><g><path d="M12.6 0 L15.6 9 L24.9 9 L17.5 15.5 L20 24.9 L12.6 19.4 L4.5 24.7 L7.5 15.6 L0 9.2 L9.3 9 Z" /></g></svg></td>');
+    var $row = $('#seasonTable tr:first').append('<td class="' + ((seasonIsFav.IsFav) ? ((seasonIsFav.FavSeason == getSeason()) ? 'thisSeasonFav' : 'seasonFav') : 'seasonNoFav') + '" id="favSeasonStar"><svg viewBox="0 0 25 25"><g><path d="M12.6 0 L15.6 9 L24.9 9 L17.5 15.5 L20 24.9 L12.6 19.4 L4.5 24.7 L7.5 15.6 L0 9.2 L9.3 9 Z" /></g></svg></td>');
 
     var partLink = 'https://bs.to/serie/' + getSeriesId() + '/';
     $.each(obj, function (index, value) {
@@ -385,12 +378,9 @@ var getInfoTable = function () {
 
 /**
  * Init Autoplay
-- AUTOPLAY INVALID NOT SAME SERIES
  */
 var initAutoplay = function () {
     if (!autoplayIsValid()) {
-        $('#autoplay').prop('checked', false);
-        setData('autoplay', false);
         clearAutoplayBuffer();
         return false;
     }
@@ -460,19 +450,11 @@ var startAutoplayCount = function (time) {
  * Set the text with the Information for the Next Episode.
  */
 var getNextText = function () {
-    var next = null;
-    if(getData('lastEpisode') == '0x000001'){
-        next = $('.seriesContainer:first');
-    } else {
-        next = $('.seriesContainer[episodeid="' + getData('lastEpisode') + '"]').next('.seriesContainer');
-    }
-    
+    var next = (getData('lastEpisode') == '0x000001') ? $('.seriesContainer:first') : $('.seriesContainer[episodeid="' + getData('lastEpisode') + '"]').next('.seriesContainer');
 
     /*Setting*/
     if (getData('playMerged', true) && next.length != 0) {
-        if (next.find('.titleContainer').text().toLowerCase().includes('[in episode')) {
-            next = next.next('.seriesContainer');
-        }
+        next = (next.find('.titleContainer').text().toLowerCase().includes('[in episode')) ? next.next('.seriesContainer') : next;
     }
 
     return ((next.length != 0) ? (next.find('.indexCont:first').text().trim() + '/' + $('.seriesContainer').length + ' - Season ' + $('#seasonTable .active:first').text().trim()) : ('Season ' + $('#seasonTable .active:first').next('td').text().trim()))
@@ -482,45 +464,45 @@ var getNextText = function () {
  * Check if Autoplay is Valid with the Set variables and Series
  */
 var autoplayIsValid = function () {
-    if(getData('isPlayingPlaylist', false)) {
+    if (getData('isPlayingPlaylist', false)) {
         var play = $('.seriesContainer[episodeid="' + getData('lastEpisode') + '"]');
-        if(play.length == 0){
-            play = $(".seriesContainer").filter(function() {
-                return $(this).find('indexCont').text().trim() == getData('lastEpisode').split('-')[0].trim();
-            })
+        if (play.length == 0) {
+            play = $(".seriesContainer").filter(function () {
+                    return $(this).find('.indexCont').text().trim() == getData('lastEpisode').split('-')[0].trim();
+                })
         }
-        
+
         play = play.prev('.seriesContainer');
-        
-        if(play.length == 0){
+
+        if (play.length == 0) {
             setData('lastEpisode', '0x000001');
         } else {
             setData('lastEpisode', play.attr('episodeid'));
         }
-        return true;
-    }
-    
-    if (getData('lastSeries') != getSeriesId()) {
-        return false;
-    } else if (getData('lastEpisode') == '0x000000') {
-        return true;
-    } else if (getData('lastSeason') !== getSeason()) {
-        return false;
-    }
-
-    var next = $('.seriesContainer[episodeid="' + getData('lastEpisode') + '"]').next('.seriesContainer');
-
-    /*Setting*/
-    if (getData('playMerged', true) && next.length != 0) {
-        if (next.find('.titleContainer').text().toLowerCase().includes('[in episode')) {
-            next = next.next('.seriesContainer');
-        }
-    }
-
-    if (next.length == 0) {
-        next = $('#seasonTable .active:first').next('td');
-        if (next.length == 0) {
+    } else {
+        if (getData('lastSeries') != getSeriesId() || getData('lastSeason') !== getSeason()) {
             return false;
+        } else if (getData('lastEpisode') == '0x000000') {
+            return true;
+        }
+
+        var next = $('.seriesContainer[episodeid="' + getData('lastEpisode') + '"]').next('.seriesContainer');
+
+        /*Setting*/
+        if (getData('playMerged', true) && next.length != 0) {
+            if (next.find('.titleContainer').text().toLowerCase().includes('[in episode')) {
+                next = next.next('.seriesContainer');
+            }
+        }
+
+        if (next.length == 0) {
+            next = $('#seasonTable .active:first').next('td');
+            if (next.length == 0) {
+                $('#autoplay').prop('checked', false);
+                setData('autoplay', false);
+                clearAutoplayBuffer();
+                return false;
+            }
         }
     }
 
@@ -552,7 +534,23 @@ var playNextEpisode = function () {
         return;
     }
 
-    next.find('.nameWatchedContainer:first').click();
+    if (getData('isPlayingPlaylist', false)) {
+        var target = next;
+
+        var watchLink = 'https://bs.to/serie/' + getSeriesId() + '/' + getSeason() + '/';
+        watchLink += ((target.hasClass('episodeWatched')) ? 'unwatch:' : 'watch:') + target.find('.indexCont:first').text();
+
+        makePageCall(watchLink, function () {
+            target.addClass('episodeWatched');
+            $('.active').toggleClass('watched', ($(".seriesContainer:not(.episodeWatched)").length == 0));
+            syncSeries();
+
+            next.find('.nameWatchedContainer:first').click();
+        });
+    } else {
+        next.find('.nameWatchedContainer:first').click();
+    }
+
 }
 
 /**

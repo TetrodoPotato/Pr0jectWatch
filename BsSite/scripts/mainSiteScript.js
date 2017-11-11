@@ -127,8 +127,7 @@ var searchEv = function (e) {
     }
 };
 
-$('#search').bind('input', searchEv);
-$('#search').bind('click', searchEv);
+$('#search').on('input click', searchEv);
 
 /*CRITICAL*/
 //Change LoginButton to Username
@@ -230,7 +229,7 @@ var updateFavNSync = async function () {
         }
 
         if (/^https:\/\/bs\.to\/serie\-genre.*$/.test(window.location.href)) {
-            var list = getFavorites().filter(obj => obj.IsWatched == true);
+            var list = getFavorites();
             await new Promise(resolve => {
                 var listProc = 0;
                 var index = 0;

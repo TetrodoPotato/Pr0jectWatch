@@ -55,6 +55,9 @@ var onDocumentReady = async function () {
     updateAllWatchedSynced();
 }
 
+/**
+ * API - When everything is loaded.
+ */
 var onDocumentLoaded = function () {
     var newSearch = getGetter('search');
     if(typeof newSearch !== 'undefined') {
@@ -66,7 +69,6 @@ var onDocumentLoaded = function () {
 /**
  * Controlls the searchbar and checks the {DOM} contentContainer for tables with {DOM} child {id} 1.
  * Set display {String} "none" to {DOM} children without {String} searchterm.
- * For {String} term {String} ">log" {function} searchEv links to {Path} '/log'
  */
 var searchEv = function (e) {
     //Remove Info
@@ -89,18 +91,10 @@ var searchEv = function (e) {
                 if (!target.find('.genreContainer:first').text().toLowerCase().includes(searchTerm[1])) {
                     target.hide();
                 } else {
-                    if (!target.find('.titleContainer:first').text().toLowerCase().includes(searchTerm[0])) {
-                        target.hide();
-                    } else {
-                        target.show();
-                    }
+                    target.toggle(target.find('.titleContainer:first').text().toLowerCase().includes(searchTerm[0]));
                 }
             } else {
-                if (!target.find('.titleContainer:first').text().toLowerCase().includes(searchTerm[0])) {
-                    target.hide();
-                } else {
-                    target.show();
-                }
+                target.toggle(target.find('.titleContainer:first').text().toLowerCase().includes(searchTerm[0]))
             }
         });
 
@@ -371,14 +365,34 @@ var addListEvents = function () {
         }
     });
 
-    $('#contentContainer').on('click', '.favIcon', function (event) {
-        updateEntry({
-            Id: $(this).closest('*[seriesId]').attr('seriesId'),
-            IsFav: $(this).toggleClass("Fav noFav").hasClass('Fav')
-        });
+    $('#contentContainer').on('click', '.favIcon', function (event) {        
+        var target = $(this).closest('.seriesContainer');
 
-        //Reload Favorites
-        $('#favReload').click();
+        $.get('https://bs.to/serie/' + target.attr('seriesid'), function (result) {
+            //Get seriesId
+            var seriesIndex = $(result).find('img:first').attr('src').split('/')[4].split('.')[0];
+            //Get All Genre
+            var newGenre = $(result).find('.infos:first div:first p:first span').append(' ').text().trim();
+            //Check if everything is Watched
+            var allWatched = ($(result).find('.seasons li:not(.watched), .episodes tr:not(.watched)').length < 2);
+
+            target.find('.genreContainer:first').html(newGenre);
+            target.find('.watchedContainer:first').toggleClass('watchedSeries', allWatched);
+            target.find('.seriesPicture:first').attr('data-id', seriesIndex);
+            target.find('.seriesTick:first').addClass('tickCheck');
+
+            updateEntry({
+                Id: target.attr('seriesid'),
+                Genre: newGenre,
+                SeriesIndex: seriesIndex,
+                IsWatched: ((isLoggedIn()) ? allWatched : null),
+                IsFav: $(this)find('.favIcon').toggleClass("Fav noFav").hasClass('Fav')
+                IsSynced: true
+            });
+
+            //Reload Favorites
+            $('#favReload').click();
+        });
     });
 
     $('#sideContainer').on('click', '.sortingButton', function (e) {

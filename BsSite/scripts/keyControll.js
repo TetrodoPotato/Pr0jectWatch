@@ -44,8 +44,19 @@ var getNextTabIndex = function (mainContainerId, currentElement, direction) {
         return currentElement;
     }
 
+    var returnElem = null;
+    if(direction < 0){
+        returnElem = $(currentElement).prev('*[tabindex]:visible');
+    } else {
+        returnElem = $(currentElement).next('*[tabindex]:visible');
+    }
+    
+    if(returnElem.length){
+        return returnElem;
+    }
+    
     elems = (direction < 0) ? elems.get().reverse() : elems;
-
+    
     var nextIs = false;
     var returnElement = null;
     $(elems).each(function (index, value) {

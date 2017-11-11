@@ -1,0 +1,465 @@
+/*Style %STYLENAME% By %USERNAME%*/
+:root {    
+    /*Main Site Defaults*/
+    --SiteFontSize:14px;
+    --SiteFontFamily:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --BackgroundColor:#FFF;
+    
+    /*Menu*/
+    --MenuBackgroundColor:#000;
+    
+    /*Logo*/
+    --LogoFont:20px Impact,sans-serif;
+    --LogoFontColor:#FFF;
+    
+    /*Main Menu Login Section*/
+    --MenuLoginUsernameFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    
+    --MenuLoginUsernameColor:#FFF;
+    --MenuLoginUsernameColorHover:#CCC;
+    --MenuLoginUsernameColorClick:#2196F3;
+    
+    --MenuLoginText:#FFF;
+    --MenuLoginTextHover:#FFF;
+    --MenuLoginTextClick:#FFF;
+    
+    --MenuLoginBackground:#2196F3;
+    --MenuLoginBackgroundHover:#33adff;
+    --MenuLoginBackgroundClick:#1d6799;
+    
+    /*Show-Hide Sidemenu Button*/
+    --MenuIconBackground:transparent;
+    --MenuIconBackgroundHover:#444;
+    --MenuIconBackgroundClick:#888;
+    
+    --MenuIconColor:#FFF;
+    --MenuIconColorHover:#CCC;
+    --MenuIconColorClick:#AAA;
+    
+    /*Menu Progressbar*/
+    --MenuProgressbarBackgroundColor:#CCC;
+    --MenuProgressbarBarColor:#2196F3;
+    
+    /*Slide Checkbox*/
+    --SliderUncheckedBackground:#CCC;
+    --SliderCheckedBackground:#2196F3;
+    --SliderDotColorUnchecked:#FFF;
+    --SliderDotColorChecked:#FFF;
+    
+    /*Autoplay Text*/
+    --MenuAutoplayText:#FFF;
+    --MenuAutoplayFont:14px Impact,sans-serif;
+    
+    /*Searchbox*/
+    --MenuSearchLogoBackgroundColor:transparent;
+    --MenuSearchLogoBackgroundColorFocus:transparent;
+    
+    --MenuSearchLogoColor:#CCC;
+    --MenuSearchLogoColorFocus:#2196F3;
+    
+    --MenuSearchBoxBackgroundColor:#222;
+    --MenuSearchBoxTextColor:#FFF;
+    --MenuSearchBoxTextFont:14px Impact,sans-serif;
+    
+    /*Sidemenu Show Hide Arrow*/
+    --MenuShowHideContainerColor:#FFF;
+    --MenuShowHideContainerColorHover:#CCC;
+    --MenuShowHideContainerColorClick:#AAA;
+    
+    /*None Click Overlay*/
+    --ClickOverlayBackgroundColor:rgba(0,0,0,0.8);
+    
+    /*Login Dialog Window*/
+    --LoginDialogBackgroundColor:#FFF;
+    --LoginTextBoxBackgroundColor:#EEE;
+    --LoginTextBoxTextColor:#000;
+    --LoginTextBoxTextFont:14px Impact,sans-serif;
+    
+    --LoginButtonsTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --LoginKeepLogTextFont:14px Impact,sans-serif;
+    --LoginKeepLogTextColor:#000;
+    
+    --LoginButtonsTextColor:#FFF;
+    --LoginButtonsTextColorHover:#FFF;
+    --LoginButtonsTextColorClick:#FFF;
+    
+    --LoginButtonBackgroundColor:#000;
+    --LoginButtonBackgroundColorHover:#444;
+    --LoginButtonBackgroundColorClick:#888;
+    
+    /*Side Menu Navigation*/
+    --SideMenuBackgroundColor:#FFF;
+    --SideMenuTitelTextFont:12px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --SideMenuTitelTextFontColor:#AAA;
+    --SideMenuBottomLineColor:#CCC;
+    --SideMenuNavigationFont:16px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    
+    --SideMenuNavigationTextColor:#000;
+    --SideMenuNavigationTextColorHover:#000;
+    --SideMenuNavigationTextColorClick:#000;
+    
+    --SideMenuNavigationBackground:transparent;
+    --SideMenuNavigationBackgroundHover:#EEE;
+    --SideMenuNavigationBackgroundClick:#DDD;  
+    
+    --SideMenuIconColor:#CCC;
+    --SideMenuIconColorHover:#33adff;
+    --SideMenuIconColorClick:#1d6799;
+    
+    /*Favorite Get-Set Buttons*/
+    --SideMenuSyncButtonTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;;
+    
+    --SideMenuSyncButtonBackgroundColor:#2196F3;
+    --SideMenuSyncButtonBackgroundColorHover:#33adff;
+    --SideMenuSyncButtonBackgroundColorClick:#1d6799;
+    
+    --SideMenuSyncButtonTextColor:#FFF;
+    --SideMenuSyncButtonTextColorHover:#FFF;
+    --SideMenuSyncButtonTextColorClick:#FFF;
+    
+    /*Loading Circle*/
+    --LoadingCircle90Color:#2196F3;
+    --LoadingCircle270Color:#DDD;
+    
+    /*Favorite Menu*/
+    --FavoriteMenuRowTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    
+    --FavoriteMenuRowBackgroundColor:transparent;
+    --FavoriteMenuRowBackgroundColorHover:#EEE;
+    --FavoriteMenuRowBackgroundColorClick:#DDD;
+    
+    --FavoriteMenuCloseColBackgroundColor:#000;
+    --FavoriteMenuCloseColBackgroundColorHover:#000;
+    --FavoriteMenuCloseColBackgroundColorClick:#000;
+    
+    --FavoriteMenuCloseIconColor:#FFF;
+    --FavoriteMenuCloseIconColorHover:#2196F3;
+    --FavoriteMenuCloseIconColorClick:#33adff;
+    
+    --FavoriteMenuNameColTextColor:#000;
+    --FavoriteMenuNameColTextColorHover:#000;
+    --FavoriteMenuNameColTextColorClick:#000;
+
+    --FavoriteMenuSeasonColTextColor:#AAA;   
+    --FavoriteMenuSeasonColBackgroundcolorWatched:#2196F3;
+    --FavoriteMenuSeasonColTextColorWatched:#FFF;
+    
+    --FavoriteMenuMessageTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;    
+    --FavoriteMenuMessageTextColor:#2196F3;
+
+    /*ListRowSegment Series/Episodes*/
+    --ListRowSegmentPrimaryBackgroundColor:#FFF;
+    --ListRowSegmentPrimaryBackgroundColorHover:#EEE;
+    --ListRowSegmentPrimaryBackgroundColorClick:#DDD;
+    
+    --ListRowSegmentSecondaryBackgroundColor:#000;
+    
+    --ListRowSegmentUnwatchedBackgroundColor:#CCC;
+    --ListRowSegmentWatchedBackgroundColor:#2196F3;
+    
+    --ListRowSegmentTitleTextFont:18px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    
+    --ListRowSegmentTitleTextColor:#666;
+    --ListRowSegmentTitleTextColorHover:#666;
+    --ListRowSegmentTitleTextColorClick:#666;
+    
+    --ListRowSegmentGenreTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --ListRowSegmentGenreTextColor:#FFF;
+    
+    --ListRowSegmentNoFavIcon:#FFF;
+    --ListRowSegmentNoFavIconHover:#DDD;
+    --ListRowSegmentNoFavIconClick:#BBB;
+    
+    --ListRowSegmentFavIcon:#2196F3;
+    --ListRowSegmentFavIconHover:#33adff;
+    --ListRowSegmentFavIconClick:#1d6799;
+    
+    --ListRowSegmentTickIconColor:#FFF;
+    --ListRowSegmentTickIconColorHover:#CCC;
+    --ListRowSegmentTickIconColorClick:#AAA;
+    
+    --ListRowSegmentTickIconColorChecked:#2196F3;
+    --ListRowSegmentTickIconColorCheckedHover:#33adff;
+    --ListRowSegmentTickIconColorCheckedClick:#1d6799;
+    
+    --ListRowSegmentNoneLoadedPictureBackgroundColor:#444;
+    
+    --ListRowSegmentIndexFont:16px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --ListRowSegmentIndexColor:#FFF;
+    
+    --ListRowAddPlaylistIconColor:#FFF;
+    --ListRowAddPlaylistIconColorHover:#CCC;
+    --ListRowAddPlaylistIconColorClick:#AAA;
+    
+    /*Serieslist Main*/
+    --SeriesListSearchInfoTextTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --SeriesListSearchInfoTextTextColor:#000;
+    
+    --SeriesListBottomTextTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --SeriesListBottomTextTextColor:#FFF;
+    --SeriesListBottomTextTextBackgroundcolor:#000;
+    
+    /*Serieslist Side*/
+    --SeriesListSideContainerSortingButtonTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    
+    --SeriesListSideContainerSortingButtonTextColor:#FFF;
+    --SeriesListSideContainerSortingButtonTextColorHover:#CCC;
+    --SeriesListSideContainerSortingButtonTextColorClick:#AAA;
+    
+    --SeriesListSideContainerSortingButtonBackgroundColor:#000;
+    --SeriesListSideContainerSortingButtonBackgroundColorHover:#000;
+    --SeriesListSideContainerSortingButtonBackgroundColorClick:#000;
+    
+    /*Titel*/
+    --MainSiteTitelTextFont:25px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --MainSiteTitelTextColor:#999;
+    --SideSiteTitelTextFont:20px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --SideSiteTitelTextColor:#999;
+    
+    /*EpisodeList Side*/
+    --EpisodeListSideContainerInfoDescriptionTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --EpisodeListSideContainerInfoDescriptionTextColor:#000;
+    
+    --EpisodeListSideContainerInfoTableTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    
+    --EpisodeListSideContainerInfotableTextColorFirst:#000;
+    --EpisodeListSideContainerInfotableTextColorSecond:#000;
+    
+    --EpisodeListSideContainerWatchButtonTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    
+    --EpisodeListSideContainerWatchButtonTextColor:#FFF;
+    --EpisodeListSideContainerWatchButtonTextColorHover:#FFF;
+    --EpisodeListSideContainerWatchButtonTextColorClick:#FFF;
+    
+    --EpisodeListSideContainerWatchButtonBackgroundColor:#2196F3;
+    --EpisodeListSideContainerWatchButtonBackgroundColorHover:#33adff;
+    --EpisodeListSideContainerWatchButtonBackgroundColorClick:#1d6799;
+    
+    /*EpisodeList Autoplay Window*/
+    --EpisodeListAutoplaySideBackgroundColor:#FFF;
+    
+    --EpisodeListAutoplayTextBackgroundColor:#CCC;
+    --EpisodeListAutoplayTextFont:18px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --EpisodeListAutoplayTextColor:#000;
+    
+    --EpisodeListAutoplayNumberTextColor:#1d6799;
+    
+    --EpisodeListAutoplayNextInfoTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --EpisodeListAutoplayNextInfoTextColor:#000;
+    
+    --EpisodeListAutoplayButtonTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    
+    --EpisodeListAutoplayButtonTextColor:#FFF;
+    --EpisodeListAutoplayButtonTextColorHover:#FFF;
+    --EpisodeListAutoplayButtonTextColorClick:#FFF;
+    
+    --EpisodeListAutoplayButtonTextBackgroundColor:#2196F3;
+    --EpisodeListAutoplayButtonTextBackgroundColorHover:#33adff;
+    --EpisodeListAutoplayButtonTextBackgroundColorClick:#1d6799;
+    
+    /*Seasonlist*/
+    --SeasonListTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --SeasonListFixedBackgroundColor:#FFF;
+    
+    --SeasonListSegmentUnwatchedBackgroundColor:#000;
+    --SeasonListSegmentUnwatchedBackgroundColorHover:#444;
+    --SeasonListSegmentUnwatchedBackgroundColorClick:#888;
+    
+    --SeasonListSegmentWatchedBackgroundColor:#2196F3;
+    --SeasonListSegmentWatchedBackgroundColorHover:#33adff;
+    --SeasonListSegmentWatchedBackgroundColorClick:#1d6799;
+    
+    --SeasonListSegmentActiveBackgroundColor:#888;
+    --SeasonListSegmentActiveBackgroundColorHover:#AAA;
+    --SeasonListSegmentActiveBackgroundColorClick:#CCC;
+    
+    --SeasonListSegmentActiveWatchedBackgroundColor:#47698e;
+    --SeasonListSegmentActiveWatchedBackgroundColorHover:#47868e;
+    --SeasonListSegmentActiveWatchedBackgroundColorClick:#475b8e;
+    
+    --SeasonListSegmentTextColor:#FFF;
+    --SeasonListSegmentTextColorHover:#FFF;
+    --SeasonListSegmentTextColorClick:#FFF;
+    
+    --SeasonListFavNoFav:#FFF;
+    --SeasonListFavNoFavHover:#CCC;
+    --SeasonListFavNoFavClick:#AAA;
+    
+    --SeasonListFavFav:#2196F3;
+    --SeasonListFavFavHover:#33adff;
+    --SeasonListFavFavClick:#1d6799;
+    
+    --SeasonListFavThisFav:#fffa00;
+    --SeasonListFavThisFavHover:#ffe100;
+    --SeasonListFavThisFavClick:#ffbb00;
+    
+    /*Dialog Window*/
+    --DialogWindowCloseIconColor:#FFF;
+    --DialogWindowCloseIconColorHover:#CCC;
+    --DialogWindowCloseIconColorClick:#AAA;
+    
+    --DialogWindowBackgroundColor:#FFF;
+    --DialogWindowTextColor:#444;
+    --DialogWindowTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --DialogWindowLineColor:#CCC;
+    
+    /*Settings*/
+    --SettingsHosterSortTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    
+    --SettingsHosterSortIndexBackgroundColor:#000;
+    --SettingsHosterSortIndexTextColor:#FFF;
+    
+    --SettingsHosterSortNameBackgroundColor:#FFF;
+    --SettingsHosterSortNameTextColor:#000;
+    
+    --SettingsGhostBackgroundColor:#EEE;
+    
+    --SettingsTitleTextColor:#AAA;
+    --SettingsTitleTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --SettingsDropdownArrowColor:#000;
+    
+    --SettingsStyleDropdownTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --SettingsStyleDropdownTextColor:#FFF;
+    --SettingsStyleDropdownBackgroundColor:#000;
+    --SettingsStyleDropdownOptionTextColor:#000;
+    --SettingsStyleDropdownOptionBackgroundColor:#EEE;
+    
+    --SettingsStyleDropdownCustomTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --SettingsStyleDropdownCustomTextColor:#CCC;
+    
+    --SettingsStyleTextFieldTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --SettingsStyleTextFieldTextColor:#000;
+    --SettingsStyleTextFieldBackgroundColor:#EEE;
+    
+    --SettingsStyleApplyButtonBackgroundColor:#2196F3;
+    --SettingsStyleApplyButtonBackgroundColorHover:#33adff;
+    --SettingsStyleApplyButtonBackgroundColorClick:#1d6799;
+    
+    --SettingsStyleApplyButtonTextColor:#FFF;  
+    --SettingsStyleApplyButtonTextColorHover:#FFF;
+    --SettingsStyleApplyButtonTextColorClick:#FFF;
+    
+    --SettingsGeneralItemBackgroundColor:#EEE;
+    --SettingsGeneralItemTextColor:#000;
+    --SettingsGeneralItemTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    
+    --SettingsGeneralInputTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --SettingsGeneralInputTextColor:#000;
+    --SettingsGeneralInputBackgroundColor:#CCC;
+    
+    --SettingsGeneralButtonBackgroundColor:#2196F3;
+    --SettingsGeneralButtonTextColor:#FFF;
+    
+    --SettingsGeneralButtonBackgroundColorHover:#33adff;
+    --SettingsGeneralButtonTextColorHover:#FFF;
+    
+    --SettingsGeneralButtonBackgroundColorClick:#1d6799;
+    --SettingsGeneralButtonTextColorClick:#FFF;
+    
+    /*Waithoster Main*/
+    --WaitHosterButtonTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    
+    --WaitHosterButtonTextColor:#FFF;
+    --WaitHosterButtonTextColorHover:#FFF;
+    --WaitHosterButtonTextColorClick:#FFF;
+    
+    --WaitHosterButtonBackgroundColor:#2196F3;
+    --WaitHosterButtonBackgroundColorHover:#33adff;
+    --WaitHosterButtonBackgroundColorClick:#1d6799;
+    
+    /*Config - Log - Waithoster Sidecontent*/
+    --LastWatchedSideContainerSortingButtonTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    
+    --LastWatchedSideContainerTextColor:#FFF;
+    --LastWatchedSideContainerTextColorHover:#CCC;
+    --LastWatchedSideContainerTextColorClick:#AAA;
+    
+    --LastWatchedSideContainerBackgroundColor:#000;
+    --LastWatchedSideContainerBackgroundColorHover:#000;
+    --LastWatchedSideContainerBackgroundColorClick:#000;
+    
+    /*Mediaplayer Styles*/
+    --MediaplayerDefaultFont:16px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --MediaplayerInfoTextColor:#2196F3;
+    --MediaplayerInfoTextFont:20px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    
+    --MediaplayerProgressBarsColor:rgba(255, 255, 255 ,0.8);
+    --MediaplayerProgressBarsBackgroundColor:rgba(150,150,150,0.5);
+    
+    --MediaplayerVideoBackgroundColor:#000;
+    --MediaplayerDimLayerColor:#000;
+    
+    --MediaplayerTimeSelectTextColor:#FFF;
+    
+    --MediaplayerControlsBackgroundColor:rgba(22,22,24,0.8);
+    
+    --MediaplayerButtonsColor:#2196F3;
+    --MediaplayerButtonsColorHover:#33adff;
+    --MediaplayerButtonsColorClick:#1d6799;
+    
+    --MediaplayerDisplayTimeTextColor:#CCC;
+    --MediaplayerDisplaySpeedTextColor:#CCC;
+    
+    --MediaplayerDimBarColor:#FFF;
+    --MediaplayerDimBarBackgroundcolor:#0A0A0A; 
+    --MediaplayerDimPercentageColor:#CCC;
+   
+    --MediaplayerEpisodeInfoTextColor:#CCC;   
+    --MediaplayerEpisodeInfoHighlightTextColor:#2196F3;
+    
+    --MediaplayerLoading270Color:transparent;
+    --MediaplayerLoading90Color:#2196F3;
+    
+    --MediaplayerAutoplayToggleOnColor:#2196F3;
+    --MediaplayerAutoplayToggleOnColorHover:#33adff;
+    --MediaplayerAutoplayToggleOnColorClick:#1d6799;
+    
+    --MediaplayerAutoplayToggleOffColor:#FFF;
+    --MediaplayerAutoplayToggleOffColorHover:#CCC;
+    --MediaplayerAutoplayToggleOffColorClick:#AAA;
+    
+    /*Log Table*/
+    --LogTableTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --LogTableHeaderBackgroundColor:#000;
+    --LogTableHeaderTextColor:#FFF;
+    --LogTableEvenRowBackgroundColor:#EEE;
+    --LogTableEvenRowTextColor:#000;
+    --LogTableOddRowBackgroundColor:#CCC;
+    --LogTableOddRowTextColor:#000;
+    
+    /*Playlist Styles*/
+    --PlaylistButtonTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    
+    --PlaylistButtonTextColor:#FFF;
+    --PlaylistButtonTextColorHover:#FFF;
+    --PlaylistButtonTextColorClick:#FFF;
+    
+    --PlaylistButtonTextBackgroundColor:#2196F3;
+    --PlaylistButtonTextBackgroundColorHover:#33adff;
+    --PlaylistButtonTextBackgroundColorClick:#1d6799;
+    
+    --PlaylistListBackgroundColor:#FFF;
+    --PlaylistListTextFont::14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    
+    --PlaylistListInfoTextColor:#000;
+    --PlaylistListInfoTextBackgroundColor:#FFF;
+    
+    --PlaylistListIndexTextColor:#FFF;
+    --PlaylistListIndexTextBackgroundColor:#000;
+    
+    --PlaylistListDeleteIconBackgroundColor:#000;
+    
+    --PlaylistListDeleteIconColor:#FFF;
+    --PlaylistListDeleteIconColorHover:#CCC;
+    --PlaylistListDeleteIconColorClick:#AAA;
+    
+    --PlaylistListGhostBackgroundColor:#EEE;
+    
+    --PlaylistNoEntryTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --PlaylistNoEntryTextColor:#000;
+}
+
+/*Needed Do Not Delete*/
+body {
+    visibility:visible !important;
+}

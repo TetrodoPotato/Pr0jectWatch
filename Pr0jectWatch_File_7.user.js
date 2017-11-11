@@ -814,7 +814,7 @@ var loadVideoTimelinePreview = function () {
 
     $('#preview').attr('src', window.location.href);
 
-    $('#preview').bind('loadedmetadata', function () {
+    $('#preview').one('play', function () {
         var video = $('#preview')[0];
         var duration = video.duration;
         var curLoadingTime = 0;
@@ -846,7 +846,7 @@ var loadVideoTimelinePreview = function () {
         intervalFunction();
     });
 
-    $('#preview').bind('error', function () {
+    $('#preview').one('error', function () {
         $("#preview").unbind();
         console.log('Prev.Error: ' + (++window.PrevErrors));
         loadVideoTimelinePreview();

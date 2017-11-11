@@ -42,7 +42,7 @@ var onDocumentReady = async function () {
 var initLogCont = function () {
     $('#contentContainer').empty().append('<h1 class="mainSiteTitle">Series-Log</h1>').append('<table id="logTable"></table>');
 
-    var logItemns = (getData('reverseLog', false)) ? getFullLog().reverse() : getFullLog();
+    var logItemns = (getData('reverseLog', false)) ? getFullLog() : getFullLog().reverse();
 
     var table = $('#logTable').append('<tr><th>Nr</th><th>Series</th><th>Season</th><th>Index</th><th>Episode German</th><th>Episode Original</th><th>Hoster</th><th>Date</th></tr>');
     $.each(logItemns, function (index, v) {

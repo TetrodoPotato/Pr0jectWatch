@@ -230,32 +230,35 @@ var updateFavNSync = async function () {
 
         if (/^https:\/\/bs\.to\/serie\-genre.*$/.test(window.location.href)) {
             var list = getFavorites();
-            await new Promise(resolve => {
-                var listProc = 0;
-                var index = 0;
+            if (list.length != 0) {
+                await new Promise(resolve => {
+                    var listProc = 0;
+                    var index = 0;
 
-                var syncOne = function () {
-                    var i = index;
-                    $.get('https://bs.to/serie/' + list[i].Id, function (result) {
-                        updateEntry({
-                            Id: list[i].Id,
-                            Genre: $(result).find('.infos:first div:first p:first span').append(' ').text().trim(),
-                            SeriesIndex: $(result).find('img:first').attr('src').split('/')[4].split('.')[0],
-                            IsWatched: ((isLoggedIn()) ? ($(result).find('.seasons li:not(.watched), .episodes tr:not(.watched)').length < 2) : null),
-                            IsSynced: true
+                    var syncOne = function () {
+                        var i = index;
+                        $.get('https://bs.to/serie/' + list[i].Id, function (result) {
+                            updateEntry({
+                                Id: list[i].Id,
+                                Genre: $(result).find('.infos:first div:first p:first span').append(' ').text().trim(),
+                                SeriesIndex: $(result).find('img:first').attr('src').split('/')[4].split('.')[0],
+                                IsWatched: ((isLoggedIn()) ? ($(result).find('.seasons li:not(.watched), .episodes tr:not(.watched)').length < 2) : null),
+                                IsSynced: true
+                            });
+
+                            if (++listProc >= list.length - 1) {
+                                resolve(true);
+                            }
                         });
 
-                        if (++listProc >= list.length - 1) {
-                            resolve(true);
+                        if (++index < list.length) {
+                            setTimeout(syncOne, 500);
                         }
-                    });
-
-                    if (++index < list.length) {
-                        setTimeout(syncOne, 500);
                     }
-                }
-                syncOne();
-            });
+                    syncOne();
+                });
+            }
+
         }
     }
 
@@ -311,7 +314,7 @@ var onWindowResize = function (on) {
     } else {
         //Reset Styles
         $('#contentContainer').attr('ison', 'false')
-        $('#arrowContainer svg').toggleClass('off',false);
+        $('#arrowContainer svg').toggleClass('off', false);
     }
 }
 $(window).resize(onWindowResize);

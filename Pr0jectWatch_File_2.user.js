@@ -386,7 +386,7 @@ var addListEvents = function () {
                 Genre: newGenre,
                 SeriesIndex: seriesIndex,
                 IsWatched: ((isLoggedIn()) ? allWatched : null),
-                IsFav: $(this).find('.favIcon').toggleClass("Fav noFav").hasClass('Fav'),
+                IsFav: $(target).find('.favIcon').toggleClass("Fav noFav").hasClass('Fav'),
                 IsSynced: true
             });
 

@@ -74,12 +74,12 @@ var setEpisodeVariables = async function () {
     await setGMValue('episode', jDecode(getGetter('episode')));
     await setGMValue('episodeRange', jDecode(getGetter('episodeRange')));
     await setGMValue('style', jDecode(getGetter('style')));
-    await setGMValue('autoplay', jDecode(getGetter('autoplay')));
+    await setGMValue('autoplay', jDecode(getGetter('autoplay')).toLowerCase() == 'true');
 
     /*Setting*/
     await setGMValue('previewSteps', parseInt(jDecode(getGetter('previewSteps'))));
-    await setGMValue('closeEnd', jDecode(getGetter('closeEnd')) == 'true');
-    await setGMValue('enablePreview', jDecode(getGetter('enablePreview')) == 'true');
+    await setGMValue('closeEnd', jDecode(getGetter('closeEnd')).toLowerCase() == 'true');
+    await setGMValue('enablePreview', jDecode(getGetter('enablePreview')).toLowerCase() == 'true');
     await setGMValue('timeShow', parseInt(jDecode(getGetter('timeShow'))));
 
     //RESET ERROR
@@ -792,7 +792,7 @@ var toggleAutoplay = function (state) {
     }
 
     if (typeof state !== 'undefined') {
-        window.autoP = (state == 'true' || state == true || state == 1 || state == '1');
+        window.autoP = (('' + state).toLowerCase() == 'true' || state == true || state == 1 || state == '1');
     } else {
         window.autoP = !window.autoP;
     }

@@ -44,7 +44,7 @@ var onDocumentReady = async function () {
  */
 var onDocumentLoaded = function () {
     //Setting
-    if (getData('scrollUnwatched', false)) {
+    if (getData('scrollUnwatched', true)) {
         if ($(".seriesContainer:not(.episodeWatched):first").length) {
             var offSet = $(".seriesContainer:not(.episodeWatched):first").offset()
                 $('html, body').animate({

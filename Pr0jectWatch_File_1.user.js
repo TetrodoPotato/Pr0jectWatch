@@ -60,9 +60,10 @@ var redirectStart = function () {
 
         var isAutoplay = getGetter('autoplay', 'none');
         if (isAutoplay !== 'none') {
-            setData('autoplay', isAutoplay == 'true');
-            if (!(isAutoplay == 'true')) {
+            setData('autoplay', isAutoplay.toLowerCase() == 'true');
+            if (isAutoplay.toLowerCase() != 'true') {
                 clearAutoplayBuffer();
+                setData('isPlayingPlaylist', false)
             }
         }
 

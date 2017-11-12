@@ -177,12 +177,12 @@ var getGetter = function (key, defaultValue) {
  * Encodes an String for Uri
  */
 var jEncode = function (str) {
-    return encodeURI(str).split('?').join('%3F').split('&').join('%2F');
+    return encodeURI('' + str).split('?').join('%3F').split('&').join('%2F');
 }
 
 /**
  * Decodes an String for Uri
  */
 var jDecode = function (str) {
-    return decodeURI(str.split('%2F').join('&').split('%3F').join('?'));
+    return decodeURI(('' + str).split('%2F').join('&').split('%3F').join('?'));
 }

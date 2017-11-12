@@ -320,7 +320,6 @@ onWindowResize();
 $('#favReload').bind('click', updateFavoriteMenu);
 
 $('#arrowContainer').bind('click', function (e) {
-    onWindowResize($('#arrowContainer svg').hasClass('off'));
     onWindowResize($('#contentContainer').attr('ison').toLowerCase() == 'true');
 });
 

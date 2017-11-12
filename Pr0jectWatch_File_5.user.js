@@ -112,7 +112,7 @@ var addHosterSort = function () {
     }
 
     var arrow = '<svg viewBox="0 0 30 30"><g><path d="M10 0 L25 15 L10 30 L5 25 L15 15 L5 5 Z" /></g></svg>';
-    var target = $('#contentContainer').append('<div ison="false" class="settingContainer" id="hosterSortContainer"><div class="settingHeader">' + arrow + '<h3>Hoster Proirity</h3></div><ul id="sortHoster"></ul></div>').find('#sortHoster');
+    var target = $('#contentContainer').append('<div ison="false" class="settingContainer" id="hosterSortContainer"><div class="settingHeader">' + arrow + '<h3>Hoster Priority</h3></div><ul id="sortHoster"></ul></div>').find('#sortHoster');
     $.each(hoster, function (index, value) {
         $.each(hosterSupport, function (i, v) {
             if (v[0] == value) {
@@ -190,20 +190,20 @@ var addStylesConf = function () {
  */
 var addGeneralConf = function () {
     var arrow = '<svg viewBox="0 0 30 30"><g><path d="M10 0 L25 15 L10 30 L5 25 L15 15 L5 5 Z" /></g></svg>';
-    var target = $('#contentContainer').append('<div ison="false" class="settingContainer" id="generalStyles"><div class="settingHeader">' + arrow + '<h3>Genreal</h3></div></div>').find('#generalStyles');
+    var target = $('#contentContainer').append('<div ison="false" class="settingContainer" id="generalStyles"><div class="settingHeader">' + arrow + '<h3>General</h3></div></div>').find('#generalStyles');
 
     addCheckbox(target, 'enableLog', true, 'Enable Log');
-    addCheckbox(target, 'autoAutoplay', false, 'Enable Automatic Turn On Autoplay');
+    addCheckbox(target, 'autoAutoplay', false, 'Enable Automatic Autoplay Turn On');
     addCheckbox(target, 'scrollUnwatched', true, 'Enable Automatic Scroll To First Unwatched Episode');
     addCheckbox(target, 'updateSeason', true, 'Update Favorised Seriesseason On New Season Watch');
     addCheckbox(target, 'playMerged', true, 'Don\'t Play [In Episode X Enthalten] - Episodes');
     addCheckbox(target, 'syncFavMenu', true, 'Enable Sync Watched Series In Favmenu [Turn Off On Mobiledevices]');
-    addCheckbox(target, 'episodeSearch', false, 'Enable Episodesearch. Seriessearch on Episodelist will be disabled');
+    addCheckbox(target, 'episodeSearch', false, 'Enable Episodesearch. Seriessearch on Episodelist Will Be Disabled');
     addCheckbox(target, 'reverseLog', false, 'Reverse Log');
 
     addNumberInput(target, 'autoplayTime', 5, 'Timer Time For Autoplay [Sec]', 0, 60000);
     addNumberInput(target, 'updateWaitTime', 7, 'Time Till Next Listupdate [Days]', 1, 60000);
-    addNumberInput(target, 'listTimeout', 10000, 'Time Till Serieslist Slowload [Ms]', 1, 60000);
+    addNumberInput(target, 'listTimeout', 10000, 'Time Till Serieslist Asynchron Load [Ms]', 1, 60000);
     addNumberInput(target, 'minCharsSearch', 3, 'Min Characters In Search Before List Shows', 0, 60000);
 
     target.append('<button id="updateList">Manual Update List</button>');
@@ -230,7 +230,7 @@ var addMediaplayerConf = function () {
     addCheckbox(target, 'enablePreview', true, 'Enable Timeline Preview');
 
     addNumberInput(target, 'previewSteps', 20, 'Preview Image Steps', 1, 60000);
-    addNumberInput(target, 'timeShow', 3, 'Timer Time For Controlls Show Hide [Sec]', 1, 60000);
+    addNumberInput(target, 'timeShow', 3, 'Timer Time For Controlls Hide [Sec]', 1, 60000);
 }
 
 /**

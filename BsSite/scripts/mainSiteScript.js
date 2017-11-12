@@ -307,11 +307,11 @@ var onWindowResize = function (on) {
     if (windowWidth < 960 && typeof on !== 'boolean' || on === false) { // Ca Half Over Display
         //Set Styles
         $('#contentContainer').attr('ison', 'true');
-        $('#arrowContainer svg').addClass('off');
+        $('#arrowContainer svg').toggleClass('off', true);
     } else {
         //Reset Styles
         $('#contentContainer').attr('ison', 'false')
-        $('#arrowContainer svg').removeClass('off');
+        $('#arrowContainer svg').toggleClass('off',false);
     }
 }
 $(window).resize(onWindowResize);
@@ -321,6 +321,7 @@ $('#favReload').bind('click', updateFavoriteMenu);
 
 $('#arrowContainer').bind('click', function (e) {
     onWindowResize($('#arrowContainer svg').hasClass('off'));
+    onWindowResize($('#contentContainer').attr('ison').toLowerCase() == 'true');
 });
 
 var initSiteState = function () {

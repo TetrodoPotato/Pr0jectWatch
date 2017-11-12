@@ -441,7 +441,7 @@ var addVideoEventhandler = async function () {
 
         ctx.fillStyle = '#000';
         ctx.fillRect(0, 0, w, h);
-        ctx.fillStyle = '#888888';
+        ctx.fillStyle = '#555555';
         while (i--) {
             x1 = b.start(i) / vl * w;
             x2 = b.end(i) / vl * w;

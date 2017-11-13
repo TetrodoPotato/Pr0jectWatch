@@ -480,10 +480,10 @@ var autoplayIsValid = function () {
             setData('lastEpisode', play.attr('episodeid'));
         }
     } else {
-        if (getData('lastSeries') != getSeriesId() || getData('lastSeason') !== getSeason()) {
-            return false;
-        } else if (getData('lastEpisode') == '0x000000') {
+        if (getData('lastEpisode') == '0x000000') {
             return true;
+        } else if (getData('lastSeries') != getSeriesId() || getData('lastSeason') !== getSeason()) {
+            return false;
         }
 
         var next = $('.seriesContainer[episodeid="' + getData('lastEpisode') + '"]').next('.seriesContainer');

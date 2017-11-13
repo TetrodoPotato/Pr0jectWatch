@@ -35,19 +35,37 @@ $('#get').bind('click', function (e) {
         curFavs.push($(this).attr('href').split('/')[1]);
     });
 
-    $.each(curFavs, function (index, value) {
-        var obj = {
-            Id: value,
-            IsFav: true
-        }
+    if (curFavs.length != 0) {
+        await new Promise(resolve => {
+            var listProc = 0;
 
-        updateEntry(obj);
-        updateSeriesListFavorite(obj);
-    });
+            $.each(curFavs, function (index, value) {
+                $.get('https://bs.to/serie/' + value, function (result) {
+                    var obj = {
+                        Id: value,
+                        Genre: $(result).find('.infos:first div:first p:first span').append(' ').text().trim(),
+                        SeriesIndex: $(result).find('img:first').attr('src').split('/')[4].split('.')[0],
+                        IsWatched: ((isLoggedIn()) ? ($(result).find('.seasons li:not(.watched), .episodes tr:not(.watched)').length < 2) : null),
+                        IsFav: true,
+                        IsSynced: true
+                    }
+                    updateEntry(obj);
+                    updateSeriesListFavorite(obj);
+
+                    if (++listProc >= curFavs.length - 1) {
+                        resolve(true);
+                    }
+                });
+            })
+
+        });
+    }
 
     updateFavoriteMenu();
     setFavMessageText('Favorites Loaded', 2000);
 });
+
+var syncFavGet = async function () {}
 
 /*CRITICAL*/
 $('#set').bind('click', function (e) {
@@ -228,7 +246,7 @@ var updateFavNSync = async function () {
             return false;
         }
 
-        if (/^https:\/\/bs\.to\/serie\-genre.*$/.test(window.location.href)) {
+        if (!/^https:\/\/bs\.to\/serie\-genre.*$/.test(window.location.href)) {
             var list = getFavorites();
             if (list.length != 0) {
                 await new Promise(resolve => {

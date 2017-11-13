@@ -30,6 +30,10 @@ var isLoggedIn = e => !!($('#navigation').length);
 
 /*CRITICAL*/
 $('#get').bind('click', function (e) {
+    syncFavGet();
+});
+
+var syncFavGet = async function () {
     var curFavs = [];
     $('#other-series-nav a[href*="serie\/"]').each(function (index, series) {
         curFavs.push($(this).attr('href').split('/')[1]);
@@ -63,9 +67,7 @@ $('#get').bind('click', function (e) {
 
     updateFavoriteMenu();
     setFavMessageText('Favorites Loaded', 2000);
-});
-
-var syncFavGet = async function () {}
+}
 
 /*CRITICAL*/
 $('#set').bind('click', function (e) {

@@ -35,10 +35,12 @@ var initHosterList = function () {
         var hasHoster = false;
         $.each(JSON.parse(getData('hoster', JSON.stringify(defaultHoster))), function (index, value) {
             var hosterIndex = $.inArray(value, hoster);
-            if (hosterIndex != -1 && errorCode - 1 < hosterIndex) {
-                hasHoster = true;
-                window.location = window.location + '/' + value;
-                return false;
+            if (hosterIndex != -1) {
+                if (errorCode-- < 1) {
+                    hasHoster = true;
+                    window.location = window.location + '/' + value;
+                    return false;
+                }
             }
         });
 

@@ -491,11 +491,11 @@
     #progress {
 		height:5px;
 		border:none;
-		background:rgba(0,0,0,0);
+		background:rgba(0,0,0,0.01);
 		bottom:35px;
 	}
     #progress::-webkit-progress-bar {
-    	background-color: var(--MediaplayerProgressBarsBackgroundColor) !important;
+    	background-color: rgba(0,0,0,0.01) !important;
     	width: 100%;
     }
     #progress::-webkit-progress-value {

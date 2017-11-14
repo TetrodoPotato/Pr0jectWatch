@@ -227,9 +227,7 @@ $(document).keydown(function (e) {
     } else if (e.keyCode === 171 || e.keyCode === 107) { // +
         e.preventDefault();
         if ($(':focus .addAutoplayButton:first').length) {
-            if ($(':focus .addAutoplayButton:first').is(":visible")) {
-                watchClick($(':focus .addAutoplayButton:first'));
-            }
+            $(':focus .addAutoplayButton:first').click();
         }
     } else if (e.keyCode === 77) { // M
         e.preventDefault();

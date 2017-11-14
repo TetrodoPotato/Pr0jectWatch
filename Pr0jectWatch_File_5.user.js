@@ -197,7 +197,8 @@ var addGeneralConf = function () {
     addCheckbox(target, 'scrollUnwatched', true, 'Enable Automatic Scroll To First Unwatched Episode');
     addCheckbox(target, 'updateSeason', true, 'Update Favorised Seriesseason On New Season Watch');
     addCheckbox(target, 'playMerged', true, 'Don\'t Play [In Episode X Enthalten] - Episodes');
-    addCheckbox(target, 'syncFavMenu', true, 'Enable Sync Watched Series In Favmenu [Turn Off On Mobiledevices]');
+    addCheckbox(target, 'syncFavMenu', true, 'Enable Sync Series In Favmenu [Turn Off On Mobiledevices]');
+    addCheckbox(target, 'syncOnlyWatchedFav', true, 'Sync Only Watched Series In Favmenu');
     addCheckbox(target, 'episodeSearch', false, 'Enable Episodesearch. Seriessearch on Episodelist Will Be Disabled');
     addCheckbox(target, 'reverseLog', false, 'Reverse Log');
 

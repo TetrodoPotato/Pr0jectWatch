@@ -27,13 +27,58 @@
             .tab {
                 margin:0 0 0 20px;
             }
+            
+            ol {
+                list-style: none;
+                counter-reset: item;
+            }
+            
+            ol li {
+                counter-increment: item;
+                margin-bottom: 20px;
+                
+                position: relative;
+                width: 100%;
+            }
+            
+            ol li:before {
+                margin-right: 10px;
+                content: counter(item);
+                background-color:black;
+                color: white;
+                width: 1.2em;
+                text-align: center;
+                display: inline-block;
+                
+                height: 100%;
+                position: absolute;
+                left: -30px;
+                top: 0;
+            }
+            
+            .hoverimg img:nth-of-type(1){
+                display:block;
+            }
+            
+            .hoverimg img:nth-of-type(2){
+                display:none;
+            }
+            
+            .hoverimg:hover img:nth-of-type(2){
+                display:block;
+            }
+            
+            .hoverimg:hover img:nth-of-type(1){
+                display:none;
+            }
         </style>
     </head>
     
     <body>
         <h1>Anleitung</h1>
         <div class="tab">
-        
+            Viele Funktionen sind nur nutzbar wenn der Benutzer angemeldet ist. Es ist zu empfehlen sich eine
+            <a href="https://bs.to/registrierung">BS.to Account</a> anzulegen.
         
             <h2>Inhalt</h2>
             <div class="tab">
@@ -53,6 +98,11 @@
                     <li><a href="#serienliste">Serienliste</a>
                         <ul>
                             <li><a href="#serienlistenbeschreibung">Serienlistenbeschreibung</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#episodenliste">Episodenliste</a>
+                        <ul>
+                            <li><a href="#episodenlistenbeschreibung">Episodenlistenbeschreibung</a></li>
                         </ul>
                     </li>
                 </ul>
@@ -123,34 +173,37 @@
                 <div class="tab">
                     <img width="700" src="img/MenuPicture.PNG"></img>
                     <ol>
-                        <li>Seitenmenüknopf. Zeigt das Seitenmenü an. Klickbar und Hoverbar. Hotkey:[M]</li>
+                        <li><strong>Seitenmenüknopf.</strong> Zeigt das Seitenmenü an. Klickbar und Hoverbar. Hotkey:[M]</li>
                         <li>
-                            Suchleiste. Sucht auf jeder Seite Serien. Einstellung: Kann auf der Episodenansicht Episoden Suchen.
+                            <strong>Suchleiste.</strong>
+                            Sucht auf jeder Seite Serien. Einstellung: Kann auf der Episodenansicht Episoden Suchen.
                             Nach dem Suchbegriff kann Optional 'genre:' mit folgendem Genresuchbegriff verwendet werden.
                             Hotkey:An[K],Aus[ESC].
                         </li>
-                        <li>Autoplayknopf. Schaltet die Autoplayfunktion an oder aus.Hotkey:[A].</li>
-                        <li>Username / Logout.</li>
-                        <li>Seitenanzeigt an / aus. Schaltet die Seitenanzeige an oder Aus. Dies funktioniert auch beim ändern der Fensterbreite. Hotkey[TAB]</li>
-                        <li>Serienliste. Navigation zur Serienliste. Hotkey:[ENTER].</li>
-                        <li>Serienlog. Navigation zum Serienlog. Hotkey:[ENTER].</li>
-                        <li>Einstellungen. Navigation zu den Einstellungen. Hotkey:[ENTER].</li>
-                        <li>Playlist. Navigation zur Playlist. Hotkey:[ENTER].</li>
-                        <li>Favorit Löschen. Hotkey:[F]</li>
-                        <li>Favorit. Öffnet den Favorit bei der Favorisierten Staffel. Hotkey:[ENTER]</li>
-                        <li>Favorisierte Staffel. Zeigt 'S' an wenn die Specials Staffel Favorisiert wurde.</li>
+                        <li><strong>Autoplayknopf.</strong> Schaltet die Autoplayfunktion an oder aus.Hotkey:[A].</li>
+                        <li><strong>Username / Logout.</strong></li>
+                        <li><strong>Seitenanzeigt an / aus.</strong> Schaltet die Seitenanzeige an oder Aus. Dies funktioniert auch beim ändern der Fensterbreite. Hotkey[TAB]</li>
+                        <li><strong>Serienliste.</strong> Navigation zur Serienliste. Hotkey:[ENTER].</li>
+                        <li><strong>Serienlog.</strong> Navigation zum Serienlog. Hotkey:[ENTER].</li>
+                        <li><strong>Einstellungen.</strong> Navigation zu den Einstellungen. Hotkey:[ENTER].</li>
+                        <li><strong>Playlist.</strong> Navigation zur Playlist. Hotkey:[ENTER].</li>
+                        <li><strong>Favorit Löschen.</strong> Hotkey:[F]</li>
+                        <li><strong>Favorit.</strong> Öffnet den Favorit bei der Favorisierten Staffel. Hotkey:[ENTER]</li>
+                        <li><strong>Favorisierte Staffel.</strong> Zeigt 'S' an wenn die Specials Staffel Favorisiert wurde.</li>
                         <li>
-                            Geschaut-Anzeigte (Farbe). Zeigt an ob alle Folgen der Serie angeschaut wurden.
+                            <strong>Geschaut-Anzeigte (Farbe).</strong>
+                            Zeigt an ob alle Folgen der Serie angeschaut wurden.
                             Dies zeigt auch an ob eine neue Folge verfügbar ist wenn davor alle Folgen Angeschaut wurden.
                             Anzeigte aktualisiert sich nur wenn der Benutzer angemeldet ist. Auch wird die Anzeige nur Aktualisiert wenn die Serie angeschaut ist, 
                             die Serie aufgerufen wird, die Serie in den Favoriten vorhanden ist oder der Synchronisierenknopf
                             in der Serienliste gedrückt wird.. 
                         </li>
                         <li>
-                            Ladenknopf. Lädt alle Favoriten die auf dem Account des Benutzers gespeichert wurden. Geladen wird immer die erste Staffel.
+                            <strong>Ladenknopf.</strong>
+                            Lädt alle Favoriten die auf dem Account des Benutzers gespeichert wurden. Geladen wird immer die erste Staffel.
                             Nur möglich wenn der Bnénutzer angemeldet ist.
                         </li>
-                        <li>Speichernknopf. Speichert alle Favoriten auf dem Account des Benutzers. Speichert keine Staffeln. Nur möglich wenn der Benutzer angemeldet ist.</li>
+                        <li><strong>Speichernknopf.</strong> Speichert alle Favoriten auf dem Account des Benutzers. Speichert keine Staffeln. Nur möglich wenn der Benutzer angemeldet ist.</li>
                     </ol>
                 </div>
             </div>
@@ -164,26 +217,70 @@
                 <div class="tab">
                     <img width="700" src="img/SerieslistPicture.PNG"></img>
                     <ol>
-                        <li>Serie. Anzeige des Titels und der Genre. Hotkey[ENTER].</li>
+                        <li><strong>Serie.</strong> Anzeige des Titels und der Genre. Hotkey[ENTER].</li>
                         <li>
-                            Geschaut-Anzeigte (Farbe). Zeigt an ob alle Folgen der Serie angeschaut wurden.
+                            <strong>Geschaut-Anzeigte (Farbe).</strong> 
+                            Zeigt an ob alle Folgen der Serie angeschaut wurden.
                             Dies zeigt auch an ob eine neue Folge verfügbar ist wenn davor alle Folgen Angeschaut wurden.
                             Anzeigte aktualisiert sich nur wenn der Benutzer angemeldet ist. Auch wird die Anzeige nur Aktualisiert wenn die Serie angeschaut ist, 
                             die Serie aufgerufen wird, die Serie in den Favoriten vorhanden ist oder der Synchronisierenknopf
                             in der Serienliste gedrückt wird.. 
                         </li>
-                        <li>Favorisierenknopf. Favorisiert oder entfernt den Favorit. Hotkey[F]</li>
+                        <li><strong>Favorisierenknopf.</strong> Favorisiert oder entfernt den Favorit. Hotkey[F].</li>
                         <li>
-                            Synchronisierenknopf. Synchronisiert die Serie. Durch das Synchronisiern werden alle Genre der Serie geladen
+                            <strong>Synchronisierenknopf.</strong> 
+                            Synchronisiert die Serie. Durch das Synchronisiern werden alle Genre der Serie geladen
                             und geprüft ob die Serie geschaut wurde.
                         </li>
-                        <li>Genre</li>
-                        <li>Sortierungen. Sortiert die Liste neu.</li>
+                        <li><strong>Genre</strong></li>
+                        <li><strong>Sortierungen.</strong> Sortiert die Liste neu.</li>
                     </ol>
                 </div>
                 
             </div>
             
+            <h2 id="episodenliste">Episodenliste</h2>
+            <div class="tab">
+                Die Episodenliste zeigt alle verfügbaren Staffeln und deren Episoden an. Sie bietet eine Oberflache zur
+                kontrolle der geschauten und nicht geschauten Episoden. Neben den Staffeln und Episoden verfügt sie noch 
+                eine Kurzbeschribung der Serie. Die Navigation durch die Episoden geht mit den Hotkey:[Hoch/Runter-Pfeiltasten]
+                duch die Staffeln wird mit den Hotkey:[Links/Rechts-Pfeiltasten] navigiert. Geschaut markierungen sind nur bei 
+                angemeldeten Benutzer möglich.
+                <h3 id="episodenlistenbeschreibung">Episodenlistenbeschreibung</h3>
+                <div  class="tab">
+                    <div style="height:700px;" class="hoverimg">
+                        <img width="700" src="img/episodenliste.PNG"></img>
+                        <img width="700" src="img/episodenlisteHover.PNG"></img>
+                    </div>
+                    <ol>
+                        <li>
+                            <strong>Favorisieren.</strong>
+                            Zeigt an und ermöglicht das favorisieren der Staffel der Serie. Die Anzeige hat unterschiedliche Farben.
+                            DefaultStyle: Nicht Favorisiert[Weiß], Favorisiert[Blau], Staffel Favorisiert[Gelb]. Hotkey:[F].
+                            </li>
+                        <li><strong>Staffelauswahl.</strong> Zeigt DefaultStyle:grau/DefaultStyle:blaugrau die aktive Staffel an. DefaultStyle:Blau zeigt an ob die gesammte Staffel geschaut wurde. Hotkey:[Links/Rechts-Pfeiltasten, 1 Sekunde warten]</li>
+                        <li>
+                            <strong>Episodentitel.</strong>
+                            Anzeige des Episodentitels und öffnen der Episode. Der Deutsche Titel wird fett Angezeigt.
+                            Der originale Titel wird Kursiv angezeigt. Beim öffnen wird der erste verfügbare Hoster der Reihenfolge ausgewählt. 
+                            Die Reihenfolge kann in den Einstellungen geändert werden. Hotkey[ENTER].
+                        </li>
+                        <li><strong>Geschaut-Zustandsknopf.</strong> Ändert den Geschaut Status. Hotkey[W].</li>
+                        <li><strong>Geschaut Zustand.</strong> Zeigt den Geschaut Status an. Geschaut:DefaultStyle:blau, Ungeschaut:DefaultStyle:grau.</li>
+                        <li><strong>Hoster.</strong> Unabhängig voneinander auswählbare Hoster für diese Episode. Fehlerhandling funktioniert dabei nicht zuverlässig</li>
+                        <li><strong>Zur Playlist Hinzufügen. </strong> Fügt diese Episode zur Playlist hinzu. Hotkey:[+]</li>
+                        <li><strong>Alle Episoden der Staffel als geschaut Markieren</strong> Hotkey:[O].</li>
+                        <li><strong>Alle Episoden der Staffel als ungeschaut Markieren</strong>  Hotkey:[P].</li>
+                        <li><strong>Nächste Episode Starten.</strong> Startet sofort die nächste Episode wenn der Autoplaytimer zuterzählt. Hotkey:[N].</li>
+                        <li><strong>Autoplay Abbrechen.</strong> Bricht den Autoplay ab. Hotkey:[ESC]</li>
+                        <li>
+                            <strong>Autoplayanzeige.</strong>
+                            Zeigt die Sekunden bis zur nächsten Episode und die nächste Episode an.
+                            Dies ist in den Einstellungen einstellbar.
+                        </li>
+                    </ol>
+                </div<
+            </div>
         </div>
         
         

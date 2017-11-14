@@ -19,15 +19,38 @@ makeBlackPage();
 document.documentElement.style.overflow = 'hidden';
 
 var parseOpenload = function () {
-    //Get the api ticket of the mp4 file
-    var elem = $('#streamurl');
-    if (elem.length != 0) {
-        if (elem.text() != "HERE IS THE LINK") {
-            window.location = 'https://openload.co/stream/' + elem.text() + '?mime=true';
-            return;
+    //Click on the Video so the mp4 link appears
+    function startRedirect() {
+        var elem = $('.vjs-big-play-button:first');
+        var elem2 = $('#videooverlay');
+        if (elem.length != 0 && elem2.length != 0) {
+            elem.click();
+            elem2.click();
+            setTimeout(openVideo, 100);
+        } else {
+            window.location = 'https://bs.to/?error';
+        }
+
+    }
+
+    var timer = 0;
+    //Get the mp4 link
+    function openVideo() {
+        var elem = $('video:first');
+        if (typeof elem.attr('src') !== 'undefined') {
+            var vidLink = elem.attr("src");
+            window.location = 'https://openload.co' + vidLink;
+        } else {
+            if (++timer < 100) {
+                setTimeout(openVideo, 100);
+            } else {
+                window.location = 'https://bs.to/?error';
+            }
         }
     }
-    window.location = 'https://bs.to/?error';
+
+    //Start the redirect process
+    setTimeout(startRedirect, 1000);
 }
 
 var parseVivo = function () {
@@ -40,7 +63,6 @@ var parseVivo = function () {
         } else {
             window.location = 'https://bs.to/?error';
         }
-
     }
 
     var timer = 0;
@@ -71,7 +93,7 @@ var parseStreamango = function () {
 var parseTheVideo = function () {
     var t = 0;
     var timer = setInterval(function () {
-            var nextLink = $('video').attr('src');
+            var nextLink = $('video:first').attr('src');
             if (typeof nextLink !== 'undefined') {
                 window.location = nextLink;
                 clearInterval(timer);

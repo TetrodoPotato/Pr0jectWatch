@@ -491,7 +491,7 @@
     #progress {
 		height:5px;
 		border:none;
-		background:var(--MediaplayerProgressBarsBackgroundColor);
+		background:rgba(0,0,0,0);
 		bottom:35px;
 	}
     #progress::-webkit-progress-bar {

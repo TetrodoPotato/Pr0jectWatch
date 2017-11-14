@@ -249,7 +249,7 @@ var updateFavNSync = async function () {
         }
 
         if (!/^https:\/\/bs\.to\/serie\-genre.*$/.test(window.location.href)) {
-            var list = getFavorites();
+            var list =  (getData('syncOnlyWatchedFav', true)) ? getFavorites().filter(obj => obj.IsWatched == true) : getFavorites();
             if (list.length != 0) {
                 await new Promise(resolve => {
                     var listProc = 0;

@@ -71,13 +71,25 @@
             .hoverimg:hover img:nth-of-type(1){
                 display:none;
             }
+            
+            hotkey:before {
+                content:" Hotkey:["
+            }
+            
+            hotkey:after {
+                content:"] "
+            }
+            
+            hotkey {
+                font-weight:bold;
+            }
         </style>
     </head>
     
     <body>
         <h1>Anleitung</h1>
         <div class="tab">
-            Viele Funktionen sind nur nutzbar wenn der Benutzer angemeldet ist. Es ist zu empfehlen sich eine
+            Viele Funktionen sind nur nutzbar wenn der Benutzer angemeldet ist. Daher ist zu empfehlen sich einen
             <a href="https://bs.to/registrierung">BS.to Account</a> anzulegen.
         
             <h2>Inhalt</h2>
@@ -90,6 +102,7 @@
                             <li><a href="#scriptInstall">Script Installation</a></li>
                         </ul>
                     </li>
+                    <li><a href="#generelles">Generelles</a></li>
                     <li><a href="#menu">Menü</a>
                         <ul>
                             <li><a href="#menuBeschreibung">Menübeschreibung</a></li>
@@ -111,92 +124,136 @@
             <h2 id="installation">Installation</h2>
             <div class="tab">
             
-                <h3 id="unterstützeBrowser">Unterstützte Browser</h3>
+                <h3 id="unterstützeBrowser">Unterstützte Browser und deren Scriptmanager</h3>
                 <div class="tab">
                     <ul>
                         <li>Mozilla Firefox
                             <ul>
-                                <li><a href="https://www.mozilla.org/de/firefox/new/?scene=2">Download Mozilla Firefox</a></li>
-                                <li><a href="https://addons.mozilla.org/de/firefox/addon/tampermonkey/">Download Tampermonkey für Mozilla Firefox</a></li>
+                                <li><a href="https://www.mozilla.org/de/firefox/new/?scene=2">Mozilla Firefox herunterladen</a></li>
+                                <li><a href="https://addons.mozilla.org/de/firefox/addon/tampermonkey/">Tampermonkey für Mozilla Firefox herunterladen</a></li>
+                                <li><s>Greasemonkey für Mozilla Firefox herunterladen</s> (Nicht mehr kompatibel ab Version 4)</li>
                             </ul>
                         </li>
                         <li>Google Chrome
                             <ul>
-                                <li><a href="https://www.google.de/chrome/browser/desktop/index.html">Download Google Chrome</a></li>
-                                <li><a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=de">Download Tampermonkey für Google Chrome</a></li>
+                                <li><a href="https://www.google.de/chrome/browser/desktop/index.html">Google Chrome herunterladen</a></li>
+                                <li><a href="https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?hl=de">Tampermonkey für Google Chrome herunterladen</a></li>
                             </ul>
                         </li>
                         <li>Opera
                             <ul>
-                                <li><a href="http://www.opera.com/de/computer">Download Opera</a></li>
-                                <li><a href="https://addons.opera.com/de/extensions/details/tampermonkey-beta/?display=en">Download Tampermonkey für Opera</a></li>
+                                <li><a href="http://www.opera.com/de/computer">Opera herunterladen</a></li>
+                                <li><a href="https://addons.opera.com/de/extensions/details/tampermonkey-beta/?display=en">Tampermonkey für Opera herunterladen</a></li>
                             </ul>
                         </li>
                     </ul>
                     
-                    Andere Browser sind nicht ausreichend getestet, können aber funktionieren.
+                    Andere Browser und Scriptmanager sind nicht ausreichend getestet, könnten aber funktionieren (Keine Gewährleistung). 
                 </div>    
                 
                 <h3 id="scriptInstall">Script Installation</h3>
                 <div class="tab">
-                    <strong>Alle Dateien müssen installiert werden!</strong></br>
-                    Die installation erfolgt wenn die Datei in einem Browser mit aktivierten Tampermonkey geöffnet wird. Es sind Schnellinstallationdateien für jeden unterstützen Browser verfügbar. Diese öffnen alle Dateien im gewählten Browser.
-                    Andere Userscriptmanager als Tampermonkey sind nicht getestet können aber funktionieren. Keine Gewährleistung.<br>
-                    <br>
-                    Schnellinstallationdateien: [Rechtsklick -> Seite Speichern Unter -> installation.bat]
-                    <ul>
-                        <li><a target="_blank" href="https://raw.githubusercontent.com/Kartoffeleintopf/Pr0jectWatch/master/Instruction/install_Firefox.bat">Mozilla Firefox</a></li>
-                        <li><a target="_blank" href="https://raw.githubusercontent.com/Kartoffeleintopf/Pr0jectWatch/master/Instruction/install_Chrome.bat">Google Chrome</a></li>
-                        <li><a target="_blank" href="https://raw.githubusercontent.com/Kartoffeleintopf/Pr0jectWatch/master/Instruction/install_Opera.bat">Opera</a></li>
-                    </ul>
-                    Einzelne Dateien:
-                    <ul>
-                        <li><a target="_blank" href="http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_1.user.js">Pr0ject Watch Datei 1</a></li>
-                        <li><a target="_blank" href="http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_2.user.js">Pr0ject Watch Datei 2</a></li>
-                        <li><a target="_blank" href="http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_3.user.js">Pr0ject Watch Datei 3</a></li>
-                        <li><a target="_blank" href="http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_4.user.js">Pr0ject Watch Datei 4</a></li>
-                        <li><a target="_blank" href="http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_5.user.js">Pr0ject Watch Datei 5</a></li>
-                        <li><a target="_blank" href="http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_6.user.js">Pr0ject Watch Datei 6</a></li>
-                        <li><a target="_blank" href="http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_7.user.js">Pr0ject Watch Datei 7</a></li>
-                    </ul>   
+                    <p>
+                        <strong>Alle Dateien müssen installiert werden!</strong></br>
+                        Die installation erfolgt sobald die Datei in einem Browser mit aktivierten Scriptmanager geöffnet wird. Auch sind Schnellinstallationdateien für jeden unterstützen Browser verfügbar. Diese öffnen alle Dateien im gewählten Browser.
+                        Schnellinstallationdateien: [Rechtsklick -> Seite Speichern Unter -> installation.bat]
+                    </p>
+                    <p>
+                        <ul>
+                            <li><a target="_blank" href="https://raw.githubusercontent.com/Kartoffeleintopf/Pr0jectWatch/master/Instruction/install_Firefox.bat">Mozilla Firefox</a></li>
+                            <li><a target="_blank" href="https://raw.githubusercontent.com/Kartoffeleintopf/Pr0jectWatch/master/Instruction/install_Chrome.bat">Google Chrome</a></li>
+                            <li><a target="_blank" href="https://raw.githubusercontent.com/Kartoffeleintopf/Pr0jectWatch/master/Instruction/install_Opera.bat">Opera</a></li>
+                        </ul>
+                    </p>
+                    <p>
+                        Einzelne Dateien:
+                        <ul>
+                            <li><a target="_blank" href="http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_1.user.js">Pr0ject Watch Datei 1</a></li>
+                            <li><a target="_blank" href="http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_2.user.js">Pr0ject Watch Datei 2</a></li>
+                            <li><a target="_blank" href="http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_3.user.js">Pr0ject Watch Datei 3</a></li>
+                            <li><a target="_blank" href="http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_4.user.js">Pr0ject Watch Datei 4</a></li>
+                            <li><a target="_blank" href="http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_5.user.js">Pr0ject Watch Datei 5</a></li>
+                            <li><a target="_blank" href="http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_6.user.js">Pr0ject Watch Datei 6</a></li>
+                            <li><a target="_blank" href="http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_7.user.js">Pr0ject Watch Datei 7</a></li>
+                        </ul>   
+                    </p>
                 </div>
                 
             </div>
             
+            <h2 id="generelles">Generelles</h2>
+            <div class="tab">
+                <p>
+                    Das ist ein Hybrid, halb Website- halb Speicherinformationen. Deshalb benötigt es beim Start eine Zeit zum und speichern der Informationen.
+                    Ein Ladebalken zeigt relativ zuverlässig den stand an. Die Informationen werden alle 7 tagen aktualisiert. Dies ist in den Einstellungen einstellbar.
+                    Gespeichert werden nur Serien und deren Informationen. Episoden sind immer auf dem neusten Stand.
+                </p>
+                
+                <p>
+                    Durch die Hybrid Informationen hat das Script mehr Freiheiten wie zBs. Titelbilder die in der Serienliste angezeigt werden.
+                    Diese können durch das fahren über Graue Kästchen angezeigt werden. Durch das Klicken auf dieses wird eine Großansicht geöffnet.
+                    Dies ist aber nur möglich wenn der User angemeldet ist.
+                </p>
+                
+                <p>
+                    Die Serienliste ist erst bei 3 Zeichen in der Suchleiste sichtbar.
+                    Dies kann aber nach belieben in den Einstellungen eingestellt werden.
+                    Die komplette Serienliste kann ab dem Start angezeigt werden wenn der Wert in den Einstellungen auf '0' stellt wird.
+                </p>
+                
+                <p>
+                    Die Autoplayfunktion ist das Herz des Scripts. Alles andere wurde nur darumgebaut. Bei eingeschalteten Autoplay wird
+                    nach jeder beendeten Episode die nächste Episode nach kurzer Zeit gestartet. Dies funktioniert auch Staffelübergreifend wenn davor
+                    die letzte Episode der davorigen Staffel geschaut wurde.
+                </p>
+                
+                <p>
+                    Neben dem normalen liniearen Autoplay verfügt das Script auch einen nonlineares Autoplay, die Playlist. Die Playlist kann angepasst
+                    werden und kann unterschiedliche Episoden im Autoplay abspielen. Dabei ist die Liste nicht auf eine Serie begrenzt und kann daher jede Episode
+                    unterschiedlicher Serien im Autoplay nacheinander abspielen. Dies benötigt aber Zeit zum hinzufügen jeder Episode.
+                </p>
+                
+                <p>
+                    Fast alle Knöpfe wie Favorisieren, Synchronisieren, laden der Favoriten, speichern der Favoriten und als (un)geschaut markieren sind Asynchron.
+                    Das bedeutet die Aktion wird nicht sofort nach dem Klick ausgeführt weil dabei im Hintergrund noch daten geladen werden müssen. Das bedeutet
+                    im endeffekt, je schneller die Internetgeschwindigtkeit desto schneller werden die Aktionen ausgeführt. Normale Latenz 100ms.
+                </p>
+            </div>
             
             <h2 id="menu">Menü</h2>
             <div class="tab">
-                Das Menü ist zuständig für das Suchen, schalten des Autoplay, Navigieren und verwalten der Favoriten.
-                Dabei ist das Menü zwischen dem Haupt- und Seitenmenü aufgeteilt. Die Auswahl der Elemente des Seitenmenüs
-                funktioniert mit dem Hotkey:[Pfeiltasten].
+                <p>
+                    Das Menü ist zuständig für das Suchen, schalten des Autoplay, Navigieren und verwalten der Favoriten.
+                    Dabei ist das Menü zwischen dem Haupt- und Seitenmenü aufgeteilt. Die Navigation über das Seitenmenü ist 
+                    mit der Maus als auch mit den <hotkey>Pfeiltasten</hotkey> möglich.
+                </p>
                 <h3 id="menuBeschreibung">Menübeschreibung</h3>
                 <div class="tab">
                     <img width="700" src="img/MenuPicture.PNG"></img>
                     <ol>
-                        <li><strong>Seitenmenüknopf.</strong> Zeigt das Seitenmenü an. Klickbar und Hoverbar. Hotkey:[M]</li>
+                        <li><strong>Seitenmenüknopf.</strong> Zeigt das Seitenmenü an. Klickbar als auch Hoverbar. <hotkey>M</hotkey></li>
                         <li>
                             <strong>Suchleiste.</strong>
-                            Sucht auf jeder Seite Serien. Einstellung: Kann auf der Episodenansicht Episoden Suchen.
-                            Nach dem Suchbegriff kann Optional 'genre:' mit folgendem Genresuchbegriff verwendet werden.
-                            Hotkey:An[K],Aus[ESC].
+                            Sucht auf jeder Seite Serien. Es kann in den Einstellungen eingestellt werden dass auf der
+                            Episodenansicht Episoden gesucht werden. Nach dem Suchbegriff kann Optional 'genre:' mit 
+                            darauffolgendem Genresuchbegriff verwendet werden. Beispiel:'marvel genre:action'. An<hotkey>K</hotkey> Aus<hotkey>ESC</hotkey>.
                         </li>
-                        <li><strong>Autoplayknopf.</strong> Schaltet die Autoplayfunktion an oder aus.Hotkey:[A].</li>
+                        <li><strong>Autoplayschalter.</strong> Schaltet die Autoplayfunktion an oder aus. <hotkey>A</hotkey>.</li>
                         <li><strong>Username / Logout.</strong></li>
-                        <li><strong>Seitenanzeigt an / aus.</strong> Schaltet die Seitenanzeige an oder Aus. Dies funktioniert auch beim ändern der Fensterbreite. Hotkey[TAB]</li>
-                        <li><strong>Serienliste.</strong> Navigation zur Serienliste. Hotkey:[ENTER].</li>
-                        <li><strong>Serienlog.</strong> Navigation zum Serienlog. Hotkey:[ENTER].</li>
-                        <li><strong>Einstellungen.</strong> Navigation zu den Einstellungen. Hotkey:[ENTER].</li>
-                        <li><strong>Playlist.</strong> Navigation zur Playlist. Hotkey:[ENTER].</li>
-                        <li><strong>Favorit Löschen.</strong> Hotkey:[F]</li>
-                        <li><strong>Favorit.</strong> Öffnet den Favorit bei der Favorisierten Staffel. Hotkey:[ENTER]</li>
+                        <li><strong>Seitenanzeige an / aus.</strong> Schaltet die Seitenanzeige an oder Aus. Dies funktioniert auch beim ändern der Fensterbreite. <hotkey>TAB</hotkey>.</li>
+                        <li><strong>Serienliste.</strong> Navigation zur Serienliste. <hotkey>ENTER</hotkey>.</li>
+                        <li><strong>Serienlog.</strong> Navigation zum Serienlog. <hotkey>ENTER</hotkey>.</li>
+                        <li><strong>Einstellungen.</strong> Navigation zu den Einstellungen. <hotkey>ENTER</hotkey>.</li>
+                        <li><strong>Playlist.</strong> Navigation zur Playlist. <hotkey>ENTER</hotkey>.</li>
+                        <li><strong>Favorit Löschen.</strong> <hotkey>F</hotkey>.</li>
+                        <li><strong>Favorit.</strong> Öffnet den Favorit bei der Favorisierten Staffel. <hotkey>ENTER</hotkey>.</li>
                         <li><strong>Favorisierte Staffel.</strong> Zeigt 'S' an wenn die Specials Staffel Favorisiert wurde.</li>
                         <li>
                             <strong>Geschaut-Anzeigte (Farbe).</strong>
                             Zeigt an ob alle Folgen der Serie angeschaut wurden.
-                            Dies zeigt auch an ob eine neue Folge verfügbar ist wenn davor alle Folgen Angeschaut wurden.
-                            Anzeigte aktualisiert sich nur wenn der Benutzer angemeldet ist. Auch wird die Anzeige nur Aktualisiert wenn die Serie angeschaut ist, 
-                            die Serie aufgerufen wird, die Serie in den Favoriten vorhanden ist oder der Synchronisierenknopf
-                            in der Serienliste gedrückt wird.. 
+                            Dies zeigt auch an ob eine neue Folge verfügbar ist. Es wird nur geprüft ob eine neue Episode verfügbar ist wenn der Benutzer angemeldet ist.
+                            Auch wird nur geprüft wenn die komplette Serie angeschaut ist (Einstellbar, ist aber unsinnig und verschwendet resourcen), die Serie aufgerufen wird oder
+                            der Synchronisierenknopf in der Serienliste gedrückt wird.. 
                         </li>
                         <li>
                             <strong>Ladenknopf.</strong>
@@ -211,40 +268,39 @@
             <h2 id="serienliste">Serienliste</h2>
             <div class="tab">
                 Die Serienliste zeigt alle Serien die zu verfügung stehen an. Ab drei Zeichen in der Suchleiste werden Ergebnisse angezeigt.
-                Dies ist aber einstellbar. Bei null Zeichen in den Einstellungen wird am Start die komplette Liste angezeigt. Dies hat Performanceprobleme
-                zur Folge. Die Navigation durch die Serienliste geht mit dem Hotkey:[Pfeiltasten].
+                Dies ist in den Einstellungen einstellbar. Bei '0' Zeichen in den Einstellungen wird am Start die komplette Liste angezeigt. Dies hat aber Performanceprobleme
+                zur Folge. Die Navigation durch die Serienliste geht mit den Hotkey:[Pfeiltasten].
                 <h3 id="serienlistenbeschreibung">Serienlistenbeschreibung</h3>
                 <div class="tab">
                     <img width="700" src="img/SerieslistPicture.PNG"></img>
                     <ol>
-                        <li><strong>Serie.</strong> Anzeige des Titels und der Genre. Hotkey[ENTER].</li>
+                        <li><strong>Serie.</strong> Anzeige des Titels und der Genre. <hotkey>ENTER</hotkey>.</li>
                         <li>
                             <strong>Geschaut-Anzeigte (Farbe).</strong> 
                             Zeigt an ob alle Folgen der Serie angeschaut wurden.
                             Dies zeigt auch an ob eine neue Folge verfügbar ist wenn davor alle Folgen Angeschaut wurden.
-                            Anzeigte aktualisiert sich nur wenn der Benutzer angemeldet ist. Auch wird die Anzeige nur Aktualisiert wenn die Serie angeschaut ist, 
-                            die Serie aufgerufen wird, die Serie in den Favoriten vorhanden ist oder der Synchronisierenknopf
-                            in der Serienliste gedrückt wird.. 
+                            Es wird nur geprüft ob eine neue Episode verfügbar ist wenn der Benutzer angemeldet ist.
+                            Auch wird nur geprüft ob eine neue Episode verfügbar ist wenn die Serie komplett angeschaut ist,
+                            die Serie aufgerufen wird oder der Synchronisierenknopf gedrückt wird.
                         </li>
-                        <li><strong>Favorisierenknopf.</strong> Favorisiert oder entfernt den Favorit. Hotkey[F].</li>
+                        <li><strong>Favorisierenknopf.</strong> Favorisiert oder entfernt den Favorit. Dabei wird die Serie Synchronisiert. <hotkey>F</hotkey>.</li>
                         <li>
                             <strong>Synchronisierenknopf.</strong> 
                             Synchronisiert die Serie. Durch das Synchronisiern werden alle Genre der Serie geladen
-                            und geprüft ob die Serie geschaut wurde.
+                            und geprüft ob die Serie komplett geschaut wurde.
                         </li>
                         <li><strong>Genre</strong></li>
                         <li><strong>Sortierungen.</strong> Sortiert die Liste neu.</li>
                     </ol>
-                </div>
-                
+                </div>              
             </div>
             
             <h2 id="episodenliste">Episodenliste</h2>
             <div class="tab">
                 Die Episodenliste zeigt alle verfügbaren Staffeln und deren Episoden an. Sie bietet eine Oberflache zur
                 kontrolle der geschauten und nicht geschauten Episoden. Neben den Staffeln und Episoden verfügt sie noch 
-                eine Kurzbeschribung der Serie. Die Navigation durch die Episoden geht mit den Hotkey:[Hoch/Runter-Pfeiltasten]
-                duch die Staffeln wird mit den Hotkey:[Links/Rechts-Pfeiltasten] navigiert. Geschaut markierungen sind nur bei 
+                über eine Kurzbeschribung der Serie. Die Navigation durch die Episoden funktioniert mit den <hotkey>Hoch/Runter-Pfeiltasten</hotkey>.
+                Duch die Staffeln wird mit den Hotkey:[Links/Rechts-Pfeiltasten] navigiert. Geschaut markierungen sind nur bei 
                 angemeldeten Benutzer möglich.
                 <h3 id="episodenlistenbeschreibung">Episodenlistenbeschreibung</h3>
                 <div  class="tab">
@@ -255,37 +311,45 @@
                     <ol>
                         <li>
                             <strong>Favorisieren.</strong>
-                            Zeigt an und ermöglicht das favorisieren der Staffel der Serie. Die Anzeige hat unterschiedliche Farben.
-                            DefaultStyle: Nicht Favorisiert[Weiß], Favorisiert[Blau], Staffel Favorisiert[Gelb]. Hotkey:[F].
+                            Zeigt an ob die Serie favorisiert ist und ermöglicht das favorisieren und defavorisieren der Serie. Die Anzeige hat unterschiedliche Farben.
+                            DefaultStyle: Nicht Favorisiert[Weiß], Favorisiert[Blau], Staffel Favorisiert[Gelb]. <hotkey>F</hotkey>.
                             </li>
                         <li>
                             <strong>Staffelauswahl.</strong>
-                            Zeigt DefaultStyle:grau/DefaultStyle:blaugrau die aktive Staffel an.
-                            DefaultStyle:Blau zeigt an ob die gesammte Staffel geschaut wurde. Hotkey:[Links/Rechts-Pfeiltasten, 1 Sekunde warten]
+                            Zeigt DefaultStyle:grau/blaugrau die aktive Staffel an.
+                            DefaultStyle:Blau zeigt an ob die gesammte Staffel geschaut wurde. <hotkey>Links/Rechts-Pfeiltasten, 1 Sekunde warten</hotkey>.
                         </li>
                         <li>
                             <strong>Episodentitel.</strong>
                             Anzeige des Episodentitels und öffnen der Episode. Der Deutsche Titel wird fett Angezeigt.
-                            Der originale Titel wird Kursiv angezeigt. Beim öffnen wird der erste verfügbare Hoster der Reihenfolge ausgewählt. 
-                            Die Reihenfolge kann in den Einstellungen geändert werden. Hotkey[ENTER].
+                            Der originale Titel wird kursiv angezeigt. Beim öffnen wird der erste verfügbare Hoster der Reihenfolge ausgewählt. 
+                            Die Reihenfolge kann in den Einstellungen geändert werden. <hotkey>ENTER</hotkey>.
                         </li>
-                        <li><strong>Geschaut-Zustandsknopf.</strong> Ändert den Geschaut Status. Hotkey[W].</li>
-                        <li><strong>Geschaut Zustand.</strong> Zeigt den Geschaut Status an. Geschaut:DefaultStyle:blau, Ungeschaut:DefaultStyle:grau.</li>
+                        <li><strong>Geschaut-Zustandsknopf.</strong> Ändert den Geschautstatus. <hotkey>W</hotkey>.</li>
+                        <li><strong>Geschautzustand.</strong> Zeigt den Geschautstatus an. Geschaut:DefaultStyle:blau, Ungeschaut:DefaultStyle:grau.</li>
                         <li><strong>Hoster.</strong> Unabhängig voneinander auswählbare Hoster für diese Episode. Fehlerhandling funktioniert dabei nicht zuverlässig</li>
-                        <li><strong>Zur Playlist Hinzufügen. </strong> Fügt diese Episode zur Playlist hinzu. Hotkey:[+]</li>
-                        <li><strong>Alle Episoden der Staffel als geschaut Markieren</strong> Hotkey:[O].</li>
-                        <li><strong>Alle Episoden der Staffel als ungeschaut Markieren</strong>  Hotkey:[P].</li>
-                        <li><strong>Nächste Episode Starten.</strong> Startet sofort die nächste Episode wenn der Autoplaytimer zuterzählt. Hotkey:[N].</li>
-                        <li><strong>Autoplay Abbrechen.</strong> Bricht den Autoplay ab. Hotkey:[ESC]</li>
+                        <li><strong>Zur Playlist Hinzufügen.</strong> Fügt die Episode zur Playlist hinzu. <hotkey>+</hotkey>.</li>
+                        <li><strong>Alle Episoden der Staffel als geschaut Markieren</strong> <hotkey>O</hotkey>.</li>
+                        <li><strong>Alle Episoden der Staffel als ungeschaut Markieren</strong> <hotkey>P</hotkey>.</li>
+                        <li><strong>Nächste Episode Starten.</strong> Startet sofort die nächste Episode wenn der Autoplaytimer zuterzählt. <hotkey>N</hotkey>.</li>
+                        <li><strong>Autoplay Abbrechen.</strong> Bricht den Autoplayvorgang ab. <hotkey>ESC</hotkey></li>
                         <li>
                             <strong>Autoplayanzeige.</strong>
-                            Zeigt die Sekunden bis zur nächsten Episode und die nächste Episode an. Die Sekunden bis zum Starten kann in den Einstellungen eingestellt werden.
-                            Dies ist in den Einstellungen einstellbar.
+                            Zeigt die Sekunden bis zum abspielen der nächsten Episode und die Nummer der nächsten Episode an.
+                            Die Sekunden bis zum Starten der nächsten Episode kann in den Einstellungen eingestellt werden (Default sind 5 Sekunden nicht 5000).
                         </li>
                     </ol>
-                </div<
+                </div>
             </div>
         </div>
+        
+        <h2>Adblock Filter</h2>
+        <p>
+            ||connect.facebook.net^$domain=bs.to
+            ||buzzadexchange.com^$domain=bs.to
+            ||mc.yandex.ru^$domain=bs.to
+            ||fonts.googleapis.com^$domain=bs.to
+        </p>
         
         
     </body>

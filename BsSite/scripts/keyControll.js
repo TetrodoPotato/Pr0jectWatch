@@ -178,7 +178,7 @@ $(document).keydown(function (e) {
                 focusNext(1);
             }
         }
-    } else if (e.keyCode === 78) { //ESC | Close Next Window
+    } else if (e.keyCode === 78) { //N
         e.preventDefault();
         $('#nextAutoplay').click();
     } else if (e.keyCode === 75) { // K

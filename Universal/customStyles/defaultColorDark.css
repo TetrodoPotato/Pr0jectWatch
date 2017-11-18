@@ -409,15 +409,16 @@
     --MediaplayerInfoTextColor:var(--BackBase);
     --MediaplayerInfoTextFont:20px var(--BaseFont);
     
-    --MediaplayerProgressBarsColor:rgba(255, 255, 255 ,0.8);
-    --MediaplayerProgressBarsBackgroundColor:rgba(150,150,150,0.5);
+    --MediaplayerProgressBarsColor:var(--BackBase);
+    --MediaplayerVolumeBarsBackgroundColor:rgba(150,150,150,0.5);
+    --MediaplayerProgressBarsBackgroundColor:rgba(255,255,255,0.2);
     
     --MediaplayerVideoBackgroundColor:#000;
     --MediaplayerDimLayerColor:#000;
     
     --MediaplayerTimeSelectTextColor:#FFF;
     
-    --MediaplayerControlsBackgroundColor:rgba(22,22,24,0.8);
+    --MediaplayerControlsBackgroundColor:rgba(0,0,0,0.7);
     
     --MediaplayerButtonsColor:var(--BackBase);
     --MediaplayerButtonsColorHover:var(--BackHover);

@@ -5,8 +5,6 @@
         <link href="https://bs.to/favicon.ico" type="image/x-icon" rel="shortcut icon" />
         <link rel="stylesheet" href="https://kartoffeleintopf.github.io/Pr0jectWatch/BsMediaplayer/styles/mediaPlayerStyles.css" />
         <link id="defineColors" rel="stylesheet"/>
-        <!-- REMOVE -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
     </head>
     
     <body style="opacity:0.99; visibility:hidden;">
@@ -19,27 +17,24 @@
             <div id="clicklayer" class="hide show" style="opacity: 0;"></div>
             <div class="loader"></div>
             <div id="infoPanel" class="hide show">
+                <div id="topLayer">
+                    <progress id="darkPlane" value="0" min="0" max="100"></progress>
+                </div>
                 <div id="topInfo">
                     <span id="max">0/0</span>
                     <span id="sea">Season 1</span>
                     <span id="ser">Serie</span>
                     <span id="tit">Episode 1</span>
                 </div>
-                <div id="topLayer">
-                    <progress id="darkPlane" value="0" min="0" max="100"></progress>
-                    <span id="showPerc">0%</span>
-                </div>
             </div>
             <video id="vid" preload="auto">Das Video Kann In Deinem Browser Nicht Abgespielt Werden!</video>
             <div id="video-controls" class="hide show">
+                <div id="bars">
+                    <canvas id="buffer" width="1778.152" height="5"></canvas>
+                    <progress id="progress" value="1.697888" min="0" max="1778.152"></progress>
+                </div>
                 <table>
                     <tbody>
-                        <tr id="bars">
-                            <td colspan="11">
-                                <canvas id="buffer" width="1778.152" height="5"></canvas>
-                                <progress id="progress" value="1.697888" min="0" max="1778.152"></progress>
-                            </td>
-                        </tr>
                         <tr id="playcontrols">
                             <td id="playpause">
                                 <svg height="35" width="35">

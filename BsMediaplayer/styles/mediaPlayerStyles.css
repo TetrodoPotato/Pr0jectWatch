@@ -66,10 +66,10 @@
 #progress::-moz-progress-bar { background: var(--MediaplayerProgressBarsColor); }
 #progress {background: rgba(0,0,0,0);}
 
-#volume::-webkit-progress-bar { background: var(--MediaplayerProgressBarsBackgroundColor); }
+#volume::-webkit-progress-bar { background: var(--MediaplayerVolumeBarsBackgroundColor); }
 #volume::-webkit-progress-value { background: var(--MediaplayerProgressBarsColor); }
 #volume::-moz-progress-bar { background: var(--MediaplayerProgressBarsColor); }
-#volume {background: var(--MediaplayerProgressBarsBackgroundColor);}
+#volume {background: var(--MediaplayerVolumeBarsBackgroundColor);}
 
 #mediaPlayer {
 	width:100%;
@@ -103,7 +103,7 @@
 	bottom: 0;
     vertical-align:bottom;
 	width:100%;
-	z-index:4;
+	z-index:5;
 	background-color:transparent;
 }
 
@@ -111,9 +111,9 @@
 	position:absolute;
 	font-weight:bold;
 	text-align:center;
-    bottom: 45px;
+    bottom: 50px;
     left:-100px;
-    z-index:2;
+    z-index:4;
     line-height: 15px;
 	height:100px;
     min-width: 70px;
@@ -142,18 +142,25 @@
 #video-controls table {
 	border-collapse:separate; 
 	border-spacing:0 0;
-	width:100%;
+	
+	width: -moz-calc(100%  - 40px);
+    width: -webkit-calc(100%  - 40px);
+    width: -o-calc(100%  - 40px);
+    width: calc(100%  - 40px);
+	
 	height:100%;
+	margin: 0 20px 5px 20px;
 }
 
-#video-controls table tr:last-child {
-	background-color:var(--MediaplayerControlsBackgroundColor);
+#video-controls {
+	background: linear-gradient(transparent, var(--MediaplayerControlsBackgroundColor));
 }
 
 #bars {
-	  cursor:pointer;
+	cursor:pointer;
     height:30px;
     position:relative;
+    margin: 0 20px 0 20px;
 }
 
 #progress {
@@ -172,6 +179,7 @@
 	width: 100%;
 	z-index:9;
     bottom:0;
+    background-color:var(--MediaplayerProgressBarsBackgroundColor);
 }
 
 #playcontrols td {
@@ -383,25 +391,8 @@
 	left:0;
 	top:0;
 	width:100%;
-	height:10px;
+	height:5px;
 	border:none;
-}
-
-#showPerc{
-	position:absolute;
-	margin: -2px 0 0 0;
-	color:var(--MediaplayerDimPercentageColor);
-	font-weight:bold;
-	z-index:21;
-	left: -moz-calc(50% - 5px);
-	/* WebKit */
-	left: -webkit-calc(50% - 5px);
-	/* Opera */
-	left: -o-calc(50% - 5px);
-	/* Standard */
-	left: calc(50% - 5px);
-	pointer-events: none;
-	font-size:10px;
 }
 
 #infoPanel {
@@ -409,10 +400,11 @@
 	position:absolute;
 	top:0;
 	left:0;
-	background-color:rgba(22,22,24,0.8);
+	background: linear-gradient(var(--MediaplayerControlsBackgroundColor), transparent);
 	text-align:center;
 	z-index:20;
 	font-weight:bold;
+    cursor: pointer;
 }
 
 #topinfo {
@@ -426,14 +418,14 @@
     overflow:hidden;
     white-space:nowrap;
     text-overflow:ellipsis;
+    
+    height:30px;
 }
 
 #topLayer {
-	height:10px;
 	width:100%;
 	text-align:center;
 	font-weight:bold;
-	cursor: pointer;
 }
 
 #max {
@@ -492,7 +484,6 @@
 		height:5px;
 		border:none;
 		background:rgba(0,0,0,0.01);
-		bottom:35px;
 	}
     #progress::-webkit-progress-bar {
     	background-color: rgba(0,0,0,0.01) !important;
@@ -500,9 +491,6 @@
     }
     #progress::-webkit-progress-value {
     	 background:var(--MediaplayerProgressBarsColor);
-	}
-	#buffer {
-		bottom:35px;
 	}
 }
 

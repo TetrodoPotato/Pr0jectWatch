@@ -212,12 +212,12 @@ var addInterfaceEventhandler = async function () {
         updateDark((e.pageX - $('#darkPlane').offset().left) * $('#darkPlane')[0].max / $('#darkPlane').outerWidth());
     };
 
-    $('#darkPlane').bind('mousedown', function (e) {
-        updateDark((e.pageX - $(this).offset().left) * this.max / $(this).outerWidth());
+    $('#infoPanel').bind('mousedown', function (e) {
+        updateDark((e.pageX - $('#darkPlane').offset().left) * $('#darkPlane')[0].max / $('#darkPlane').outerWidth());
 
         $('body').bind('mousemove', handlerDar);
         window.isDrag = true;
-        this.focus();
+        $('#darkPlane')[0].focus();
 
         $('body').bind('mouseup', function (e) {
             $('body').unbind();
@@ -439,9 +439,8 @@ var addVideoEventhandler = async function () {
         var x1;
         var x2;
 
-        ctx.fillStyle = '#000';
-        ctx.fillRect(0, 0, w, h);
-        ctx.fillStyle = '#555555';
+        ctx.clearRect(0, 0, w, h);
+        ctx.fillStyle = '#FFFFFF';
         while (i--) {
             x1 = b.start(i) / vl * w;
             x2 = b.end(i) / vl * w;
@@ -710,7 +709,6 @@ var getDefault = function (value, defaultValue) {
 var updateDark = function (val) {
     $('#clicklayer').css('opacity', (val / 100));
     $('#darkPlane').attr('value', val);
-    $('#showPerc').html(val.toFixed(0) + '%');
 
     setGMValue('lastDark', val);
 }

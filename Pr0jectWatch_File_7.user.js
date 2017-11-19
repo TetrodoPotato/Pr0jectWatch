@@ -175,9 +175,6 @@ var failed = function (e) {
     console.log(e.target.error.code);
     if (e.target.error.code == e.target.error.MEDIA_ERR_NETWORK) {
         console.log('Network Error');
-    }
-
-    if (e.target.error.code == e.target.error.MEDIA_ERR_NETWORK) {
         window.timer--;
     }
 
@@ -191,13 +188,14 @@ var failed = function (e) {
                 location.reload();
             }
         } else {
-            if (e.target.error.code == e.target.error.MEDIA_ERR_NETWORK) { //On Network Error
-                $('#vid').one('play', function () {
+            $("#vid").attr("autoplay", "")[0].load();
+
+            if (e.target.error.code == e.target.error.MEDIA_ERR_NETWORK) {
+                $('#vid').one('timeupdate', function () {
                     setPlayerStartupValues();
                 });
             }
 
-            $("#vid").attr("autoplay", "")[0].load();
             onerror();
         }
     }, 5000);

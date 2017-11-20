@@ -188,17 +188,31 @@ var failed = function (e) {
                 location.reload();
             }
         } else {
-            window.isErrorHandling = true;
             
-            $("#vid")[0].pause();
-            $("#vid")[0].load();
+            
+            
+            if (e.target.error.code == e.target.error.MEDIA_ERR_NETWORK) {
+                console.log('Network Extend');
+                
+                window.isErrorHandling = true;
+            
+                $("#vid")[0].pause();
+                $("#vid")[0].load();
 
-            $('#vid').one('play loadedmetadata timeupdate', function () {
-                setPlayerStartupValues();
-                window.isErrorHandling = false;
-            });
+                $('#vid').one('play loadedmetadata timeupdate', function () {
+                    setPlayerStartupValues();
+                    window.isErrorHandling = false;
+                    console.log('Network Execute');
+                });
 
-            $("#vid")[0].play();
+                $("#vid")[0].play();
+            } else {
+                $("#vid")[0].pause();
+                $("#vid")[0].load();
+                $("#vid")[0].play();
+            }
+            
+            
             
             onerror();
         }

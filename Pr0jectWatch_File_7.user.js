@@ -188,11 +188,11 @@ var failed = function (e) {
                 location.reload();
             }
         } else {
-            $('#vid').one('loadedmetadata', function () {
-                setPlayerStartupValues();
-            });
-            
-            $("#vid").attr("autoplay", "")[0].load();
+            if (e.target.error.code !== e.target.error.MEDIA_ERR_NETWORK) {
+                $("#vid").attr("autoplay", "")[0].load();  
+            } else {
+                location.reload();
+            }
 
             onerror();
         }

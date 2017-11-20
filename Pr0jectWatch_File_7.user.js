@@ -188,12 +188,18 @@ var failed = function (e) {
                 location.reload();
             }
         } else {
-            if (e.target.error.code !== e.target.error.MEDIA_ERR_NETWORK) {
-                $("#vid").attr("autoplay", "")[0].load();  
-            } else {
-                location.reload();
-            }
+            window.isErrorHandling = true;
+            
+            $("#vid")[0].pause();
+            $("#vid")[0].load();
 
+            $('#vid').one('play loadedmetadata timeupdate', function () {
+                setPlayerStartupValues();
+                window.isErrorHandling = false;
+            });
+
+            $("#vid")[0].play();
+            
             onerror();
         }
     }, 5000);
@@ -393,6 +399,10 @@ var addVideoEventhandler = async function () {
     });
 
     $('#vid').bind('timeupdate', function (e) {
+        if(window.isErrorHandling === true){
+            return;
+        }
+        
         var curTime = $('#vid')[0].currentTime;
         var playTimeMin = zeroFill(parseInt(('' + (curTime / 60))), 2);
         var playTimeSec = zeroFill(parseInt(('' + (curTime % 60))), 2);

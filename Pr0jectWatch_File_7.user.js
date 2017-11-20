@@ -194,6 +194,8 @@ var failed = function (e) {
                 $('#vid').one('timeupdate', function () {
                     setPlayerStartupValues();
                 });
+            } else {
+                location.reload();
             }
 
             onerror();

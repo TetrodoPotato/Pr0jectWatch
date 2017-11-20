@@ -160,7 +160,7 @@ var fillTopText = async function () {
  * Set an errorhandler for the VideoElement
  */
 var onerror = function () {
-    $('#vid').bind('error', failed);
+    $('#vid').one('error', failed);
     if (typeof window.timer === 'undefined') {
         window.timer = 0;
     }
@@ -188,9 +188,9 @@ var failed = function (e) {
                 location.reload();
             }
         } else {
-            $("#vid").attr("autoplay", "")[0].load();
-
-            if (e.target.error.code == e.target.error.MEDIA_ERR_NETWORK) {
+            if (e.target.error.code !== e.target.error.MEDIA_ERR_NETWORK) {
+                $("#vid").attr("autoplay", "")[0].load();
+                
                 $('#vid').one('timeupdate', function () {
                     setPlayerStartupValues();
                 });

@@ -123,7 +123,9 @@ var onDocumentReady = function () {
              + '&closeEnd=' + jEncode(getData('closeEnd', true))
              + '&enablePreview=' + jEncode(getData('enablePreview', true))
              + '&previewSteps=' + jEncode(getData('previewSteps', 20))
-             + '&timeShow=' + jEncode(getData('timeShow', 3));
+             + '&timeShow=' + jEncode(getData('timeShow', 3))          
+             + '&timeStep=' + jEncode(getData('timeStep', 5))
+             + '&volStep=' + jEncode(getData('volStep', 10));
         return true;
     } else {
         var win = window.open($('.hoster-player:first').attr('href'), "Project Watch Video", "");

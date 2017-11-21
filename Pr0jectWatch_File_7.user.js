@@ -29,6 +29,8 @@ var previewSteps = 20;
 var closeEnd = true;
 var enablePreview = true;
 var timeShow = 3;
+var timeStep = 5;
+var volStep = 10;
 
 /**
  * GM_setValue with new or old Api
@@ -80,7 +82,9 @@ var setEpisodeVariables = async function () {
     await setGMValue('previewSteps', parseInt(jDecode(getGetter('previewSteps'))));
     await setGMValue('closeEnd', jDecode(getGetter('closeEnd')).toLowerCase() == 'true');
     await setGMValue('enablePreview', jDecode(getGetter('enablePreview')).toLowerCase() == 'true');
-    await setGMValue('timeShow', parseInt(jDecode(getGetter('timeShow'))));
+    await setGMValue('timeShow', parseInt(jDecode(getGetter('timeShow')))); 
+    await setGMValue('timeStep', parseInt(jDecode(getGetter('timeStep'))));
+    await setGMValue('volStep', parseInt(jDecode(getGetter('volStep'))));
 
     //RESET ERROR
     await setGMValue('isError', false);
@@ -126,6 +130,9 @@ var setSetting = async function () {
     closeEnd = await getGMValue('closeEnd', true);
     enablePreview = await getGMValue('enablePreview', true);
     timeShow = await getGMValue('timeShow', 3);
+    
+    timeStep = await getGMValue('timeStep', 5);
+    volStep = await getGMValue('volStep', 10);
 }
 
 /**
@@ -952,16 +959,16 @@ $(window).keydown(function (e) {
             updateVolume('mute')
         } else if (e.keyCode === 37) { //Arr-left
             e.preventDefault();
-            updateTime(-5, true);
+            updateTime(timeStep * -1, true);
         } else if (e.keyCode === 39) { //Arr-right
             e.preventDefault();
-            updateTime(5, true);
+            updateTime(timeStep, true);
         } else if (e.keyCode === 38) { //Arr-up
             e.preventDefault();
-            updateVolume((player.volume * 100) + 10);
+            updateVolume((player.volume * 100) + volStep);
         } else if (e.keyCode === 40) { //Arr-down
             e.preventDefault();
-            updateVolume((player.volume * 100) - 10);
+            updateVolume((player.volume * 100) - volStep);
         } else if (e.keyCode === 107 || e.keyCode === 171) { //+
             e.preventDefault();
             changeSpeed(1);
@@ -1013,3 +1020,15 @@ $(window).keydown(function (e) {
         showAllEvent();
     }
 });
+
+
+$(window).on('wheel', function(e){
+    var player = document.getElementById('vid');
+    if(e.originalEvent.deltaY < 0) {
+        updateVolume((player.volume * 100) + volStep);
+    }
+    else{
+        updateVolume((player.volume * 100) - volStep);
+    }
+});
+    

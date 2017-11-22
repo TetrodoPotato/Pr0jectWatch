@@ -401,6 +401,15 @@ var seriesSearch = function () {
         }
     });
 
+    $('#searchLogo').bind('click', function () {
+        var i = getFullList().findIndex(item => item.FullName.toLowerCase() === $('#search').val().toLowerCase());
+        if (i !== -1) {
+            window.location = 'https://bs.to/serie/' + getFullList()[i].Id;
+        } else {
+            window.location = 'https://bs.to/serie-genre?search=' + encodeURI($('#search').val());
+        }
+    });
+
     $('#search').on('input', function () {
         var i = getFullList().findIndex(item => item.FullName.toLowerCase() === $('#search').val().toLowerCase());
         if (i !== -1) {

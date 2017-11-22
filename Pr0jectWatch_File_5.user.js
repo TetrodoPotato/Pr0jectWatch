@@ -233,7 +233,7 @@ var addMediaplayerConf = function () {
     addNumberInput(target, 'previewSteps', 20, 'Preview Image Steps', 1, 60000);
     addNumberInput(target, 'timeShow', 3, 'Timer Time For Controlls Hide [Sec]', 1, 60000);
     addNumberInput(target, 'timeStep', 5, 'Timerstep For Keycontroll [Sec]', 1, 60000);
-    addNumberInput(target, 'volStep', 10, 'Volumestep For Keycontroll Maxvolume: 100', 1, 100);
+    addNumberInput(target, 'volStep', 10, 'Volumestep For Keycontroll. Maxvolume: 100', 1, 100);
 }
 
 /**

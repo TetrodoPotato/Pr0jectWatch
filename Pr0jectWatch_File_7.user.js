@@ -195,9 +195,6 @@ var failed = function (e) {
                 location.reload();
             }
         } else {
-            
-            
-            
             if (e.target.error.code == e.target.error.MEDIA_ERR_NETWORK) {
                 console.log('Network Extend');
                 
@@ -218,9 +215,7 @@ var failed = function (e) {
                 $("#vid")[0].load();
                 $("#vid")[0].play();
             }
-            
-            
-            
+     
             onerror();
         }
     }, 5000);

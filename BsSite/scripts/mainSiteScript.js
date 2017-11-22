@@ -249,7 +249,7 @@ var updateFavNSync = async function () {
         }
 
         if (!/^https:\/\/bs\.to\/serie\-genre.*$/.test(window.location.href)) {
-            var list =  (getData('syncOnlyWatchedFav', true)) ? getFavorites().filter(obj => obj.IsWatched == true) : getFavorites();
+            var list = (getData('syncOnlyWatchedFav', true)) ? getFavorites().filter(obj => obj.IsWatched == true) : getFavorites();
             if (list.length != 0) {
                 await new Promise(resolve => {
                     var listProc = 0;
@@ -398,6 +398,13 @@ var seriesSearch = function () {
             } else {
                 window.location = 'https://bs.to/serie-genre?search=' + encodeURI($('#search').val());
             }
+        }
+    });
+
+    $('#search').on('input', function () {
+        var i = getFullList().findIndex(item => item.FullName.toLowerCase() === $('#search').val().toLowerCase());
+        if (i !== -1) {
+            window.location = 'https://bs.to/serie/' + getFullList()[i].Id;
         }
     });
 }

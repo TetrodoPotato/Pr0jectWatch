@@ -14,6 +14,8 @@
 // @downloadURL http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_1.user.js
 // ==/UserScript==
 
+function openBase() {}
+
 /**
  * Redirects to next Episode or season
  */
@@ -38,6 +40,13 @@ var redirectStart = function () {
             setData('beforeLogout', 'notSet');
             window.location = linkRef;
         } else {
+            if (getData('episodelistOnStart', false)) {
+                if (getData('lastSeriesSeasonWatched', 'none') !== 'none') {
+                    window.location = getData('lastSeriesSeasonWatched', 'https://bs.to/serie-genre');
+                    return;
+                }
+            }
+
             window.location = 'https://bs.to/serie-genre';
         }
     } else if (/^https:\/\/bs.to\/\?logout[^]*$/.test(window.location.href)) {

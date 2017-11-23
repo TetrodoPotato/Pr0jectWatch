@@ -201,6 +201,7 @@ var addGeneralConf = function () {
     addCheckbox(target, 'syncOnlyWatchedFav', true, 'Sync Only Watched Series In Favmenu');
     addCheckbox(target, 'episodeSearch', false, 'Enable Episodesearch. Seriessearch on Episodelist Will Be Disabled');
     addCheckbox(target, 'reverseLog', false, 'Reverse Log');
+    addCheckbox(target, 'episodelistOnStart', false, 'Show Last Season As Startpage');
 
     addNumberInput(target, 'autoplayTime', 5, 'Timer Time For Autoplay [Sec]', 0, 60000);
     addNumberInput(target, 'updateWaitTime', 7, 'Time Till Next Listupdate [Days]', 1, 60000);

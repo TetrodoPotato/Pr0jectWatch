@@ -111,6 +111,9 @@ var onDocumentReady = function () {
         removePlayList(getFullPlayList()[0].episodeID);
     }
 
+    //Save Last link
+    setData('lastSeriesSeasonWatched', 'https://bs.to/serie/' + seriesId + '/' + season, true);
+    
     if (supportet) {
         window.location = 'https://bs.to/data'
              + '?redirect=' + jEncode($('.hoster-player:first').attr('href'))

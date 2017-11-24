@@ -82,7 +82,7 @@ var setEpisodeVariables = async function () {
     await setGMValue('previewSteps', parseInt(jDecode(getGetter('previewSteps'))));
     await setGMValue('closeEnd', jDecode(getGetter('closeEnd')).toLowerCase() == 'true');
     await setGMValue('enablePreview', jDecode(getGetter('enablePreview')).toLowerCase() == 'true');
-    await setGMValue('timeShow', parseInt(jDecode(getGetter('timeShow')))); 
+    await setGMValue('timeShow', parseInt(jDecode(getGetter('timeShow'))));
     await setGMValue('timeStep', parseInt(jDecode(getGetter('timeStep'))));
     await setGMValue('volStep', parseInt(jDecode(getGetter('volStep'))));
 
@@ -130,7 +130,7 @@ var setSetting = async function () {
     closeEnd = await getGMValue('closeEnd', true);
     enablePreview = await getGMValue('enablePreview', true);
     timeShow = await getGMValue('timeShow', 3);
-    
+
     timeStep = await getGMValue('timeStep', 5);
     volStep = await getGMValue('volStep', 10);
 }
@@ -197,13 +197,13 @@ var failed = function (e) {
         } else {
             if (e.target.error.code == e.target.error.MEDIA_ERR_NETWORK) {
                 console.log('Network Extend');
-                
+
                 window.isErrorHandling = true;
-            
+
                 $("#vid")[0].pause();
                 $("#vid")[0].load();
 
-                $('#vid').one('play loadedmetadata timeupdate', function () {
+                $('#vid').one('loadedmetadata', function () {
                     setPlayerStartupValues();
                     window.isErrorHandling = false;
                     console.log('Network Execute');
@@ -215,7 +215,7 @@ var failed = function (e) {
                 $("#vid")[0].load();
                 $("#vid")[0].play();
             }
-     
+
             onerror();
         }
     }, 5000);
@@ -415,10 +415,10 @@ var addVideoEventhandler = async function () {
     });
 
     $('#vid').bind('timeupdate', function (e) {
-        if(window.isErrorHandling === true){
+        if (window.isErrorHandling === true) {
             return;
         }
-        
+
         var curTime = $('#vid')[0].currentTime;
         var playTimeMin = zeroFill(parseInt(('' + (curTime / 60))), 2);
         var playTimeSec = zeroFill(parseInt(('' + (curTime % 60))), 2);
@@ -832,9 +832,7 @@ var loadVideoTimelinePreview = function () {
         window.PrevErrors = 0;
     }
 
-    $('#preview').attr('src', window.location.href);
-
-    $('#preview').one('play', function () {
+    $('#preview').one('timeupdate', function () {
         var video = $('#preview')[0];
         var duration = video.duration;
         var curLoadingTime = 0;
@@ -844,7 +842,6 @@ var loadVideoTimelinePreview = function () {
         $('#canvasContainer').empty();
 
         var intervalFunction = async function () {
-
             if (window.PrevErrors > currentErr) {
                 return false;
             }
@@ -871,6 +868,13 @@ var loadVideoTimelinePreview = function () {
         console.log('Prev.Error: ' + (++window.PrevErrors));
         loadVideoTimelinePreview();
     });
+
+    if (window.location.href.includes('?')) {
+        $('#preview').attr('src', window.location.href + '&preview');
+    } else {
+        $('#preview').attr('src', window.location.href + '?preview');
+    }
+
 }
 
 /**
@@ -909,15 +913,56 @@ var drawVidToCanvasAndAppend = function (video, appendTargetId, err) {
 }
 
 /**
- * Check if on canvas was drawn
+ * Check if on canvas was drawn and is not the same as before
  * @param canvas {Element} - canvas.
  * @return {Boolean}
  */
 var isCanvasDrawn = function (canvas) {
-    if (canvas.getContext("2d").getImageData(0, 0, canvas.width, canvas.height).data[3] != 0) {
-        return true;
+    var ctxCur = canvas.getContext("2d");
+    var ctxPre = null;
+
+    var checkPrevious = false;
+
+    var previous = $(canvas).prev('canvas');
+    if (previous.length != 0) {
+        ctxPre = previous[0].getContext("2d");
+        checkPrevious = true;
+    }
+
+    if (ctxCur.getImageData(0, 0, canvas.width, canvas.height).data[3] != 0) {
+        if (checkPrevious) {
+            if (!checkIfSame(ctxCur.getImageData(0, 0, canvas.width, canvas.height).data, ctxPre.getImageData(0, 0, canvas.width, canvas.height).data, 12)) {
+                return true;
+            }
+        } else {
+            return true;
+        }
     }
     return false
+}
+
+/**
+ * Check if the two arrays are the same until index is reached.
+ * @param arr1 {Array} - Array One. 
+ * @param arr2 {Array} - Array Two. 
+ * @param indezies {Number} - Max Index to check.
+ * @return {Boolean}. 
+ */
+var checkIfSame = function (arr1, arr2, indezies) {
+    var same = true;
+
+    $.each(arr1, function (index, value) {
+        if (arr1[index] != arr2[index]) {
+            same = false;
+            return false;
+        }
+
+        if (indezies < index) {
+            return false;
+        }
+    });
+
+    return same;
 }
 
 /**
@@ -930,7 +975,7 @@ var isTimeBuffered = function (video, time) {
     var buf = video.buffered;
     var len = buf.length;
     while (len--) {
-        if (time <= buf.end(len) && time >= buf.start(len)) {
+        if (time <= Math.floor(buf.end(len)) && time >= Math.floor(buf.start(len))) {
             return true;
         }
     }
@@ -1016,14 +1061,11 @@ $(window).keydown(function (e) {
     }
 });
 
-
-$(window).on('wheel', function(e){
+$(window).on('wheel', function (e) {
     var player = document.getElementById('vid');
-    if(e.originalEvent.deltaY < 0) {
+    if (e.originalEvent.deltaY < 0) {
         updateVolume((player.volume * 100) + volStep);
-    }
-    else{
+    } else {
         updateVolume((player.volume * 100) - volStep);
     }
 });
-    

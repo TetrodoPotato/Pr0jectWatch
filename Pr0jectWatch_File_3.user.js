@@ -165,7 +165,7 @@ var setEpisodeEvents = function () {
 
     $(window).scroll(function () {
         if ($(window).scrollTop() >= 94) { //Start .offset().top of sticky
-            $('#noneMenu').css('padding-top', ($('#seasonContainer').addClass('fixedSeason').outerHeight() + 48) + 'px');
+            $('#noneMenu').css('padding-top', ($('#seasonContainer').addClass('fixedSeason').outerHeight(true) + 48) + 'px');
         } else {
             $('#seasonContainer').removeClass('fixedSeason');
             $('#noneMenu').removeAttr('style');

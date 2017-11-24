@@ -14,8 +14,6 @@
 // @downloadURL http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_1.user.js
 // ==/UserScript==
 
-function openBase() {}
-
 /**
  * Redirects to next Episode or season
  */

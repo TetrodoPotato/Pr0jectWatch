@@ -288,7 +288,7 @@ var addInterfaceEventhandler = async function () {
         var x = (e.pageX - $('#progress').offset().left); // or e.offsetX (less support, though)
         var clickedValue = x * $('#progress')[0].max / $('#progress').outerWidth();
         updateTime(clickedValue);
-        showCur(x, clickedValue);
+        showCur(e.pageX, clickedValue);
         $('#curProc').show();
     };
 
@@ -314,7 +314,7 @@ var addInterfaceEventhandler = async function () {
     $('#bars').bind("mousemove", function (e) {
         var x = e.pageX - $(this).offset().left;
         var clickedValue = x * $('#progress')[0].max / $(this).outerWidth();
-        showCur(x, clickedValue);
+        showCur(e.pageX, clickedValue);
         $('#curProc').show();
     });
 
@@ -583,7 +583,7 @@ var showCur = function (x, seconds) {
             $('#canvasContainer canvas:nth-of-type(' + (step + 1) + ')').show();
         }
     }
-    $('#curProc').css('left', ((x - ($('#curProc').outerWidth() / 2)) + "px"))
+    $('#curProc').css('left', ((x - ($('#curProc').outerWidth(true) / 2)) + "px"))
     $('#previewText').html(min + ":" + sec);
 }
 

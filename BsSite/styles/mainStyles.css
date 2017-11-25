@@ -1748,7 +1748,7 @@ input:checked + .slider:before {
     list-style-type: none;
     font:var(--SettingsHosterSortTextFont);
     
-    cursor:grab;
+    cursor:move;
 }
 
 #hosterSortContainer li {
@@ -1836,8 +1836,14 @@ input:checked + .slider:before {
     transform: rotate(90deg);
 }
 
-.sortable-chosen {
-    cursor:grabbing;
+body.dragging, body.dragging * {
+  cursor: move !important;
+}
+
+.dragged {
+  position: absolute;
+  opacity: 0.5;
+  z-index: 2000;
 }
 
 #stylesApply {
@@ -2225,7 +2231,7 @@ input:checked + .slider:before {
     list-style-type: none;
     font:var(--PlaylistListTextFont);
     
-    cursor:grab;
+    cursor:move;
 }
 
 #playlistList li {

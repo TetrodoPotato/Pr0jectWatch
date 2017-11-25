@@ -170,7 +170,6 @@ var setEpisodeEvents = function () {
             $('#seasonContainer').removeClass('fixedSeason');
             $('#noneMenu').removeAttr('style');
         }
-
     });
 
     $('#watchAll').bind('click', function () {

@@ -10,7 +10,7 @@
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
 // @require 	https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
-// @require     http://rubaxa.github.io/Sortable/Sortable.js
+// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/Sortable.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/logStorage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/playlistStorage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/data.js
@@ -121,16 +121,39 @@ var addHosterSort = function () {
         });
     })
 
-    Sortable.create($("#sortHoster")[0], {
-        animation: 150, // ms, animation speed moving items when sorting, `0` — without animation
-        ghostClass: "sortableGhost",
-        onUpdate: function (evt) {
+    $("#sortHoster").sortable({
+        onDrop: function ($item, container, _super) {
+            var $clonedItem = $('<li/>');
+            $item.before($clonedItem);
+
+            $item.animate($clonedItem.position(), function () {
+                $clonedItem.detach();
+                _super($item, container);
+            });
+
             var newSort = [];
-            $('#sortHoster li').each(function (index, value) {
+            $('#sortHoster li[sup]').each(function (index, value) {
                 newSort.push($(this).find('.hosterName').text().trim());
                 $(this).find('.sortIndex').text(index + 1);
             });
             setData('hoster', JSON.stringify(newSort), true);
+        },
+        onDragStart: function ($item, container, _super) {
+            var offset = $item.offset(),
+            pointer = container.rootGroup.pointer;
+
+            adjustment = {
+                left: pointer.left - offset.left,
+                top: pointer.top - offset.top
+            };
+
+            _super($item, container);
+        },
+        onDrag: function ($item, position) {
+            $item.css({
+                left: position.left - adjustment.left,
+                top: position.top - adjustment.top
+            });
         }
     });
 }
@@ -288,19 +311,42 @@ var initPlaylistCont = function () {
         target.append(getPlaylistRow(value, index + 1));
     });
 
-    Sortable.create($("#playlistList")[0], {
-        animation: 150, // ms, animation speed moving items when sorting, `0` — without animation
-        ghostClass: "sortableGhost",
-        filter: ".delCol",
-        onUpdate: function (evt) {
+    $("#playlistList").sortable({
+        handle: '.indexCol, .infoCol',
+        onDrop: function ($item, container, _super) {
+            var $clonedItem = $('<li/>');
+            $item.before($clonedItem);
+
+            $item.animate($clonedItem.position(), function () {
+                $clonedItem.detach();
+                _super($item, container);
+            });
+
             removeAllPlaylist();
-            $("#playlistList li").each(function (index, value) {
+            $("#playlistList li[data-episode]").each(function (index, value) {
                 $(this).find('.indexCol').text(index + 1);
                 setPlayList($(this).attr('data-series'), parseInt($(this).attr('data-season')), $(this).attr('data-episode'), $(this).find('.seriesNameCol:first').text().trim(), $(this).find('.episodeCol:first span:first').text().trim(), parseInt($(this).attr('data-episodeindex')));
             });
+        },
+        onDragStart: function ($item, container, _super) {
+            var offset = $item.offset(),
+            pointer = container.rootGroup.pointer;
+
+            adjustment = {
+                left: pointer.left - offset.left,
+                top: pointer.top - offset.top
+            };
+
+            _super($item, container);
+        },
+        onDrag: function ($item, position) {
+            $item.css({
+                left: position.left - adjustment.left,
+                top: position.top - adjustment.top
+            });
         }
     });
-
+    
     $('#clearAllPlaylist').bind('click', function () {
         $('#playlistList').empty();
         removeAllPlaylist();

@@ -181,42 +181,18 @@ $(document).keydown(function (e) {
     } else if (e.keyCode === 78) { //N
         e.preventDefault();
         $('#nextAutoplay').click();
-    } else if (e.keyCode === 75) { // K
-        e.preventDefault();
-        $('#search').focus()
     } else if (e.keyCode === 65) { // A
         e.preventDefault();
         $('#autoplay').click()
-    } else if (e.keyCode === 39) { // Right Arrow
-        e.preventDefault();
-        changeSeason(1)
-    } else if (e.keyCode === 37) { // Left Arrow
-        e.preventDefault();
-        changeSeason(-1)
     } else if (e.keyCode === 38) { // Up Arrow
         e.preventDefault();
         focusNext(-1);
     } else if (e.keyCode === 40) { // Down Arrow
         e.preventDefault();
         focusNext(1);
-    } else if (e.keyCode === 70) { // F
+    } else if (e.keyCode === 77) { // M
         e.preventDefault();
-        if ($(':focus .favDel:first').length) {
-            $(':focus .favDel:first').click();
-        } else if ($('#favSeasonStar').length) {
-            $('#favSeasonStar').click();
-        } else if ($(':focus .favIcon:first').length) {
-            favClick($(':focus .favIcon:first'));
-        }
-
-        $('#favReload').click();
-    } else if (e.keyCode === 87) { // W
-        e.preventDefault();
-        if ($(':focus .watchIcon:first').length) {
-            if ($(':focus .watchIcon:first').is(":visible")) {
-                watchClick($(':focus .watchIcon:first'));
-            }
-        }
+        $('#menuBurgerContainer').attr('ison', ($('#menuBurgerContainer').attr('ison') != 'true'));
     } else if (e.keyCode === 13) { // Enter
         e.preventDefault();
         $(':focus .nameWatchedContainer:first').click();
@@ -224,22 +200,49 @@ $(document).keydown(function (e) {
             window.location = $(':focus').attr('href');
         }
         $(':focus .favlink:first').click();
-    } else if (e.keyCode === 171 || e.keyCode === 107) { // +
-        e.preventDefault();
-        if ($(':focus .addAutoplayButton:first').length) {
-            $(':focus .addAutoplayButton:first').click();
+    } else if ($('#menuBurgerContainer').attr('ison') != 'true') { //ONLY NOT ON MENU
+        if (e.keyCode === 75) { // K
+            e.preventDefault();
+            $('#search').focus()
+        } else if (e.keyCode === 39) { // Right Arrow
+            e.preventDefault();
+            changeSeason(1)
+        } else if (e.keyCode === 37) { // Left Arrow
+            e.preventDefault();
+            changeSeason(-1)
+        } else if (e.keyCode === 70) { // F
+            e.preventDefault();
+            if ($(':focus .favDel:first').length) {
+                $(':focus .favDel:first').click();
+            } else if ($('#favSeasonStar').length) {
+                $('#favSeasonStar').click();
+            } else if ($(':focus .favIcon:first').length) {
+                favClick($(':focus .favIcon:first'));
+            }
+
+            $('#favReload').click();
+        } else if (e.keyCode === 87) { // W
+            e.preventDefault();
+            if ($(':focus .watchIcon:first').length) {
+                if ($(':focus .watchIcon:first').is(":visible")) {
+                    watchClick($(':focus .watchIcon:first'));
+                }
+            }
+        } else if (e.keyCode === 9) { // Tab
+            e.preventDefault();
+            onWindowResize($('#arrowContainer svg').hasClass('off'));
+        } else if (e.keyCode === 79) { // O
+            e.preventDefault();
+            $('#watchAll').click();
+        } else if (e.keyCode === 80) { // P
+            e.preventDefault();
+            $('#unwatchAll').click();
+        } else if (e.keyCode === 171 || e.keyCode === 107) { // +
+            e.preventDefault();
+            if ($(':focus .addAutoplayButton:first').length) {
+                $(':focus .addAutoplayButton:first').click();
+            }
         }
-    } else if (e.keyCode === 77) { // M
-        e.preventDefault();
-        $('#menuBurgerContainer').attr('ison', ($('#menuBurgerContainer').attr('ison') != 'true'));
-    } else if (e.keyCode === 9) { // Tab
-        e.preventDefault();
-        onWindowResize($('#arrowContainer svg').hasClass('off'));
-    } else if (e.keyCode === 79) { // O
-        e.preventDefault();
-        $('#watchAll').click();
-    } else if (e.keyCode === 80) { // P
-        e.preventDefault();
-        $('#unwatchAll').click();
     }
+
 });

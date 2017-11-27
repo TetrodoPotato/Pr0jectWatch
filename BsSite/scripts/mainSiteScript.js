@@ -411,10 +411,16 @@ var seriesSearch = function () {
     });
 
     $('#search').on('input', function () {
-        var i = getFullList().findIndex(item => item.FullName.toLowerCase() === $('#search').val().toLowerCase());
-        if (i !== -1) {
-            window.location = 'https://bs.to/serie/' + getFullList()[i].Id;
+        if (typeof window.clearSearch !== 'undefined') {
+            clearTimeout(window.clearSearch);
         }
+
+        window.clearSearch = setTimeout(function () {
+                var i = getFullList().findIndex(item => item.FullName.toLowerCase() === $('#search').val().toLowerCase());
+                if (i !== -1) {
+                    window.location = 'https://bs.to/serie/' + getFullList()[i].Id;
+                }
+            }, 1000);
     });
 }
 initSeriesSearch();

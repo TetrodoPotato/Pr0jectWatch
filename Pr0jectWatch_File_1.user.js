@@ -78,19 +78,23 @@ var redirectStart = function () {
             var firstPlaylist = getFullPlayList();
 
             if (firstPlaylist.length == 0) {
-                window.location = 'https://bs.to/';
-                return;
+                if(getData('keepPlaying', false)){
+                    setData('isPlayingPlaylist', false);
+                } else {
+                    window.location = 'https://bs.to/';
+                    return;
+                }    
+            } else {
+                setData('lastSeries', firstPlaylist[0].seriesID);
+                setData('lastSeason', firstPlaylist[0].season);
+                setData('lastEpisode', firstPlaylist[0].episodeID);
+
+                series = firstPlaylist[0].seriesID;
+                season = firstPlaylist[0].season;
+                episode = firstPlaylist[0].episodeID;
+
+                setData('autoplay', true);
             }
-
-            setData('lastSeries', firstPlaylist[0].seriesID);
-            setData('lastSeason', firstPlaylist[0].season);
-            setData('lastEpisode', firstPlaylist[0].episodeID);
-
-            series = firstPlaylist[0].seriesID;
-            season = firstPlaylist[0].season;
-            episode = firstPlaylist[0].episodeID;
-
-            setData('autoplay', true);
         }
 
         //Open the last season for next episode

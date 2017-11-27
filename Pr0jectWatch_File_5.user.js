@@ -306,6 +306,12 @@ var addNumberInput = function (addContainer, saveIndex, defaultState, msg, min, 
 var initPlaylistCont = function () {
     $('#contentContainer').empty().append('<h1 class="mainSiteTitle">Playlist</h1>').append('<ul id="playlistList"></ul><button id="PlaylistPlay">Play All</button><button id="clearAllPlaylist">Clear ALl</button>');
 
+    $('#playlistList').after('<div class="settingCheckbox"><label class="switch"><input ' + ((getData('keepPlaying', false)) ? 'checked' : '') + ' id="keepPlaying" type="checkbox"/>' +
+    '<span class="slider round"></span></label>Keep Playing Last Series<div>');
+    $('#keepPlaying').on('change', function () {
+        setData('keepPlaying', this.checked, true)
+    });
+    
     var target = $('#playlistList');
     $.each(getFullPlayList(), function (index, value) {
         target.append(getPlaylistRow(value, index + 1));

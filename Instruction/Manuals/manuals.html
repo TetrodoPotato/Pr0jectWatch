@@ -31,6 +31,7 @@
             ol {
                 list-style: none;
                 counter-reset: item;
+                margin: 0 0 0 -10px;
             }
             
             ol li {
@@ -121,6 +122,14 @@
                     <li><a href="#medienspieler">Medienspieler</a>
                         <ul>
                             <li><a href="#medienspielerbeschreibung">Medienspielerbeschreibung</a></li>
+                        </ul>
+                    </li>
+                    <li><a href="#einstellungen">Einstellungen</a>
+                        <ul>
+                            <li><a href="#hosterprioritat">Hosterpriorität</a></li>
+                            <li><a href="#aussehen">Aussehen</a></li>
+                            <li><a href="#general">General</a></li>
+                            <li><a href="#medienspieler">Medienspieler</a></li>
                         </ul>
                     </li>
                     <li><a href="#weitereoptimierungen">Weitere Optimierungen</a>
@@ -278,9 +287,11 @@
             
             <h2 id="serienliste">Serienliste</h2>
             <div class="tab">
-                Die Serienliste zeigt alle Serien die zu Verfügung stehen an. Ab drei Zeichen in der Suchleiste werden Ergebnisse angezeigt.
-                Dies ist in den Einstellungen einstellbar. Bei '0' Zeichen in den Einstellungen wird am Start die komplette Liste angezeigt. Dies hat aber Performanceprobleme 
-                zur Folge. Die Navigation durch die Serienliste geht mit den <hotkey>Pfeiltasten</hotkey>.
+                <p>
+                    Die Serienliste zeigt alle Serien die zu Verfügung stehen an. Ab drei Zeichen in der Suchleiste werden Ergebnisse angezeigt.
+                    Dies ist in den Einstellungen einstellbar. Bei '0' Zeichen in den Einstellungen wird am Start die komplette Liste angezeigt. Dies hat aber Performanceprobleme 
+                    zur Folge. Die Navigation durch die Serienliste geht mit den <hotkey>Pfeiltasten</hotkey>.
+                </p>
                 <h3 id="serienlistenbeschreibung">Serienlistenbeschreibung</h3>
                 <div class="tab">
                     <img width="700" src="img/SerieslistPicture.PNG"></img>
@@ -308,11 +319,13 @@
             
             <h2 id="episodenliste">Episodenliste</h2>
             <div class="tab">
-                Die Episodenliste zeigt alle verfügbaren Staffeln und deren Episoden an. Sie bietet eine Oberfläche zur
-                Kontrolle der geschauten und nicht geschauten Episoden. Neben den Staffeln und Episoden verfügt sie noch 
-                über eine Kurzbeschreibung der Serie. Die Navigation durch die Episoden funktioniert mit den <hotkey>Hoch/Runter-Pfeiltasten</hotkey>.
-                Durch die Staffeln wird mit den <hotkey>Links/Rechts-Pfeiltasten</hotkey> navigiert. Geschautmarkierungen sind nur bei 
-                angemeldetem Benutzer möglich.
+                <p>
+                    Die Episodenliste zeigt alle verfügbaren Staffeln und deren Episoden an. Sie bietet eine Oberfläche zur
+                    Kontrolle der geschauten und nicht geschauten Episoden. Neben den Staffeln und Episoden verfügt sie noch 
+                    über eine Kurzbeschreibung der Serie. Die Navigation durch die Episoden funktioniert mit den <hotkey>Hoch/Runter-Pfeiltasten</hotkey>.
+                    Durch die Staffeln wird mit den <hotkey>Links/Rechts-Pfeiltasten</hotkey> navigiert. Geschautmarkierungen sind nur bei 
+                    angemeldetem Benutzer möglich.
+                </p>
                 <h3 id="episodenlistenbeschreibung">Episodenlistenbeschreibung</h3>
                 <div  class="tab">
                     <div style="height:700px;" class="hoverimg">
@@ -356,6 +369,17 @@
         
         <h2 id="medienspieler">Medienspieler</h2>
         <div class="tab">
+            <p>
+                Der Medienspieler spielt die Episode eines unterstützten Hosters. Kann das Video nicht abgespielt
+                werden wird nach min. 20 Sekunden versucht das Video des nächsten priorisierten Hosters zu öffnen.
+                Dies geht so lange bis alle Hoster ausprobiert wurden. Dabei ist keine weitere Eingabe nötig.
+            </p>
+            <p>
+                Wärend des Abspielens kann es zu Fehlern kommen. Diese treten meistens durch instablieles Internet auf.
+                Der Medienspieler versucht dann das Video pausenlos fortzuführen. Dabei wird das Video neu geladen und wieder
+                an die richtige Zeit gesprungen. Dies kann zum Laden oder kurzes Stocken kommen. Wenn dies oft autritt 
+                könnte das auch am Hoster selbst liegen.
+            </p>
             <h3 id="medienspielerbeschreibung">Medienspielerbeschreibung</h3>
                 <div class="tab">
                     <img width="700" src="img/mediaplayer.PNG"></img>
@@ -399,6 +423,151 @@
                         </li>
                     </ol>
                 </div>    
+        </div>
+        
+        <h2 id="einstellungen">Einstellungen</h2>
+        <div class="tab">
+            <p>
+                Die Einstellungen bieten viele möglichkeiten, von normalen Einstellungen des Verhaltens bis zum ändern des 
+                Aussehens. Alle Einstellungen werden sofort gespeichert sobald sie geändert wurde.
+            </p>
+            <h3 id="hosterprioritat">Hosterpriorität</h3>
+            <div class="tab">
+                <p>
+                    Die Hosterpriorität ist die Reihenfolge in der geprüft wird ob dieser Hoster bei der ausgewählten 
+                    Episode verfügbar ist. Bedeutet was in der Liste weiter oben steht wird als erstes versucht zu öffnen.
+                    Unterstütze, also Hoster die im Medienspieler geöffnet werden, sind als fett markiert.
+                </p>
+                <p>
+                    Die Liste kann durch klicken und ziehen umsortiert werden.
+                </p>
+            </div>
+            <h3 id="aussehen">Aussehen</h3>
+            <div class="tab">
+                <p>
+                    Das Aussehen kann durch das Dropdown-Menü eingestellt werden. Diese Liste kann einfach erweitert werden.
+                    Dies ist auch erwünscht.
+                </p>
+                <p>
+                    Zum erstellen des Eigenen Aussehens geht es <a href="./customstyles.html">Hier</a>
+                </p>
+            </div>
+            <h3 id="general">General</h3>
+            <div class="tab">
+                <p>
+                    Einstellungen zur BS.to Oberfläche.
+                    <ol>
+                        <li><strong>Enable Log</strong>. Schaltet das Speichern der 50 letzten geschauten Episoden aus.</li>
+                        <li>
+                            <strong>Enable Automatic Autoplay Turn On</strong>.
+                            Schaltet das automatische anschalten des Autoplays beim öffnen einer Episode an.
+                        </li>
+                        <li>
+                            <strong>Enable Automatic Scroll To First Unwatched Episode</strong>. 
+                            Schaltet das automatische Scrollen zur ersten ungeschauten Episode beim Aufruf
+                            einer Staffel an.
+                        </li>
+                        <li>
+                            <strong>Update Favorised Seriesseason On New Season Watch</strong>. 
+                            Anschalten des automatischen favorisieren der Staffel dessen Episode angeschaut wurde,
+                            wenn diese Serie Favorisiert ist.
+                        </li>
+                        <li>
+                            <strong>Don't Play [In Episode X Enthalten] - Episodes</strong>.
+                            Schaltet das überspringen der leeren Episoden an. Leere Episoden enstehen wenn diese Episode
+                            schon in der vorherigen Episode enthalten ist.
+                        </li>
+                        <li>
+                            <strong>Enable Sync Series In Favmenu [Turn Off On Mobiledevices]</strong>. 
+                            Schaltet das Synchronisieren der Favoriten an. Das Synchronisieren prüft bei jedem Laden der 
+                            Favoriten, ob die komplette Serie geschaut wurde. 
+                        </li>
+                        <li>
+                            <strong>Sync Only Watched Series In Favmenu</strong>. 
+                            Schaltet das Synchronisieren nur der komplett angeschauten Favoriten an. Diese Einstellung
+                            ist nur sinvoll auszuschalten wenn das Script mit dem gleichen Account auf Unterschiedlichen
+                            Geräten verwendet wird. So kann sichergegangen werden das der Geschautzustand bei allen Geräten
+                            immer gleich ist. Dies verlängert die Ladezeit der Favoriten je nach dem wie viele Serien in den
+                            Favoriten gespeichert sind. (Ca 15 Sekunden für 27 Favoriten. Prozessor-, Browser- und Internetabhängig)
+                        </li>
+                        <li>
+                            <strong>Enable Episodesearch. Seriessearch on Episodelist Will Be Disabled</strong>.
+                            Schaltet die Episodensuche auf der Episodenliste an. Dabei wird die Seriensuche auf der
+                            Episodenliste ausgeschaltet.
+                        </li>
+                        <li>
+                            <strong>Reverse Log</strong>.
+                            Schaltet das umdrehen des Logs an. Dabei sind neuere Einträge unten.
+                        </li>
+                        <li>
+                            <strong>Show Last Season As Startpage</strong>. 
+                            Schaltet die letzte Episodenliste als Startseite (BS.to) an.
+                        </li>
+                        <li><strong>Timer Time For Autoplay [Sec]</strong>. Zeit beim Autoplay bis die nächste Episode startet.</li>
+                        <li>
+                            <strong>Time Till Next Listupdate [Days]</strong>.
+                            Tage bis die Serienliste aktualisiert wird. Dabei werden neue Serien geladen.
+                            Episoden sind immer aktualisiert.
+                        </li>
+                        <li>
+                            <strong>Time Till Serieslist Asynchron Load [Ms]</strong>. 
+                            Die Zeit bis die Serien der Serienliste Asynchron, wärend die Liste angezeit ist, geladen wird.
+                            Diese Einstellung ist nur bei extrem langsamen Rechnern oder bei
+                            [Min Characters In Search Before List Shows] = 0 zu beachten.
+                        </li>
+                        <li>
+                            <strong>Min Characters In Search Before List Shows</strong>. 
+                            Minmale Zeichen die in die Suchleiste getippt werden müssen bevor Ergebnisse in der
+                            Serienliste angezeigt werden. Bei null Zeichen wird direkt beim aufruf der Serienliste
+                            alle Serien angezeigt. Dies dauert länger und kann zu weiteren nachteilen kommen. Auch können 
+                            alle Serien angezeigt werden, wenn in die Suchleiste "genre:" eingetragen wird.
+                        </li>
+                        <li><strong>Manual Update List</strong>. Aktualisiert die Serienliste.</li>
+                        <li><strong>Clear Log</strong>. Löscht alle Logeinträge.</li>
+                    </ol>
+                </p>
+            </div>
+            <h3 id="medienspieler">Medienspieler</h3>
+            <div class="tab">
+                <p>
+                    Einstellungen zum Medienspieler.
+                    <ol>
+                        <li>
+                            <strong>Close On End</strong>. 
+                            Schaltet das automatische schließen des Videos an, wenn dieses beendet wird.
+                        </li>
+                        <li>
+                            <strong>Enable Timeline Preview</strong>.
+                            Schaltet die Zeitleistenvorschau an. Die Zeitleistenvorschau zeigt, wärend der Benutzer
+                            über die Zeitleiste fährt, in Abständen ein Bildvorschau zur markierten Zeit an. Je schneller
+                            das Internet, desto schneller werden diese Bilder generiert. Diese Funktion benötig
+                            viel Bandbreite. Deshalb ist es zu empfehlen diese Funktion auszuschalten wenn das Video am
+                            Anfang schlecht lädt. Diese Funktion ist nicht zu 100% stabil und kann unter umstanden manchmal
+                            nicht funktionieren.
+                        </li>
+                        <li>
+                            <strong>Preview Image Steps</strong>. 
+                            Anzahl an Abständen in denen Vorschaubilder Angezeigt werden. Je mehr Abstände, desto
+                            mehr Bilder werden generiert. Das Video wird in X teile geteilt und an jedem Anfand eines
+                            Teiles das Anfangsbild gespeichert. Diese Bilder werden dann, falls diese schon vorhanden sind,
+                            beim fahren über die Zeitleiste, angezeigt.
+                        </li>
+                        <li>
+                            <strong>Timer Time For Controlls Hide [Sec]</strong>.
+                            Zeit bis, nach dem der Mauszeiger nicht mehr bewegt wird, die Videoknöpfe wieder verschwinden.
+                        </li>
+                        <li>
+                            <strong>Timerstep For Keycontroll [Sec]</strong>. 
+                            Zeit die Vorgespuhlt oder Zurückgespuhlt wird wenn mit den Pfeiltasten die Zeit verstellt wird.
+                        </li>
+                        <li>
+                            <strong>Volumestep For Keycontroll. Maxvolume: 100</strong>.
+                            Lautstärke die verstellt wird wenn mit den Pfeiltasten oder mit dem Mausrad
+                            die Lautstärke verstellt wird.
+                        </li>
+                    </ol>
+                </p>
+            </div>
         </div>
         
         <h2 id="weitereoptimierungen">Weitere Optimierungen</h2>
@@ -453,8 +622,6 @@
                 </p>
             </div>
         </div>
-        
-        
         
     </body>
 </html>

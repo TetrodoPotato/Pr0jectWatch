@@ -57,37 +57,31 @@
         
             .colCode {
                 border: 1px solid #000;
-                display:inline-block;
-                height: 28px;;
+                height: 28px;
                 width:50px;
-                line-height:28px !important;
-                margin: 0 0 0 5px;
             }
             
-            edit {
-                display:block;
+            tr {
                 height:30px;
-                margin: 5px 0px;
                 background-color:#EEE;
-                min-width:535px;
             }
             
-            edit span {
-                display:inline-block;
-                width:400px;
-                line-height:30px;
-                margin:0 0 0 20px;
+            #editor .editRow {
+                padding:0 0 0 20px;
             }
             
-            .editTitle {
-                display:block;
+            .editTitle td{
                 height:30px;
-                margin: 20px 0px 5px 0px;
                 background-color:#000;
                 color:#FFF;
-                padding:0px 20px;
-                line-height:30px;
+                padding:5px 20px;
                 font-weight:bold;
+            }
+            
+            #editor {
+                width:100%;
+                border-collapse: separate;
+                border-spacing: 0px 5px;
             }
         </style>
     
@@ -162,7 +156,7 @@
                 </p>
                 
                 <p>
-                    <strong>Verändern der Schriftart und Schriftgröße</strong>
+                    <strong>Verändern der Schriftart und Schriftgröße</strong><br/>
                     Die Schriftgröße wird am Anfang der Schriftart geschrieben. Diese werden
                     meist in Pixel (px) angegeben. Wenn du dennoch das Verlangen hast andere
                     größeneinheiten zu verwenden. Kannst du
@@ -178,7 +172,7 @@
                 </p>
                 
                 <p>
-                    <strong>Und jetzt?</strong>
+                    <strong>Und jetzt?</strong><br/>
                     Nach dem alle änderungen vorgenommen wurden kann ganz unten auf den Speichernknopf
                     gedrückt werden. Das Dokument muss als .css gespeichert werden. Die Datei kann erneut 
                     verändert werden. Dafür muss der Durchsuchenknopf gedrückt werden und die Datei ausgewählt
@@ -186,7 +180,7 @@
                 </p>
                 
                 <p>
-                    <strong>Wie benutze ich nun die Datei?</strong>
+                    <strong>Wie benutze ich nun die Datei?</strong><br/>
                     Die Datei muss irgendwo hochgeladen werden bei dem die Datei als .css wieder angezeigt wird.
                     Am besten eignet sich dafür Dropbox deshalb werde ich als Uploader Dropbox vorstellen.
                     (Zur Info: raw.github.com gibt die .css als Text wieder und kann daher nicht verwendet werden.)
@@ -239,7 +233,7 @@
             </div>
         
             <h2>Editor</h2>
-            <div class="tab" id="editor"></div>
+            <table class="tab" id="editor"></table>
             
             <div class="tab" id="buttons">
                 <button id="speichern">Speichern</button>
@@ -250,8 +244,7 @@
         
         <script>
             $('#speichern').bind('click', function(){
-                //window.textArr
-                $('edit').each(function (){
+                $('#editor tr.dataRow').each(function (){
                     var key = '--' + $(this).find('input').attr('id').trim() + ':';
                     var keyValue = $(this).find('input').val();
                     
@@ -335,7 +328,7 @@
             }
         
             function addEdit(string) {
-                string = string.split(':');
+                string = string.trim().split(':');
                 
                 if(string.length != 2){
                     alert('Falsches Format: ' + string[0]);
@@ -344,9 +337,9 @@
                 string[0] = string[0].replace('--','').trim();
                 string[1] = string[1].replace(';','').trim();
                 
-                $('#editor').append('<edit><span class="editRow">' + string[0].replace(/([A-Z])/g, ' $1').trim() + '</span><input id="' + string[0] + '" type="text" value="' +  string[1] + '"><div class="colCode" style="background-color:' + string[1] + '; font:' + string[1] + ';">Text</div></edit>');
+                $('#editor').append('<tr class="dataRow"><td class="editRow">' + string[0].replace(/([A-Z])/g, ' $1').trim() + '</td><td><input id="' + string[0] + '" type="text" value="' +  string[1] + '"></td><td class="colCode" style="background-color:' + string[1] + '; font:' + string[1] + ';">Text</td></tr>');
                 $('#' + string[0]).on('input',  function () {
-                    $(this).next('div').css({
+                    $(this).closest('td').next('td').css({
                         'background-color':$(this).val(),
                         'font':$(this).val()     
                     });
@@ -354,7 +347,7 @@
             }
         
             function addInfo(string) {
-                $('#editor').append('<span class="editTitle">' + string.replace('/*','').replace('*/','').trim() + '</span>');
+                $('#editor').append('<tr class="editTitle"><td colspan="3">' + string.replace('/*','').replace('*/','').trim() + '</td></tr>');
             }
         
             function openFile(text) {
@@ -363,7 +356,6 @@
                 window.textArr = text.split('\n');
                 
                 $.each(window.textArr, function(index, value){
-                    window.textArr[index] = window.textArr[index].trim();
                     if(window.textArr[index].includes('--') && !window.textArr[index].includes('/*')){
                         addEdit(window.textArr[index]);
                     } else if(window.textArr[index].includes('/*')){

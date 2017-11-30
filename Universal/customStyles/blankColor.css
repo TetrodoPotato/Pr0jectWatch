@@ -1,8 +1,7 @@
 /*Style %STYLENAME% By %USERNAME%*/
 :root {    
     /*Main Site Defaults*/
-    --SiteFontSize:14px;
-    --SiteFontFamily:-apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --SiteFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
     --BackgroundColor:#FFF;
     
     /*Menu*/
@@ -392,7 +391,7 @@
     
     --MediaplayerTimeSelectTextColor:#FFF;
     
-    --MediaplayerControlsBackgroundColor:rgba(22,22,24,0.8);
+    --MediaplayerControlsBackgroundColor:rgba(0,0,0,0.7);
     
     --MediaplayerButtonsColor:#2196F3;
     --MediaplayerButtonsColorHover:#33adff;
@@ -440,7 +439,7 @@
     --PlaylistButtonTextBackgroundColorClick:#1d6799;
     
     --PlaylistListBackgroundColor:#FFF;
-    --PlaylistListTextFont::14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --PlaylistListTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
     
     --PlaylistListInfoTextColor:#000;
     --PlaylistListInfoTextBackgroundColor:#FFF;

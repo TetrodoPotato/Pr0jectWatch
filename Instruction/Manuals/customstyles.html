@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <style>
+            body {
+                padding:20px;
+                text-align:justify;
+                background-color:#F7F7F7;
+            }
+        
+            a {
+                color:#00F;
+                text-decoration:none;
+            }
+            
+            a:hover {
+                background-color:#DDD;
+            }
+            
+            #inhalt a {
+                color:#444;
+                font-weight:bold;
+            }
+            
+            .tab {
+                margin:0 0 0 20px;
+            }
+            
+            ol {
+                list-style: none;
+                counter-reset: item;
+                margin: 0 0 0 -10px;
+            }
+            
+            ol li {
+                counter-increment: item;
+                margin-bottom: 20px;
+                
+                position: relative;
+                width: 100%;
+            }
+            
+            ol li:before {
+                margin-right: 10px;
+                content: counter(item);
+                background-color:black;
+                color: white;
+                width: 1.2em;
+                text-align: center;
+                display: inline-block;
+                
+                height: 100%;
+                position: absolute;
+                left: -30px;
+                top: 0;
+            }
+        
+            .colCode {
+                border: 1px solid #000;
+                display:inline-block;
+                height: 28px;;
+                width:50px;
+                line-height:28px !important;
+                margin: 0 0 0 5px;
+            }
+            
+            edit {
+                display:block;
+                height:30px;
+                margin: 5px 0px;
+                background-color:#EEE;
+                min-width:535px;
+            }
+            
+            edit span {
+                display:inline-block;
+                width:300px;
+                line-height:30px;
+                margin:0 0 0 20px;
+            }
+            
+            .editTitle {
+                display:block;
+                height:30px;
+                margin: 20px 0px 5px 0px;
+                background-color:#000;
+                color:#FFF;
+                padding:0px 20px;
+                line-height:30px;
+                font-weight:bold;
+            }
+        </style>
+    
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+        <title>Pr0ject Watch Eigenes Aussehen</title>
+        <meta charset="UTF-8"> 
+    </head>
+    
+    <body>
+        <h1>Eigenes Aussehen</h1>
+        <div class="tab">
+            <p>
+                Stören dich die Standartfarben... ändere sie selbst. Mit dieser Einweisung
+                und dem einfachen Styleeditor, der in Echtzeit alle Farben und Schriftarten anzeigt,
+                hast auch du als totaler Anfänger, der noch nie eine Datei in einem Editor geöffnet
+                hat, die möglichkeiten alle Farben und Schriftarten der Hauptseite und des Medienspielers zu ändern. 
+            </p>
+            <p>
+                Die Möglichkeit seine eigene Styledatei selbst zu erstellen bietet viele möglichkeiten,
+                von einfachen Farbänderungen bis zur kompletten änderung des Aussehens.
+            </p>
+        
+            <h2>Für Anfänger</h2>
+            <div class="tab">
+                <p>
+                    Für Anfänger ist dieser Editor am besten geeignet. Aber erstmal, was kann der Editor:
+                    <ol>
+                        <li>Ändern aller benutzen Farben (außer Schatten ... die sind Schwarz).</li>
+                        <li>Ändern der Schriftgröße.</li>
+                        <li>Ändern der Schriftart.</li>
+                        <li>Anzeige der Benutzen Farben und Schrift in Echtzeit.</li>
+                        <li>Einfaches Speichern und Laden der Styles.</li>
+                    </ol>
+                    
+                    <p>Was du nicht mit dem Editor schaffen wirst:</p>
+                    <ol>
+                        <li>Ändern der größe einzelner Flächen.</li>
+                        <li>Hinzufügen von Hover-, Click- oder Focuseigenschaften.</li>
+                        <li>Insgesammt das Hinzufügen weiterer Eigenschaften. (Die Liste ist Unnötig)</li>
+                    </ol>
+                </p>
+                <p>
+                    Die weiteren Informationen könnten noch hilfreich sein.
+                </p>
+                
+                <p>
+                    <strong>Was sind Hex-Farben?</strong><br/>
+                    Hex-Farben werden meist mit einer Raute und Sechs folgenden Hexadezimalnummern geschrieben.
+                    '#FFFFFF'. Dabei Beschreiben jeweils zwei Nummern einzelne Farben. Rot, Grün und Blau.
+                    Diese Farben haben keine Transparenz doch schon damit können 16.581.375 Farben beschrieben
+                    werden. Zwei aufeiander Folgende Zeichen können abgekürtzt werden. '#FF44BB' zu '#F4B'.
+                    <a href="https://html-color-codes.info/webfarben_hexcodes/">Mehr erfahren</a>
+                </p>
+                <p>
+                    Hexfarben können auch mit Farbnamen beschrieben werden. Diese Farbnamen bieten aber 
+                    weit nicht die Vielfallt die ein Hexcode hat. 
+                    <a href="http://tomheller.de/theholycymbal/html-farben.html">Farbnamen</a>
+                </p>
+                <p>
+                    Doch es gibt noch weitere möglichkeiten Farben zu beschreiben. Darauf wird aber nicht mehr
+                    eingegangen. Wenn dennoch Interesse besteht ... 
+                    <a href="https://www.w3schools.com/css/css3_colors.asp">Hier</a>
+                </p>
+                <p>
+                    Bei der Farbfindung kann der 
+                    <a href="https://www.w3schools.com/colors/colors_picker.asp">Color Picker von W3</a>
+                    oder der 
+                    <a href="https://www.google.de/search?q=color+picker&ie=utf-8&oe=utf-8&client=firefox-b-ab&gfe_rd=cr&dcr=0&ei=uWYfWuyXMPTM8ge5s5TwDw">
+                        Color Picker von Google
+                    </a> 
+                    helfen.
+                </p>
+                
+                <p>
+                    <strong>Verändern der Schriftart und Schriftgröße</strong>
+                    Die Schriftgröße wird am Anfang der Schriftart geschrieben. Diese werden
+                    meist in Pixel (px) angegeben. Wenn du dennoch das Verlangen hast andere
+                    größeneinheiten zu verwenden. Kannst du
+                    <a href="https://www.w3.org/Style/Examples/007/units.de.html">dass hier</a> nachlesen.
+                </p>
+                <p>
+                    Schriftarten werden nach der Schriftgröße angegeben. Meistens ist es von 
+                    Nöten mehrere Schriftarten anzugeben um sicherzugeben das diese auf jedem Betriebssystem
+                    funktionieren. Wenn nur eine Schriftart verwendet wird sollte eine 
+                    <a href="https://www.w3schools.com/cssref/css_websafe_fonts.asp">Sichere Schriftart</a>
+                    gewählt werden. Bei mehreren Schriftarten werden diese mit einem Komma getrennt. Bei 
+                    Schriftarten mit Leerzeichen werden diese in Anführungszeichen Geschrieben. 18px "Die Schriftart",WeitereSchriftart.
+                </p>
+                
+                <p>
+                    <strong>Und jetzt?</strong>
+                    Nach dem alle änderungen vorgenommen wurden kann ganz unten auf den Speichernknopf
+                    gedrückt werden. Das Dokument muss als .css gespeichert werden. Die Datei kann erneut 
+                    verändert werden. Dafür muss der Durchsuchenknopf gedrückt werden und die Datei ausgewählt
+                    werden. Gespeichert wird wieder gleich.
+                </p>
+                
+                <p>
+                    <strong>Wie benutze ich nun die Datei?</strong>
+                    Die Datei muss irgendwo hochgeladen werden bei dem die Datei als .css wieder angezeigt wird.
+                    Am besten eignet sich dafür Dropbox deshalb werde ich als Uploader Dropbox vorstellen.
+                    (Zur Info: raw.github.com gibt die .css als Text wieder und kann daher nicht verwendet werden.)
+                    
+                    Schritte:
+                    <ol>
+                        <li><a href="https://www.dropbox.com/login">Dropbox Account</a> Anlegen.</li>
+                        <li><a href="https://www.dropbox.com/home">Dropbox / Meine Dateien</a> öffnen.</li>
+                        <li>.css Datei Hochladen.</li>
+                        <li>Über die Hochgeladene Datei fahren und auf "Freigeben" klicken</li>
+                        <li>Auf "Link erstellen" klicken</li>
+                        <li>Auf "Link kopieren" klicken</li>
+                        <li>
+                            Den Link bei eingeschaltetem Script unter
+                            <a href="https://bs.to/settings">"Einstellungen"</a>
+                            - "Style" - "Custom Colors" Einfügen. <strong>!! Noch nicht auf "Apply Custom Style"
+                            klicken !!!</strong>
+                        </li>
+                        <li>
+                            Den Link von "https://www.dropbox.com/s/fk4acdx4u48gsqs/blankColor.css?dl=0"
+                            auf "https://dl.dropbox.com/s/fk4acdx4u48gsqs/blankColor.css" ändern.
+                            ("www" zu "dl" ändern und "?dl=0" löschen)
+                        </li>
+                        <li>Auf "Apply Custom Style" klicken.</li>
+                        <li>Fertig</li>
+                    </ol>
+                </p>
+            
+            </div>
+        
+            <h2>Für Fortgeschrittene</h2>
+            <div class="tab">
+                <p>
+                    Die Standartdatei kann durch den klick auf Speichern am Ende dieser Seite herruntergeladen werden.
+                    Unter ':root' können noch weitere Eigenschaften definiert werden. Diese überschreiben in fast allen
+                    Fällen die Standarteigenschaften.
+                </p>
+                <p>
+                    Für weitere Informationen kann beim 'Für Anfänger' Teil vorbeigeschaut werden.
+                </p>
+            </div>
+        
+            <h2>Wissenswertes</h2>
+            <div class="tab">
+                <p>
+                    Wenn du sehr Stolz auf dein Erschaffenes bist kannst du deinen Dateilink mit Usernamen und Stylenamen. An mich schicken.
+                    Vielleicht integriere ich es permanent. Github E-Mail ist nicht verwendbar.
+                    Über die >_ Privaten Nachrichten, oder <a href="https://github.com/Kartoffeleintopf/Pr0jectWatch/issues">Issues</a>.
+                </p>
+            </div>
+        
+            <h2>Editor</h2>
+            <div class="tab" id="editor"></div>
+            
+            <div class="tab" id="buttons">
+                <button id="speichern">Speichern</button>
+                Laden <input type="file" onchange='readText(this)' />
+            </div>
+        </div>
+        
+        
+        <script>
+            $('#speichern').bind('click', function(){
+                //window.textArr
+                $('edit').each(function (){
+                    var key = '--' + $(this).find('input').attr('id').trim() + ':';
+                    var keyValue = $(this).find('input').val();
+                    
+                    $.each(window.textArr, function(index, value){
+                        if(value.includes(key)) {
+                            window.textArr[index] = '    ' + key + keyValue + ';';
+                        }
+                    });
+                });
+                
+                var saveString = window.textArr.join('\n');
+                download(saveString, 'style.css', 'text/css');
+            });
+        
+            function displayContents(txt) {
+                openFile(txt);
+            }  
+        
+            var reader; //GLOBAL File Reader object for demo purpose only
+            
+            function checkFileAPI() {
+                if (window.File && window.FileReader && window.FileList && window.Blob) {
+                    reader = new FileReader();
+                    return true; 
+                } else {
+                    alert('The File APIs are not fully supported by your browser. Fallback required.');
+                    return false;
+                }
+            }
+        
+            function readText(filePath) {
+                if(!checkFileAPI()){
+                    return;
+                }
+            
+                var output = ""; //placeholder for text output
+                if(filePath.files && filePath.files[0]) {           
+                    reader.onload = function (e) {
+                        output = e.target.result;
+                        displayContents(output);
+                    };//end onload()
+                    reader.readAsText(filePath.files[0]);
+                }//end if html5 filelist support
+                else if(ActiveXObject && filePath) { //fallback to IE 6-8 support via ActiveX
+                    try {
+                        reader = new ActiveXObject("Scripting.FileSystemObject");
+                        var file = reader.OpenTextFile(filePath, 1); //ActiveX File Object
+                        output = file.ReadAll(); //text contents of file
+                        file.Close(); //close file "input stream"
+                        displayContents(output);
+                    } catch (e) {
+                        if (e.number == -2146827859) {
+                            alert('Unable to access local files due to browser security settings. ' + 
+                             'To overcome this, go to Tools->Internet Options->Security->Custom Level. ' + 
+                             'Find the setting for "Initialize and script ActiveX controls not marked as safe" and change it to "Enable" or "Prompt"'); 
+                        }
+                    }       
+                }
+                else { //this is where you could fallback to Java Applet, Flash or similar
+                    return false;
+                }       
+                return true;
+            } 
+        
+            function download(data, filename, type) {
+                var file = new Blob([data], {type: type});
+                if (window.navigator.msSaveOrOpenBlob) // IE10+
+                    window.navigator.msSaveOrOpenBlob(file, filename);
+                else { // Others
+                    var a = document.createElement("a"),
+                            url = URL.createObjectURL(file);
+                    a.href = url;
+                    a.download = filename;
+                    document.body.appendChild(a);
+                    a.click();
+                    setTimeout(function() {
+                        document.body.removeChild(a);
+                        window.URL.revokeObjectURL(url);  
+                    }, 0); 
+                }
+            }
+        
+            function addEdit(string) {
+                string = string.split(':');
+                
+                if(string.length != 2){
+                    alert('Falsches Format: ' + string[0]);
+                }
+                
+                string[0] = string[0].replace('--','').trim();
+                string[1] = string[1].replace(';','').trim();
+                
+                $('#editor').append('<edit><span class="editRow">' + string[0].replace(/([A-Z])/g, ' $1').trim() + '</span><input id="' + string[0] + '" type="text" value="' +  string[1] + '"><div class="colCode" style="background-color:' + string[1] + '; font:' + string[1] + ';">Text</div></edit>');
+                $('#' + string[0]).on('input',  function () {
+                    $(this).next('div').css({
+                        'background-color':$(this).val(),
+                        'font':$(this).val()     
+                    });
+                });
+            }
+        
+            function addInfo(string) {
+                $('#editor').append('<span class="editTitle">' + string.replace('/*','').replace('*/','').trim() + '</span>');
+            }
+        
+            function openFile(text) {
+                $('#editor').empty();
+            
+                window.textArr = text.split('\n');
+                
+                $.each(window.textArr, function(index, value){
+                    window.textArr[index] = window.textArr[index].trim();
+                    if(window.textArr[index].includes('--') && !window.textArr[index].includes('/*')){
+                        addEdit(window.textArr[index]);
+                    } else if(window.textArr[index].includes('/*')){
+                        addInfo(window.textArr[index]);
+                    }
+                });
+            }
+        
+            $.get('https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/customStyles/blankColor.css', function (text) {
+                openFile(text);
+            });
+        </script>
+    </body>
+</html>
+
+

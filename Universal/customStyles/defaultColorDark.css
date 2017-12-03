@@ -172,6 +172,10 @@
     --FavoriteMenuMessageTextFont:var(--DefaultTextSize) var(--BaseFont);    
     --FavoriteMenuMessageTextColor:#2196F3;
 
+    --FavoriteMenuCategoryTextFont:var(--DefaultTextSize) var(--BaseFont);
+    --FavoriteMenuCategoryTextColor:#FFF;
+    --FavoriteMenuCategoryBackgroundColor:#000;
+    
     /*ListRowSegment Series/Episodes*/
     --ListRowSegmentPrimaryBackgroundColor:#222;
     --ListRowSegmentPrimaryBackgroundColorHover:#444;
@@ -483,6 +487,38 @@
     
     --PlaylistNoEntryTextFont:var(--DefaultTextSize) var(--BaseFont);
     --PlaylistNoEntryTextColor:#FFF;
+    
+    /*Favorite Category Styles*/
+    --FavoriteCategoryTitleTextFont:20px var(--BaseFont);
+    --FavoriteCategoryTitleTextColor:#CCC;
+    --FavoriteCategoryTitleTextBackgroundColor:#000;
+    
+    --FavoriteCategoryEditDeleteTextFont:var(--DefaultTextSize) var(--BaseFont);
+    --FavoriteCategoryEditDeleteTextColor:var(--BackBase);
+    --FavoriteCategoryEditDeleteTextColorHover:var(--BackHover);
+    --FavoriteCategoryEditDeleteTextColorClick:var(--BackClick);
+    
+    --FavoriteCategoryListTextFont:var(--DefaultTextSize) var(--BaseFont);
+    --FavoriteCategoryListBackgroundColor:#161617;
+    
+    --FavoriteCategoryListIndexTextColor:#FFF;
+    --FavoriteCategoryListIndexBackgroundColor:#000;
+    
+    --FavoriteCategoryListSeasonTextColor:#FFF;
+    --FavoriteCategoryListSeasonBackgroundColor:#000;
+    --FavoriteCategoryListSeasonBackgroundColorWatched:var(--BackBase);
+    
+    --FavoriteCategoryListTitleTextColor:#FFF;
+    
+    --FavoriteCategoryAddCategoryButtonTextFont:var(--DefaultTextSize) var(--BaseFont);
+    
+    --FavoriteCategoryAddCategoryButtonTextColor:var(--TextBase);
+    --FavoriteCategoryAddCategoryButtonTextColorHover:var(--TextHover);
+    --FavoriteCategoryAddCategoryButtonTextColorClick:var(--TextClick);
+    
+    --FavoriteCategoryAddCategoryButtonBackgroundColor:var(--BackBase);
+    --FavoriteCategoryAddCategoryButtonBackgroundColorHover:var(--BackHover);
+    --FavoriteCategoryAddCategoryButtonBackgroundColorClick:var(--BackClick);
 }
 
 body {

@@ -146,6 +146,10 @@
     --FavoriteMenuMessageTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;    
     --FavoriteMenuMessageTextColor:#2196F3;
 
+    --FavoriteMenuCategoryTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --FavoriteMenuCategoryTextColor:#000;
+    --FavoriteMenuCategoryBackgroundColor:#CCC;
+    
     /*ListRowSegment Series/Episodes*/
     --ListRowSegmentPrimaryBackgroundColor:#FFF;
     --ListRowSegmentPrimaryBackgroundColorHover:#EEE;
@@ -457,6 +461,38 @@
     
     --PlaylistNoEntryTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
     --PlaylistNoEntryTextColor:#000;
+    
+    /*Favorite Category Styles*/
+    --FavoriteCategoryTitleTextFont:20px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --FavoriteCategoryTitleTextColor:#000;
+    --FavoriteCategoryTitleTextBackgroundColor:#EEE;
+    
+    --FavoriteCategoryEditDeleteTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --FavoriteCategoryEditDeleteTextColor:#2196F3;
+    --FavoriteCategoryEditDeleteTextColorHover:#33adff;
+    --FavoriteCategoryEditDeleteTextColorClick:#1d6799;
+    
+    --FavoriteCategoryListTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    --FavoriteCategoryListBackgroundColor:#FFF;
+    
+    --FavoriteCategoryListIndexTextColor:#FFF;
+    --FavoriteCategoryListIndexBackgroundColor:#000;
+    
+    --FavoriteCategoryListSeasonTextColor:#FFF;
+    --FavoriteCategoryListSeasonBackgroundColor:#000;
+    --FavoriteCategoryListSeasonBackgroundColorWatched:#2196F3;
+    
+    --FavoriteCategoryListTitleTextColor:#000;
+    
+    --FavoriteCategoryAddCategoryButtonTextFont:14px -apple-system,BlinkMacSystemFont,Segoe UI,Helvetica Neue,Arial,Helvetica,Geneva,sans-serif;
+    
+    --FavoriteCategoryAddCategoryButtonTextColor:#FFF;
+    --FavoriteCategoryAddCategoryButtonTextColorHover:#FFF;
+    --FavoriteCategoryAddCategoryButtonTextColorClick:#FFF;
+    
+    --FavoriteCategoryAddCategoryButtonBackgroundColor:#2196F3;
+    --FavoriteCategoryAddCategoryButtonBackgroundColorHover:#33adff;
+    --FavoriteCategoryAddCategoryButtonBackgroundColorClick:#1d6799;
 }
 
 /*Needed Do Not Delete*/

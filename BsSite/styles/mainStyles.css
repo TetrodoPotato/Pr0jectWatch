@@ -553,6 +553,9 @@ input:checked + .slider:before {
 }
 
 .navRow:hover, a:focus .navRow {
+    -webkit-transition: all 0s;
+    transition: all 0s;
+    
     background-color:var(--SideMenuNavigationBackgroundHover);
     color:var(--SideMenuNavigationTextColorHover);
     fill:var(--SideMenuIconColorHover);
@@ -644,6 +647,20 @@ input:checked + .slider:before {
     margin:5px 0px -5px 0px;
 }
 
+.favCatRow td {
+    width:283px;
+    padding: 5px 0px 5px 20px;
+    
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    
+    font: var(--FavoriteMenuCategoryTextFont);
+    color: var(--FavoriteMenuCategoryTextColor);
+    font-weight:900;
+    background-color:var(--FavoriteMenuCategoryBackgroundColor);
+}
+
 .favRow {
     fill:var(--FavoriteMenuCloseIconColor);
     font:var(--FavoriteMenuRowTextFont);
@@ -654,6 +671,9 @@ input:checked + .slider:before {
 }
 
 .favRow:hover , .favRow:focus{
+    -webkit-transition: all 0s;
+    transition: all 0s;
+    
     background-color:var(--FavoriteMenuRowBackgroundColorHover);
 }
 
@@ -1123,6 +1143,9 @@ input:checked + .slider:before {
 }
 
 .nameWatchedContainer:hover .titleContainer, .seriesContainer:focus .titleContainer {
+    -webkit-transition: all 0s;
+    transition: all 0s;
+    
     background-color:var(--ListRowSegmentPrimaryBackgroundColorHover);
     color:var(--ListRowSegmentTitleTextColorHover);
 }
@@ -2253,7 +2276,7 @@ body.dragging, body.dragging * {
 }
 
 #playlistList div {
-    display:inline-block;
+    float:left;
 }
 
 #playlistList li .delCol {
@@ -2262,10 +2285,8 @@ body.dragging, body.dragging * {
     padding:5px;
     fill:var(--PlaylistListDeleteIconColor);
     background-color:var(--PlaylistListDeleteIconBackgroundColor);
-    position: relative;
-    top:-4px;
-    z-index: 0;
     cursor:pointer;
+    border-radius: 0 3px 3px 0;
     
     -webkit-transition: fill 0.2s;
     transition: fill 0.2s;
@@ -2288,6 +2309,8 @@ body.dragging, body.dragging * {
     text-align: center;
     font-weight: bold;
     overflow:hidden;
+    
+    border-radius: 3px 0 0 3px;
 }
 
 #playlistList li .infoCol{
@@ -2352,6 +2375,158 @@ body.dragging, body.dragging * {
 #noEntry {
     font:var(--PlaylistNoEntryTextFont);
     color:var(--PlaylistNoEntryTextColor);
+}
+
+/*Favorite Page*/
+#catMainList{
+    width:100%;
+    list-style-type: none;
+}
+
+#catMainList .swipeHolder {
+    margin: 0 0 50px 0;
+}
+
+.catTitle {
+    width:100%;
+    background-color:var(--FavoriteCategoryTitleTextBackgroundColor);
+    cursor:move;
+}
+
+.catMainTitle {
+    font:var(--FavoriteCategoryTitleTextFont);
+    font-weight:bold;
+    color:var(--FavoriteCategoryTitleTextColor);
+    margin: 0 10px 0 20px;
+    line-height:40px;
+}
+
+#titleInput {
+    font:var(--FavoriteCategoryTitleTextFont);
+    margin: 0 10px 0 20px;
+    line-height:40px;
+}
+
+.catTitle .editDelete { 
+    font:var(--FavoriteCategoryEditDeleteTextFont);
+    color:var(--FavoriteCategoryEditDeleteTextColor);
+    cursor:pointer;
+}
+
+.catTitle .editDelete:hover { 
+    color:var(--FavoriteCategoryEditDeleteTextColorHover);
+}
+
+.catTitle .editDelete:active { 
+    color:var(--FavoriteCategoryEditDeleteTextColorClick);
+}
+
+.catList {
+    width:100%;
+    list-style-type: none;
+    font:var(--FavoriteCategoryListTextFont);
+    
+    cursor:move;
+    margin: 0 0 50px 0;
+}
+
+.catList li {
+    height:30px;
+    width:100%;
+    line-height:30px;
+    margin: 5px 0;
+    
+    background-color:var(--FavoriteCategoryListBackgroundColor);
+    border-radius:3px;
+    
+    box-shadow: 0px 0px 7px rgba(0,0,0,0.8);
+}
+
+.catList li div {
+    float:left;
+    line-height:30px;
+}
+
+.catFavTitle {
+    height:30px;
+    padding: 0 0 0 20px;
+    width: -moz-calc(100%  - 170px);
+    width: -webkit-calc(100%  - 170px);
+    width: -o-calc(100%  - 170px);
+    width: calc(100%  - 170px);
+    
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+    
+    color:var(--FavoriteCategoryListTitleTextColor);
+    font-weight: bold;
+}
+
+.emptyCat {
+    height:30px;
+    width:100%;
+    padding: 0 0 0 20px;
+    color:var(--FavoriteCategoryListTitleTextColor);
+    font-weight: bold;
+    
+    overflow:hidden;
+    white-space:nowrap;
+    text-overflow:ellipsis;
+}
+
+.catFavSeason  {
+    height:30px;
+    width:120px;
+    color:var(--FavoriteCategoryListSeasonTextColor);
+    background-color: var(--FavoriteCategoryListSeasonBackgroundColor);
+    text-align: center;
+    font-weight: bold;
+    overflow:hidden;
+    
+    border-radius: 0 3px 3px 0;
+}
+
+.catFavWatched {
+    background-color: var(--FavoriteCategoryListSeasonBackgroundColorWatched);
+}
+
+.catFavIndex  {
+    height:30px;
+    width:30px;
+    color:var(--FavoriteCategoryListIndexTextColor);
+    background-color: var(--FavoriteCategoryListIndexBackgroundColor);
+    text-align: center;
+    font-weight: bold;
+    overflow:hidden;
+    
+    border-radius: 3px 0 0 3px;
+}
+
+#addCat {
+    width:100%;
+    height:30px;
+    font:var(--FavoriteCategoryAddCategoryButtonTextFont);
+    font-weight: bold;
+    color:var(--FavoriteCategoryAddCategoryButtonTextColor);
+    background-color: var(--FavoriteCategoryAddCategoryButtonBackgroundColor);
+    border:none;
+    margin:3px 0;
+    border-radius: 3px;
+    cursor: pointer;
+    margin: 20px 0 0 0;
+    -webkit-transition: background-color 0.2s, color 0.2s;
+    transition: background-color 0.2s, color 0.2s;
+}
+
+#addCat:hover {
+    color:var(--FavoriteCategoryAddCategoryButtonTextColorHover);
+    background-color: var(--FavoriteCategoryAddCategoryButtonBackgroundColorHover);
+}
+
+#addCat:active {
+    color:var(--FavoriteCategoryAddCategoryButtonTextColorClick);
+    background-color: var(--FavoriteCategoryAddCategoryButtonBackgroundColorClick);
 }
 
 /*Pseudo Style need for fakelistener*/

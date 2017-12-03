@@ -172,6 +172,10 @@
     --FavoriteMenuMessageTextFont:var(--DefaultTextSize) var(--BaseFont);    
     --FavoriteMenuMessageTextColor:#2196F3;
 
+    --FavoriteMenuCategoryTextFont:var(--DefaultTextSize) var(--BaseFont);
+    --FavoriteMenuCategoryTextColor:#000;
+    --FavoriteMenuCategoryBackgroundColor:#CCC;
+    
     /*ListRowSegment Series/Episodes*/
     --ListRowSegmentPrimaryBackgroundColor:#FFF;
     --ListRowSegmentPrimaryBackgroundColorHover:#EEE;
@@ -483,6 +487,38 @@
     
     --PlaylistNoEntryTextFont:var(--DefaultTextSize) var(--BaseFont);
     --PlaylistNoEntryTextColor:#000;
+    
+    /*Favorite Category Styles*/
+    --FavoriteCategoryTitleTextFont:20px var(--BaseFont);
+    --FavoriteCategoryTitleTextColor:#000;
+    --FavoriteCategoryTitleTextBackgroundColor:#EEE;
+    
+    --FavoriteCategoryEditDeleteTextFont:var(--DefaultTextSize) var(--BaseFont);
+    --FavoriteCategoryEditDeleteTextColor:var(--BackBase);
+    --FavoriteCategoryEditDeleteTextColorHover:var(--BackHover);
+    --FavoriteCategoryEditDeleteTextColorClick:var(--BackClick);
+    
+    --FavoriteCategoryListTextFont:var(--DefaultTextSize) var(--BaseFont);
+    --FavoriteCategoryListBackgroundColor:#FFF;
+    
+    --FavoriteCategoryListIndexTextColor:#FFF;
+    --FavoriteCategoryListIndexBackgroundColor:#000;
+    
+    --FavoriteCategoryListSeasonTextColor:#FFF;
+    --FavoriteCategoryListSeasonBackgroundColor:#000;
+    --FavoriteCategoryListSeasonBackgroundColorWatched:var(--BackBase);
+    
+    --FavoriteCategoryListTitleTextColor:#000;
+    
+    --FavoriteCategoryAddCategoryButtonTextFont:var(--DefaultTextSize) var(--BaseFont);
+    
+    --FavoriteCategoryAddCategoryButtonTextColor:var(--TextBase);
+    --FavoriteCategoryAddCategoryButtonTextColorHover:var(--TextHover);
+    --FavoriteCategoryAddCategoryButtonTextColorClick:var(--TextClick);
+    
+    --FavoriteCategoryAddCategoryButtonBackgroundColor:var(--BackBase);
+    --FavoriteCategoryAddCategoryButtonBackgroundColorHover:var(--BackHover);
+    --FavoriteCategoryAddCategoryButtonBackgroundColorClick:var(--BackClick);
 }
 
 body {

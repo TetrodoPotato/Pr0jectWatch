@@ -4,8 +4,7 @@
  */
 var focusNext = function (direction) {
     if ($('#menuBurgerContainer').attr('ison') == 'true') {
-        focusNextMenu(direction);
-        return;
+        return focusNextMenu(direction);
     }
 
     var elm = getNextTabIndex('contentContainer', window.lastFocusList, direction);
@@ -13,6 +12,7 @@ var focusNext = function (direction) {
         elm.focus();
         window.lastFocusList = elm;
         scrollToElement($(elm));
+        return true;
     }
 }
 
@@ -26,6 +26,7 @@ var focusNextMenu = function (direction) {
     var elm = getNextTabIndex('sideMenu', currentFoc, direction);
     if (elm != false) {
         elm.focus();
+        return true;
     }
 }
 
@@ -185,11 +186,13 @@ $(document).keydown(function (e) {
         e.preventDefault();
         $('#autoplay').click()
     } else if (e.keyCode === 38) { // Up Arrow
-        e.preventDefault();
-        focusNext(-1);
+        if(focusNext(-1)){
+            e.preventDefault();
+        }    
     } else if (e.keyCode === 40) { // Down Arrow
-        e.preventDefault();
-        focusNext(1);
+        if(focusNext(1)){
+            e.preventDefault();
+        } 
     } else if (e.keyCode === 77) { // M
         e.preventDefault();
         $('#menuBurgerContainer').attr('ison', ($('#menuBurgerContainer').attr('ison') != 'true'));

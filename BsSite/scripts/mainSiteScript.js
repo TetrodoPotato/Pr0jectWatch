@@ -168,15 +168,30 @@ var updateFavoriteMenu = async function () {
         return;
     }
 
-    var rows = getFavorites().map(a => getFavRow(a));
+    if (typeof getCatFavs === 'undefined') {
+        window.setTimeout(updateFavoriteMenu, 1000);
+        return;
+    }
 
     var $table = $("<table>", {
             "id": "favTable"
         });
 
-    $.each(rows, function (index, value) {
-        $table.append(value);
-    });
+    if (getData('catFav', false)) {
+        $.each(getCatFavs(getFavorites()),function(key,value){
+            if(value.length != 0){
+                $table.append(getFavCatRow(key));
+                
+                $.each(value.map(a => getFavRow(a)), function (index, value) {
+                    $table.append(value);
+                });
+            }            
+        });
+    } else {
+        $.each(getFavorites().map(a => getFavRow(a)), function (index, value) {
+            $table.append(value);
+        });
+    }
 
     $('#favoriteContainer').empty().append($table);
 
@@ -200,6 +215,12 @@ var getFavRow = function getFavRow(favObj) {
         'data-Season': favObj.FavSeason,
         'tabindex': -1
     }).html(closeB + title + season);
+}
+
+var getFavCatRow = function (name) {
+    return $("<tr>", {
+        'class': 'favCatRow'
+    }).html('<td colspan="3">' + name + '</td>');
 }
 
 var getFavDelIcon = function () {
@@ -356,10 +377,13 @@ var initSiteState = function () {
         $('#setNav .navRow').addClass('onSite');
     } else if (navigation === 'playlist') {
         $('#plyNav .navRow').addClass('onSite');
+    } else if (navigation === 'favorites') {
+        $('#favNav .navRow').addClass('onSite');
     }
 
     if (typeof getData === 'function') {
-        $('#autoplay').prop("checked", getData('autoplay', false));
+        $('#autoplay').prop("checked", getData('autoplay', false));    
+        $('#favNav').toggle(getData('catFav', false));
     } else {
         setTimeout(initSiteState, 500);
     }

@@ -5,6 +5,7 @@
 // @include     https://bs.to/log
 // @include     https://bs.to/settings
 // @include     https://bs.to/playlist
+// @include     https://bs.to/favorites
 // @version    	1.0
 // @description	Log and Settings
 // @author     	Kartoffeleintopf
@@ -16,6 +17,8 @@
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/data.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/keyControll.js
+// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/seriesStorage.js
+// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/favCat.js
 // @downloadURL http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_5.user.js
 // ==/UserScript==
 
@@ -31,6 +34,8 @@ var onDocumentReady = async function () {
         initSettingCont();
     } else if (window.location.href == 'https://bs.to/playlist') {
         initPlaylistCont();
+    } else if (window.location.href == 'https://bs.to/favorites') {
+        initFavoriteCont();
     }
 
     initSideCont();
@@ -222,6 +227,10 @@ var addGeneralConf = function () {
     addCheckbox(target, 'playMerged', true, 'Don\'t Play [In Episode X Enthalten] - Episodes');
     addCheckbox(target, 'syncFavMenu', true, 'Enable Sync Series In Favmenu [Turn Off On Mobiledevices]');
     addCheckbox(target, 'syncOnlyWatchedFav', true, 'Sync Only Watched Series In Favmenu');
+    addCheckbox(target, 'catFav', false, 'Categorize Favorite Menu', function (val) {
+        $('#favNav').toggle(val);
+        $('#favReload').click();
+    });
     addCheckbox(target, 'episodeSearch', false, 'Enable Episodesearch. Seriessearch on Episodelist Will Be Disabled');
     addCheckbox(target, 'reverseLog', false, 'Reverse Log');
     addCheckbox(target, 'episodelistOnStart', false, 'Show Last Season As Startpage');
@@ -267,10 +276,13 @@ var addMediaplayerConf = function () {
  * @param defaultState - Default State if not Set.
  * @param msg {String} - Description.
  */
-var addCheckbox = function (addContainer, saveIndex, defaultState, msg) {
+var addCheckbox = function (addContainer, saveIndex, defaultState, msg, callback) {
     addContainer.append('<div class="settingCheckbox"><label class="switch"><input ' + ((getData(saveIndex, defaultState)) ? 'checked' : '') + ' id="' + saveIndex + '" type="checkbox"/><span class="slider round"></span></label>' + msg + '<div>');
     $('#' + saveIndex).on('change', function () {
         setData(saveIndex, this.checked, true)
+        if (typeof callback !== 'undefined') {
+            callback(this.checked);
+        }
     });
 }
 
@@ -304,14 +316,14 @@ var addNumberInput = function (addContainer, saveIndex, defaultState, msg, min, 
  * Init Playlist Page
  */
 var initPlaylistCont = function () {
-    $('#contentContainer').empty().append('<h1 class="mainSiteTitle">Playlist</h1>').append('<ul id="playlistList"></ul><button id="PlaylistPlay">Play All</button><button id="clearAllPlaylist">Clear ALl</button>');
+    $('#contentContainer').empty().append('<h1 class="mainSiteTitle">Playlist</h1>').append('<ul id="playlistList"></ul><button id="PlaylistPlay">Play All</button><button id="clearAllPlaylist">Clear All</button>');
 
     $('#playlistList').after('<div class="settingCheckbox"><label class="switch"><input ' + ((getData('keepPlaying', false)) ? 'checked' : '') + ' id="keepPlaying" type="checkbox"/>' +
-    '<span class="slider round"></span></label>Keep Playing Last Series<div>');
+        '<span class="slider round"></span></label>Keep Playing Last Series<div>');
     $('#keepPlaying').on('change', function () {
         setData('keepPlaying', this.checked, true)
     });
-    
+
     var target = $('#playlistList');
     $.each(getFullPlayList(), function (index, value) {
         target.append(getPlaylistRow(value, index + 1));
@@ -352,7 +364,7 @@ var initPlaylistCont = function () {
             });
         }
     });
-    
+
     $('#clearAllPlaylist').bind('click', function () {
         $('#playlistList').empty();
         removeAllPlaylist();
@@ -400,4 +412,213 @@ var getPlaylistRow = function (obj, index) {
     return '<li data-series="' + obj.seriesID + '" data-episodeIndex="' + obj.episodeIndex + '" data-season="' + obj.season + '" data-episode="' + obj.episodeID + '">' +
     '<div class="indexCol">' + index + '</div><div class="infoCol"><span class="seriesNameCol">' + obj.seriesName + '</span><span class="seasonCol">' + ((obj.season == 0) ? 'Specials' : ('Season ' + obj.season)) + '</span>' +
     '<span class="episodeCol">' + 'Episode ' + obj.episodeIndex + ' - <span>' + obj.episodeName + '</span></span></div><div class="delCol"><svg viewBox="0 0 25 25"><g><path d="M5 0L12.5 7.5L20 0L25 5L17.5 12.5L25 20L20 25L12.5 17.5L5 25L0 20L7.5 12.5L0 5Z"/></g></svg></div></li>';
+}
+
+/**
+ * Init Favorite Sort Page
+ */
+var initFavoriteCont = function () {
+    $('#contentContainer').empty().append('<h1 class="mainSiteTitle">Favorites</h1>');
+
+    $('#contentContainer').append($("<ul>", {
+            "id": "catMainList"
+        }));
+
+    $.each(getCatFavs(getFavorites()), function (key, value) {
+        var list = $('<ul>', {
+                "class": "catList"
+            });
+
+        var index = 0;
+        if (value.length != 0) {
+            $.each(value.map(a => getCatFavRow(++index, a)), function (i, value) {
+                list.append(value);
+            });
+        } else {
+            list.append('<li><span class="emptyCat">Category Empty</span></li>');
+        }
+
+        var entity = $('<li>').append('<h2 class="catTitle"><span class="catMainTitle">' + key + '</span> <span class="editDelete edit">Edit</span> <span class="editDelete delete">Delete</span></h2>').append(list);
+        if (entity.find('.catMainTitle').text().trim() == 'Not Sorted') {
+            entity.find('.editDelete').remove();
+        }
+        $('#catMainList').append(entity);
+    });
+
+    $('#contentContainer').append('<button id="addCat">Add New Category</button>');
+    $('#addCat').bind('click', function (e) {
+        var list = $('<ul>', {
+                "class": "catList"
+            }).append('<li><span class="emptyCat">Category Empty</span></li>');
+
+        $('#catMainList').prepend($('<li>').append('<h2 class="catTitle"><span class="catMainTitle">New Category</span> <span class="editDelete edit">Edit</span> <span class="editDelete delete">Delete</span></h2>').append(list));
+
+        saveCategoryList();
+    });
+
+    $('#catMainList').on('click', '.delete', function () {
+        var cont = $(this);
+        if ($(this).closest('li').find('ul li').lenght != 0) {
+            $('#catMainList .catTitle').each(function () {
+                if ($(this).text().trim() == 'Not Sorted') {
+                    $(this).closest('li').find('ul').append(cont.closest('li').find('li'));
+                    return false;
+                }
+            });
+        }
+
+        $(this).closest('li').remove();
+        saveCategoryList();
+    });
+
+    $('#catMainList').on('click', '.edit', function () {
+        var title = $(this).closest('li').find('.catMainTitle');
+        var titleName = $(this).closest('li').find('.catMainTitle').text().trim();
+        title.replaceWith('<input id="titleInput" value="' + titleName + '">')
+
+        $('#titleInput').focus().select();
+
+        $('#titleInput').bind('blur', function () {
+            $(this).replaceWith('<span class="catMainTitle">' + $(this).val() + '</span>');
+            saveCategoryList();
+        });
+
+        $('#titleInput').keyup(function (e) {
+            if (e.keyCode == 13) {
+                $(this).replaceWith('<span class="catMainTitle">' + $(this).val() + '</span>');
+                saveCategoryList();
+            }
+        });
+    });
+
+    $("#catMainList").sortable({
+        nested: false,
+        handle: '.catTitle',
+        exclude: '.editDelete',
+        onDrop: function ($item, container, _super) {
+            var $clonedItem = $('<li/>').css('height', $item.outerHeight() + 'px').attr('class', 'swipeHolder');
+            $item.before($clonedItem);
+
+            $item.animate($clonedItem.position(), function () {
+                $clonedItem.detach();
+                _super($item, container);
+            });
+
+            saveCategoryList();
+        },
+        onDragStart: function ($item, container, _super) {
+            var offset = $item.offset(),
+            pointer = container.rootGroup.pointer;
+
+            adjustment = {
+                left: pointer.left - offset.left,
+                top: pointer.top - offset.top
+            };
+
+            _super($item, container);
+        },
+        onDrag: function ($item, position) {
+            $item.css({
+                left: position.left - adjustment.left,
+                top: position.top - adjustment.top
+            });
+        }
+    });
+
+    restartSortableFavList();
+}
+
+/**
+ * Restart the List-List Sort
+ */
+var restartSortableFavList = function () {
+    if (typeof window.favSortList !== 'undefined') {
+        window.favSortList.sortable("destroy");
+    }
+
+    window.favSortList = $("#catMainList ul").sortable({
+            nested: false,
+            group: 'favOnList',
+            onDrop: function ($item, container, _super) {
+                var $clonedItem = $('<li/>');
+                $item.before($clonedItem);
+
+                $item.animate($clonedItem.position(), function () {
+                    $clonedItem.detach();
+                    _super($item, container);
+                });
+
+                saveCategoryList();
+            },
+            onDragStart: function ($item, container, _super) {
+                var offset = $item.offset(),
+                pointer = container.rootGroup.pointer;
+
+                adjustment = {
+                    left: pointer.left - offset.left,
+                    top: pointer.top - offset.top
+                };
+
+                _super($item, container);
+            },
+            onDrag: function ($item, position) {
+                $item.css({
+                    left: position.left - adjustment.left,
+                    top: position.top - adjustment.top
+                });
+            }
+        });
+}
+
+/**
+ * Get a listsort element.
+ * @param i {Number} - Index
+ * @param favObj {Object} - Favorite Object
+ * @return {JQuery}
+ */
+var getCatFavRow = function (i, favObj) {
+    var index = '<div class="catFavIndex">' + i + '</div>';
+    var title = '<div class="catFavTitle">' + favObj.FullName + '</div>';
+    var season = '<div class="catFavSeason ' + ((favObj.IsWatched) ? 'catFavWatched' : '') + '">' + ((favObj.FavSeason == 0) ? 'Specials' : 'Season ' + favObj.FavSeason) + '</div>';
+
+    return $("<li>", {
+        'class': 'catFavEntitly',
+        'dataId': favObj.Id
+    }).html(index + title + season);
+}
+
+/**
+ * Clean Lists and Save all Sortings
+ */
+var saveCategoryList = function () {
+    var returnObj = {};
+    $('#catMainList ul').each(function () {
+        if ($(this).find('li').length == 0) {
+            $(this).append('<li><span class="emptyCat">Category Empty</span></li>');
+        } else if ($(this).find('li').length > 1) {
+            $(this).find('.emptyCat').parent().remove();
+        }
+
+        var title = $(this).prev('h2').find('.catMainTitle').text().trim();
+        if (title != 'Not Sorted') {
+            returnObj[title] = [];
+
+            $(this).find('li').each(function (index, value) {
+                if (typeof $(this).attr('dataid') !== 'undefined') {
+                    $(this).find('.catFavIndex').text(index + 1)
+                    returnObj[title].push($(this).attr('dataid'));
+                }
+            });
+        }
+
+        $(this).find('li[dataid]').each(function (index, value) {
+            if (typeof $(this).attr('dataid') !== 'undefined') {
+                $(this).find('.catFavIndex').text(index + 1)
+            }
+        });
+    });
+
+    restartSortableFavList();
+    setCatFavs(returnObj);
+    $('#favReload').click();
 }

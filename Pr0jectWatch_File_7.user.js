@@ -8,7 +8,7 @@
 // @include     /^.*fruithosted\.net.*$/
 // @include     /^.*thevideo\.me.*$/
 // @include     /^.*\d+\.\d+\.\d+\.\d+.*\/video\.mp4$/
-// @version    	1
+// @version    	1.1
 // @description	SeriesList
 // @author     	Kartoffeleintopf
 // @run-at 		document-start

@@ -7,7 +7,7 @@
 // @include     /^https:\/\/vivo\.sx\/.+$/
 // @include     /^https:\/\/streamango\.com\/embed\/.+$/
 // @include     /^http:\/\/vidto\.me\/.+$/
-// @version    	1.0
+// @version    	1.1
 // @description	Hoster Parser
 // @author     	Kartoffeleintopf
 // @run-at 		document-start

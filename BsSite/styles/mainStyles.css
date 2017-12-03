@@ -1762,6 +1762,7 @@ input:checked + .slider:before {
 
 #hosterSortContainer div {
     display:inline-block;
+    line-height: 30px
 }
 
 #hosterSortContainer ul {

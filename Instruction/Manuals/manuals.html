@@ -132,6 +132,17 @@
                             <li><a href="#medienspielerset">Medienspieler</a></li>
                         </ul>
                     </li>
+                    <li><a href="#favoritensortierung">Favoritensortierung</a>
+                        <ul>
+                            <li><a href="#favoritensortierungsbeschreibung">Favoritensortierungsbeschreibung</a></li>
+                        </ul>                      
+                    </li>
+                    <li><a href="#playlist">Playlist</a>
+                        <ul>
+                            <li><a href="#playlistbeschreibung">Playlistbeschreibung</a></li>
+                        </ul>                      
+                    </li>
+                    <li><a href="#serienlog">Serienlog</a></li>
                     <li><a href="#weitereoptimierungen">Weitere Optimierungen</a>
                         <ul>
                             <li><a href="#addblockfilter">Addblock Filter</a></li>
@@ -281,6 +292,17 @@
                             Nur möglich, wenn der Benutzer angemeldet ist.
                         </li>
                         <li><strong>Speichernknopf.</strong> Speichert alle Favoriten auf dem Account des Benutzers. Speichert keine Staffeln. Nur möglich, wenn der Benutzer angemeldet ist.</li>
+                        <li>
+                            <strong>Favorites</strong>
+                            Navigation zum Favoriten kategorisieren. Diese Navigation ist nur sichtbar wenn unter den 
+                            Einstellungen "Categories Favorite Menu" angeschaltet ist.<hotkey>ENTER</hotkey>.
+                        </li>
+                        <li>
+                            <strong>Kategorie</strong>
+                            Anzeige der Kategorie. Der Titel, die Anzahl und gelistete Favoriten der Kategorien kann,
+                            unter der Navigation "Favorites", selbst bestimmt werden. Die Kategorien ist nur sichtbar
+                            wenn unter den Einstellungen "Categories Favorite Menu" angeschaltet ist.
+                        </li>
                     </ol>
                 </div>
             </div>
@@ -490,6 +512,12 @@
                                 Favoriten gespeichert sind. (Ca 15 Sekunden für 27 Favoriten. Prozessor-, Browser- und Internetabhängig)
                             </li>
                             <li>
+                                <strong>Categorize Favorite Menu</strong>
+                                Schaltet das Favoritennavigationsfeld frei. Die Favoriten können bei aktivierung sortiert
+                                werden und werden auch Sortiert im Seitenmenü angezeigt. Die Kategorie "Not Sorted" kann
+                                nicht Sortiert werden und wird immer in alphabetischer Reihenfolge angezeit.
+                            </li>
+                            <li>
                                 <strong>Enable Episodesearch. Seriessearch on Episodelist Will Be Disabled</strong>.
                                 Schaltet die Episodensuche auf der Episodenliste an. Dabei wird die Seriensuche auf der
                                 Episodenliste ausgeschaltet.
@@ -569,6 +597,108 @@
                 </div>
             </div>
             
+            <h2 id="favoritensortierung">Favoritensortierung</h2>
+            <div class="tab">
+                <p>
+                    Im Menüpunkt "Favorites" können die Favoriten mit Kategorien sortiert werden. Sowohl Favoriten
+                    als auch ihre Kategorien können sortiert werden. Die Kategorie "Not Sorted" ist eine unsortierte
+                    Kategorie und kann werder in der Kategoriereihenfolge als auch in der Favoritenreihenfolge sortiert
+                    werden. Dieser Menüpunkt ist nur sichtbar wenn die Einstellung "Categorize Favorite Menu" im General-tab
+                    angeschaltet ist. Kategorien mit dem gleichen Namen werden zusammengefasst.
+                </p>
+                <h3 id="favoritensortierungsbeschreibung">Favoritensortierungsbeschreibung</h3>
+                <div class="tab">
+                    <img width="700" src="img/Favorites.PNG"></img>
+                    <ol>
+                        <li>
+                            <strong>Kategorietitel</strong>.
+                            Name der Kategorie. Der Titel kann genutzt werden um die Reihenfolge der Kategorie
+                            zu ändern. Dafür muss mit der Maus der Titel angeklickt und auf die gewählte stelle
+                            gezogen werden.
+                        </li>
+                        <li>
+                            <strong>Edit</strong>. 
+                            Ermöglicht es dem Nutzer den Titel zu ändern. Zum bestätigen kann neben das Eingabefeld geklickt
+                            werden oder <hotkey>Enter</hotkey> geklickt werden.
+                        </li>
+                        <li>
+                            <strong>Delete</strong>.
+                            Löscht die Kategorie. Alle darin befindenden Favoriten werden in die "Not Sorted"-Kategorie
+                            verschoben.
+                        </li>
+                        <li>
+                            <strong>Favorit</strong>. 
+                            Der Favorit kann mit klicken und ziehen verschoben werden. Dies funktioniert auch unter den
+                            Kategorien.
+                        </li>
+                        <li><strong>Titel</strong>. Der Titel. Ist ein Titel des Favorit.</li>
+                        <li>
+                            <strong>Staffel</strong>. Anzeige der Staffel. Zeigt mit der Farbe an ob der Favorit
+                            komplett geschaut wurde.
+                        </li>
+                        <li>
+                            <strong>Not Sorted Kategorie</strong>.
+                            Die "Not Sorted"- Kategorie beinhaltet alle Favoriten die in keiner Kategorie enthalten ist.
+                            Die Kategorie wird in den Favoriten immer ganz unten Angezeigt. Ihre Sortierung wird nicht gespeichert,
+                            auch wenn ihre Einträge auf dieser Obefläche umsortiert werden können.
+                        </li>
+                        <li>
+                            <strong>Add New Category</strong>.
+                            Fügt eine neue Kategorie hinzu. Diese wird ganz oben hinzugefügt und trägt den Platzhalternamen
+                            "New Category".
+                        </li>
+                    </ol>
+                </div>
+            </div>
+            
+            <h2 id="serienlog">Serienlog</h2>
+            <div class="tab">
+                <p>
+                    Der Serienlog zeigt die 50 zuletzt geschauten Episoden an. Nebenbei werden zusatzinformationen
+                    angezeigt wie Hoster, deutscher Titel, original Titel, Zeit mit Datum, Serie und Staffel.
+                </p>
+            </div>
+            
+            <h2 id="playlist">Playlist</h2>
+            <div class="tab">
+                <p>
+                    Die Playlist ermöglicht es Episoden unterschiedlicher Serien im Autoplay abzuspielen. 
+                    Beim Anschauen werden gestartete Episoden aus der Playlist gelöscht.Die Episoden können
+                    noch nach dem Hinzufügen Sortiert werden.
+                </p>
+                <h3 id="playlistbeschreibung">Playlistbeschreibung</h3>
+                <div class="tab">
+                    <img width="700" src="img/playlist.PNG"></img>
+                    <ol>
+                        <li>
+                            <strong>Episode</strong>.
+                            Die Episode kann mit klicken und ziehen umsortiert werden.
+                        </li>
+                        <li>
+                            <strong>Episodenbeschreibung</strong>.
+                            Zeigt alle relevenaten Informationen zur Episode an.
+                        </li>
+                        <li><strong>Löschen des Eintags</strong>. Löscht den Eintrag.</li>
+                        <li>
+                            <strong>Keep Playing Last Serien</strong>. 
+                            Weiterschauen der letzten Serie. Wenn diese Option angeschaltet ist wird beim beenden
+                            der Playlist die Serie des letzten Eintrags im Autoplay weitergeführt.
+                        </li>
+                        <li><strong>Play ALl</strong>.Startet die Playlist.</li>
+                        <li><strong>Clear All</strong>. Löscht alle Einträge.</li>
+                    </ol>
+                </div>
+            </div>            
+            
+            <h2 id="nichtunterstütztehoster">Nicht Unterstütze Hoster</h2>
+            <div class="tab">
+                <p>
+                    Bei nicht unterstützten Hostern wird dieser Hoster in einem Seperaten Tab geöffnet. Dafür
+                    müssen Pop-Ups erlaubt werden. Beim Autoplay startet die nächste Episode nachdem der
+                    "Next Episode"-Knopf gedrückt wurde oder der geöffnete Tab geschlossen wurde.
+                </p>
+            </div>
+            
             <h2 id="weitereoptimierungen">Weitere Optimierungen</h2>
             <div class="tab">
                 <h3 id="addblockfilter">Addblock Filter</h3>
@@ -580,12 +710,10 @@
                     <p>
                         Unter uBlock: Dashboard -> Meine Filter
                     </p>
-                    <textarea type="text" rows="4" cols="40" id="filter" readonly>
-    ||connect.facebook.net^$domain=bs.to
-    ||buzzadexchange.com^$domain=bs.to
-    ||mc.yandex.ru^$domain=bs.to
-    ||fonts.googleapis.com^$domain=bs.to
-                    </textarea><br>
+                    <textarea type="text" rows="4" cols="40" id="filter" readonly>||connect.facebook.net^$domain=bs.to
+||buzzadexchange.com^$domain=bs.to
+||mc.yandex.ru^$domain=bs.to
+||fonts.googleapis.com^$domain=bs.to</textarea><br>
                     <button onclick="copyToClip()">Kopieren</button>
                     <script>
                         function copyToClip() {

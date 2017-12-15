@@ -4,7 +4,7 @@
 // @namespace   https://bs.to/
 // @include     /^https:\/\/bs\.to\/serie\/[^\/]+\/\d+\/[^\/\:]+$/
 // @include     /^https:\/\/bs\.to\/serie\/[^\/]+\/\d+\/[^\/\:]+\/+[A-Za-z]+$/
-// @version    	1.1
+// @version    	1.2
 // @description	Select Hoster
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -24,7 +24,9 @@
 var initHosterList = function () {
     makeBlackPage();
 
-    $(document).ready(function () {
+    var isRepeated = false;
+
+    var searchHoster = function () {
         //Get Hosterlist
         var hoster = [];
         $('.hoster-tabs a').each(function () {
@@ -45,11 +47,18 @@ var initHosterList = function () {
         });
 
         if (!hasHoster) {
-            alert('No Hoster For This Episode');
-            window.location = window.location + '/NoHoster';
+            if (!isRepeated) {
+                isRepeated = true;
+                setTimeout(searchHoster, 1000);
+            } else {
+                alert('No Hoster For This Episode');
+                window.location = window.location + '/NoHoster';
+            }
         }
 
-    });
+    }
+
+    $(document).ready(searchHoster);
 }
 
 /**
@@ -76,7 +85,12 @@ var onDocumentReady = function () {
     var episodeIndex = $('#episodes .active:first a').text().trim();
     var episodeMax = $('#episodes li:last a').text().trim();
     var hoster = window.location.pathname.split('/')[5].split('?')[0];
+    var redirect = $('.hoster-player:first').attr('href');
 
+    if(typeof redirect === 'undefined') {
+        setTimeout(onDocumentReady, 1000);
+    }
+    
     //Setting
     if (getData('enableLog', true)) {
         setLog(seriesId, seriesName, season, episodeDE, episodeOR, episodeIndex, episodeMax, hoster);
@@ -113,10 +127,10 @@ var onDocumentReady = function () {
 
     //Save Last link
     setData('lastSeriesSeasonWatched', 'https://bs.to/serie/' + seriesId + '/' + season, true);
-    
+
     if (supportet) {
         window.location = 'https://bs.to/data'
-             + '?redirect=' + jEncode($('.hoster-player:first').attr('href'))
+             + '?redirect=' + jEncode(redirect)
              + '&series=' + jEncode(seriesName)
              + '&season=' + jEncode(season)
              + '&episode=' + jEncode(((episodeDE != '') ? episodeDE : episodeOR))
@@ -126,7 +140,7 @@ var onDocumentReady = function () {
              + '&closeEnd=' + jEncode(getData('closeEnd', true))
              + '&enablePreview=' + jEncode(getData('enablePreview', true))
              + '&previewSteps=' + jEncode(getData('previewSteps', 20))
-             + '&timeShow=' + jEncode(getData('timeShow', 3))          
+             + '&timeShow=' + jEncode(getData('timeShow', 3))
              + '&timeStep=' + jEncode(getData('timeStep', 5))
              + '&volStep=' + jEncode(getData('volStep', 10));
         return true;

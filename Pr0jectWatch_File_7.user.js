@@ -85,6 +85,7 @@ var setEpisodeVariables = async function () {
     await setGMValue('timeShow', parseInt(jDecode(getGetter('timeShow'))));
     await setGMValue('timeStep', parseInt(jDecode(getGetter('timeStep'))));
     await setGMValue('volStep', parseInt(jDecode(getGetter('volStep'))));
+    await setGMValue('disableAutoplayOnExit', jDecode(getGetter('disableAutoplayOnExit')).toLowerCase() == 'true');
 
     //RESET ERROR
     await setGMValue('isError', false);
@@ -695,6 +696,11 @@ var exitFullscreen = function () {
  */
 var closeVideo = async function () {
     await setGMValue('isError', false);
+    
+    if(await getGMValue('disableAutoplayOnExit', false)){
+        window.autoP = false;
+    }
+    
     window.location = 'https://bs.to/?next' + ((typeof window.autoP === 'boolean') ? ('&autoplay=' + window.autoP) : '');
 }
 

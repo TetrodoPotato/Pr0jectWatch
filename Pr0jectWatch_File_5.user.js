@@ -262,6 +262,7 @@ var addMediaplayerConf = function () {
 
     addCheckbox(target, 'closeEnd', true, 'Close On End');
     addCheckbox(target, 'enablePreview', true, 'Enable Timeline Preview');
+    addCheckbox(target, 'disableAutoplayOnExit', false, 'Disable Autoplay When The [X]-Key Is Pressed');
 
     addNumberInput(target, 'previewSteps', 20, 'Preview Image Steps', 1, 60000);
     addNumberInput(target, 'timeShow', 3, 'Timer Time For Controlls Hide [Sec]', 1, 60000);

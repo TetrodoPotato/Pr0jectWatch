@@ -359,6 +359,9 @@ var addInterfaceEventhandler = async function () {
     });
 
     $('#close').bind('click', function (e) {
+        if (await getGMValue('disableAutoplayOnExit', false)) {
+            window.autoP = false;
+        }
         closeVideo();
     });
 
@@ -696,11 +699,6 @@ var exitFullscreen = function () {
  */
 var closeVideo = async function () {
     await setGMValue('isError', false);
-    
-    if(await getGMValue('disableAutoplayOnExit', false)){
-        window.autoP = false;
-    }
-    
     window.location = 'https://bs.to/?next' + ((typeof window.autoP === 'boolean') ? ('&autoplay=' + window.autoP) : '');
 }
 
@@ -949,10 +947,10 @@ var isCanvasDrawn = function (canvas) {
 
 /**
  * Check if the two arrays are the same until index is reached.
- * @param arr1 {Array} - Array One. 
- * @param arr2 {Array} - Array Two. 
+ * @param arr1 {Array} - Array One.
+ * @param arr2 {Array} - Array Two.
  * @param indezies {Number} - Max Index to check.
- * @return {Boolean}. 
+ * @return {Boolean}.
  */
 var checkIfSame = function (arr1, arr2, indezies) {
     var same = true;
@@ -999,6 +997,9 @@ $(window).keydown(function (e) {
             playpause();
         } else if (e.keyCode === 9) { //Tab
             e.preventDefault();
+            if (await getGMValue('disableAutoplayOnExit', false)) {
+                window.autoP = false;
+            }
             closeVideo();
         } else if (e.keyCode === 81) { //Q
             e.preventDefault();

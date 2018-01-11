@@ -3,7 +3,7 @@
 // @icon 		https://bs.to/opengraph.jpg
 // @namespace   https://bs.to/
 // @include     /^https:\/\/bs\.to\/serie\-genre.*$/
-// @version    	1.1
+// @version    	1.3
 // @description	SeriesList
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -13,6 +13,7 @@
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/keyControll.js
 // @downloadURL http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_2.user.js
+// @noframes
 // ==/UserScript==
 
 initBsPage();

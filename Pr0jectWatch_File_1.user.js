@@ -3,7 +3,7 @@
 // @icon 		https://bs.to/opengraph.jpg
 // @namespace   https://bs.to/
 // @include     /^https:\/\/bs.to(\/)?(((home|\?next|\?error|\?back|\?logout[^]*)[^\/]*)(\/)?)?$/
-// @version    	1.1
+// @version    	1.3
 // @description	Error-, Next-Redirect
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -12,6 +12,7 @@
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/data.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
 // @downloadURL http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_1.user.js
+// @noframes
 // ==/UserScript==
 
 /**

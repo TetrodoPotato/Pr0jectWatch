@@ -4,7 +4,7 @@
 // @namespace   https://bs.to/
 // @include     /^https:\/\/bs\.to\/serie\/[^\/]+\/\d+\/[^\/\:]+$/
 // @include     /^https:\/\/bs\.to\/serie\/[^\/]+\/\d+\/[^\/\:]+\/+[A-Za-z]+$/
-// @version    	1.2
+// @version    	1.3
 // @description	Select Hoster
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -16,6 +16,7 @@
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/keyControll.js
 // @downloadURL http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_4.user.js
+// @noframes
 // ==/UserScript==
 
 /**

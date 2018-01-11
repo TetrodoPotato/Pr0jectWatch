@@ -7,13 +7,14 @@
 // @include     /^https:\/\/vivo\.sx\/.+$/
 // @include     /^https:\/\/streamango\.com\/embed\/.+$/
 // @include     /^http:\/\/vidto\.me\/.+$/
-// @version    	1.1
+// @version    	1.3
 // @description	Hoster Parser
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
 // @require 	https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
 // @downloadURL http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_6.user.js
+// @noframes
 // ==/UserScript==
 
 makeBlackPage();

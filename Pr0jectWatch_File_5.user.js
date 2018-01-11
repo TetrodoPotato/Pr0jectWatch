@@ -6,7 +6,7 @@
 // @include     https://bs.to/settings
 // @include     https://bs.to/playlist
 // @include     https://bs.to/favorites
-// @version    	1.1
+// @version    	1.3
 // @description	Log and Settings
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -20,6 +20,7 @@
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/seriesStorage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/favCat.js
 // @downloadURL http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_5.user.js
+// @noframes
 // ==/UserScript==
 
 initBsPage();

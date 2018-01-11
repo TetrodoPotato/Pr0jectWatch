@@ -8,7 +8,7 @@
 // @include     /^.*fruithosted\.net.*$/
 // @include     /^.*thevideo\.me.*$/
 // @include     /^.*\d+\.\d+\.\d+\.\d+.*\/video\.mp4$/
-// @version    	1.1
+// @version    	1.3
 // @description	SeriesList
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -20,6 +20,7 @@
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/data.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
 // @downloadURL http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_7.user.js
+// @noframes
 // ==/UserScript==
 
 /*

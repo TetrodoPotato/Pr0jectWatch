@@ -358,7 +358,7 @@ var addInterfaceEventhandler = async function () {
         updateVolume('mute')
     });
 
-    $('#close').bind('click', function (e) {
+    $('#close').bind('click', async function (e) {
         if (await getGMValue('disableAutoplayOnExit', false)) {
             window.autoP = false;
         }
@@ -989,7 +989,7 @@ var isTimeBuffered = function (video, time) {
 /**
  * Key Bitches
  */
-$(window).keydown(function (e) {
+$(window).keydown(async function (e) {
     var player = document.getElementById('vid');
     if (player !== null) {
         if (e.keyCode === 32) { //Space

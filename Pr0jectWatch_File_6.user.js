@@ -40,7 +40,12 @@ var parseOpenload = function () {
         var elem = $('video:first');
         if (typeof elem.attr('src') !== 'undefined') {
             var vidLink = elem.attr("src");
-            window.location = 'https://openload.co' + vidLink;
+            
+            if(!vidLink.includes('openload.co')){
+                vidLink = 'https://openload.co' + vidLink;
+            }
+            
+            window.location.replace(vidLink);
         } else {
             if (++timer < 100) {
                 setTimeout(openVideo, 100);

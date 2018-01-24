@@ -8,7 +8,8 @@
 // @include     /^.*fruithosted\.net.*$/
 // @include     /^.*thevideo\.me.*$/
 // @include     /^.*\d+\.\d+\.\d+\.\d+.*\/video\.mp4$/
-// @version    	1.3
+// @include     /^.*vidoza\.net\/[^\/]*\/[^\.]*\.mp4$/
+// @version    	1.4
 // @description	SeriesList
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -871,7 +872,7 @@ var loadVideoTimelinePreview = function () {
     $('#preview').one('error', function () {
         $("#preview").unbind();
         console.log('Prev.Error: ' + (++window.PrevErrors));
-        loadVideoTimelinePreview();
+        setTimeout(loadVideoTimelinePreview, 1000);
     });
 
     if (window.location.href.includes('?')) {

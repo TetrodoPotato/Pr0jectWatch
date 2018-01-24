@@ -1385,35 +1385,39 @@ input:checked + .slider:before {
 }
 
 .Vivo {
-    background-position: -812px 0;
+    background-position: -796px 0;
 }
 
 .OpenLoad {
-    background-position: -848px 0;
+    background-position: -832px 0;
 }
 
 .OpenLoadHD {
-    background-position: -906px 0;
+    background-position: -888px 0;
 }
 
 .Streamango {
-    background-position: -941px 0;
-}
-
-.AuroraVid {
-    background-position: -717px 0;
-}
-
-.FlashX {
-    background-position: -679px 0;
-}
-
-.TheVideo {
     background-position: -924px 0;
 }
 
+.AuroraVid {
+    background-position: -703px 0;
+}
+
+.FlashX {
+    background-position: -664px 0;
+}
+
+.TheVideo {
+    background-position: -906px 0;
+}
+
 .Vidto {
-    background-position: -887px 0;
+    background-position: -869px 0;
+}
+
+.Vidoza {
+    background-position: -941px 0;
 }
 
 .YouWatch {

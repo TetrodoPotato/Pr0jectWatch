@@ -3,7 +3,7 @@
 // @icon 		https://bs.to/opengraph.jpg
 // @namespace   https://bs.to/
 // @include     /^https:\/\/bs.to(\/)?(((home|\?next|\?error|\?back|\?logout[^]*)[^\/]*)(\/)?)?$/
-// @version    	1.3
+// @version    	1.4
 // @description	Error-, Next-Redirect
 // @author     	Kartoffeleintopf
 // @run-at 		document-start

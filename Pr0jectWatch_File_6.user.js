@@ -7,7 +7,8 @@
 // @include     /^https:\/\/vivo\.sx\/.+$/
 // @include     /^https:\/\/streamango\.com\/embed\/.+$/
 // @include     /^http:\/\/vidto\.me\/.+$/
-// @version    	1.3
+// @include     /^https:\/\/vidoza\.net\/embed.+$/
+// @version    	1.4
 // @description	Hoster Parser
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -134,6 +135,28 @@ var parseVidto = function () {
         }, 100);
 }
 
+var parseVidoza = function () {
+    var t = 0;
+    var timer = setInterval(function () {
+        var cvframe = $('.jw-video:first');
+        
+        if (cvframe.length != 0) {
+            var src = cvframe.attr('src');
+            if(typeof src !== 'undefined') {
+                window.location = src;
+                clearInterval(timer);
+            }
+            
+        }
+        
+        if (++t > 100) {
+            clearInterval(timer);
+            window.location = 'https://bs.to/?error';
+        }
+    }, 100);
+
+}
+
 $(document).ready(function () {
     if (/^https:\/\/openload\.co\/embed\/.+$/.test(window.location.href) || /^https:\/\/oload\.stream\/embed\/.+$/.test(window.location.href)) {
         parseOpenload();
@@ -145,5 +168,7 @@ $(document).ready(function () {
         parseTheVideo();
     } else if (/^http:\/\/vidto\.me\/.+$/.test(window.location.href)) {
         parseVidto();
+    } else if (/^https:\/\/vidoza\.net\/embed.+$/.test(window.location.href)) {
+        parseVidoza();
     }
 });

@@ -1379,7 +1379,7 @@ input:checked + .slider:before {
     display: inline-block;
     height:20px;
     width:20px;
-    background-image: url(https://bs.to/public/img/icons.v33.png);
+    background-image: url(https://bs.to/public/img/icons.v34.png);
     background-size: 960px 20px;
     margin:0 7px;
 }

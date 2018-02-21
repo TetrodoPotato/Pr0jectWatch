@@ -203,7 +203,7 @@ var showChangelog = async function () {
     });
     okButton.bind('click', function (e) {
         (async function(){
-            await setData('currentScriptVersion', (await GM.info).version, true);
+            await setData('currentScriptVersion', await getScriptVersion(), true);
             redirectStart();
         })();
         
@@ -275,7 +275,7 @@ var getScriptVersion = async function () {
     } else if(typeof GM_info !== 'undefined') {
         return GM_info.version;
     } else {
-        return '1.5';
+        return 'NONE';
     }
 }
 
@@ -285,7 +285,7 @@ var startStartPage = async function () {
 
     await convertOldData();
 
-    if (await getData('currentScriptVersion', '0') < await getScriptVersion()) {
+    if (await getData('currentScriptVersion', '0') != await getScriptVersion()) {
         showChangelog();
     } else {
         await redirectStart();

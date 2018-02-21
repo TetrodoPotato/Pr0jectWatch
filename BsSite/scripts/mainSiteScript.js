@@ -159,11 +159,9 @@ var addFavEvents = function () {
 }
 
 var updateFavNSync = async function () {
-    if (/^https:\/\/bs\.to\/serie\-genre.*$/.test(window.location.href)) { //Not on Serieslist
-        return;
-    }
-
     if (await getData('syncFavMenu', true)) {
+        $('.favNewEpi').removeClass('hasFavSynced');
+        
         var list = await getFavorites();
 
         if (list.length != 0) {
@@ -190,7 +188,7 @@ var updateFavNSync = async function () {
                         
                         favRow.find('.favNewEpi:first').toggleClass('hasNew', hasNew);
                         favRow.find('.favNewEpi:first').toggleClass('hasFavSynced', true);
-                        favRow.find('.favSeco:first').toggleClass('favWatched', isWatched);                    
+                        favRow.find('.favSeco:first').toggleClass('favWatched', ((isWatched !== null) ? isWatched : false));                    
                     })();
                 });
             });
@@ -199,7 +197,7 @@ var updateFavNSync = async function () {
 }
 
 var getFavRow = function getFavRow(favObj) {
-    var newEpisode = '<td><div class="favNewEpi ' + ((favObj.HasNewEpisode) ? 'hasNew' : '') + '"><svg viewBox="0 0 25 25"><g><path d="M3.5 7.8 L8.9 13.3 L21.8 0 L24.9 3.2 L8.9 19.6 L0 11.4 Z" /></g></svg></div></td>';
+    var newEpisode = '<td><div class="favNewEpi ' + ((favObj.HasNewEpisode) ? 'hasNew' : '') + ' hasFavSynced"><svg viewBox="0 0 25 25"><g><path d="M3.5 7.8 L8.9 13.3 L21.8 0 L24.9 3.2 L8.9 19.6 L0 11.4 Z" /></g></svg></div></td>';
     var title = '<td><div class="favlink favFirst">' + favObj.FullName + '</div></td>';
     var season = '<td><div class="favlink favSeco ' + ((favObj.IsWatched) ? 'favWatched' : '') + '">' + ((favObj.FavSeason == 0) ? 'S' : favObj.FavSeason) + '</div></td>';
     var closeB = '<td><div class="favDel">' + getFavDelIcon() + '</div></td>';

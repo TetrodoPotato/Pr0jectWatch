@@ -2,13 +2,12 @@
  * Get the Fulllist of Logs.
  * @return {Object-Array}
  */
-var getFullPlayList = function () {
-    var list = localStorage.getItem('playList');
+var getFullPlayList = async function () {
+    var list = await seriesStorage.storage('playList');
+    
     if (!list) {
         list = [];
-        localStorage.setItem('playList', JSON.stringify(list));
-    } else {
-        list = JSON.parse(list);
+        await seriesStorage.storage('playList', list);
     }
     return list;
 }
@@ -17,40 +16,49 @@ var getFullPlayList = function () {
  * Save log.
  * @param FullObjectListArray {Object-Array} - Full Log
  */
-var savePlayList = function (FullObjectListArray) {
-    localStorage.setItem('playList', JSON.stringify(FullObjectListArray));
+var savePlayList = async function (FullObjectListArray) {
+    await seriesStorage.storage('playList', FullObjectListArray);
 }
 
 /**
  * Fuck it.
  */
-var setPlayList = function (seriesId, season, episodeid, seriesName, episodename, index) {
-    var list = getFullPlayList();
+var setPlayList = async function (seriesId, season, episodeid, seriesName, episodename, index) {
+    var list = await getFullPlayList();
     list.push({
         seriesID: seriesId,
-        episodeIndex: index,
         season: season,
         episodeID: episodeid,
         seriesName: seriesName,
-        episodeName: episodename
+        episodeName: episodename,
+        episodeIndex: index,
     });
 
-    savePlayList(list);
+    await savePlayList(list);
+}
+
+var setAllPlayList = async function(obj){
+    var list = await getFullPlayList();
+    $.each(obj,function(index, entry){
+        list.push(entry);
+    });
+    
+    await savePlayList(list);
 }
 
 /**
  * Removes Autoplay Item.
  * @param id {String} - id of item.
  */
-var removePlayList = function (id) {
-    var list = getFullPlayList();
+var removePlayList = async function (id) {
+    var list = await getFullPlayList();
     list.splice(list.findIndex(item => item.episodeID.toLowerCase() === id.toLowerCase()), 1);
-    savePlayList(list);
+    await savePlayList(list);
 }
 
 /**
  * Remove All Items
  */
-var removeAllPlaylist = function () {
-    localStorage.setItem('playList', JSON.stringify([]));
+var removeAllPlaylist = async function () {
+    await seriesStorage.delete('playList');
 }

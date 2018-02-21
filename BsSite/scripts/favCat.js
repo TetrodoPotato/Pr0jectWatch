@@ -3,8 +3,13 @@
  * @param favs {Oject-Array} - Unsorted Favs.
  * @return {Array-Object}
  */
-var getCatFavs = function (favs) {
-    var catFav = JSON.parse(getData('catFavs', JSON.stringify({})));
+var getCatFavs = async function (favs) {
+    var catFav = await seriesStorage.storage('catFavs');
+    
+    if (typeof catFav === 'undefined') {
+        catFav = {};
+    }
+    
     var returnCat = {};
 
     $.each(catFav, function (key, val) {
@@ -37,7 +42,7 @@ var getCatFavs = function (favs) {
         });
     });
 
-    setCatFavs(catFav);
+    await setCatFavs(catFav);
 
     returnCat['Not Sorted'] = favs;
     return returnCat;
@@ -47,6 +52,6 @@ var getCatFavs = function (favs) {
  * Save the Sorted Favs.
  * @param obj (Array-Object) - the Sorted List.
  */
-var setCatFavs = function (obj) {
-    setData('catFavs', JSON.stringify(obj), true);
+var setCatFavs = async function (obj) {
+    await seriesStorage.storage('catFavs',obj);
 }

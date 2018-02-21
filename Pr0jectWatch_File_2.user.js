@@ -9,13 +9,15 @@
 // @run-at 		document-start
 // @require 	https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/seriesStorage.js
+// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/storage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/data.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
+// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/mainSiteScript.js
+// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/favCat.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/keyControll.js
 // @downloadURL http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_2.user.js
 // @noframes
 // ==/UserScript==
-
 initBsPage();
 
 /**
@@ -28,14 +30,14 @@ var isLoggedIn = e => !!($('#navigation').length);
  */
 var onDocumentReady = async function () {
     var curDate = new Date().getTime();
-    var lastTime = getData('lastUpdate', 0);
+    var lastTime = await getData('lastUpdate', 0);
 
     var diff = (curDate - lastTime) / 86400000; // Miliseconds to Days
-    if (diff > getData('updateWaitTime', 7) || (!getData('indexUpdated', false) && isLoggedIn())) {
+    if (diff > (await getData('updateWaitTime', 7)) || (!(await getData('indexUpdated', false)) && isLoggedIn())) {
         createProgressbar();
 
-        setData('indexUpdated', (await updateSeriesList()), true);
-        setData('lastUpdate', curDate, true);
+        await setData('indexUpdated', (await updateSeriesList()), true);
+        await setData('lastUpdate', curDate, true);
 
         removeProgressbar();
     } else {
@@ -50,7 +52,7 @@ var onDocumentReady = async function () {
 
     buildSiteContent();
     /*Build Main Content*/
-    showSeriesRow(getFullList().map(obj => seriesRowRaw(obj.FullName, obj.Genre, obj.SeriesIndex, obj.IsFav, obj.IsSynced, obj.Id, obj.IsWatched)));
+    await showSeriesRow((await getFullList()).map(obj => seriesRowRaw(obj.FullName, obj.Genre, obj.SeriesIndex, obj.IsFav, obj.IsSynced, obj.Id, obj.IsWatched)));
 
     /*Check Settings Before Doing*/
     updateAllWatchedSynced();
@@ -59,11 +61,11 @@ var onDocumentReady = async function () {
 /**
  * API - When everything is loaded.
  */
-var onDocumentLoaded = function () {
+var onDocumentLoaded = async function () {
     var newSearch = getGetter('search');
     if (typeof newSearch !== 'undefined') {
         $('#search').val(jDecode(newSearch));
-        searchEv();
+        await searchEv();
     }
 }
 
@@ -71,15 +73,15 @@ var onDocumentLoaded = function () {
  * Controlls the searchbar and checks the {DOM} contentContainer for tables with {DOM} child {id} 1.
  * Set display {String} "none" to {DOM} children without {String} searchterm.
  */
-var searchEv = function (e) {
+var searchEv = async function (e) {
     //Remove Info
     $('#searchInfoText').remove();
 
     //Check if Search is Valid
     var search = $('#search').val();
-    if (search.length < getData('minCharsSearch', 3) && /^https\:\/\/bs.to\/serie-genre.*$/.test(window.location.href)) {
+    if (search.length < (await getData('minCharsSearch', 3)) && /^https\:\/\/bs.to\/serie-genre.*$/.test(window.location.href)) {
         $('.search').hide();
-        $('#contentContainer').append('<span id="searchInfoText">Type Min. ' + getData('minCharsSearch', 3) + ' Character For Results</span>');
+        $('#contentContainer').append('<span id="searchInfoText">Type Min. ' + (await getData('minCharsSearch', 3)) + ' Character For Results</span>');
     } else {
         //Searchterm
         var searchTerm = [];
@@ -106,26 +108,6 @@ var searchEv = function (e) {
         }
     }
 };
-
-/**
- * Get the content of the file as String
- * @param {String} url - url of file.
- * @return {String} content as String.
- */
-var getTextFile = function (url) {
-    if (window.XMLHttpRequest) {
-        AJAX = new XMLHttpRequest();
-    } else {
-        AJAX = new ActiveXObject("Microsoft.XMLHTTP");
-    }
-    if (AJAX) {
-        AJAX.open("GET", url, false);
-        AJAX.send(null);
-        return AJAX.responseText;
-    } else {
-        return false;
-    }
-}
 
 /**
  * Build Sidecontent with Sorting Button
@@ -160,7 +142,9 @@ var updateSeriesList = async function () {
                 FavSeason: 1,
                 SeriesIndex: null,
                 IsWatched: false,
-                IsSynced: false
+                IsSynced: false,
+                LastSeasonMax: 0,
+                HasNewEpisode: false;
             });
         });
     });
@@ -242,15 +226,15 @@ var seriesRowRaw = function (fullname, genre, picID, isFav, isSynced, seriesId, 
  * Append all Rows to the ContentContainer. Adds an Timeout for Parallel Append.
  * @param contentArray {String-Array} - String-Array with SeriesRow.
  */
-var showSeriesRow = function (contentArray) {
+var showSeriesRow = async function (contentArray) {
     var container = $('#contentContainer');
     container.html('<h1 class="mainSiteTitle">All Series</h1>');
 
     var index = 0;
-    var timeoutTime = getData('listTimeout', 10000); //ms
+    var timeoutTime = await getData('listTimeout', 10000); //ms
     var timeoutCurTime = new Date().getTime();
 
-    var minChars = getData('minCharsSearch', 3);
+    var minChars = await getData('minCharsSearch', 3);
 
     $.each(contentArray, function (i, value) {
         container.append($(contentArray[i]).toggle(minChars == 0));
@@ -370,29 +354,32 @@ var addListEvents = function () {
         var target = $(this).closest('.seriesContainer');
 
         $.get('https://bs.to/serie/' + target.attr('seriesid'), function (result) {
-            //Get seriesId
-            var seriesIndex = $(result).find('img:first').attr('src').split('/')[4].split('.')[0];
-            //Get All Genre
-            var newGenre = $(result).find('.infos:first div:first p:first span').append(' ').text().trim();
-            //Check if everything is Watched
-            var allWatched = ($(result).find('.seasons li:not(.watched), .episodes tr:not(.watched)').length < 2);
+            (async function () {
+                //Get seriesId
+                var seriesIndex = $(result).find('img:first').attr('src').split('/')[4].split('.')[0];
+                //Get All Genre
+                var newGenre = $(result).find('.infos:first div:first p:first span').append(' ').text().trim();
+                //Check if everything is Watched
+                var allWatched = ($(result).find('.seasons li:not(.watched), .episodes tr:not(.watched)').length < 2);
 
-            target.find('.genreContainer:first').html(newGenre);
-            target.find('.watchedContainer:first').toggleClass('watchedSeries', allWatched);
-            target.find('.seriesPicture:first').attr('data-id', seriesIndex);
-            target.find('.seriesTick:first').addClass('tickCheck');
+                target.find('.genreContainer:first').html(newGenre);
+                target.find('.watchedContainer:first').toggleClass('watchedSeries', allWatched);
+                target.find('.seriesPicture:first').attr('data-id', seriesIndex);
+                target.find('.seriesTick:first').addClass('tickCheck');
 
-            updateEntry({
-                Id: target.attr('seriesid'),
-                Genre: newGenre,
-                SeriesIndex: seriesIndex,
-                IsWatched: ((isLoggedIn()) ? allWatched : null),
-                IsFav: $(target).find('.favIcon').toggleClass("Fav noFav").hasClass('Fav'),
-                IsSynced: true
-            });
+                await updateEntry({
+                    Id: target.attr('seriesid'),
+                    Genre: newGenre,
+                    SeriesIndex: seriesIndex,
+                    IsWatched: ((isLoggedIn()) ? allWatched : null),
+                    IsFav: $(target).find('.favIcon').toggleClass("Fav noFav").hasClass('Fav'),
+                    IsSynced: true
+                });
 
-            //Reload Favorites
-            $('#favReload').click();
+                //Reload Favorites
+                $('#favReload').click();
+            })();
+
         });
     });
 
@@ -404,28 +391,31 @@ var addListEvents = function () {
         var target = $(this).closest('.seriesContainer');
 
         $.get('https://bs.to/serie/' + target.attr('seriesid'), function (result) {
-            //Get seriesId
-            var seriesIndex = $(result).find('img:first').attr('src').split('/')[4].split('.')[0];
-            //Get All Genre
-            var newGenre = $(result).find('.infos:first div:first p:first span').append(' ').text().trim();
-            //Check if everything is Watched
-            var allWatched = ($(result).find('.seasons li:not(.watched), .episodes tr:not(.watched)').length < 2);
+            (async function () {
+                //Get seriesId
+                var seriesIndex = $(result).find('img:first').attr('src').split('/')[4].split('.')[0];
+                //Get All Genre
+                var newGenre = $(result).find('.infos:first div:first p:first span').append(' ').text().trim();
+                //Check if everything is Watched
+                var allWatched = ($(result).find('.seasons li:not(.watched), .episodes tr:not(.watched)').length < 2);
 
-            target.find('.genreContainer:first').html(newGenre);
-            target.find('.watchedContainer:first').toggleClass('watchedSeries', allWatched);
-            target.find('.seriesPicture:first').attr('data-id', seriesIndex);
-            target.find('.seriesTick:first').addClass('tickCheck');
+                target.find('.genreContainer:first').html(newGenre);
+                target.find('.watchedContainer:first').toggleClass('watchedSeries', allWatched);
+                target.find('.seriesPicture:first').attr('data-id', seriesIndex);
+                target.find('.seriesTick:first').addClass('tickCheck');
 
-            updateEntry({
-                Id: target.attr('seriesid'),
-                Genre: newGenre,
-                SeriesIndex: seriesIndex,
-                IsWatched: ((isLoggedIn()) ? allWatched : null),
-                IsSynced: true
-            });
+                await updateEntry({
+                    Id: target.attr('seriesid'),
+                    Genre: newGenre,
+                    SeriesIndex: seriesIndex,
+                    IsWatched: ((isLoggedIn()) ? allWatched : null),
+                    IsSynced: true
+                });
 
-            //Reload Favorites
-            $('#favReload').click();
+                //Reload Favorites
+                $('#favReload').click();
+            })();
+
         });
     });
 }

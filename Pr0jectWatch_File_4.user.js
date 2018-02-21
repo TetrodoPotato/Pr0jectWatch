@@ -12,8 +12,11 @@
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/data.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/playlistStorage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/seriesStorage.js
+// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/storage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/logStorage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
+// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/favCat.js
+// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/mainSiteScript.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/keyControll.js
 // @downloadURL http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_4.user.js
 // @noframes
@@ -22,21 +25,21 @@
 /**
  * Redirects to currect hoster
  */
-var initHosterList = function () {
+var initHosterList = async function () {
     makeBlackPage();
 
     var isRepeated = false;
 
-    var searchHoster = function () {
+    var searchHoster = async function () {
         //Get Hosterlist
         var hoster = [];
         $('.hoster-tabs a').each(function () {
             hoster.push($(this).text().trim());
         });
 
-        var errorCode = getData('errorCode', 0);
+        var errorCode = await getData('errorCode', 0);
         var hasHoster = false;
-        $.each(JSON.parse(getData('hoster', JSON.stringify(defaultHoster))), function (index, value) {
+        $.each(await getData('hoster', defaultHoster), function (index, value) {
             var hosterIndex = $.inArray(value, hoster);
             if (hosterIndex != -1) {
                 if (errorCode-- < 1) {
@@ -50,7 +53,9 @@ var initHosterList = function () {
         if (!hasHoster) {
             if (!isRepeated) {
                 isRepeated = true;
-                setTimeout(searchHoster, 1000);
+                setTimeout(function () {
+                    searchHoster();
+                }, 1000);
             } else {
                 alert('No Hoster For This Episode');
                 window.location = window.location + '/NoHoster';
@@ -59,15 +64,17 @@ var initHosterList = function () {
 
     }
 
-    $(document).ready(searchHoster);
+    $(document).ready(function () {
+        searchHoster();
+    });
 }
 
 /**
  * Decide with Pages Loads.
  */
-var initPageStart = function () {
+var initPageStart = async function () {
     if (/^https:\/\/bs\.to\/serie\/[^\/]+\/\d+\/[^\/\:]+$/.test(window.location.href)) {
-        initHosterList();
+        await initHosterList();
     } else {
         initBsPage();
     }
@@ -77,7 +84,7 @@ initPageStart();
 /**
  * Init Page Redirect and Provide noneSupport Hoster Redirect
  */
-var onDocumentReady = function () {
+var onDocumentReady = async function () {
     var seriesId = window.location.pathname.split('/')[2];
     var seriesName = $('#sp_left h2').clone().children().remove().end().text().trim();
     var season = window.location.pathname.split('/')[3];
@@ -88,26 +95,26 @@ var onDocumentReady = function () {
     var hoster = window.location.pathname.split('/')[5].split('?')[0];
     var redirect = $('.hoster-player:first').attr('href');
 
-    if(typeof redirect === 'undefined') {
+    if (typeof redirect === 'undefined') {
         setTimeout(onDocumentReady, 1000);
     }
-    
+
     //Setting
-    if (getData('enableLog', true)) {
-        setLog(seriesId, seriesName, season, episodeDE, episodeOR, episodeIndex, episodeMax, hoster);
+    if (await getData('enableLog', true)) {
+        await setLog(seriesId, seriesName, season, episodeDE, episodeOR, episodeIndex, episodeMax, hoster);
     }
     //Setting
-    if (getData('autoAutoplay', false)) {
-        setData('autoplay', true);
+    if (await getData('autoAutoplay', false)) {
+        await setData('autoplay', true);
     }
     //Setting
-    if (getData('updateSeason', true)) {
-        updateEntry({
+    if (await getData('updateSeason', true)) {
+        await updateEntry({
             Id: seriesId,
             FavSeason: season
         });
     }
-    setForAutoplay();
+    await setForAutoplay();
 
     if (hoster == 'NoHoster') {
         window.location = 'https://bs.to/?next';
@@ -122,12 +129,12 @@ var onDocumentReady = function () {
         }
     });
 
-    if (getData('isPlayingPlaylist', false)) {
-        removePlayList(getFullPlayList()[0].episodeID);
+    if (await getData('isPlayingPlaylist', false)) {
+        await removePlayList((await getFullPlayList())[0].episodeID);
     }
 
     //Save Last link
-    setData('lastSeriesSeasonWatched', 'https://bs.to/serie/' + seriesId + '/' + season, true);
+    await setData('lastSeriesSeasonWatched', 'https://bs.to/serie/' + seriesId + '/' + season, true);
 
     if (supportet) {
         window.location = 'https://bs.to/data'
@@ -136,15 +143,15 @@ var onDocumentReady = function () {
              + '&season=' + jEncode(season)
              + '&episode=' + jEncode(((episodeDE != '') ? episodeDE : episodeOR))
              + '&episodeRange=' + jEncode(episodeIndex + '/' + episodeMax)
-             + '&style=' + jEncode(getData('style', styleColors.Default))
-             + '&autoplay=' + jEncode(getData('autoplay', false))
-             + '&closeEnd=' + jEncode(getData('closeEnd', true))
-             + '&enablePreview=' + jEncode(getData('enablePreview', true))
-             + '&previewSteps=' + jEncode(getData('previewSteps', 20))
-             + '&timeShow=' + jEncode(getData('timeShow', 3))
-             + '&timeStep=' + jEncode(getData('timeStep', 5))
-             + '&volStep=' + jEncode(getData('volStep', 10))
-             + '&disableAutoplayOnExit=' + jEncode(getData('disableAutoplayOnExit', false));
+             + '&style=' + jEncode(await getData('style', styleColors.Default))
+             + '&autoplay=' + jEncode(await getData('autoplay', false))
+             + '&closeEnd=' + jEncode(await getData('closeEnd', true))
+             + '&enablePreview=' + jEncode(await getData('enablePreview', true))
+             + '&previewSteps=' + jEncode(await getData('previewSteps', 20))
+             + '&timeShow=' + jEncode(await getData('timeShow', 3))
+             + '&timeStep=' + jEncode(await getData('timeStep', 5))
+             + '&volStep=' + jEncode(await getData('volStep', 10))
+             + '&disableAutoplayOnExit=' + jEncode(await getData('disableAutoplayOnExit', false));
         return true;
     } else {
         var win = window.open($('.hoster-player:first').attr('href'), "Project Watch Video", "");
@@ -161,26 +168,26 @@ var onDocumentReady = function () {
         window.location = 'https://bs.to/?next';
     });
 
-    initSideCont();
+    await initSideCont();
 }
 
 /**
  * Set Constant Variables for next Autoplay.
  */
-var setForAutoplay = function () {
-    setData('lastSeries', window.location.pathname.split('/')[2]);
-    setData('lastSeason', window.location.pathname.split('/')[3]);
-    setData('lastEpisode', window.location.pathname.split('/')[4]);
+var setForAutoplay = async function () {
+    await setData('lastSeries', window.location.pathname.split('/')[2]);
+    await setData('lastSeason', window.location.pathname.split('/')[3]);
+    await setData('lastEpisode', window.location.pathname.split('/')[4]);
 }
 
 /**
  * Creates a list with max Five Elements of the last watched Series with Seasons.
  */
-var initSideCont = function () {
+var initSideCont = async function () {
     var target = $('#sideContainerContent').empty().append('<h1 class="sideSiteTitel">Last Watched</h1>');
 
     var lastFiveList = [];
-    $.each(getFullLog().reverse(), function (index, value) {
+    $.each((await getFullLog()).reverse(), function (index, value) {
         if (!containsObject(value, lastFiveList)) {
             lastFiveList.push(value);
             return !(lastFiveList.length > 4) // Break if 5 Elements reached - Rest is Continue

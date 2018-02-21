@@ -2,13 +2,12 @@
  * Get the Fulllist of Logs.
  * @return {Object-Array}
  */
-var getFullLog = function () {
-    var log = localStorage.getItem('loglist');
+var getFullLog = async function () {
+    var log = await seriesStorage.storage('loglist');
+
     if (!log) {
         log = [];
-        localStorage.setItem('loglist', JSON.stringify(log));
-    } else {
-        log = JSON.parse(log);
+        await seriesStorage.storage('loglist', log);
     }
     return log;
 }
@@ -16,9 +15,9 @@ var getFullLog = function () {
 /**
  * Save log.
  * @param FullObjectListArray {Object-Array} - Full Log
-*/
-var saveLog = function (FullObjectListArray) {
-    localStorage.setItem('loglist', JSON.stringify(FullObjectListArray));
+ */
+var saveLog = async function (FullObjectListArray) {
+    await seriesStorage.storage('loglist', FullObjectListArray);
 }
 
 /**
@@ -32,7 +31,7 @@ var saveLog = function (FullObjectListArray) {
  * @param episodeMax {String} - Max Numbers of Episode in the Season.
  * @param hosterName {String} - Hoster.
  */
-var setLog = function (seriesIdent, seriesName, seasonIndex, episodeNameDE, episodeNameOr, episodeIndex, episodeMax, hosterName) {
+var setLog = async function (seriesIdent, seriesName, seasonIndex, episodeNameDE, episodeNameOr, episodeIndex, episodeMax, hosterName) {
     var currentdate = new Date();
     var datetime = fillZeros(currentdate.getDate()) + "/"
          + fillZeros((currentdate.getMonth() + 1)) + "/"
@@ -41,7 +40,7 @@ var setLog = function (seriesIdent, seriesName, seasonIndex, episodeNameDE, epis
          + fillZeros(currentdate.getMinutes()) + ":"
          + fillZeros(currentdate.getSeconds());
 
-    var list = getFullLog();
+    var list = await getFullLog();
     list.push({
         seriesId: seriesIdent,
         series: seriesName,
@@ -54,8 +53,8 @@ var setLog = function (seriesIdent, seriesName, seasonIndex, episodeNameDE, epis
         date: datetime
     });
 
-    saveLog(list);
-    clearLog();
+    await saveLog(list);
+    await clearLog();
 }
 
 /**
@@ -70,6 +69,6 @@ var fillZeros = function (str) {
 /**
  * Removes Log-Items More Than 50 Items
  */
-var clearLog = function () {
-    saveLog(getFullLog().reverse().slice(0, 50).reverse());
+var clearLog = async function () {
+    await saveLog((await getFullLog()).reverse().slice(0, 50).reverse());
 }

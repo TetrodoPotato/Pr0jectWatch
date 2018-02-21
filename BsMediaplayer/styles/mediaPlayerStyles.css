@@ -61,11 +61,6 @@
     font-weight:bold;
 }
 
-#progress::-webkit-progress-bar { background: rgba(0,0,0,0); }
-#progress::-webkit-progress-value { background: var(--MediaplayerProgressBarsColor); }
-#progress::-moz-progress-bar { background: var(--MediaplayerProgressBarsColor); }
-#progress {background: rgba(0,0,0,0);}
-
 #volume::-webkit-progress-bar { background: var(--MediaplayerVolumeBarsBackgroundColor); }
 #volume::-webkit-progress-value { background: var(--MediaplayerProgressBarsColor); }
 #volume::-moz-progress-bar { background: var(--MediaplayerProgressBarsColor); }
@@ -167,9 +162,10 @@
 	position:absolute;
 	height:5px;
 	border:none;
-	width: 100%;
+	width: 0%;
 	z-index:10;
     bottom:0;
+    background: var(--MediaplayerProgressBarsColor); 
 }
 
 #buffer {
@@ -477,21 +473,6 @@
 @keyframes spin {
     0% { transform: rotate(0deg); }
     100% { transform: rotate(360deg); }
-}
-
-@supports (-webkit-appearance:none) {
-    #progress {
-		height:5px;
-		border:none;
-		background:rgba(0,0,0,0.01);
-	}
-    #progress::-webkit-progress-bar {
-    	background-color: rgba(0,0,0,0.01) !important;
-    	width: 100%;
-    }
-    #progress::-webkit-progress-value {
-    	 background:var(--MediaplayerProgressBarsColor);
-	}
 }
 
 /*Pseudo Style need for fakelistener*/

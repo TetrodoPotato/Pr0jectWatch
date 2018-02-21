@@ -2,24 +2,22 @@
  * Get the Fulllist of Series.
  * @return {Object-Array}
  */
-var getFullList = function () {
-    var list = localStorage.getItem('serieslist');
+var getFullList = async function () {
+    var list = await seriesStorage.storage('serieslist');
     if (!list) {
         list = [];
-        localStorage.setItem('serieslist', JSON.stringify(list));
-    } else {
-        list = JSON.parse(list);
+        await seriesStorage.storage('serieslist',list);
     }
+    
     return list.sort((a, b) => a.FullName.localeCompare(b.FullName));
-
 }
 
 /**
  * Save List.
  * @param FullObjectListArray {Object-Array} - Full Log
  */
-var saveList = function (FullObjectListArray) {
-    localStorage.setItem('serieslist', JSON.stringify(FullObjectListArray));
+var saveList = async function (FullObjectListArray) {
+    await seriesStorage.storage('serieslist',FullObjectListArray);
 }
 
 /**
@@ -29,14 +27,14 @@ var saveList = function (FullObjectListArray) {
  * @param callback {Function} - Function with Param:Percent Loaded
  * @return Promise-Boolean.
  */
-var updateList = function (objectArray, listArray, callback) {
-    var list = getFullList();
+var updateList = async function (objectArray, listArray, callback) {
+    var list = await getFullList();
     var canuUpdateIndex = (typeof listArray !== 'undefined' && listArray !== null);
     var callbackExist = (typeof callback === 'function');
 
     var index = 0;
     return new Promise(resolve => {
-        var asyncFun = function () {
+        var asyncFun = async function () {
             var i = list.findIndex(item => item.Id.toLowerCase() === objectArray[index].Id.toLowerCase());
             if (i == -1) {
                 list.push(objectArray[index]);
@@ -54,7 +52,7 @@ var updateList = function (objectArray, listArray, callback) {
             if (++index < objectArray.length) {
                 setTimeout(asyncFun, 0);
             } else {
-                saveList(list);
+                await saveList(list);
                 resolve(true);
             }
         }
@@ -66,16 +64,31 @@ var updateList = function (objectArray, listArray, callback) {
  * Return all Favorites.
  * @return {Object-Array}
  */
-var getFavorites = function () {
-    return getFullList().filter(obj => obj.IsFav == true);
+var getFavorites = async function () {
+    return (await getFullList()).filter(obj => obj.IsFav == true);
 }
 
 /**
  * Update all Param of an object.
  * @param obj {Object} - Object needed param:Id
  */
-var updateEntry = function (obj) {
-    var list = getFullList();
+var updateEntry = async function (obj) {
+    
+    //Wait Till Other Update Is Ready
+    if(window.thereIsAlreadyAnUpdatingEntry === true){
+        await new Promise(function(resolve){
+            var checkingInterval = setInterval(function(){
+                if(window.thereIsAlreadyAnUpdatingEntry !== true){
+                    clearInterval(checkingInterval);
+                    resolve(true);
+                }
+            },100);
+        });
+    }
+  
+    window.thereIsAlreadyAnUpdatingEntry = true;
+  
+    var list = await getFullList();
 
     var i = list.findIndex(item => item.Id.toLowerCase() == obj.Id.toLowerCase());
     if (i > -1) {
@@ -106,9 +119,19 @@ var updateEntry = function (obj) {
         if (obj.IsSynced !== null && typeof obj.IsSynced !== 'undefined') {
             list[i].IsSynced = obj.IsSynced;
         }
+        
+        if (obj.LastSeasonMax !== null && typeof obj.LastSeasonMax !== 'undefined') {
+            list[i].LastSeasonMax = obj.LastSeasonMax;
+        }
+        
+        if (obj.HasNewEpisode !== null && typeof obj.HasNewEpisode !== 'undefined') {
+            list[i].HasNewEpisode = obj.HasNewEpisode;
+        }
 
-        saveList(list);
+        await saveList(list);
     } else {
         alert(obj.Id + " does not exist");
     }
+    
+    window.thereIsAlreadyAnUpdatingEntry = false;
 }

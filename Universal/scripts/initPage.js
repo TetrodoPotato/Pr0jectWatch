@@ -2,6 +2,7 @@
  * Init Mainpage
  */
 var initBsPage = function () {
+    window.buildingPageKeyName = 'BSPAGE';
     init('https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/html/siteTemplate.html');
 }
 
@@ -9,6 +10,7 @@ var initBsPage = function () {
  * Init Mediaplayer
  */
 var initMediaplayer = function () {
+    window.buildingPageKeyName = 'MEDIAPLAYER';
     init('https://kartoffeleintopf.github.io/Pr0jectWatch/BsMediaplayer/html/mediaTemplate.html');
 }
 
@@ -34,15 +36,25 @@ var styleColors = {
  * Loads an HTML-File as the new Page and provides some functions for manipulating the Site before and after loading.
  * @param pageURL {String} - Path to the HTML-File.
  */
-var init = function (pageUrl) {
+var init = async function (pageUrl) {
     makeBlackPage();
 
-    $(document).ready(function () {
-        if (typeof onBeforeDocumentLoad === 'function') {
-            onBeforeDocumentLoad();
-        }
+    window.startingHtmlPageUrl = pageUrl;
 
-        $.get(pageUrl, function (newContent) {
+    if (document.readyState !== 'complete') {
+        $(document).ready(buildPage);
+    } else {
+        buildPage();
+    }
+}
+
+var buildPage = function () {
+    $.get(startingHtmlPageUrl, function (newContent) {    
+        (async function () {
+            if (typeof onBeforeDocumentLoad === 'function') {
+                await onBeforeDocumentLoad();
+            }
+            
             newContent = newContent.replace(/(\r\n|\n|\r)/gm, "").split('></').join('> </');
 
             //Parse String to DOM-Elemnts
@@ -56,38 +68,45 @@ var init = function (pageUrl) {
                 iter[i].outerHTML = '';
             }
 
-            loadStyleColors(newDoc);
+            await loadStyleColors(newDoc);
 
             replaceDocument(newDoc, buffer);
 
+            //Start Page Javascript
+            if(buildingPageKeyName === 'BSPAGE'){
+                startBsPageJs();
+            }
+            
             var stopLoading = false;
             if (typeof onDocumentReady === 'function') {
-                stopLoading = onDocumentReady();
+                stopLoading = await onDocumentReady();
             }
 
             //Load event doesn't work by dynamic content
             var onStylesApplied = setInterval(function () {
-                    if ($('body').css('opacity') == '1' && $('body').css('visibility') == 'visible') {
-                        clearInterval(onStylesApplied);
-                        if (stopLoading !== true) {
-                            if (typeof onDocumentLoaded === 'function') {
-                                stopLoading = onDocumentLoaded();
-                            }
+                    (async function () {
+                        if ($('body').css('opacity') == '1' && $('body').css('visibility') == 'visible') {
+                            clearInterval(onStylesApplied);
                             if (stopLoading !== true) {
-                                removeBlackPage();
+                                if (typeof onDocumentLoaded === 'function') {
+                                    stopLoading = await onDocumentLoaded();
+                                }
+                                if (stopLoading !== true) {
+                                    removeBlackPage();
+                                }
                             }
                         }
-                    }
+                    })();
                 }, 100);
-        }, 'text');
-    });
+        })();
+    }, 'text');
 }
 
 /**
  * Replaces the default Colors with the From the Settings
  */
-var loadStyleColors = function (doc) {
-    var styleLink = getData('style', styleColors.Default);
+var loadStyleColors = async function (doc) {
+    var styleLink = await getData('style', styleColors.Default);
     doc.getElementById('defineColors').setAttribute('href', styleLink);
 }
 
@@ -102,6 +121,10 @@ var replaceDocument = function (doc, oldDocument) {
     var newHead = doc.getElementsByTagName('head')[0];
     var old = '<div id="oldBody" style="display:none;">' + oldDocument.innerHTML + '</div>';
 
+    if(buildingPageKeyName === 'MEDIAPLAYER'){
+        old = '<div id="oldBody" style="display:none;"></div>';
+    }
+    
     $('body:first').empty().append(old).prepend(newBody.innerHTML);
     $('head:first').empty().append(newHead.innerHTML);
 

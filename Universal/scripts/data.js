@@ -93,64 +93,29 @@ var removeCookie = function (name) {
 }
 
 /**
- * Set Local Storage Item.
- * @param Key {String} - Key.
- * @param value {All} - value.
- */
-var setLocalStorage = function (key, value) {
-    localStorage[key] = value;
-}
-
-/**
- * Get local Storage.
- * @param key {String} - Key.
- * @return {ALL}
- */
-var getLocalStorage = function (key) {
-    var returnVal = localStorage[key];
-    if (typeof returnVal !== 'undefined') {
-        //Pase values in boolean int and string
-        if (returnVal.toLowerCase() == 'true') {
-            return true;
-        } else if (returnVal.length == 0) {
-            return '';
-        } else if (returnVal.toLowerCase() == 'false') {
-            return false;
-        } else if (!isNaN(returnVal) && returnVal.toString().indexOf('.') != -1) {
-            return parseFloat(returnVal);
-        } else if (!isNaN(returnVal)) {
-            return parseInt(returnVal);
-        } else {
-            return returnVal;
-        }
-    }
-    return undefined;
-}
-
-/**
  * Set data value.
  * @param key {String} - Key.
  * @param value {All} - value.
  * @param perma {Boolean} - if Value is Permanent. Exist after Browserclose.
  */
-var setData = function (key, value, perma) {
+var setData = async function (key, value, perma) {
     if (perma) {
-        setLocalStorage(key, value);
+        await seriesStorage.storage(key, value);
     } else {
         setCookie(key, value, false);
     }
 }
 
 /**
- * Get Data from Cookie of Localstoreage.
+ * Get Data from Cookie of Storeage.
  * @param key {String} - Key.
  * @param deefaultValue {All} - Value if Value is undefinded.
  * @return {All}
  */
-var getData = function (key, defaultValue) {
+var getData = async function (key, defaultValue) {
     var value = getCookie(key);
     if (typeof value === 'undefined') {
-        value = getLocalStorage(key);
+        value = await seriesStorage.storage(key);
         if (typeof value !== 'undefined') {
             return value;
         }
@@ -164,9 +129,9 @@ var getData = function (key, defaultValue) {
 /**
  * Clear all Autoplay Buffers
  */
-var clearAutoplayBuffer = function () {
-    setData('lastSeries', 'none');
-    setData('lastSeason', 'none');
-    setData('lastEpisode', 'none');
-    setData('isPlayingPlaylist', false);
+var clearAutoplayBuffer = async function () {
+    await setData('lastSeries', 'none');
+    await setData('lastSeason', 'none');
+    await setData('lastEpisode', 'none');
+    await setData('isPlayingPlaylist', false);
 }

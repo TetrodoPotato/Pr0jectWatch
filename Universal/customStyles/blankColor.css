@@ -150,6 +150,10 @@
     --FavoriteMenuCategoryTextColor:#000;
     --FavoriteMenuCategoryBackgroundColor:#CCC;
     
+    --FavoriteMenuNewEpisodeBackgroundColor:#2196F3;
+    --FavoriteMenuNoNewEpisodeBackgroundColor:#CCC;
+    --FavoriteMenuFavoriteCheckedColor:#000;
+    
     /*ListRowSegment Series/Episodes*/
     --ListRowSegmentPrimaryBackgroundColor:#FFF;
     --ListRowSegmentPrimaryBackgroundColorHover:#EEE;

@@ -9,9 +9,12 @@
 // @run-at 		document-start
 // @require 	https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/seriesStorage.js
+// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/storage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/playlistStorage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/data.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
+// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/mainSiteScript.js
+// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/favCat.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/keyControll.js
 // @downloadURL http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_3.user.js
 // @noframes
@@ -24,28 +27,44 @@ initBsPage();
  */
 var onDocumentReady = async function () {
     var curDate = new Date().getTime();
-    var lastTime = getData('lastUpdate', 0);
+    var lastTime = await getData('lastUpdate', 0);
 
-    if (((curDate - lastTime) / 86400000) > 7 || (!getData('indexUpdated', false) && isLoggedIn())) {
+    if (((curDate - lastTime) / 86400000) > 7 || (!(await getData('indexUpdated', false)) && isLoggedIn())) {
         window.location = 'https://bs.to/serie-genre?redirect=' + jEncode(window.location.href);
         return true;
     }
 
     $('#contentContainer').empty().append('<h1 class="mainSiteTitle">' + $('#sp_left h2:first').html() + '</h1>');
-    constructSeasonList(getSeasonObjects());
+    await constructSeasonList(getSeasonObjects());
     constructEpisodeList(getEpisodeInfo());
     constructSideContent();
 
     setEpisodeEvents();
-    syncSeries();
+    await syncSeries();
+}
+
+var onBeforeDocumentLoad = async function() {
+    var favs = await getFavorites();
+    var index = favs.findIndex(item => item.Id.toLowerCase() === getSeriesId().toLowerCase());
+    if(index !== -1){
+        if(favs[index].FavSeason == getSeason()){
+            var episodeNumber = $('.episodes tr').length;
+            
+            await updateEntry({
+                Id:favs[index].Id,
+                LastSeasonMax: episodeNumber,
+                HasNewEpisode:false,
+            })
+        }
+    }
 }
 
 /**
  * Starts on new Document loaded all.
  */
-var onDocumentLoaded = function () {
+var onDocumentLoaded = async function () {
     //Setting
-    if (getData('scrollUnwatched', true)) {
+    if (await getData('scrollUnwatched', true)) {
         if ($(".seriesContainer:not(.episodeWatched):first").length) {
             var offSet = $(".seriesContainer:not(.episodeWatched):first").offset()
                 $('html, body').animate({
@@ -56,8 +75,8 @@ var onDocumentLoaded = function () {
         }
     }
 
-    if (getData('autoplay', false)) {
-        return initAutoplay();
+    if (await getData('autoplay', false)) {
+        return await initAutoplay();
     }
 }
 
@@ -85,8 +104,8 @@ var getSeason = function () {
 /**
  * Sync Series and add Special Information. Reloads Favorites.
  */
-var syncSeries = function () {
-    updateEntry({
+var syncSeries = async function () {
+    await updateEntry({
         Id: getSeriesId(),
         Genre: $('.infos:first div:first p:first span').append(' ').text().trim(),
         SeriesIndex: $('img:first').attr('src').split('/')[4].split('.')[0], /*Get seriesId - img src ./index.jpg*/
@@ -109,10 +128,10 @@ var setEpisodeEvents = function () {
         var watchLink = 'https://bs.to/serie/' + getSeriesId() + '/' + getSeason() + '/';
         watchLink += ((target.hasClass('episodeWatched')) ? 'unwatch:' : 'watch:') + target.find('.indexCont:first').text();
 
-        makePageCall(watchLink, function () {
+        makePageCall(watchLink, async function () {
             target.toggleClass('episodeWatched');
             $('.active').toggleClass('watched', ($(".seriesContainer:not(.episodeWatched)").length == 0));
-            syncSeries();
+            await syncSeries();
         });
     });
 
@@ -141,27 +160,30 @@ var setEpisodeEvents = function () {
     }, 1000);
 
     $('#favSeasonStar').bind('click', function (event) {
-        var id = getSeriesId();
-        var season = getSeason();
-        var curSeries = getFullList().filter(obj => obj.Id.toLowerCase() == id.toLowerCase())[0];
-        var fav = (curSeries.IsFav && curSeries.FavSeason != season) ? true : $(this).hasClass('seasonNoFav');
+        var target = this;
+        (async function () {
+            var id = getSeriesId();
+            var season = getSeason();
+            var curSeries = (await getFullList()).filter(obj => obj.Id.toLowerCase() == id.toLowerCase())[0];
+            var fav = (curSeries.IsFav && curSeries.FavSeason != season) ? true : $(target).hasClass('seasonNoFav');
 
-        updateEntry({
-            Id: id,
-            IsFav: fav,
-            FavSeason: season
-        });
+            await updateEntry({
+                Id: id,
+                IsFav: fav,
+                FavSeason: season
+            });
 
-        if (fav) {
-            $('#favSeasonStar').removeClass('seasonNoFav seasonFav');
-            $('#favSeasonStar').addClass('thisSeasonFav');
-        } else {
-            $('#favSeasonStar').removeClass('seasonFav thisSeasonFav');
-            $('#favSeasonStar').addClass('seasonNoFav');
-        }
+            if (fav) {
+                $('#favSeasonStar').removeClass('seasonNoFav seasonFav');
+                $('#favSeasonStar').addClass('thisSeasonFav');
+            } else {
+                $('#favSeasonStar').removeClass('seasonFav thisSeasonFav');
+                $('#favSeasonStar').addClass('seasonNoFav');
+            }
 
-        //Reload Favorites
-        $('#favReload').click();
+            //Reload Favorites
+            $('#favReload').click();
+        })();
     });
 
     $(window).scroll(function () {
@@ -174,7 +196,7 @@ var setEpisodeEvents = function () {
     });
 
     $('#watchAll').bind('click', function () {
-        makePageCall('https://bs.to/serie/' + getSeriesId() + '/' + getSeason() + '/' + 'watch:all', function () {
+        makePageCall('https://bs.to/serie/' + getSeriesId() + '/' + getSeason() + '/' + 'watch:all', async function () {
             $('.seriesContainer ').addClass('episodeWatched');
             $('.active').toggleClass('watched', ($(".seriesContainer:not(.episodeWatched)").length == 0));
             if ($('.active:first').hasClass('watched')) {
@@ -182,12 +204,12 @@ var setEpisodeEvents = function () {
             } else {
                 $('.active').addClass('unwatched');
             }
-            syncSeries();
+            await syncSeries();
         });
     });
 
     $('#unwatchAll').bind('click', function () {
-        makePageCall('https://bs.to/serie/' + getSeriesId() + '/' + getSeason() + '/' + 'unwatch:all', function () {
+        makePageCall('https://bs.to/serie/' + getSeriesId() + '/' + getSeason() + '/' + 'unwatch:all', async function () {
             $('.seriesContainer ').removeClass('episodeWatched');
             $('.active').toggleClass('watched', ($(".seriesContainer:not(.episodeWatched)").length == 0));
             if ($('.active:first').hasClass('watched')) {
@@ -195,20 +217,22 @@ var setEpisodeEvents = function () {
             } else {
                 $('.active').addClass('unwatched');
             }
-            syncSeries();
+            await syncSeries();
         });
     });
 
     $('.addAutoplayButton').bind('click', function () {
         var target = $(this).closest('.seriesContainer');
 
-        var seriesName = $('.mainSiteTitle:first').clone().children().remove().end().text().trim();
-        var episodeDE = target.find('.titleContainer:first strong:first').text().trim();
-        var episodeOR = target.find('.titleContainer:first i:first').text().trim();
+        (async function () {
+            var seriesName = $('.mainSiteTitle:first').clone().children().remove().end().text().trim();
+            var episodeDE = target.find('.titleContainer:first strong:first').text().trim();
+            var episodeOR = target.find('.titleContainer:first i:first').text().trim();
 
-        setPlayList(getSeriesId(), getSeason(), target.attr('episodeid'), seriesName, ((episodeDE != '') ? episodeDE : episodeOR), parseInt(target.find('.indexCont').text()));
+            await setPlayList(getSeriesId(), getSeason(), target.attr('episodeid'), seriesName, ((episodeDE != '') ? episodeDE : episodeOR), parseInt(target.find('.indexCont').text()));
 
-        addBottomText('Added Episode ' + target.find('.indexCont').text() + ' To The Playlist', 2000);
+            addBottomText('Added Episode ' + target.find('.indexCont').text() + ' To The Playlist', 2000);
+        })();
     });
 }
 
@@ -270,11 +294,11 @@ function makePageCall(siteUrl, callback) {
 /**
  * Constructs an SeasonList with Favoritebutton and Append.
  */
-var constructSeasonList = function (obj) {
+var constructSeasonList = async function (obj) {
     $('#contentContainer').append('<div id="seasonContainer"></div>').append('<div id="seasonContainerSpaceTaker"></div>');
     $('#seasonContainer').append('<table id="seasonTable"><tr></tr></table>');
 
-    var seasonIsFav = getFullList().filter(obj => obj.Id.toLowerCase() == getSeriesId().toLowerCase())[0];
+    var seasonIsFav = (await getFullList()).filter(obj => obj.Id.toLowerCase() == getSeriesId().toLowerCase())[0];
 
     var $row = $('#seasonTable tr:first').append('<td class="' + ((seasonIsFav.IsFav) ? ((seasonIsFav.FavSeason == getSeason()) ? 'thisSeasonFav' : 'seasonFav') : 'seasonNoFav') + '" id="favSeasonStar"><svg viewBox="0 0 25 25"><g><path d="M12.6 0 L15.6 9 L24.9 9 L17.5 15.5 L20 24.9 L12.6 19.4 L4.5 24.7 L7.5 15.6 L0 9.2 L9.3 9 Z" /></g></svg></td>');
 
@@ -379,33 +403,37 @@ var getInfoTable = function () {
 /**
  * Init Autoplay
  */
-var initAutoplay = function () {
-    if (!autoplayIsValid()) {
-        clearAutoplayBuffer();
+var initAutoplay = async function () {
+    if (!(await autoplayIsValid())) {
+        await clearAutoplayBuffer();
         return false;
     }
 
-    var autoplayTime = getData('autoplayTime', 5);
+    var autoplayTime = await getData('autoplayTime', 5);
 
-    if (autoplayTime == 0 || getData('lastEpisode') == '0x000000') {
-        return playNextEpisode();
+    if (autoplayTime == 0 || (await getData('lastEpisode')) == '0x000000') {
+        return await playNextEpisode();
     }
 
     var target = $('#sideContainer').prepend('<div id="sideAutoplay"></div>').find('#sideAutoplay');
-    target.append('<div id="autoplayContent"><span id="timeInfotext">Next Episode In <span id="autoTimeNumber">' + autoplayTime + '</span> Seconds</span><span id="nextEpisodeText">' + getNextText() + '</span><div id="autoplayButton"><button id="nextAutoplay">Next</button><button id="cancelAutoplay">Cancel</button></div></div>');
+    target.append('<div id="autoplayContent"><span id="timeInfotext">Next Episode In <span id="autoTimeNumber">' + autoplayTime + '</span> Seconds</span><span id="nextEpisodeText">' + (await getNextText()) + '</span><div id="autoplayButton"><button id="nextAutoplay">Next</button><button id="cancelAutoplay">Cancel</button></div></div>');
 
     $('#nextAutoplay').bind('click', function (e) {
-        e.stopPropagation();
-        playNextEpisode();
+        (async function () {
+            e.stopPropagation();
+            await playNextEpisode();
+        })();
     });
 
     $('#cancelAutoplay, #dialogClickLayer').bind('click', function () {
-        closeAutoplay();
+        (async function () {
+            await closeAutoplay();
+        })();
     });
 
     var lastIsOn;
     var autoCheckSizeInterval = setInterval(function () {
-            if (window.closeAutoplay == true) {
+            if (window.closeAutoplayVariable == true) {
                 clearInterval(autoCheckSizeInterval);
                 return;
             }
@@ -432,7 +460,7 @@ var initAutoplay = function () {
  */
 var startAutoplayCount = function (time) {
     var countInterval = setInterval(function () {
-            if (window.closeAutoplay == true) {
+            if (window.closeAutoplayVariable == true) {
                 clearInterval(countInterval);
                 return;
             }
@@ -449,11 +477,11 @@ var startAutoplayCount = function (time) {
 /**
  * Set the text with the Information for the Next Episode.
  */
-var getNextText = function () {
-    var next = (getData('lastEpisode') == '0x000001') ? $('.seriesContainer:first') : $('.seriesContainer[episodeid="' + getData('lastEpisode') + '"]').next('.seriesContainer');
+var getNextText = async function () {
+    var next = ((await getData('lastEpisode')) == '0x000001') ? $('.seriesContainer:first') : $('.seriesContainer[episodeid="' + (await getData('lastEpisode')) + '"]').next('.seriesContainer');
 
     /*Setting*/
-    if (getData('playMerged', true) && next.length != 0) {
+    if ((await getData('playMerged', true)) && next.length != 0) {
         next = (next.find('.titleContainer').text().toLowerCase().includes('[in episode')) ? next.next('.seriesContainer') : next;
     }
 
@@ -463,33 +491,34 @@ var getNextText = function () {
 /**
  * Check if Autoplay is Valid with the Set variables and Series
  */
-var autoplayIsValid = function () {
-    if (getData('isPlayingPlaylist', false)) {
-        var play = $('.seriesContainer[episodeid="' + getData('lastEpisode') + '"]');
+var autoplayIsValid = async function () {
+    if (await getData('isPlayingPlaylist', false)) {
+        var play = $('.seriesContainer[episodeid="' + (await getData('lastEpisode')) + '"]');
         if (play.length == 0) {
+            var lastEpisodeName = (await getData('lastEpisode')).split('-')[0].trim();
             play = $(".seriesContainer").filter(function () {
-                    return $(this).find('.indexCont').text().trim() == getData('lastEpisode').split('-')[0].trim();
+                    return $(this).find('.indexCont').text().trim() == lastEpisodeName;
                 })
         }
 
         play = play.prev('.seriesContainer');
 
         if (play.length == 0) {
-            setData('lastEpisode', '0x000001');
+            await setData('lastEpisode', '0x000001');
         } else {
-            setData('lastEpisode', play.attr('episodeid'));
+            await setData('lastEpisode', play.attr('episodeid'));
         }
     } else {
-        if (getData('lastEpisode') == '0x000000') {
+        if ((await getData('lastEpisode')) == '0x000000') {
             return true;
-        } else if (getData('lastSeries') != getSeriesId() || getData('lastSeason') !== getSeason()) {
+        } else if ((await getData('lastSeries')) != getSeriesId() || (await getData('lastSeason')) !== getSeason()) {
             return false;
         }
 
-        var next = $('.seriesContainer[episodeid="' + getData('lastEpisode') + '"]').next('.seriesContainer');
+        var next = $('.seriesContainer[episodeid="' + (await getData('lastEpisode')) + '"]').next('.seriesContainer');
 
         /*Setting*/
-        if (getData('playMerged', true) && next.length != 0) {
+        if ((await getData('playMerged', true)) && next.length != 0) {
             if (next.find('.titleContainer').text().toLowerCase().includes('[in episode')) {
                 next = next.next('.seriesContainer');
             }
@@ -499,8 +528,8 @@ var autoplayIsValid = function () {
             next = $('#seasonTable .active:first').next('td');
             if (next.length == 0) {
                 $('#autoplay').prop('checked', false);
-                setData('autoplay', false);
-                clearAutoplayBuffer();
+                await setData('autoplay', false);
+                await clearAutoplayBuffer();
                 return false;
             }
         }
@@ -512,16 +541,16 @@ var autoplayIsValid = function () {
 /**
  * Plays the Next Episode
  */
-var playNextEpisode = function () {
-    if (getData('lastEpisode') == '0x000000' || getData('lastEpisode') == '0x000001') {
+var playNextEpisode = async function () {
+    if ((await getData('lastEpisode')) == '0x000000' || (await getData('lastEpisode')) == '0x000001') {
         $('.seriesContainer:first .nameWatchedContainer:first').click();
         return true;
     }
 
-    var next = $('.seriesContainer[episodeid="' + getData('lastEpisode') + '"]').next('.seriesContainer');
+    var next = $('.seriesContainer[episodeid="' + (await getData('lastEpisode')) + '"]').next('.seriesContainer');
 
     /*Setting*/
-    if (getData('playMerged', true) && next.length != 0) {
+    if ((await getData('playMerged', true)) && next.length != 0) {
         if (next.find('.titleContainer').text().toLowerCase().includes('[in episode')) {
             next = next.next('.seriesContainer');
         }
@@ -529,38 +558,37 @@ var playNextEpisode = function () {
 
     if (next.length == 0) {
         next = $('#seasonTable .active:first').next('td');
-        setData('lastEpisode', '0x000000');
+        await setData('lastEpisode', '0x000000');
         window.location = next.attr('href');
         return;
     }
 
-    if (getData('isPlayingPlaylist', false)) {
+    if (await getData('isPlayingPlaylist', false)) {
         var target = next;
 
         var watchLink = 'https://bs.to/serie/' + getSeriesId() + '/' + getSeason() + '/';
         watchLink += ((target.hasClass('episodeWatched')) ? 'unwatch:' : 'watch:') + target.find('.indexCont:first').text();
 
-        makePageCall(watchLink, function () {
+        makePageCall(watchLink, async function () {
             target.addClass('episodeWatched');
             $('.active').toggleClass('watched', ($(".seriesContainer:not(.episodeWatched)").length == 0));
-            syncSeries();
+            await syncSeries();
 
             next.find('.nameWatchedContainer:first').click();
         });
     } else {
         next.find('.nameWatchedContainer:first').click();
     }
-
 }
 
 /**
  * Close Autoplay Window.
  */
-var closeAutoplay = function () {
-    window.closeAutoplay = true;
+var closeAutoplay = async function () {
+    window.closeAutoplayVariable = true;
     $('#sideAutoplay').remove();
     $('#dialogClickLayer').attr('ison', 'false');
     $('#autoplay').prop("checked", false);
-    setData('autoplay', false, false);
-    clearAutoplayBuffer();
+    await setData('autoplay', false, false);
+    await clearAutoplayBuffer();
 }

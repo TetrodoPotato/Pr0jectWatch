@@ -19,6 +19,7 @@
 // @grant 		GM.getValue
 // @require 	https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/data.js
+// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/storage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
 // @downloadURL http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_7.user.js
 // @noframes
@@ -151,6 +152,8 @@ var onDocumentLoaded = function () {
 var onBeforeDocumentLoad = function () {
     //Stop old Video : Parallel Fix
     $('video').each(function () {
+        $(this).removeAttr('autoplay')
+        $(this).find('source').attr('src','');
         $(this).remove();
     });
 }
@@ -289,14 +292,14 @@ var addInterfaceEventhandler = async function () {
     // Click and Drag without neededto stay at bar
     var handlerPro = function (e) {
         var x = (e.pageX - $('#progress').offset().left); // or e.offsetX (less support, though)
-        var clickedValue = x * $('#progress')[0].max / $('#progress').outerWidth();
+        var clickedValue = x * $('#progress').attr('max') / $('#progress').outerWidth();
         updateTime(clickedValue);
         showCur(e.pageX, clickedValue);
         $('#curProc').show();
     };
 
     $('#bars').bind('mousedown', function (e) {
-        updateTime((e.pageX - $(this).offset().left) * $('#progress')[0].max / this.offsetWidth);
+        updateTime((e.pageX - $(this).offset().left) * $('#progress').attr('max') / this.offsetWidth);
 
         $('body').bind('mousemove', handlerPro);
         $('#vid')[0].pause();
@@ -316,7 +319,7 @@ var addInterfaceEventhandler = async function () {
 
     $('#bars').bind("mousemove", function (e) {
         var x = e.pageX - $(this).offset().left;
-        var clickedValue = x * $('#progress')[0].max / $(this).outerWidth();
+        var clickedValue = x * $('#progress').attr('max') / $(this).outerWidth();
         showCur(e.pageX, clickedValue);
         $('#curProc').show();
     });
@@ -436,6 +439,8 @@ var addVideoEventhandler = async function () {
         $('#timeShow').html(playTimeMin + ":" + playTimeSec + " / " + durationMin + ":" + durationSec);
         $('#progress').attr('max', duration).attr('value', curTime);
 
+        $('#progress').css('width',((curTime / duration) * 100) + '%');
+        
         setGMValue('lastTime', curTime);
     });
 
@@ -484,7 +489,7 @@ var addVideoEventhandler = async function () {
     $('#vid').one('play', function () {
         //After the Video plays
         $('#vid').bind('ratechange', function () {
-            $('#speed').html(($('#vid')[0].playbackRate * 100).toFixed(0) + '%');
+            $('#speed').html($('#vid')[0].playbackRate.toFixed(2) + 'x');
             setGMValue('lastSpeed', $('#vid')[0].playbackRate);
         });
 

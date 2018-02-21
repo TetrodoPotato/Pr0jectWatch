@@ -681,13 +681,13 @@ input:checked + .slider:before {
     background-color:var(--FavoriteMenuRowBackgroundColorClick);
 }
 
-.favRow td:nth-child(2) {
-    width:98%;
+.favRow td:nth-child(3) {
+    width:97%;
 }
 
 .favFirst {
     padding: 5px 0px 5px 20px;
-    width: 186px;
+    width: 174px;
     border-radius:3px;
     color:var(--FavoriteMenuNameColTextColor);
     cursor:pointer;
@@ -711,7 +711,7 @@ input:checked + .slider:before {
     color:var(--FavoriteMenuNameColTextColorClick);
 }
 
-.favRow td:nth-child(3) {
+.favRow td:nth-child(4) {
     width:1%; 
 }
 
@@ -732,7 +732,7 @@ input:checked + .slider:before {
     border-radius: 50px;
 }
 
-.favRow td:nth-child(1) {
+.favRow td:nth-child(2) {
     width:1%;
 }
 
@@ -762,6 +762,35 @@ input:checked + .slider:before {
 .favDel svg {
     height:10px;
     width:10px;
+}
+
+.favRow td:nth-child(1) {
+    width:1%;
+}
+
+.favNewEpi {
+    height:43px;
+    width:12px;
+    
+    border-radius: 0 20px 20px 0;
+    
+    background-color:var(--FavoriteMenuNoNewEpisodeBackgroundColor);
+}
+
+.favNewEpi.hasNew {
+    background-color:var(--FavoriteMenuNewEpisodeBackgroundColor);
+}
+
+.favNewEpi svg {
+    width:12px;
+    height:12px;
+    display:block;
+    margin:16px 0 0 0;
+    fill:transparent;
+}
+
+.favNewEpi.hasFavSynced svg {
+    fill:var(--FavoriteMenuFavoriteCheckedColor);
 }
 
 #favMessageLayer {

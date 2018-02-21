@@ -1,0 +1,23 @@
+[TITLE]Changelog V-1.5
+[TEXT]Diese Updates konnten nichtmehr aufgeschoben werden den der Serienspeicher nähert sich der 5mb. Da localStorage nicht mehr als 5mb pro Domain speichern kann musste ich den Speicher auf IndexedDB umstellen. Diese sind aber langsamer und asynchron was alles ein bisschen mit Kacke besprüht.
+[TEXT]Viele der Daten werden konvertiert aber nicht alle. Es ist sehr zu empfehlen in den Tampermonkey-Einstellungen 'Externals	Aktualisierungsintervall' auf 'immer' zu stellen. Auch ist es zu Empfehler die Seite immer über 'bs.to' aufzurufen.
+[TEXT]Bei Fehlern die Tampermonkey-Einstellungen 'Externals	Aktualisierungsintervall' auf 'immer' stellen und alle Scripte neu zu installieren.
+[LIST]Der Serienlistenspeicher wurde auf eine asynchrone Funktion geändert (weitere Speicher folgen).
+[LIST]Einführung des Changelog.
+[LIST]Die Serienliste wird nun als Datenbank gespeichert. Dies ermöglicht mehr als 5mb (~5000 Serien) zu speichern.
+[LIST]Minus und Plus der Geschwindigkeitsregelung des Medienspielers wurden getauscht. Ich Kehre nicht.
+[LIST]Die Geschwindigkeitsanzeige wurde von einer Prozent-(%) auf eine Multiplizierungsansicht(x) geändert.
+[LIST]Der Loglistenspeicher wurde auf eine asynchrone Funktion geändert.
+[LIST]Die Logliste wird nun als Datenbank gespeichert. Dies ermöglicht es mehr 50 Logeinträge zu speichern.
+[LIST]Der Plalistspeicher wurde auf eine asynchrone Funktion geändert.
+[LIST]Die Playlist wird nun als Datenbank gespeichert. Dies ermöglicht es mehr 5000 Playlisteinträge zu speichern (Wer es braucht?). Die Playlist wurde nicht konvertiert und ist bei diesem Update gelöscht worden. Tut mir nicht leid.
+[LIST]Der Favoritenkategorienspeicher wurde auf eine asynchrone Funktion geändert.
+[LIST]Die Favoritenkategorien werden nun als Datenbank gespeichert.
+[LIST]Der Einstellungsspeicher wurde auf eine asynchrone Funktion geändert.
+[LIST]Die Einstellungen wurden nun als Datenbank gespeichert. Alle Einstellungen werden nicht konvertiert und müssen manuell wieder eingestellt werden.
+[LIST]Hauptseiten Javascript wird nun über die Userscripts ausgeführt und nicht mehr über die Seite. Dies verbessert die Stabilität.
+[LIST]Die Einstellung "Sync Only Watched Series In Favmenu" wurde entfernt.
+[LIST]Alle Favoriten werden nun synchronisiert und von Anfang an geladen.
+[LIST]Eine neue Spalte wurde im Favoritenmenü hinzugefügt. Diese Zeigt durch ein Hacken an, ob diese Serie schon synchronisiert wurde. Durch die Hintergrundfarbe wird angezeigt, ob eine neue Folge hinzugefügt wurde. Dies wird aber nur auf der Aktuellen Favorisierten Staffel geprüft.
+[LIST]Die Anleitung wurde angepasst.
+[LIST]Viele neue Rächtschraibfeler.

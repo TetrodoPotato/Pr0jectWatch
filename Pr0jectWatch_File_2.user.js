@@ -144,7 +144,7 @@ var updateSeriesList = async function () {
                 IsWatched: false,
                 IsSynced: false,
                 LastSeasonMax: 0,
-                HasNewEpisode: false;
+                HasNewEpisode: false,
             });
         });
     });

@@ -1,7 +1,7 @@
 [TITLE]Changelog V-1.5
 [TEXT]Diese Updates konnten nichtmehr aufgeschoben werden den der Serienspeicher nähert sich der 5mb. Da localStorage nicht mehr als 5mb pro Domain speichern kann musste ich den Speicher auf IndexedDB umstellen. Diese sind aber langsamer und asynchron was alles ein bisschen mit Kacke besprüht.
 [TEXT]Viele der Daten werden konvertiert aber nicht alle. Es ist sehr zu empfehlen in den Tampermonkey-Einstellungen 'Externals	Aktualisierungsintervall' auf 'immer' zu stellen. Auch ist es zu Empfehler die Seite immer über 'bs.to' aufzurufen.
-[TEXT]Bei Fehlern die Tampermonkey-Einstellungen 'Externals	Aktualisierungsintervall' auf 'immer' stellen und alle Scripte neu zu installieren.
+[TEXT]Bei Fehlern die Tampermonkey-Einstellungen 'Externals	Aktualisierungsintervall' auf 'immer' stellen und alle Scripte neu zu installieren. Wenn der Fehler immer noch besteht würde es mich freuen wenn das mir gemeldet wird. Bei diesem großen Update wird das keine Seltenheit sein.
 [LIST]Der Serienlistenspeicher wurde auf eine asynchrone Funktion geändert (weitere Speicher folgen).
 [LIST]Einführung des Changelog.
 [LIST]Die Serienliste wird nun als Datenbank gespeichert. Dies ermöglicht mehr als 5mb (~5000 Serien) zu speichern.

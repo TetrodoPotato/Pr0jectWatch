@@ -269,13 +269,23 @@ var convertOldData = async function () {
 
 }
 
+var getScriptVersion = async function () {
+    if(typeof GM !== 'undefined'){
+        return (await GM.info).version
+    } else if(typeof GM_info !== 'undefined') {
+        return GM_info.version;
+    } else {
+        return '1.5';
+    }
+}
+
 var startStartPage = async function () {
     //Black page over original
     makeBlackPage();
 
     await convertOldData();
 
-    if (await getData('currentScriptVersion', '0') < (await GM.info).version) {
+    if (await getData('currentScriptVersion', '0') < await getScriptVersion()) {
         showChangelog();
     } else {
         await redirectStart();

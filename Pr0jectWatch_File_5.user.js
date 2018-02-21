@@ -239,7 +239,7 @@ var addGeneralConf = async function () {
     await addCheckbox(target, 'syncFavMenu', true, 'Enable Sync Series In Favmenu [Turn Off On Mobiledevices]');
     await addCheckbox(target, 'catFav', false, 'Categorize Favorite Menu', function (val) {
         $('#favNav').toggle(val);
-        $('#favReload').click();
+        updateFavoriteMenu();
     });
     await addCheckbox(target, 'episodeSearch', false, 'Enable Episodesearch. Seriessearch on Episodelist Will Be Disabled');
     await addCheckbox(target, 'reverseLog', false, 'Reverse Log');
@@ -667,5 +667,5 @@ var saveCategoryList = async function () {
 
     restartSortableFavList();
     await setCatFavs(returnObj);
-    $('#favReload').click();
+    updateFavoriteMenu();
 }

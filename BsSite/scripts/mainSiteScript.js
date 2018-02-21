@@ -78,8 +78,6 @@ var bsPageJsEvents = async function () {
         searchEv();
     });
 
-    $('#favReload').bind('click', updateFavoriteMenu);
-
     $('#arrowContainer').bind('click', function (e) {
         onWindowResize($('#contentContainer').attr('ison').toLowerCase() == 'true');
     });
@@ -188,7 +186,7 @@ var updateFavNSync = async function () {
                         
                         favRow.find('.favNewEpi:first').toggleClass('hasNew', hasNew);
                         favRow.find('.favNewEpi:first').toggleClass('hasFavSynced', true);
-                        favRow.find('.favSeco:first').toggleClass('favWatched', ((isWatched !== null) ? isWatched : false));                    
+                        favRow.find('.favSeco:first').toggleClass('favWatched', ((isWatched !== null) ? isWatched : obj.IsWatched));                    
                     })();
                 });
             });

@@ -377,7 +377,7 @@ var addListEvents = function () {
                 });
 
                 //Reload Favorites
-                $('#favReload').click();
+                updateFavoriteMenu();
             })();
 
         });
@@ -413,7 +413,7 @@ var addListEvents = function () {
                 });
 
                 //Reload Favorites
-                $('#favReload').click();
+                updateFavoriteMenu();
             })();
 
         });

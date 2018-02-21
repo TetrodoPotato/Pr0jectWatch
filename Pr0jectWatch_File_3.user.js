@@ -40,7 +40,6 @@ var onDocumentReady = async function () {
     constructSideContent();
 
     setEpisodeEvents();
-    await syncSeries();
 }
 
 var onBeforeDocumentLoad = async function() {
@@ -54,6 +53,10 @@ var onBeforeDocumentLoad = async function() {
                 Id:favs[index].Id,
                 LastSeasonMax: episodeNumber,
                 HasNewEpisode:false,
+                Genre: $('.infos:first div:first p:first span').append(' ').text().trim(),
+                SeriesIndex: $('img:first').attr('src').split('/')[4].split('.')[0],
+                IsWatched:((isLoggedIn()) ? ($('.seasons li:not(.watched), .episodes tr:not(.watched)').length < 2) : null),
+                IsSynced: true,
             })
         }
     }
@@ -114,7 +117,7 @@ var syncSeries = async function () {
     });
 
     //Reload Favorites
-    $('#favReload').click();
+    updateFavoriteMenu();
 }
 
 /**
@@ -182,7 +185,7 @@ var setEpisodeEvents = function () {
             }
 
             //Reload Favorites
-            $('#favReload').click();
+            updateFavoriteMenu();
         })();
     });
 

@@ -208,7 +208,7 @@ $(document).keydown(function (e) {
                     await favClick($(':focus .favIcon:first'));
                 }
 
-                $('#favReload').click();
+                updateFavoriteMenu();
             } else if (e.keyCode === 87) { // W
                 e.preventDefault();
                 if ($(':focus .watchIcon:first').length) {

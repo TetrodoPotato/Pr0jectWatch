@@ -3,7 +3,7 @@
 // @icon 		https://bs.to/opengraph.jpg
 // @namespace   https://bs.to/
 // @include     /^https:\/\/bs\.to\/serie\-genre.*$/
-// @version    	1.4
+// @version    	1.5
 // @description	SeriesList
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -53,9 +53,6 @@ var onDocumentReady = async function () {
     buildSiteContent();
     /*Build Main Content*/
     await showSeriesRow((await getFullList()).map(obj => seriesRowRaw(obj.FullName, obj.Genre, obj.SeriesIndex, obj.IsFav, obj.IsSynced, obj.Id, obj.IsWatched)));
-
-    /*Check Settings Before Doing*/
-    updateAllWatchedSynced();
 }
 
 /**
@@ -459,21 +456,4 @@ var sortSeriesList = function (sorted) {
     }
 
     $('#contentContainer').append($sorted);
-}
-
-/**
- * Updates all list Items wit everything watched.
- */
-var updateAllWatchedSynced = function () {
-    var elem = $('.watchedSeries');
-    var index = 0;
-
-    var checkInterval = function () {
-        var target = $(elem[index]).closest('.seriesContainer').find('.seriesTick:first').click();
-
-        if (++index < elem.length) {
-            setTimeout(checkInterval, 500);
-        }
-    }
-    checkInterval();
 }

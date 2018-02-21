@@ -8,7 +8,7 @@
 // @include     /^https:\/\/streamango\.com\/embed\/.+$/
 // @include     /^http:\/\/vidto\.me\/.+$/
 // @include     /^https:\/\/vidoza\.net\/embed.+$/
-// @version    	1.4
+// @version    	1.5
 // @description	Hoster Parser
 // @author     	Kartoffeleintopf
 // @run-at 		document-start

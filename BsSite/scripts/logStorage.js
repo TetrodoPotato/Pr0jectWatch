@@ -70,5 +70,6 @@ var fillZeros = function (str) {
  * Removes Log-Items More Than 50 Items
  */
 var clearLog = async function () {
-    await saveLog((await getFullLog()).reverse().slice(0, 50).reverse());
+    var maxEntities = await getData('maxLogEntities', 50);
+    await saveLog((await getFullLog()).reverse().slice(0, maxEntities).reverse());
 }

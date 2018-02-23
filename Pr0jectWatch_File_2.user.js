@@ -3,13 +3,13 @@
 // @icon 		https://bs.to/opengraph.jpg
 // @namespace   https://bs.to/
 // @include     /^https:\/\/bs\.to\/serie\-genre.*$/
-// @version    	1.5
+// @version    	1.6
 // @description	SeriesList
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
 // @require 	https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
-// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/seriesStorage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/storage.js
+// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/seriesStorage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/data.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/mainSiteScript.js

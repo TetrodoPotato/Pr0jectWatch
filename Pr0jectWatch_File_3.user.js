@@ -3,7 +3,7 @@
 // @icon 		https://bs.to/opengraph.jpg
 // @namespace   https://bs.to/
 // @include     /^https:\/\/bs\.to\/serie\/[^\/]+(\/(\d+(\/((unwatch:|watch:)(\d+|all)(\/)?)?)?)?)?$/
-// @version    	1.5
+// @version    	1.6
 // @description	EpisodeList
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -36,7 +36,7 @@ var onDocumentReady = async function () {
 
     $('#contentContainer').empty().append('<h1 class="mainSiteTitle">' + $('#sp_left h2:first').html() + '</h1>');
     await constructSeasonList(getSeasonObjects());
-    constructEpisodeList(getEpisodeInfo());
+    await constructEpisodeList(getEpisodeInfo());
     constructSideContent();
 
     setEpisodeEvents();
@@ -260,11 +260,12 @@ var addBottomText = function (msg, time) {
 /**
  * Constructs EpisodeRows and Append
  */
-var constructEpisodeList = function (list) {
+var constructEpisodeList = async function (list) {
     var target = $('#contentContainer');
     var season = getSeason();
     var loggedIn = isLoggedIn();
     var seriesId = getSeriesId();
+    var episodeSearch = (await getData('episodeSearch', false));
 
     $.each(list, function (index, value) {
         var curObj = list[index];
@@ -278,7 +279,7 @@ var constructEpisodeList = function (list) {
             hosterObj += hostLink;
         });
 
-        target.append($(episodeRowRaw(index + 1, curObj.episodeId, curObj.nameDe, curObj.nameOr, curObj.watched, hosterObj, loggedIn)));
+        target.append($(episodeRowRaw(index + 1, curObj.episodeId, curObj.nameDe, curObj.nameOr, curObj.watched, hosterObj, loggedIn, episodeSearch)));
 
     });
 
@@ -360,8 +361,8 @@ var getEpisodeInfo = function () {
  * Get a complete episodeRow as String.
  * @return {String}
  */
-var episodeRowRaw = function (index, episodeID, nameDE, nameOR, watched, hosterObj, isLoggedIn) {
-    return '<div tabindex="-1" episodeId="' + episodeID + '" class="seriesContainer' + ((watched) ? ' episodeWatched' : '') + ' search"><div class="buttonContainer"><svg title="Toggle Watchstate" ' + ((!isLoggedIn) ? 'style="display:none"' : '') + ' class="watchIcon" viewBox="0 0 30 30"><g>' +
+var episodeRowRaw = function (index, episodeID, nameDE, nameOR, watched, hosterObj, isLoggedIn, episodeSearch) {
+    return '<div tabindex="-1" episodeId="' + episodeID + '" class="seriesContainer' + ((watched) ? ' episodeWatched' : '') + ((episodeSearch) ? ' search' : '') + '"><div class="buttonContainer"><svg title="Toggle Watchstate" ' + ((!isLoggedIn) ? 'style="display:none"' : '') + ' class="watchIcon" viewBox="0 0 30 30"><g>' +
     '<path d="M0,15.089434 C0,16.3335929 5.13666091,24.1788679 14.9348958,24.1788679 C24.7325019,24.1788679 29.8697917,16.3335929' +
     ' 29.8697917,15.089434 C29.8697917,13.8456167 24.7325019,6 14.9348958,6 C5.13666091,6 0,13.8456167 0,15.089434 Z M14.9348958,22.081464 ' +
     'C11.2690863,22.081464 8.29688487,18.9510766 8.29688487,15.089434 C8.29688487,11.2277914 11.2690863,8.09740397 14.9348958,8.09740397 ' +

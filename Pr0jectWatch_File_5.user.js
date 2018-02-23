@@ -6,7 +6,7 @@
 // @include     https://bs.to/settings
 // @include     https://bs.to/playlist
 // @include     https://bs.to/favorites
-// @version    	1.5
+// @version    	1.6
 // @description	Log and Settings
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -249,6 +249,7 @@ var addGeneralConf = async function () {
     await addNumberInput(target, 'updateWaitTime', 7, 'Time Till Next Listupdate [Days]', 1, 60000);
     await addNumberInput(target, 'listTimeout', 10000, 'Time Till Serieslist Asynchron Load [Ms]', 1, 60000);
     await addNumberInput(target, 'minCharsSearch', 3, 'Min Characters In Search Before List Shows', 0, 60000);
+    await addNumberInput(target, 'maxLogEntities', 50, 'Max Log Entries', 1, 60000);
 
     target.append('<button id="updateList">Manual Update List</button>');
     $('#updateList').bind('click', function () {
@@ -277,6 +278,7 @@ var addMediaplayerConf = async function () {
 
     await addCheckbox(target, 'closeEnd', true, 'Close On End');
     await addCheckbox(target, 'enablePreview', true, 'Enable Timeline Preview');
+    await addCheckbox(target, 'noStepPreview', false, 'Load Preview With No Steps. Extreme Slow and Needs A Lot Of Bandwidth');
     await addCheckbox(target, 'disableAutoplayOnExit', false, 'Disable Autoplay When The [X]-Key Is Pressed');
 
     await addNumberInput(target, 'previewSteps', 20, 'Preview Image Steps', 1, 60000);

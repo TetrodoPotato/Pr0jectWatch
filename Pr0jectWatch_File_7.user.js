@@ -9,7 +9,7 @@
 // @include     /^.*thevideo\.me.*$/
 // @include     /^.*\d+\.\d+\.\d+\.\d+.*\/video\.mp4$/
 // @include     /^.*vidoza\.net\/[^\/]*\/[^\.]*\.mp4$/
-// @version    	1.5
+// @version    	1.6
 // @description	SeriesList
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -18,8 +18,8 @@
 // @grant 		GM.setValue
 // @grant 		GM.getValue
 // @require 	https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
-// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/data.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/storage.js
+// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/data.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
 // @downloadURL http://kartoffeleintopf.github.io/Pr0jectWatch/Pr0jectWatch_File_7.user.js
 // @noframes
@@ -34,6 +34,7 @@ var enablePreview = true;
 var timeShow = 3;
 var timeStep = 5;
 var volStep = 10;
+var noStepPreview = false;
 
 /**
  * GM_setValue with new or old Api
@@ -89,6 +90,7 @@ var setEpisodeVariables = async function () {
     await setGMValue('timeStep', parseInt(jDecode(getGetter('timeStep'))));
     await setGMValue('volStep', parseInt(jDecode(getGetter('volStep'))));
     await setGMValue('disableAutoplayOnExit', jDecode(getGetter('disableAutoplayOnExit')).toLowerCase() == 'true');
+    await setGMValue('noStepPreview', jDecode(getGetter('noStepPreview')).toLowerCase() == 'true');
 
     //RESET ERROR
     await setGMValue('isError', false);
@@ -116,8 +118,12 @@ var onDocumentReady = async function () {
     $('#vid').attr('src', window.location.href);
 
     if (enablePreview) {
-        loadVideoTimelinePreview();
-        window.videoPreview = true;
+        if (noStepPreview) {
+            loadFullVideoTimelinePreview();
+        } else {
+            loadVideoTimelinePreview();
+            window.videoPreview = true;
+        }
     }
 
     toggleAutoplay(await getGMValue('autoplay', false));
@@ -137,6 +143,8 @@ var setSetting = async function () {
 
     timeStep = await getGMValue('timeStep', 5);
     volStep = await getGMValue('volStep', 10);
+
+    noStepPreview = await getGMValue('noStepPreview', false);
 }
 
 /**
@@ -153,7 +161,7 @@ var onBeforeDocumentLoad = function () {
     //Stop old Video : Parallel Fix
     $('video').each(function () {
         $(this).removeAttr('autoplay')
-        $(this).find('source').attr('src','');
+        $(this).find('source').attr('src', '');
         $(this).remove();
     });
 }
@@ -439,8 +447,8 @@ var addVideoEventhandler = async function () {
         $('#timeShow').html(playTimeMin + ":" + playTimeSec + " / " + durationMin + ":" + durationSec);
         $('#progress').attr('max', duration).attr('value', curTime);
 
-        $('#progress').css('width',((curTime / duration) * 100) + '%');
-        
+        $('#progressVisible').css('width', ((curTime / duration) * 100) + '%');
+
         setGMValue('lastTime', curTime);
     });
 
@@ -510,11 +518,26 @@ var addVideoEventhandler = async function () {
  * @param add {boolean} - to add
  */
 var updateTime = function (time, add) {
+    var newTime = 0;
+
     if (add) {
-        $('#vid')[0].currentTime = $('#vid')[0].currentTime + time;
+        newTime = $('#vid')[0].currentTime + time;
     } else {
-        $('#vid')[0].currentTime = time;
+        newTime = time;
     }
+
+    if (typeof newTime === 'number') {
+        if (newTime < 0) {
+            return;
+        }
+        if (newTime >= $('#vid')[0].duration) {
+            return;
+        }
+    } else {
+        return;
+    }
+
+    $('#vid')[0].currentTime = newTime;
 }
 
 /**
@@ -588,10 +611,14 @@ var showCur = function (x, seconds) {
     var sec = zeroFill(parseInt(('' + (seconds % 60))), 2);
 
     if (window.videoPreview == true) {
-        var step = Math.floor((seconds - (seconds % ($('#preview')[0].duration / previewSteps))) / ($('#preview')[0].duration / previewSteps)); //Step
-        $('#canvasContainer canvas').hide();
-        if ($('#canvasContainer canvas').length > step) {
-            $('#canvasContainer canvas:nth-of-type(' + (step + 1) + ')').show();
+        if (noStepPreview) {
+            $('#previewTimelineVideo')[0].currentTime = seconds;
+        } else {
+            var step = Math.floor((seconds - (seconds % ($('#preview')[0].duration / previewSteps))) / ($('#preview')[0].duration / previewSteps)); //Step
+            $('#canvasContainer canvas').hide();
+            if ($('#canvasContainer canvas').length > step) {
+                $('#canvasContainer canvas:nth-of-type(' + (step + 1) + ')').show();
+            }
         }
     }
     $('#curProc').css('left', ((x - ($('#curProc').outerWidth(true) / 2)) + "px"))
@@ -849,8 +876,18 @@ var loadVideoTimelinePreview = function () {
         var curLoadingTime = 0;
         var count = 0;
         var currentErr = window.PrevErrors;
+        var scale = video.videoHeight / 100;
 
-        $('#canvasContainer').empty();
+        if ($('#canvasContainer canvas').length != previewSteps) {
+            while ($('#canvasContainer canvas').length < previewSteps) {
+                var newCanvas = $('<canvas></canvas>')
+                    .attr('style', 'height:100px; width:' + (video.videoWidth / scale) + 'px;')
+                    .attr('height', '100')
+                    .attr('width', (video.videoWidth / scale))
+                    .attr('style', 'height:100px; width:' + (video.videoWidth / scale) + 'px;')
+                    .hide().appendTo('#canvasContainer');
+            }
+        }
 
         var intervalFunction = async function () {
             if (window.PrevErrors > currentErr) {
@@ -858,7 +895,7 @@ var loadVideoTimelinePreview = function () {
             }
 
             if (isTimeBuffered(video, curLoadingTime)) {
-                await drawVidToCanvasAndAppend(video, 'canvasContainer', currentErr);
+                await drawVidToCanvasAndAppend(count, video, 'canvasContainer', currentErr);
                 if (window.PrevErrors > currentErr) {
                     return false;
                 }
@@ -867,7 +904,7 @@ var loadVideoTimelinePreview = function () {
             }
 
             if (curLoadingTime < video.duration - 1 && count < previewSteps) {
-                setTimeout(intervalFunction, 0);
+                setTimeout(intervalFunction, 10);
             }
         }
 
@@ -893,32 +930,26 @@ var loadVideoTimelinePreview = function () {
  * @param video {Element} - Video element.
  * @param appendTargetId {String} - id if target to append.
  */
-var drawVidToCanvasAndAppend = function (video, appendTargetId, err) {
+var drawVidToCanvasAndAppend = function (canvasIndex, video, appendTargetId, err) {
     return new Promise((resolve, reject) => {
+        var canvas = $('#canvasContainer canvas').eq(canvasIndex);
+        var ctx = canvas[0].getContext('2d');
         var scale = video.videoHeight / 100;
-
-        var newCanvas = $('<canvas></canvas>')
-            .attr('style', 'height:100px; width:' + (video.videoWidth / scale) + 'px;')
-            .attr('height', video.videoHeight)
-            .attr('width', video.videoWidth)
-            .attr('style', 'height:100px; width:' + (video.videoWidth / scale) + 'px;')
-            .hide().appendTo('#' + appendTargetId);
-
-        var ctx = newCanvas[0].getContext('2d');
 
         var draw = function () {
             if (window.PrevErrors > err) {
                 return false;
             }
 
-            ctx.drawImage(video, 0, 0);
+            ctx.drawImage(video, 0, 0, (video.videoWidth / scale), 100);
 
-            if (!isCanvasDrawn(newCanvas[0])) {
+            if (!isCanvasDrawn(canvas[0])) {
                 setTimeout(draw, 100);
             } else {
                 resolve(true);
             }
         }
+        setTimeout(draw, 100);
         draw();
     });
 }
@@ -991,6 +1022,46 @@ var isTimeBuffered = function (video, time) {
         }
     }
     return false;
+}
+
+var loadFullVideoTimelinePreview = async function () {
+    var req = new XMLHttpRequest();
+    req.open('GET', 'video.mp4', true);
+    req.responseType = 'blob';
+
+    req.onload = function () {
+        if (this.status === 200) {
+            var videoBlob = this.response;
+            var vid = URL.createObjectURL(videoBlob);
+
+            var previewVideo = $('<video></video>').attr('id', 'previewTimelineVideo').attr('muted', '').appendTo('#canvasContainer');
+
+            $('#previewTimelineVideo').one('seeking', function () {
+                var scale = previewVideo[0].videoHeight / 100;
+
+                previewVideo.css({
+                    'height': '100%',
+                    'width': '100%',
+                    'border-radius': '3px',
+                });
+
+                $('#curProc').css({
+                    'height': '100px',
+                    'width': (previewVideo[0].videoWidth / scale) + 'px',
+                });
+            });
+
+            previewVideo[0].src = vid;
+
+            window.videoPreview = true;
+        }
+    }
+    req.onerror = function () {
+        console.log('Preview-Error')
+        loadFullVideoTimelinePreview();
+    }
+
+    req.send();
 }
 
 /**

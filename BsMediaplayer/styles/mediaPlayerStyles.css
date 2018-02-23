@@ -161,6 +161,16 @@
 #progress {
 	position:absolute;
 	height:5px;
+    width:100% !important;
+	border:none;
+	width: 0%;
+	z-index:10;
+    bottom:0;  
+}
+
+#progressVisible {
+    position:absolute;
+	height:5px;
 	border:none;
 	width: 0%;
 	z-index:10;

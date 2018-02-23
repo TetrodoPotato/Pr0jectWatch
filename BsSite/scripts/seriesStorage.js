@@ -6,9 +6,9 @@ var getFullList = async function () {
     var list = await seriesStorage.storage('serieslist');
     if (!list) {
         list = [];
-        await seriesStorage.storage('serieslist',list);
+        await seriesStorage.storage('serieslist', list);
     }
-    
+
     return list.sort((a, b) => a.FullName.localeCompare(b.FullName));
 }
 
@@ -17,7 +17,7 @@ var getFullList = async function () {
  * @param FullObjectListArray {Object-Array} - Full Log
  */
 var saveList = async function (FullObjectListArray) {
-    await seriesStorage.storage('serieslist',FullObjectListArray);
+    await seriesStorage.storage('serieslist', FullObjectListArray);
 }
 
 /**
@@ -32,31 +32,54 @@ var updateList = async function (objectArray, listArray, callback) {
     var canuUpdateIndex = (typeof listArray !== 'undefined' && listArray !== null);
     var callbackExist = (typeof callback === 'function');
 
-    var index = 0;
     return new Promise(resolve => {
-        var asyncFun = async function () {
-            var i = list.findIndex(item => item.Id.toLowerCase() === objectArray[index].Id.toLowerCase());
-            if (i == -1) {
-                list.push(objectArray[index]);
-                i = list.length - 1
+        if (typeof(Worker) !== "undefined") {
+            postObj = {
+                SeriesList: list,
+                updateIndex: canuUpdateIndex,
+                SeriesObj: objectArray,
+                indexArray: listArray,
             }
 
-            if (canuUpdateIndex && list[i].SeriesIndex === null) {
-                list[i].SeriesIndex = listArray.filter(a => a.elemText.toLowerCase() === list[i].FullName.toLowerCase())[0].dataId;
-            }
+            XHRWorker("https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/seriesListWebWorker.js", function (worker) {
+                worker.postMessage(postObj);
+                worker.onmessage = function (e) {
+                    var data = e.data;
+                    
+                    if(e.data === 'READY'){
+                        resolve(true);
+                        return;
+                    } else if (callbackExist){
+                        callback(e.data);
+                    }
+                }
+            }, this);
+        } else {
+            var index = 0;
+            var asyncFun = async function () {
+                var i = list.findIndex(item => item.Id.toLowerCase() === objectArray[index].Id.toLowerCase());
+                if (i == -1) {
+                    list.push(objectArray[index]);
+                    i = list.length - 1
+                }
 
-            if (callbackExist) {
-                callback(((index + 2) / objectArray.length) * 100);
-            }
+                if (canuUpdateIndex && list[i].SeriesIndex === null) {
+                    list[i].SeriesIndex = listArray.filter(a => a.elemText.toLowerCase() === list[i].FullName.toLowerCase())[0].dataId;
+                }
 
-            if (++index < objectArray.length) {
-                setTimeout(asyncFun, 0);
-            } else {
-                await saveList(list);
-                resolve(true);
+                if (callbackExist) {
+                    callback(((index + 2) / objectArray.length) * 100);
+                }
+
+                if (++index < objectArray.length) {
+                    setTimeout(asyncFun, 0);
+                } else {
+                    await saveList(list);
+                    resolve(true);
+                }
             }
+            asyncFun();
         }
-        asyncFun();
     });
 }
 
@@ -73,21 +96,21 @@ var getFavorites = async function () {
  * @param obj {Object} - Object needed param:Id
  */
 var updateEntry = async function (obj) {
-    
+
     //Wait Till Other Update Is Ready
-    if(window.thereIsAlreadyAnUpdatingEntry === true){
-        await new Promise(function(resolve){
-            var checkingInterval = setInterval(function(){
-                if(window.thereIsAlreadyAnUpdatingEntry !== true){
-                    clearInterval(checkingInterval);
-                    resolve(true);
-                }
-            },100);
+    if (window.thereIsAlreadyAnUpdatingEntry === true) {
+        await new Promise(function (resolve) {
+            var checkingInterval = setInterval(function () {
+                    if (window.thereIsAlreadyAnUpdatingEntry !== true) {
+                        clearInterval(checkingInterval);
+                        resolve(true);
+                    }
+                }, 100);
         });
     }
-  
+
     window.thereIsAlreadyAnUpdatingEntry = true;
-  
+
     var list = await getFullList();
 
     var i = list.findIndex(item => item.Id.toLowerCase() == obj.Id.toLowerCase());
@@ -119,11 +142,11 @@ var updateEntry = async function (obj) {
         if (obj.IsSynced !== null && typeof obj.IsSynced !== 'undefined') {
             list[i].IsSynced = obj.IsSynced;
         }
-        
+
         if (obj.LastSeasonMax !== null && typeof obj.LastSeasonMax !== 'undefined') {
             list[i].LastSeasonMax = obj.LastSeasonMax;
         }
-        
+
         if (obj.HasNewEpisode !== null && typeof obj.HasNewEpisode !== 'undefined') {
             list[i].HasNewEpisode = obj.HasNewEpisode;
         }
@@ -132,6 +155,21 @@ var updateEntry = async function (obj) {
     } else {
         alert(obj.Id + " does not exist");
     }
-    
+
     window.thereIsAlreadyAnUpdatingEntry = false;
+}
+
+/**
+ * Crossorigin Webworker
+ */
+var XHRWorker = function (url, ready, scope) {
+    var oReq = new XMLHttpRequest();
+    oReq.addEventListener('load', function () {
+        var worker = new Worker(window.URL.createObjectURL(new Blob([this.responseText])));
+        if (ready) {
+            ready.call(scope, worker);
+        }
+    }, oReq);
+    oReq.open("get", url, true);
+    oReq.send();
 }

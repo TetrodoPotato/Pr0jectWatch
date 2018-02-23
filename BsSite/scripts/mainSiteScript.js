@@ -401,10 +401,8 @@ var initSiteState = async function () {
 }
 
 var initSeriesSearch = async function () {
-    if (!/^https:\/\/bs\.to\/serie\-genre.*$/.test(window.location.href)) {
-        if (!(await getData('episodeSearch', false)) || !/^https:\/\/bs\.to\/serie\/[^\/]+(\/(\d+(\/((unwatch:|watch:)(\d+|all)(\/)?)?)?)?)?$/.test(window.location.href)) {
-            await seriesSearch();
-        }
+    if (!(/^https:\/\/bs\.to\/serie\-genre.*$/.test(window.location.href) || (await getData('episodeSearch', false)) && /^https:\/\/bs\.to\/serie\/[^\/]+(\/(\d+(\/((unwatch:|watch:)(\d+|all)(\/)?)?)?)?)?$/.test(window.location.href))) {
+        await seriesSearch();
     }
 }
 

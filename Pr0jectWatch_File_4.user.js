@@ -4,7 +4,7 @@
 // @namespace   https://bs.to/
 // @include     /^https:\/\/bs\.to\/serie\/[^\/]+\/\d+\/[^\/\:]+$/
 // @include     /^https:\/\/bs\.to\/serie\/[^\/]+\/\d+\/[^\/\:]+\/+[A-Za-z]+$/
-// @version    	1.5
+// @version    	1.6
 // @description	Select Hoster
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -151,7 +151,8 @@ var onDocumentReady = async function () {
              + '&timeShow=' + jEncode(await getData('timeShow', 3))
              + '&timeStep=' + jEncode(await getData('timeStep', 5))
              + '&volStep=' + jEncode(await getData('volStep', 10))
-             + '&disableAutoplayOnExit=' + jEncode(await getData('disableAutoplayOnExit', false));
+             + '&disableAutoplayOnExit=' + jEncode(await getData('disableAutoplayOnExit', false))
+             + '&noStepPreview=' + jEncode(await getData('noStepPreview', false));
         return true;
     } else {
         var win = window.open($('.hoster-player:first').attr('href'), "Project Watch Video", "");

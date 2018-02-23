@@ -1,4 +1,14 @@
-[TITLE]Changelog V-1.5
+[TITLE]Changelog V-1.6 [Feb 23, 2018]
+[TEXT]Im nächsten Update wird die Möglichkeit seine Daten zu konvertieren gelöscht. Das bedeutet, wer 'bs.to' nie bis zum nächsten Update nicht aufgerufen hat, hat seine Daten gelöscht (Serienliste, Favoritenkateorien). Wenn du diese Nachricht liest wurden deine Daten konvertiert.
+[LIST]Neue Einstellung unter 'Mediaplayer' die es ermöglicht die Zeitleistenvorschau ohne Abstufungen zu benutzen. Diese ist aber sehr Bandbreiten fordernd und wird nicht Stufenweise geladen, da dabei das komplette Video geladen wird (25 min Video mit 100mBit ca.1 min zum laden). Diese Einstellung wurde eingeführt, weil Opera Probleme hat Bilder zu zeichnen und gleichzeitig flüssig ein Video abzuspielen. Eine andere Möglichkeit für eine Preview gab es nicht. Diese Einstellung ist bei großer Bandbreite (+100MBit) zu empfehlen.
+[LIST]Die Zeitleiste im Medienspieler kann nun wieder ohne Zeitsprünge zum Ende des Videos benutzt werden. Diesen Fehler habe ich leider erst nach dem Update 1.5 entdeckt.
+[LIST]Bei der ausgeschalteter Episodensuche wird hoffentlich nicht mehr in den Episoden gesucht.
+[LIST]Neue Einstellung unter 'General' die es ermöglicht die maximalen Anzahl der Einträge des Logs einzustellen.
+[LIST]Das Serienladen löscht nun Serien die nicht mehr gelistet werden.
+[LIST]Das Serienladen wird nun bei Browsern die WebWorker unterstützen durch die WebWorker-Api geladen. Dies beschleunigt das Laden enorm. (Ladezeit: ~1 sec)
+
+
+[TITLE]Changelog V-1.5 [Feb 21, 2018]
 [TEXT]Diese Updates konnten nichtmehr aufgeschoben werden den der Serienspeicher nähert sich der 5mb. Da localStorage nicht mehr als 5mb pro Domain speichern kann musste ich den Speicher auf IndexedDB umstellen. Diese sind aber langsamer und asynchron was alles ein bisschen mit Kacke besprüht.
 [TEXT]Viele der Daten werden konvertiert aber nicht alle. Es ist sehr zu empfehlen in den Tampermonkey-Einstellungen 'Externals	Aktualisierungsintervall' auf 'immer' zu stellen. Auch ist es zu Empfehler die Seite immer über 'bs.to' aufzurufen.
 [TEXT]Bei Fehlern die Tampermonkey-Einstellungen 'Externals	Aktualisierungsintervall' auf 'immer' stellen und alle Scripte neu zu installieren. Wenn der Fehler immer noch besteht würde es mich freuen wenn das mir gemeldet wird. Bei diesem großen Update wird das keine Seltenheit sein.

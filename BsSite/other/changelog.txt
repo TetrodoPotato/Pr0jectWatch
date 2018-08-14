@@ -1,3 +1,12 @@
+[TITLE]Changelog V-1.7 [Aug 14, 2018]
+[TEXT]Bugfixes und mehr. Aber noch keine Zufallsepisoden.
+[LIST]Überprüfung ob die Custom-Styles noch vorhanden sind. Bei Nichtvorhanden der Styles werden diese deaktiviert.
+[LIST]HosterIcons wiederhergestellt.
+[LIST]StreamCherry als Hoster Unterstützt.
+[LIST]StreamCherry als Unterstützen Hoster hinzugefügt.
+[LIST]Funktionierende OpenloadHD Streams wurde offt als  fehlerhaft angesehen. Vielleicht funktioniert es jetzt.
+[LIST]Alte Datenwerden nun nicht mehr auf den neuen Stand konvertiert. 
+
 [TITLE]Changelog V-1.6 [Feb 23, 2018]
 [TEXT]Im nächsten Update wird die Möglichkeit seine Daten zu konvertieren gelöscht. Das bedeutet, wer 'bs.to' nie bis zum nächsten Update nicht aufgerufen hat, hat seine Daten gelöscht (Serienliste, Favoritenkateorien). Wenn du diese Nachricht liest wurden deine Daten konvertiert.
 [LIST]Neue Einstellung unter 'Mediaplayer' die es ermöglicht die Zeitleistenvorschau ohne Abstufungen zu benutzen. Diese ist aber sehr Bandbreiten fordernd und wird nicht Stufenweise geladen, da dabei das komplette Video geladen wird (25 min Video mit 100mBit ca.1 min zum laden). Diese Einstellung wurde eingeführt, weil Opera Probleme hat Bilder zu zeichnen und gleichzeitig flüssig ein Video abzuspielen. Eine andere Möglichkeit für eine Preview gab es nicht. Diese Einstellung ist bei großer Bandbreite (+100MBit) zu empfehlen.

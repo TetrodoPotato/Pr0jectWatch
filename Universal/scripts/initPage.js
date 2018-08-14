@@ -49,12 +49,12 @@ var init = async function (pageUrl) {
 }
 
 var buildPage = function () {
-    $.get(startingHtmlPageUrl, function (newContent) {    
+    $.get(startingHtmlPageUrl, function (newContent) {
         (async function () {
             if (typeof onBeforeDocumentLoad === 'function') {
                 await onBeforeDocumentLoad();
             }
-            
+
             newContent = newContent.replace(/(\r\n|\n|\r)/gm, "").split('></').join('> </');
 
             //Parse String to DOM-Elemnts
@@ -73,10 +73,10 @@ var buildPage = function () {
             replaceDocument(newDoc, buffer);
 
             //Start Page Javascript
-            if(buildingPageKeyName === 'BSPAGE'){
+            if (buildingPageKeyName === 'BSPAGE') {
                 startBsPageJs();
             }
-            
+
             var stopLoading = false;
             if (typeof onDocumentReady === 'function') {
                 stopLoading = await onDocumentReady();
@@ -98,8 +98,27 @@ var buildPage = function () {
                         }
                     })();
                 }, 100);
+
+            checkIfStylesExist();
         })();
     }, 'text');
+}
+
+var checkIfStylesExist = async function () {
+    $.ajax({
+        url: await getData('style', styleColors.Default); ,
+        type: 'HEAD',
+        error: function () {
+            //file not exists
+            $('body').css({
+                'opacity': '1',
+                'visibility': 'visible',
+            });
+        },
+        success: function () {
+            //file exists
+        }
+    });
 }
 
 /**
@@ -121,10 +140,10 @@ var replaceDocument = function (doc, oldDocument) {
     var newHead = doc.getElementsByTagName('head')[0];
     var old = '<div id="oldBody" style="display:none;">' + oldDocument.innerHTML + '</div>';
 
-    if(buildingPageKeyName === 'MEDIAPLAYER'){
+    if (buildingPageKeyName === 'MEDIAPLAYER') {
         old = '<div id="oldBody" style="display:none;"></div>';
     }
-    
+
     $('body:first').empty().append(old).prepend(newBody.innerHTML);
     $('head:first').empty().append(newHead.innerHTML);
 

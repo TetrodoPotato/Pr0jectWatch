@@ -3,7 +3,7 @@
 // @icon 		https://bs.to/opengraph.jpg
 // @namespace   https://bs.to/
 // @include     /^https:\/\/bs.to(\/)?(((home|\?next|\?error|\?back|\?logout[^]*)[^\/]*)(\/)?)?$/
-// @version    	1.6
+// @version    	1.7
 // @description	Error-, Next-Redirect
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -223,67 +223,19 @@ var showChangelog = async function () {
     $('html:first').append(borderContainer);
 }
 
-var convertOldData = async function () {
-    //SeriesList
-    if (typeof localStorage.serieslist !== 'undefined') {
-        var list = JSON.parse(localStorage.getItem('serieslist'));
-        if (typeof list[0].Genre !== 'undefined') {
-            await seriesStorage.storage('serieslist', list);
-        }
-
-        delete localStorage.serieslist;
-    }
-
-    //LogList
-    if (typeof localStorage.loglist !== 'undefined') {
-        var list = JSON.parse(localStorage.getItem('loglist'));
-        if (typeof list[0].episodeNr !== 'undefined') {
-            await seriesStorage.storage('loglist', list);
-        }
-
-        delete localStorage.loglist;
-    }
-
-    //catFavs
-    if (typeof localStorage.catFavs !== 'undefined') {
-        var list = JSON.parse(localStorage.getItem('catFavs'));
-        await seriesStorage.storage('catFavs', list);
-
-        delete localStorage.catFavs;
-    }
-    
-    delete localStorage.playList;
-    
-    //Convert Serieslist
-    var seriesList = await seriesStorage.storage('serieslist');
-    if (typeof seriesList !== 'undefined') {
-        if(typeof seriesList[0].LastSeasonMax === 'undefined'){
-            $.each(seriesList, function(index, value){
-                seriesList[index].LastSeasonMax = 0;
-                seriesList[index].HasNewEpisode = false;
-            });
-            
-            await seriesStorage.storage('serieslist',seriesList);
-        }
-    }
-
-}
-
 var getScriptVersion = async function () {
     if(typeof GM !== 'undefined'){
         return (await GM.info).version
     } else {
-        return '1.6';
+        return '1.7';
     }
 }
 
 var startStartPage = async function () {
     //Black page over original
     makeBlackPage();
-
-    await convertOldData();
-
-    if (await getData('currentScriptVersion', '0') != await getScriptVersion()) {
+    
+    if (await getData('currentScriptVersion', '0') != await getScriptVersion()) {   
         showChangelog();
     } else {
         await redirectStart();

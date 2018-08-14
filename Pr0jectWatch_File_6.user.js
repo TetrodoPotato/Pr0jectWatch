@@ -4,14 +4,21 @@
 // @namespace   https://bs.to/
 // @include     /^https:\/\/openload\.co\/embed\/.+$/
 // @include     /^https:\/\/oload\.stream\/embed\/.+$/
+// @include     /^https:\/\/oload\.download\/embed\/.+$/
 // @include     /^https:\/\/vivo\.sx\/.+$/
 // @include     /^https:\/\/streamango\.com\/embed\/.+$/
 // @include     /^http:\/\/vidto\.me\/.+$/
+// @include     /^http:\/\/vidto\.se\/.+$/
 // @include     /^https:\/\/vidoza\.net\/embed.+$/
-// @version    	1.6
+// @include     /^https:\/\/streamcherry\.com\/embed.+$/
+// @version     1.7
 // @description	Hoster Parser
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
+// @grant		GM_setValue
+// @grant		GM_getValue
+// @grant 		GM.setValue
+// @grant 		GM.getValue
 // @require 	https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/mainSiteScript.js
@@ -23,8 +30,11 @@ makeBlackPage();
 document.documentElement.style.overflow = 'hidden';
 
 var parseOpenload = function () {
+    var buttonTimer = 0;
+
+
     //Click on the Video so the mp4 link appears
-    function startRedirect() {
+    async function startRedirect() {
         var elem = $('.vjs-big-play-button:first');
         var elem2 = $('#videooverlay');
         if (elem.length != 0 && elem2.length != 0) {
@@ -32,9 +42,19 @@ var parseOpenload = function () {
             elem2.click();
             setTimeout(openVideo, 100);
         } else {
-            window.location = 'https://bs.to/?error';
+            if(buttonTimer < 100){
+                buttonTimer++;
+                setTimeout(startRedirect, 100);
+            } else {
+                if (await getGMValue("parseIsError", false)) {
+                    await setGMValue("parseIsError", false);
+                    window.location = 'https://bs.to/?error';
+                } else {
+                    await setGMValue("parseIsError", true);
+                    location.reload();
+                }
+            }
         }
-
     }
 
     var timer = 0;
@@ -158,8 +178,12 @@ var parseVidoza = function () {
 
 }
 
+var parseStreamCherry = function () {
+    window.location = $('video').attr('src');
+}
+
 $(document).ready(function () {
-    if (/^https:\/\/openload\.co\/embed\/.+$/.test(window.location.href) || /^https:\/\/oload\.stream\/embed\/.+$/.test(window.location.href)) {
+    if (/^https:\/\/openload\.co\/embed\/.+$/.test(window.location.href) || /^https:\/\/oload\.stream\/embed\/.+$/.test(window.location.href) || /^https:\/\/oload\.download\/embed\/.+$/.test(window.location.href)) {
         parseOpenload();
     } else if (/^https:\/\/vivo\.sx\/.+$/.test(window.location.href)) {
         parseVivo();
@@ -167,9 +191,40 @@ $(document).ready(function () {
         parseStreamango();
     } else if (/^https:\/\/thevideo\.io\/embed.+$/.test(window.location.href)) {
         parseTheVideo();
-    } else if (/^http:\/\/vidto\.me\/.+$/.test(window.location.href)) {
+    } else if (/^http:\/\/vidto\.me\/.+$/.test(window.location.href) || /^http:\/\/vidto\.se\/.+$/.test(window.location.href)) {
         parseVidto();
     } else if (/^https:\/\/vidoza\.net\/embed.+$/.test(window.location.href)) {
         parseVidoza();
+    } else if(/^https:\/\/streamcherry\.com\/embed.+$/.test(window.location.href)){
+        parseStreamCherry();
     }
 });
+
+
+/**
+ * GM_setValue with new or old Api
+ * @param key {String} - Key
+ * @param key {String | Number} - value
+ * @return null
+ */
+async function setGMValue(key, val) {
+    if (typeof GM_setValue === "function") {
+        GM_setValue(key, val);
+    } else {
+        await GM.setValue(key, val);
+    }
+}
+
+/**
+ * GM_getValue with new or old Api
+ * @param key {String} - Key
+ * @param def {String | Number} - default if nothing is found value
+ * @return {String | Number} requested Value or defaut.
+ */
+async function getGMValue(key, def) {
+    if (typeof GM_getValue === "function") {
+        return GM_getValue(key, def);
+    } else {
+        return await GM.getValue(key, def);
+    }
+}

@@ -1408,25 +1408,24 @@ input:checked + .slider:before {
     display: inline-block;
     height:20px;
     width:20px;
-    background-image: url(https://bs.to/public/img/icons.v34.png);
-    background-size: 960px 20px;
+    background-size: 20px 20px;
     margin:0 7px;
 }
 
-.Vivo {
-    background-position: -796px 0;
+.vivo {
+    background-image: url(https://bs.to/public/images/hoster/vivo.ico);
 }
 
 .OpenLoad {
-    background-position: -832px 0;
+    background-image: url(https://bs.to/public/images/hoster/openload.ico);
 }
 
 .OpenLoadHD {
-    background-position: -888px 0;
+    background-image: url(https://bs.to/public/images/hoster/openloadhd.ico);
 }
 
 .Streamango {
-    background-position: -924px 0;
+    background-image: url(https://bs.to/public/images/hoster/streamango.ico);
 }
 
 .AuroraVid {
@@ -1442,11 +1441,11 @@ input:checked + .slider:before {
 }
 
 .Vidto {
-    background-position: -869px 0;
+    background-image: url(https://bs.to/public/images/hoster/vidto.ico);
 }
 
 .Vidoza {
-    background-position: -941px 0;
+    background-image: url(https://bs.to/public/images/hoster/vidoza.ico);
 }
 
 .YouWatch {
@@ -1455,6 +1454,10 @@ input:checked + .slider:before {
 
 .CloudTime {
     background-position: -642px 0;
+}
+
+.Streamcherry {
+    background-image: url(https://bs.to/public/images/hoster/streamcherry.ico);
 }
 
 .addAutoplayButton {

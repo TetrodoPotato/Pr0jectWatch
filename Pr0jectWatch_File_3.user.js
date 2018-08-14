@@ -3,7 +3,7 @@
 // @icon 		https://bs.to/opengraph.jpg
 // @namespace   https://bs.to/
 // @include     /^https:\/\/bs\.to\/serie\/[^\/]+(\/(\d+(\/((unwatch:|watch:)(\d+|all)(\/)?)?)?)?)?$/
-// @version    	1.6
+// @version    	1.7
 // @description	EpisodeList
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -287,6 +287,31 @@ var constructEpisodeList = async function (list) {
 }
 
 /**
+ * Get all Informations from all Episodes als Object.
+ * @return {Object-Array}
+ */
+var getEpisodeInfo = function () {
+    var rows = [];
+    $('.episodes:first tr').each(function (index, value) {
+        var target = $(this);
+
+        var objhoster = [];
+        target.find('.nowrap a').each(function () {
+            objhoster.push($(this).attr("title"));
+        });
+
+        rows.push({
+            episodeId: target.find('a:first').attr('href').split('/')[3],
+            watched: target.hasClass('watched'),
+            nameDe: target.find('strong:first-child').text(),
+            nameOr: target.find('i:first-child').text(),
+            hoster: objhoster
+        });
+    });
+    return rows;
+}
+
+/**
  * Makes an Async SiteCall no Sitereturn. Calls Callback-Function
  */
 function makePageCall(siteUrl, callback) {
@@ -330,31 +355,6 @@ var getSeasonObjects = function () {
         });
     });
     return obj;
-}
-
-/**
- * Get all Informations from all Episodes als Object.
- * @return {Object-Array}
- */
-var getEpisodeInfo = function () {
-    var rows = [];
-    $('.episodes:first tr').each(function (index, value) {
-        var target = $(this);
-
-        var objhoster = [];
-        target.find('.nowrap a').each(function () {
-            objhoster.push($(this).text());
-        });
-
-        rows.push({
-            episodeId: target.find('a:first').attr('href').split('/')[3],
-            watched: target.hasClass('watched'),
-            nameDe: target.find('strong:first-child').text(),
-            nameOr: target.find('i:first-child').text(),
-            hoster: objhoster
-        });
-    });
-    return rows;
 }
 
 /**

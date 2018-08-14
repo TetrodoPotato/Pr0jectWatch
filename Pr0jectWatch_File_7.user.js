@@ -9,7 +9,7 @@
 // @include     /^.*thevideo\.me.*$/
 // @include     /^.*\d+\.\d+\.\d+\.\d+.*\/video\.mp4$/
 // @include     /^.*vidoza\.net\/[^\/]*\/[^\.]*\.mp4$/
-// @version    	1.6
+// @version    	1.7
 // @description	SeriesList
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -612,7 +612,7 @@ var showCur = function (x, seconds) {
 
     if (window.videoPreview == true) {
         if (noStepPreview) {
-            $('#previewTimelineVideo')[0].currentTime = seconds;
+            $('#previewTimelineVideo')[0].currentTime = seconds;          
         } else {
             var step = Math.floor((seconds - (seconds % ($('#preview')[0].duration / previewSteps))) / ($('#preview')[0].duration / previewSteps)); //Step
             $('#canvasContainer canvas').hide();

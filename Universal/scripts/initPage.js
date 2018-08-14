@@ -17,7 +17,7 @@ var initMediaplayer = function () {
 /**
  * Hoster Support.
  */
-var hosterSupport = [['OpenLoadHD', true], ['Streamango', true], ['OpenLoad', true], ['Vidto', true], ['Vidoza', true], ['Vivo', true], ['TheVideo', false], ['AuroraVid', false], ['FlashX', false], ['YouWatch', false], ['CloudTime', false]];
+var hosterSupport = [['OpenLoadHD', true], ['Streamcherry', true], ['Streamango', true], ['OpenLoad', true], ['Vidto', true], ['Vidoza', true], ['Vivo', true], ['TheVideo', false], ['AuroraVid', false], ['FlashX', false], ['YouWatch', false], ['CloudTime', false]];
 
 /**
  * Get Default Hoster.

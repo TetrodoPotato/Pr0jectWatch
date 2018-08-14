@@ -114,6 +114,7 @@ var initSettingCont = async function () {
  */
 var addHosterSort = async function () {
     var hoster = await getData('hoster', defaultHoster);
+    
     if (hoster.length < defaultHoster.length) {
         hoster = defaultHoster;
         await setData('hoster', defaultHoster, true);

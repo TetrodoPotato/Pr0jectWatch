@@ -106,7 +106,7 @@ var buildPage = function () {
 
 var checkIfStylesExist = async function () {
     $.ajax({
-        url: await getData('style', styleColors.Default); ,
+        url: await getData('style', styleColors.Default) ,
         type: 'HEAD',
         error: function () {
             //file not exists

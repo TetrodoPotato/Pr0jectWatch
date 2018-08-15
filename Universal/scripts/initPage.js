@@ -1,9 +1,17 @@
+var secureToken = null;
+
 /**
  * Init Mainpage
  */
 var initBsPage = function () {
     window.buildingPageKeyName = 'BSPAGE';
-    init('https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/html/siteTemplate.html');
+    init('https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/html/siteTemplate.html', function() {
+        var secureContainer = $('input[name=security_token]')
+        if(secureContainer.length){
+            secureToken = secureContainer.attr("value");
+        }
+        console.log(secureToken)
+    });
 }
 
 /**
@@ -36,14 +44,26 @@ var styleColors = {
  * Loads an HTML-File as the new Page and provides some functions for manipulating the Site before and after loading.
  * @param pageURL {String} - Path to the HTML-File.
  */
-var init = async function (pageUrl) {
+var init = async function (pageUrl, callback) {
     makeBlackPage();
 
     window.startingHtmlPageUrl = pageUrl;
 
     if (document.readyState !== 'complete') {
-        $(document).ready(buildPage);
+        $(document).ready(function() {
+            
+            if(typeof callback == 'function'){
+                callback();
+            }
+            
+            buildPage();
+        });
     } else {
+        
+        if(typeof callback == 'function'){
+            callback();
+        }
+        
         buildPage();
     }
 }
@@ -92,6 +112,10 @@ var buildPage = function () {
                                     stopLoading = await onDocumentLoaded();
                                 }
                                 if (stopLoading !== true) {
+                                    if(secureToken !== null) {
+                                        $("#loginWindow form").append('<input type="hidden" name="security_token" value="' + secureToken + '">')
+                                    }
+                                    
                                     removeBlackPage();
                                 }
                             }

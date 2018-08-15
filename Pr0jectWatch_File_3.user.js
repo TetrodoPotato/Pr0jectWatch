@@ -3,7 +3,7 @@
 // @icon 		https://bs.to/opengraph.jpg
 // @namespace   https://bs.to/
 // @include     /^https:\/\/bs\.to\/serie\/[^\/]+(\/(\d+(\/((unwatch:|watch:)(\d+|all)(\/)?)?)?)?)?$/
-// @version    	1.7
+// @version    	1.8
 // @description	EpisodeList
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -12,7 +12,10 @@
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/storage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/playlistStorage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/data.js
-// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
+
+// @require     https://dl.dropbox.com/s/biecp6mrb29dy10/initPage.js
+//// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
+
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/mainSiteScript.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/favCat.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/keyControll.js

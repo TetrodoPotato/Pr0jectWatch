@@ -1,3 +1,7 @@
+[TITLE]Changelog V-1.8 [Aug 15, 2018]
+[TEXT]Habe da wohl was übersehen. Es ist wie immer zu empfehlen seinen aktualisierunginterval der externen Scripts in den Userscriptmanagereinstellungen auf "Immer" zu stellen. Sollte es dann nach einer Neuinstallation der Scripts nicht gehen, bin ich wie immer über die private Nachrichten zu erreichen.
+[LIST]Login kann nun wieder benutzt werden.
+
 [TITLE]Changelog V-1.7 [Aug 14, 2018]
 [TEXT]Bugfixes und mehr. Aber noch keine Zufallsepisoden.
 [LIST]Überprüfung ob die Custom-Styles noch vorhanden sind. Bei Nichtvorhanden der Styles werden diese deaktiviert.

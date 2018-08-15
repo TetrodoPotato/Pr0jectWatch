@@ -11,7 +11,7 @@
 // @include     /^http:\/\/vidto\.se\/.+$/
 // @include     /^https:\/\/vidoza\.net\/embed.+$/
 // @include     /^https:\/\/streamcherry\.com\/embed.+$/
-// @version     1.7
+// @version     1.8
 // @description	Hoster Parser
 // @author     	Kartoffeleintopf
 // @run-at 		document-start

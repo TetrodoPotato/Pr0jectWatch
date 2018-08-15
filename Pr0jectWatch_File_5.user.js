@@ -6,7 +6,7 @@
 // @include     https://bs.to/settings
 // @include     https://bs.to/playlist
 // @include     https://bs.to/favorites
-// @version    	1.7
+// @version    	1.8
 // @description	Log and Settings
 // @author     	Kartoffeleintopf
 // @run-at 		document-start

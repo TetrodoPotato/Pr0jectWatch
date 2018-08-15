@@ -4,7 +4,7 @@
 // @namespace   https://bs.to/
 // @include     /^https:\/\/bs\.to\/serie\/[^\/]+\/\d+\/[^\/\:]+$/
 // @include     /^https:\/\/bs\.to\/serie\/[^\/]+\/\d+\/[^\/\:]+\/+[A-Za-z]+$/
-// @version    	1.7
+// @version    	1.8
 // @description	Select Hoster
 // @author     	Kartoffeleintopf
 // @run-at 		document-start

@@ -12,10 +12,7 @@
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/storage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/playlistStorage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/data.js
-
-// @require     https://dl.dropbox.com/s/biecp6mrb29dy10/initPage.js
-//// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
-
+// @require     https://kartoffeleintopf.github.io/Pr0jectWatch/Universal/scripts/initPage.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/mainSiteScript.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/favCat.js
 // @require     https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/scripts/keyControll.js

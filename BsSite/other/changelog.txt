@@ -1,8 +1,12 @@
+[TITLE]Changelog V-1.10 [Aug 17, 2018]
+[TEXT]Habe kleine Probleme mit den neuen "Secure"-Token von Bs.to
+[LIST]Favoriten lassen sich nun wieder Synchronisieren.
+
 [TITLE]Changelog V-1.9 [Aug 17, 2018]
-[TEXT]Auf Bitten vom User head wurde nun die Zufallsepisoden eingeführt. Nebenbei wurden auch noch einzelne Fehler behoben. Opera hat gerade Probleme mit synchronen dem Abspielen von Videos. Dabei ist der Ton um eine Sekunde verschoben. Das liegt nicht am Medienspieler.
+[TEXT]Auf Bitten vom User head wurde nun die Zufallsepisoden eingeführt. Nebenbei wurden auch noch einzelne Fehler behoben. Opera hat gerade Probleme mit dem synchronen Abspielen von Videos. Dabei ist der Ton um eine Sekunde verschoben. Das liegt nicht am Medienspieler.
 [LIST]Zufallsepisoden zum Menü hinzugefügt. Diese können in den Einstellungen aktiviert werden.
 [LIST]Funktionierende OpenloadHD Streams wurde oft als  fehlerhaft angesehen. Vielleicht funktioniert es jetzt.
-[LIST]Zufallsepisodeneinstellungsseiten (32 Zeichen). Wurden hinzugefügt. Script 5.
+[LIST]Zufallsepisodeneinstellungsseiten (33 Zeichen). Wurden hinzugefügt. Script 5.
 [LIST]Die Vorschau im Medienspieler funktioniert jetzt auch wieder.
 
 [TITLE]Changelog V-1.8 [Aug 15, 2018]

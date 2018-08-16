@@ -113,6 +113,7 @@ var buildPage = function () {
                                 if (stopLoading !== true) {
                                     if(secureToken !== null) {
                                         $("#loginWindow form").append('<input type="hidden" name="security_token" value="' + secureToken + '">')
+                                        $("head:first").append('<meta name="security_token" content="' + secureToken + '" />');
                                     }
                                     
                                     removeBlackPage();

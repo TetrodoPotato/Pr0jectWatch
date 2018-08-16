@@ -62,12 +62,16 @@ var bsPageJsEvents = async function () {
                 $.ajax({
                     url: "https://bs.to/ajax/edit-seriesnav.php",
                     data: {
-                        series: seriesIDs
+                        series: seriesIDs,
+                        token: $("meta[name='security_token']").attr('content')
                     },
                     dataType: "json",
                     type: "POST",
                     success: function (data) {
                         setFavMessageText('Favorites Saved', 2000);
+                    },
+                    error: function (xhr, ajaxOptions, thrownError) {
+                        setFavMessageText('Error', 2000);
                     }
                 });
             }
@@ -159,7 +163,7 @@ var addFavEvents = function () {
 var updateFavNSync = async function () {
     if (await getData('syncFavMenu', true)) {
         $('.favNewEpi').removeClass('hasFavSynced');
-        
+
         var list = await getFavorites();
 
         if (list.length != 0) {
@@ -172,7 +176,7 @@ var updateFavNSync = async function () {
                         var hasNew = obj.LastSeasonMax < episodeMax;
 
                         var isWatched = ((isLoggedIn()) ? ($(result).find('.seasons li:not(.watched), .episodes tr:not(.watched)').length < 2) : null);
-                        
+
                         await updateEntry({
                             Id: obj.Id,
                             Genre: $(result).find('.infos:first div:first p:first span').append(' ').text().trim(),
@@ -181,12 +185,12 @@ var updateFavNSync = async function () {
                             IsSynced: true,
                             HasNewEpisode: hasNew,
                         });
-                        
+
                         var favRow = $("[dataid='" + obj.Id + "']");
-                        
+
                         favRow.find('.favNewEpi:first').toggleClass('hasNew', hasNew);
                         favRow.find('.favNewEpi:first').toggleClass('hasFavSynced', true);
-                        favRow.find('.favSeco:first').toggleClass('favWatched', ((isWatched !== null) ? isWatched : obj.IsWatched));                    
+                        favRow.find('.favSeco:first').toggleClass('favWatched', ((isWatched !== null) ? isWatched : obj.IsWatched));
                     })();
                 });
             });
@@ -364,7 +368,7 @@ var scrollEvent = function () {
 
 var onWindowResize = function (on) {
     var windowWidth = $(window).width(); // Max 960
-    
+
     if (windowWidth < 960 && typeof on !== 'boolean' || on === false) { // Ca Half Over Display
         //Set Styles
         $('#contentContainer').attr('ison', 'true');
@@ -393,10 +397,10 @@ var initSiteState = async function () {
     if (typeof getData === 'function') {
         $('#autoplay').prop("checked", await getData('autoplay', false));
         $('#favNav').toggle(await getData('catFav', false));
-        
+
         $('#randEditNav').toggle(await getData('randomActivated', false));
         $('#randNav').toggle(await getData('randomActivated', false));
-        
+
     } else {
         setTimeout(function () {
             initSiteState();

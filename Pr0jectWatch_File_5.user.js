@@ -8,7 +8,7 @@
 // @include     https://bs.to/favorites
 // @include     https://bs.to/random/edit
 // @include     https://bs.to/random
-// @version    	1.8
+// @version    	1.9
 // @description	Log and Settings
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -33,6 +33,8 @@ initBsPage();
  * Api initPage on Document loaded.
  */
 var onDocumentReady = async function () {
+    var ret = false;
+    
     if (window.location.href == 'https://bs.to/log') {
         await initLogCont();
     } else if (window.location.href == 'https://bs.to/settings') {
@@ -42,10 +44,12 @@ var onDocumentReady = async function () {
     } else if (window.location.href == 'https://bs.to/favorites') {
         await initFavoriteCont();
     } else if (window.location.href == 'https://bs.to/random/edit' || window.location.href == 'https://bs.to/random') {
-        return await initRandom();
+        ret = await initRandom();
     }
 
     await initSideCont();
+    
+    return ret;
 }
 
 /**
@@ -722,6 +726,12 @@ var initRandom = async function () {
             return this.nodeType == 3
         }).each(function () {
             this.textContent = this.textContent.replace('Staffel:', 'Season:');
+        });
+        
+        $('section.random form label:nth-of-type(3)').contents().filter(function () {
+            return this.nodeType == 3
+        }).each(function () {
+            this.textContent = this.textContent.replace('Nur ungesehene Episoden', 'Only Unwatched Episodes');
         });
 
     } else {

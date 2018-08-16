@@ -3,7 +3,7 @@
 // @icon 		https://bs.to/opengraph.jpg
 // @namespace   https://bs.to/
 // @include     /^https:\/\/bs\.to\/serie\/[^\/]+(\/(\d+(\/((unwatch:|watch:)(\d+|all)(\/)?)?)?)?)?$/
-// @version    	1.8
+// @version    	1.9
 // @description	EpisodeList
 // @author     	Kartoffeleintopf
 // @run-at 		document-start

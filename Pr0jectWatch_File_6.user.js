@@ -11,7 +11,7 @@
 // @include     /^http:\/\/vidto\.se\/.+$/
 // @include     /^https:\/\/vidoza\.net\/embed.+$/
 // @include     /^https:\/\/streamcherry\.com\/embed.+$/
-// @version     1.8
+// @version     1.9
 // @description	Hoster Parser
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -51,7 +51,6 @@ var parseOpenload = function () {
                     window.location = 'https://bs.to/?error';
                 } else {
                     await setGMValue("parseIsError", true);
-                    alert("reload");
                     location.reload();
                 }
             }

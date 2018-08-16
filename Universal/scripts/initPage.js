@@ -1,4 +1,5 @@
 var secureToken = null;
+var secureTokenLogin = null;
 
 /**
  * Init Mainpage
@@ -8,7 +9,13 @@ var initBsPage = function () {
     init('https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/html/siteTemplate.html', function() {
         var secureContainer = $('input[name=security_token]');
         if(secureContainer.length){
-            secureToken = secureContainer.attr("value");
+            secureTokenLogin = secureContainer.attr("value");
+        }
+        
+        var secureContainer = $("meta[name='security_token']");
+        if(secureContainer.length){
+            console.log($("meta[name='security_token']")[0].outerHTML)
+            secureToken = secureContainer.attr("content");
         }
     });
 }
@@ -112,8 +119,8 @@ var buildPage = function () {
                                 }
                                 if (stopLoading !== true) {
                                     if(secureToken !== null) {
-                                        $("#loginWindow form").append('<input type="hidden" name="security_token" value="' + secureToken + '">')
-                                        $("head:first").append('<meta name="security_token" content="' + secureToken + '" />');
+                                        $("#loginWindow form").append('<input type="hidden" name="security_token" value="' + secureTokenLogin + '">')
+                                        $("head:first").append('<meta name="security_token" content="' + secureToken + '">');
                                     }
                                     
                                     removeBlackPage();

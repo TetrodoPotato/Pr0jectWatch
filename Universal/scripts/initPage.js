@@ -7,14 +7,13 @@ var secureTokenLogin = null;
 var initBsPage = function () {
     window.buildingPageKeyName = 'BSPAGE';
     init('https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/html/siteTemplate.html', function() {
-        var secureContainer = $('input[name=security_token]');
-        if(secureContainer.length){
-            secureTokenLogin = secureContainer.attr("value");
+        var secureLoginContainer = $('input[name=security_token]');
+        if(secureLoginContainer.length){
+            secureTokenLogin = secureLoginContainer.attr("value");
         }
         
         var secureContainer = $("meta[name='security_token']");
         if(secureContainer.length){
-            console.log($("meta[name='security_token']")[0].outerHTML)
             secureToken = secureContainer.attr("content");
         }
     });
@@ -118,8 +117,11 @@ var buildPage = function () {
                                     stopLoading = await onDocumentLoaded();
                                 }
                                 if (stopLoading !== true) {
-                                    if(secureToken !== null) {
+                                    if(secureTokenLogin !== null) {
                                         $("#loginWindow form").append('<input type="hidden" name="security_token" value="' + secureTokenLogin + '">')
+                                    }
+                                    
+                                    if(secureToken !== null) {
                                         $("head:first").append('<meta name="security_token" content="' + secureToken + '">');
                                     }
                                     

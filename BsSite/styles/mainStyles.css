@@ -2566,5 +2566,38 @@ body.dragging, body.dragging * {
     background-color: var(--FavoriteCategoryAddCategoryButtonBackgroundColorClick);
 }
 
+section #stylesApply {
+    width: 100%;
+    margin: 0;
+}
+
+section #customStyles {
+    width: calc(100% - 10px);
+    margin: 0;
+}
+
+section.random label {
+    height: 20px;
+    font: var(--SettingsStyleDropdownCustomTextFont);
+    display: block;
+    color: var(--SettingsStyleDropdownCustomTextColor);
+    line-height: 20px;
+    font-weight: bold;
+    margin: 0px 0px 40px 0;
+}
+
+fieldset {
+    border: none;
+}
+
+#MessageRandom {
+    width: 100%;
+    height: auto;
+    color: var(--FavoriteMenuMessageTextColor);
+    font: var(--FavoriteMenuMessageTextFont);
+    text-align: center;
+    margin: 0 0 10px 0;
+}
+
 /*Pseudo Style need for fakelistener*/
 body {opacity:1 !important;}

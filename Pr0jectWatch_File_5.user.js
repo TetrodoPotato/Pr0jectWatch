@@ -6,6 +6,8 @@
 // @include     https://bs.to/settings
 // @include     https://bs.to/playlist
 // @include     https://bs.to/favorites
+// @include     https://bs.to/random/edit
+// @include     https://bs.to/random
 // @version    	1.8
 // @description	Log and Settings
 // @author     	Kartoffeleintopf
@@ -39,6 +41,8 @@ var onDocumentReady = async function () {
         await initPlaylistCont();
     } else if (window.location.href == 'https://bs.to/favorites') {
         await initFavoriteCont();
+    } else if (window.location.href == 'https://bs.to/random/edit' || window.location.href == 'https://bs.to/random') {
+        return await initRandom();
     }
 
     await initSideCont();
@@ -114,7 +118,7 @@ var initSettingCont = async function () {
  */
 var addHosterSort = async function () {
     var hoster = await getData('hoster', defaultHoster);
-    
+
     if (hoster.length < defaultHoster.length) {
         hoster = defaultHoster;
         await setData('hoster', defaultHoster, true);
@@ -242,9 +246,14 @@ var addGeneralConf = async function () {
         $('#favNav').toggle(val);
         updateFavoriteMenu();
     });
+
     await addCheckbox(target, 'episodeSearch', false, 'Enable Episodesearch. Seriessearch on Episodelist Will Be Disabled');
     await addCheckbox(target, 'reverseLog', false, 'Reverse Log');
     await addCheckbox(target, 'episodelistOnStart', false, 'Show Last Season As Startpage');
+    await addCheckbox(target, 'randomActivated', false, 'Random Episode Menu', function (val) {
+        $('#randEditNav').toggle(val);
+        $('#randNav').toggle(val);
+    });
 
     await addNumberInput(target, 'autoplayTime', 5, 'Timer Time For Autoplay [Sec]', 0, 60000);
     await addNumberInput(target, 'updateWaitTime', 7, 'Time Till Next Listupdate [Days]', 1, 60000);
@@ -254,19 +263,19 @@ var addGeneralConf = async function () {
 
     target.append('<button id="updateList">Manual Update List</button>');
     $('#updateList').bind('click', function () {
-        (async function(){
+        (async function () {
             await setData('lastUpdate', 0, true);
             window.location = 'https://bs.to/serie-genre?redirect=' + jEncode(window.location.href);
-        })();     
+        })();
     });
 
     target.append('<button id="removeLog">Clear Log</button>');
     $('#removeLog').bind('click', function () {
-        (async function(){
-            seriesStorage.delete('loglist')
+        (async function () {
+            seriesStorage.delete ('loglist')
             window.location.reload();
         })();
-        
+
     });
 }
 
@@ -299,12 +308,12 @@ var addCheckbox = async function (addContainer, saveIndex, defaultState, msg, ca
     addContainer.append('<div class="settingCheckbox"><label class="switch"><input ' + ((await getData(saveIndex, defaultState)) ? 'checked' : '') + ' id="' + saveIndex + '" type="checkbox"/><span class="slider round"></span></label>' + msg + '<div>');
     $('#' + saveIndex).on('change', function () {
         var target = this;
-        (async function(){
+        (async function () {
             await setData(saveIndex, target.checked, true)
             if (typeof callback !== 'undefined') {
                 callback(target.checked);
             }
-        })();       
+        })();
     });
 }
 
@@ -321,7 +330,7 @@ var addNumberInput = async function (addContainer, saveIndex, defaultState, msg,
     addContainer.append('<label class="settingInput"><input min="' + min + '" max="' + max + '" value="' + (await getData(saveIndex, defaultState)) + '" type="number" id="' + saveIndex + '">' + msg + '</label>');
     $('#' + saveIndex).on('change', function () {
         var value = $(this).val();
-        (async function(){
+        (async function () {
             if (!isNaN(value)) {
                 value = parseInt(value);
                 if (value < min || value > max) {
@@ -333,7 +342,7 @@ var addNumberInput = async function (addContainer, saveIndex, defaultState, msg,
 
             await setData(saveIndex, value, true);
         })();
-        
+
     });
 }
 
@@ -347,9 +356,9 @@ var initPlaylistCont = async function () {
         '<span class="slider round"></span></label>Keep Playing Last Series<div>');
     $('#keepPlaying').on('change', function () {
         var target = this;
-        (async function(){
+        (async function () {
             await setData('keepPlaying', target.checked, true);
-        })();       
+        })();
     });
 
     var target = $('#playlistList');
@@ -435,7 +444,7 @@ var initPlaylistCont = async function () {
     });
 
     $('#PlaylistPlay').bind('click', function () {
-        (async function(){
+        (async function () {
             if ($('#playlistList li').length != 0) {
                 await setData('lastSeries', 'notNot');
                 await setData('lastSeason', 'notNot');
@@ -444,7 +453,7 @@ var initPlaylistCont = async function () {
 
                 window.location = 'https://bs.to/?next';
             }
-        })();     
+        })();
     });
 
     if ($('#playlistList li').length == 0) {
@@ -671,4 +680,52 @@ var saveCategoryList = async function () {
     restartSortableFavList();
     await setCatFavs(returnObj);
     updateFavoriteMenu();
+}
+
+var initRandom = async function () {
+    var selection
+
+    if ($('section.random').length) {
+        $('#contentContainer').empty();
+
+        $('section.random').find("h2").text("Random Settings").addClass("mainSiteTitle");
+        $('section.random').find("input[name='random[season]']").attr('placeholder', 'Not Filled: Every Season')
+
+        $('section.random').find("select").attr('id', 'stylesApply');
+        $('section.random').find("input[name='random[season]']").attr('id', 'customStyles');
+
+        $('section.random').find("input[type='submit']").attr('value', 'Save').attr('id', 'updateList');
+
+        $('section.random').find('form:first').attr("action", "/random/edit")
+
+        var messageInfo = $('section.random .messageBox.info');
+        if (messageInfo.length) {
+            messageInfo.remove()
+            $('<div id="MessageRandom">Randomsettings Saved</div>').insertAfter("section.random h2:first");
+        }
+
+        var messageError = $('section.random .messageBox.error');
+        if (messageError.length) {
+            messageError.remove()
+            $('<div id="MessageRandom">No Episode Found Try Another Setting</div>').insertAfter("section.random h2:first");
+        }
+
+        $('#contentContainer').append($('section.random'));
+
+        $('section.random form label:first').contents().filter(function () {
+            return this.nodeType == 3
+        }).each(function () {
+            this.textContent = this.textContent.replace('Serie:', 'Series:');
+        });
+        
+        $('section.random form label:nth-of-type(2)').contents().filter(function () {
+            return this.nodeType == 3
+        }).each(function () {
+            this.textContent = this.textContent.replace('Staffel:', 'Season:');
+        });
+
+    } else {
+        window.location = $('#episodes .active a').attr('href');
+        return true;
+    }
 }

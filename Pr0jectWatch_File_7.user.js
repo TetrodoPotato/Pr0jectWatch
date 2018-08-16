@@ -917,6 +917,10 @@ var loadVideoTimelinePreview = function () {
         setTimeout(loadVideoTimelinePreview, 1000);
     });
 
+    $('#preview').one('canplay', function() {
+        $("#preview")[0].play();
+    })
+    
     if (window.location.href.includes('?')) {
         $('#preview').attr('src', window.location.href + '&preview');
     } else {

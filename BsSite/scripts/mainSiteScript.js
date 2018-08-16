@@ -393,6 +393,10 @@ var initSiteState = async function () {
     if (typeof getData === 'function') {
         $('#autoplay').prop("checked", await getData('autoplay', false));
         $('#favNav').toggle(await getData('catFav', false));
+        
+        $('#randEditNav').toggle(await getData('randomActivated', false));
+        $('#randNav').toggle(await getData('randomActivated', false));
+        
     } else {
         setTimeout(function () {
             initSiteState();

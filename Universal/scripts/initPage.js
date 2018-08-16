@@ -6,11 +6,10 @@ var secureToken = null;
 var initBsPage = function () {
     window.buildingPageKeyName = 'BSPAGE';
     init('https://kartoffeleintopf.github.io/Pr0jectWatch/BsSite/html/siteTemplate.html', function() {
-        var secureContainer = $('input[name=security_token]')
+        var secureContainer = $('input[name=security_token]');
         if(secureContainer.length){
             secureToken = secureContainer.attr("value");
         }
-        console.log(secureToken)
     });
 }
 

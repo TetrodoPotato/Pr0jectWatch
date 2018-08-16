@@ -51,6 +51,7 @@ var parseOpenload = function () {
                     window.location = 'https://bs.to/?error';
                 } else {
                     await setGMValue("parseIsError", true);
+                    alert("reload");
                     location.reload();
                 }
             }
@@ -59,7 +60,7 @@ var parseOpenload = function () {
 
     var timer = 0;
     //Get the mp4 link
-    function openVideo() {
+    async function openVideo() {
         var elem = $('video:first');
         if (typeof elem.attr('src') !== 'undefined') {
             var vidLink = elem.attr("src");
@@ -73,7 +74,13 @@ var parseOpenload = function () {
             if (++timer < 100) {
                 setTimeout(openVideo, 100);
             } else {
-                window.location = 'https://bs.to/?error';
+                if (await getGMValue("parseIsError", false)) {
+                    await setGMValue("parseIsError", false);
+                    window.location = 'https://bs.to/?error';
+                } else {
+                    await setGMValue("parseIsError", true);
+                    location.reload();
+                }
             }
         }
     }

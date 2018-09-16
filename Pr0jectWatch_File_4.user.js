@@ -4,7 +4,7 @@
 // @namespace   https://bs.to/
 // @include     /^https:\/\/bs\.to\/serie\/[^\/]+\/\d+\/[^\/\:]+$/
 // @include     /^https:\/\/bs\.to\/serie\/[^\/]+\/\d+\/[^\/\:]+\/+[A-Za-z]+$/
-// @version    	1.10
+// @version    	1.11
 // @description	Select Hoster
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -34,13 +34,13 @@ var initHosterList = async function () {
         //Get Hosterlist
         var hoster = [];
         $('.hoster-tabs a').each(function () {
-            hoster.push($(this).text().trim());
+            hoster.push($(this).text().toLowerCase().trim());
         });
 
         var errorCode = await getData('errorCode', 0);
         var hasHoster = false;
         $.each(await getData('hoster', defaultHoster), function (index, value) {
-            var hosterIndex = $.inArray(value, hoster);
+            var hosterIndex = $.inArray(value.toLowerCase(), hoster);
             if (hosterIndex != -1) {
                 if (errorCode-- < 1) {
                     hasHoster = true;
@@ -123,7 +123,7 @@ var onDocumentReady = async function () {
 
     var supportet = false;
     $.each(hosterSupport, function (i, supp) {
-        if (supp[0] == hoster) {
+        if (supp[0].toLowerCase() == hoster.toLowerCase()) {
             supportet = supp[1];
             return false;
         }

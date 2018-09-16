@@ -3,7 +3,7 @@
 // @icon 		https://bs.to/opengraph.jpg
 // @namespace   https://bs.to/
 // @include     /^https:\/\/bs.to(\/)?(((home|\?next|\?error|\?back|\?logout[^]*)[^\/]*)(\/)?)?$/
-// @version    	1.10
+// @version    	1.11
 // @description	Error-, Next-Redirect
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -227,7 +227,7 @@ var getScriptVersion = async function () {
     if(typeof GM !== 'undefined'){
         return (await GM.info).version
     } else {
-        return '1.10';
+        return '1.11';
     }
 }
 

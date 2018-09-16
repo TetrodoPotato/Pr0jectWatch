@@ -9,7 +9,7 @@
 // @include     /^.*thevideo\.me.*$/
 // @include     /^.*\d+\.\d+\.\d+\.\d+.*\/video\.mp4$/
 // @include     /^.*vidoza\.net\/[^\/]*\/[^\.]*\.mp4$/
-// @version    	1.10
+// @version    	1.11
 // @description	SeriesList
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -133,6 +133,7 @@ var onDocumentReady = async function () {
     addInterfaceEventhandler();
     addVideoEventhandler();
     startHideShow(timeShow);
+    showAllEvent();
 }
 
 var setSetting = async function () {

@@ -11,7 +11,7 @@
 // @include     /^http:\/\/vidto\.se\/.+$/
 // @include     /^https:\/\/vidoza\.net\/embed.+$/
 // @include     /^https:\/\/streamcherry\.com\/embed.+$/
-// @version     1.10
+// @version     1.11
 // @description	Hoster Parser
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -32,7 +32,6 @@ document.documentElement.style.overflow = 'hidden';
 var parseOpenload = function () {
     var buttonTimer = 0;
 
-
     //Click on the Video so the mp4 link appears
     async function startRedirect() {
         var elem = $('.vjs-big-play-button:first');
@@ -42,7 +41,7 @@ var parseOpenload = function () {
             elem2.click();
             setTimeout(openVideo, 100);
         } else {
-            if(buttonTimer < 100){
+            if (buttonTimer < 100) {
                 buttonTimer++;
                 setTimeout(startRedirect, 100);
             } else {
@@ -63,11 +62,11 @@ var parseOpenload = function () {
         var elem = $('video:first');
         if (typeof elem.attr('src') !== 'undefined') {
             var vidLink = elem.attr("src");
-            
-            if(!vidLink.includes('openload.co')){
+
+            if (!vidLink.includes('openload.co')) {
                 vidLink = 'https://openload.co' + vidLink;
             }
-            
+
             window.location.replace(vidLink);
         } else {
             if (++timer < 100) {
@@ -89,35 +88,25 @@ var parseOpenload = function () {
 }
 
 var parseVivo = function () {
-    //Click on the Video so the mp4 link appears
-    function startRedirect() {
-        var elem = $('.needsclick:first');
-        if (elem.length != 0) {
-            elem.click();
-            setTimeout(openVideo, 100);
-        } else {
-            window.location = 'https://bs.to/?error';
-        }
-    }
 
-    var timer = 0;
-    //Get the mp4 link
-    function openVideo() {
-        var elem = $('video:first');
-        if (elem.length != 0) {
-            var vidLink = elem.attr("src");
-            window.location = vidLink;
-        } else {
-            if (++timer < 100) {
-                setTimeout(openVideo, 100);
-            } else {
-                window.location = 'https://bs.to/?error';
+    var vivoAtomLink = $("script").text()
+        if (vivoAtomLink != "") {
+            vivoAtomLink = vivoAtomLink.split("Core.InitializeStream ('");
+            if (vivoAtomLink.length > 1) {
+                vivoAtomLink = vivoAtomLink[1].split("');")
+                    if (vivoAtomLink.length > 0) {
+                        vivoAtomLink = vivoAtomLink[0];
+                        var links = JSON.parse(window.atob(vivoAtomLink));
+                        if (links.length > 0) {
+                            window.location = links[links.length - 1];
+                            return true;
+                        }
+                    }
             }
         }
-    }
 
-    //Start the redirect process
-    setTimeout(startRedirect, 1000);
+        window.location = 'https://bs.to/?error';
+
 }
 
 var parseStreamango = function () {
@@ -165,22 +154,22 @@ var parseVidto = function () {
 var parseVidoza = function () {
     var t = 0;
     var timer = setInterval(function () {
-        var cvframe = $('.jw-video:first');
-        
-        if (cvframe.length != 0) {
-            var src = cvframe.attr('src');
-            if(typeof src !== 'undefined') {
-                window.location = src;
-                clearInterval(timer);
+            var cvframe = $('#player_html5_api');
+
+            if (cvframe.length != 0) {
+                var src = cvframe.attr('src');
+                if (typeof src !== 'undefined') {
+                    window.location = src;
+                    clearInterval(timer);
+                }
+
             }
-            
-        }
-        
-        if (++t > 100) {
-            clearInterval(timer);
-            window.location = 'https://bs.to/?error';
-        }
-    }, 100);
+
+            if (++t > 100) {
+                clearInterval(timer);
+                window.location = 'https://bs.to/?error';
+            }
+        }, 100);
 
 }
 
@@ -201,11 +190,10 @@ $(document).ready(function () {
         parseVidto();
     } else if (/^https:\/\/vidoza\.net\/embed.+$/.test(window.location.href)) {
         parseVidoza();
-    } else if(/^https:\/\/streamcherry\.com\/embed.+$/.test(window.location.href)){
+    } else if (/^https:\/\/streamcherry\.com\/embed.+$/.test(window.location.href)) {
         parseStreamCherry();
     }
 });
-
 
 /**
  * GM_setValue with new or old Api

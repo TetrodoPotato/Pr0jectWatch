@@ -11,7 +11,9 @@
 // @include     /^http:\/\/vidto\.se\/.+$/
 // @include     /^https:\/\/vidoza\.net\/embed.+$/
 // @include     /^https:\/\/streamcherry\.com\/embed.+$/
-// @version     1.11
+// @include     /^https:\/\/vev\.io\/embed.+$/
+// @include     /^https:\/\/streamplay\.me\/.+$/
+// @version     1.12
 // @description	Hoster Parser
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -177,6 +179,37 @@ var parseStreamCherry = function () {
     window.location = $('video').attr('src');
 }
 
+var parseVevio = function() {
+    var t = 0;
+    var timer = setInterval(function () {
+        var cvframe = $('video');
+
+        if (cvframe.length != 0) {
+            var src = cvframe.attr('src');
+            if (typeof src !== 'undefined') {
+                window.location = src;
+                clearInterval(timer);
+            }
+
+        }
+
+        if (++t > 100) {
+            clearInterval(timer);
+            window.location = 'https://bs.to/?error';
+        }
+    }, 100);
+}
+
+var parseStreamPlay = function(){
+    if($("#btn_download").length){
+        $("#btn_download").click();
+    } else {
+        if($(".player-poster.clickable").length){
+            $(".player-poster.clickable").click();
+        }
+    }
+}
+
 $(document).ready(function () {
     if (/^https:\/\/openload\.co\/embed\/.+$/.test(window.location.href) || /^https:\/\/oload\.stream\/embed\/.+$/.test(window.location.href) || /^https:\/\/oload\.download\/embed\/.+$/.test(window.location.href)) {
         parseOpenload();
@@ -192,7 +225,13 @@ $(document).ready(function () {
         parseVidoza();
     } else if (/^https:\/\/streamcherry\.com\/embed.+$/.test(window.location.href)) {
         parseStreamCherry();
+    } else if (/^https:\/\/vev\.io\/embed.+$/.test(window.location.href)) {
+        parseVevio();
+    } else if (/^https:\/\/streamplay\.me\/.+$/.test(window.location.href)) {
+        parseStreamPlay();
     }
+    
+    
 });
 
 /**

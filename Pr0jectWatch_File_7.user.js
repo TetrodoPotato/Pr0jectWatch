@@ -9,7 +9,8 @@
 // @include     /^.*thevideo\.me.*$/
 // @include     /^.*\d+\.\d+\.\d+\.\d+.*\/video\.mp4$/
 // @include     /^.*vidoza\.net\/[^\/]*\/[^\.]*\.mp4$/
-// @version    	1.11
+// @include     /^.*\/stream\/.*\.mp4\?.*$/
+// @version    	1.12
 // @description	SeriesList
 // @author     	Kartoffeleintopf
 // @run-at 		document-start

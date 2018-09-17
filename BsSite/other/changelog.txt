@@ -1,3 +1,8 @@
+[TITLE]Changelog V-1.12 [Sep 17, 2018]
+[TEXT]Ich bin einsam. Schreibt mich mal an. !!!BLEIBT STREAMPLAY FERN. 70% AUSLASTUNG COINMINER!!!! Neuer Unterstützter Hoster.
+[LIST]Vevio-Hoster wird nun unterstützt.
+[LIST]Streamplay-Icon wird nun Angezeigt. !!HOSTER NICHT BENUTZEN!!
+
 [TITLE]Changelog V-1.11 [Sep 16, 2018]
 [TEXT]Fehler mit Hostern behoben. Schreibt mich mal an. Ich möchte wissen, ob ich der einzige bin der dieses Ding noch benutzt.
 [LIST]Vodzilla-Hoster funktioniert wieder.

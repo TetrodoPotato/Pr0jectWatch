@@ -3,7 +3,7 @@
 // @icon 		https://bs.to/opengraph.jpg
 // @namespace   https://bs.to/
 // @include     /^https:\/\/bs\.to\/serie\-genre.*$/
-// @version    	1.11
+// @version    	1.12
 // @description	SeriesList
 // @author     	Kartoffeleintopf
 // @run-at 		document-start

@@ -1460,6 +1460,14 @@ input:checked + .slider:before {
     background-image: url(https://bs.to/public/images/hoster/streamcherry.ico);
 }
 
+.Streamplay {
+    background-image: url(images/hoster/streamplay.ico);
+}
+
+.vevio {
+    background-image: url(images/hoster/vevio.ico);
+}
+
 .addAutoplayButton {
     float:left;
     height:25px;

@@ -1461,11 +1461,11 @@ input:checked + .slider:before {
 }
 
 .Streamplay {
-    background-image: url(images/hoster/streamplay.ico);
+    background-image: url(https://bs.to/public/images/hoster/streamplay.ico);
 }
 
 .vevio {
-    background-image: url(images/hoster/vevio.ico);
+    background-image: url(https://bs.to/public/images/hoster/vevio.ico);
 }
 
 .addAutoplayButton {

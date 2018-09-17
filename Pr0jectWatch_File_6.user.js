@@ -12,7 +12,6 @@
 // @include     /^https:\/\/vidoza\.net\/embed.+$/
 // @include     /^https:\/\/streamcherry\.com\/embed.+$/
 // @include     /^https:\/\/vev\.io\/embed.+$/
-// @include     /^https:\/\/streamplay\.me\/.+$/
 // @version     1.12
 // @description	Hoster Parser
 // @author     	Kartoffeleintopf
@@ -200,15 +199,6 @@ var parseVevio = function() {
     }, 100);
 }
 
-var parseStreamPlay = function(){
-    if($("#btn_download").length){
-        $("#btn_download").click();
-    } else {
-        if($(".player-poster.clickable").length){
-            $(".player-poster.clickable").click();
-        }
-    }
-}
 
 $(document).ready(function () {
     if (/^https:\/\/openload\.co\/embed\/.+$/.test(window.location.href) || /^https:\/\/oload\.stream\/embed\/.+$/.test(window.location.href) || /^https:\/\/oload\.download\/embed\/.+$/.test(window.location.href)) {
@@ -227,11 +217,7 @@ $(document).ready(function () {
         parseStreamCherry();
     } else if (/^https:\/\/vev\.io\/embed.+$/.test(window.location.href)) {
         parseVevio();
-    } else if (/^https:\/\/streamplay\.me\/.+$/.test(window.location.href)) {
-        parseStreamPlay();
     }
-    
-    
 });
 
 /**

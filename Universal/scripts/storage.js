@@ -42,7 +42,7 @@ seriesStorage.storage = function (key, value = null) {
             };
 
             getData.onerror = function (event) {
-                alert("Abrufen Datenbankfehler: " + event.target.errorCode);
+                alert("Abrufen Datenbankfehler: " + tx.error);
             };
 
             tx.oncomplete = function () {
@@ -51,8 +51,8 @@ seriesStorage.storage = function (key, value = null) {
         }
 
         open.onerror = function (event) {
-            alert("Öffnen Datenbankfehler: " + event.target.errorCode);
-            console.log(event);
+            alert("Öffnen Datenbankfehler: " + open.error.name);
+            console.log(open.error);
         };
     });
 }
@@ -80,7 +80,7 @@ seriesStorage.delete  = function (key) {
             };
 
             removeData.onerror = function (event) {
-                alert("Abrufen Datenbankfehler: " + event.target.errorCode);
+                alert("Abrufen Datenbankfehler: " + tx.error);
             };
 
             tx.oncomplete = function () {
@@ -89,8 +89,8 @@ seriesStorage.delete  = function (key) {
         }
 
         open.onerror = function (event) {
-            alert("Öffnen Datenbankfehler: " + event.target.errorCode);
-            console.log(event);
+            alert("Öffnen Datenbankfehler: " + open.error.name);
+            console.log(open.error);
         };
     });
 }

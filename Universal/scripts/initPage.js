@@ -218,13 +218,15 @@ var removeBlackPage = function () {
  * Makes the {DOM} blackP at the top.
  */
 var makeBlackPage = function () {
-    //Black page over original
-    var $black = $("<div>", {
-            'id': 'blackP',
-            'style': 'width:100%; height:100%; position:fixed; top:0; left:0; background:#000; z-index:9999999'
-        });
-    $(document.documentElement).append($black);
-    document.documentElement.style.overflow = 'hidden'; // firefox, chrome
+    if(document.getElementById("blackP") === null){
+        //Black page over original
+        var $black = $("<div>", {
+                'id': 'blackP',
+                'style': 'width:100%; height:100%; position:fixed; top:0; left:0; background:#000; z-index:9999999'
+            });
+        $(document.documentElement).append($black);
+        document.documentElement.style.overflow = 'hidden'; // firefox, chrome
+    }
 }
 
 /**

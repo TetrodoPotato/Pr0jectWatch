@@ -52,6 +52,7 @@ seriesStorage.storage = function (key, value = null) {
 
         open.onerror = function (event) {
             alert("Öffnen Datenbankfehler: " + event.target.errorCode);
+            console.log(event);
         };
     });
 }
@@ -89,6 +90,7 @@ seriesStorage.delete  = function (key) {
 
         open.onerror = function (event) {
             alert("Öffnen Datenbankfehler: " + event.target.errorCode);
+            console.log(event);
         };
     });
 }

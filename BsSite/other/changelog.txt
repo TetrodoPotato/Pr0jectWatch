@@ -1,3 +1,10 @@
+[TITLE]Changelog V-1.13 [Sep 24, 2018]
+[TEXT]Uiii. Scheinen wohl wieder ein paar zu benutzen. Schreibt mich gerne bei Fehlern oder Fragen an.
+[TEXT]Deine Tampermonkey-Einstellungen - 'Externals Aktualisierungsintervall' bitte auf 'immer' stellen dies sollte Fehler bei zukünftigen Updates verringern.
+[LIST]Hoster auswahl ist nun nicht mehr anfällig für Klein- und Großschreibung.
+[LIST]Vivo-Hoster scheint jetzt wieder zu funktionieren. Ohne Pop-Ups!!! Mal schauen wie lange.
+[LIST]Hoster öffnen sollte nun schneller gehen.
+
 [TITLE]Changelog V-1.12 [Sep 17, 2018]
 [TEXT]Ich bin einsam. Schreibt mich mal an. !!!BLEIBT STREAMPLAY FERN. 70% AUSLASTUNG COINMINER!!!! Neuer Unterstützter Hoster.
 [LIST]Vevio-Hoster wird nun unterstützt.

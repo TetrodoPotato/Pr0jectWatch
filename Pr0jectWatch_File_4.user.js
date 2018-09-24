@@ -4,7 +4,7 @@
 // @namespace   https://bs.to/
 // @include     /^https:\/\/bs\.to\/serie\/[^\/]+\/\d+\/[^\/\:]+$/
 // @include     /^https:\/\/bs\.to\/serie\/[^\/]+\/\d+\/[^\/\:]+\/+[A-Za-z]+$/
-// @version    	1.12
+// @version    	1.13
 // @description	Select Hoster
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -33,18 +33,20 @@ var initHosterList = async function () {
     var searchHoster = async function () {
         //Get Hosterlist
         var hoster = [];
+        var hosterLower = [];
         $('.hoster-tabs a').each(function () {
-            hoster.push($(this).text().toLowerCase().trim());
+            hoster.push($(this).text().trim());
+            hosterLower.push($(this).text().toLowerCase().trim());
         });
 
         var errorCode = await getData('errorCode', 0);
         var hasHoster = false;
         $.each(await getData('hoster', defaultHoster), function (index, value) {
-            var hosterIndex = $.inArray(value.toLowerCase(), hoster);
+            var hosterIndex = $.inArray(value.toLowerCase(), hosterLower);
             if (hosterIndex != -1) {
                 if (errorCode-- < 1) {
                     hasHoster = true;
-                    window.location = window.location + '/' + value;
+                    window.location = window.location + '/' + hoster[hosterIndex];
                     return false;
                 }
             }
@@ -69,6 +71,81 @@ var initHosterList = async function () {
     });
 }
 
+var startHoster = async function () {
+    var seriesId = window.location.pathname.split('/')[2];
+    var seriesName = $('#sp_left h2').clone().children().remove().end().text().trim();
+    var season = window.location.pathname.split('/')[3];
+    var episodeDE = $('#titleGerman').clone().children().remove().end().text().trim();
+    var episodeOR = $('#titleGerman small').clone().children().remove().end().text().trim();
+    var episodeIndex = $('#episodes .active:first a').text().trim();
+    var episodeMax = $('#episodes li:last a').text().trim();
+    var hoster = window.location.pathname.split('/')[5].split('?')[0];
+    var redirect = $('.hoster-player:first').attr('href');
+
+    if (typeof redirect === 'undefined') {
+        setTimeout(onDocumentReady, 1000);
+    }
+
+    //Setting
+    if (await getData('enableLog', true)) {
+        await setLog(seriesId, seriesName, season, episodeDE, episodeOR, episodeIndex, episodeMax, hoster);
+    }
+    //Setting
+    if (await getData('autoAutoplay', false)) {
+        await setData('autoplay', true);
+    }
+    //Setting
+    if (await getData('updateSeason', true)) {
+        await updateEntry({
+            Id: seriesId,
+            FavSeason: season
+        });
+    }
+    await setForAutoplay();
+
+    if (hoster == 'NoHoster') {
+        window.location = 'https://bs.to/?next';
+        return true;
+    }
+
+    var supportet = false;
+    $.each(hosterSupport, function (i, supp) {
+        if (supp[0].toLowerCase() == hoster.toLowerCase()) {
+            supportet = supp[1];
+            return false;
+        }
+    });
+
+    if (await getData('isPlayingPlaylist', false)) {
+        await removePlayList((await getFullPlayList())[0].episodeID);
+    }
+
+    //Save Last link
+    await setData('lastSeriesSeasonWatched', 'https://bs.to/serie/' + seriesId + '/' + season, true);
+
+    if (supportet) {
+        window.location = 'https://bs.to/data'
+             + '?redirect=' + jEncode(redirect)
+             + '&series=' + jEncode(seriesName)
+             + '&season=' + jEncode(season)
+             + '&episode=' + jEncode(((episodeDE != '') ? episodeDE : episodeOR))
+             + '&episodeRange=' + jEncode(episodeIndex + '/' + episodeMax)
+             + '&style=' + jEncode(await getData('style', styleColors.Default))
+             + '&autoplay=' + jEncode(await getData('autoplay', false))
+             + '&closeEnd=' + jEncode(await getData('closeEnd', true))
+             + '&enablePreview=' + jEncode(await getData('enablePreview', true))
+             + '&previewSteps=' + jEncode(await getData('previewSteps', 20))
+             + '&timeShow=' + jEncode(await getData('timeShow', 3))
+             + '&timeStep=' + jEncode(await getData('timeStep', 5))
+             + '&volStep=' + jEncode(await getData('volStep', 10))
+             + '&disableAutoplayOnExit=' + jEncode(await getData('disableAutoplayOnExit', false))
+             + '&noStepPreview=' + jEncode(await getData('noStepPreview', false));
+        return true;
+    } else {
+        initBsPage();
+    }
+}
+
 /**
  * Decide with Pages Loads.
  */
@@ -76,7 +153,10 @@ var initPageStart = async function () {
     if (/^https:\/\/bs\.to\/serie\/[^\/]+\/\d+\/[^\/\:]+$/.test(window.location.href)) {
         await initHosterList();
     } else {
-        initBsPage();
+        makeBlackPage();
+        $(document).ready(function () {
+            startHoster();
+        });
     }
 }
 initPageStart();

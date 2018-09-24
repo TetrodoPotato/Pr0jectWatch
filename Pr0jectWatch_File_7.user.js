@@ -10,7 +10,7 @@
 // @include     /^.*\d+\.\d+\.\d+\.\d+.*\/video\.mp4$/
 // @include     /^.*vidoza\.net\/[^\/]*\/[^\.]*\.mp4$/
 // @include     /^.*\/stream\/.*\.mp4\?.*$/
-// @version    	1.12
+// @version    	1.13
 // @description	SeriesList
 // @author     	Kartoffeleintopf
 // @run-at 		document-start

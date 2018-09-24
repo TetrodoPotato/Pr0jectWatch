@@ -2,9 +2,8 @@
 // @name        Project Watch - File 6
 // @icon 		https://bs.to/opengraph.jpg
 // @namespace   https://bs.to/
-// @include     /^https:\/\/openload\.co\/embed\/.+$/
-// @include     /^https:\/\/oload\.stream\/embed\/.+$/
-// @include     /^https:\/\/oload\.download\/embed\/.+$/
+// @include     /^https:\/\/openload\.[^\/]+\/embed\/.+$/
+// @include     /^https:\/\/oload\.[^\/]+\/embed\/.+$/
 // @include     /^https:\/\/vivo\.sx\/.+$/
 // @include     /^https:\/\/streamango\.com\/embed\/.+$/
 // @include     /^http:\/\/vidto\.me\/.+$/
@@ -12,7 +11,7 @@
 // @include     /^https:\/\/vidoza\.net\/embed.+$/
 // @include     /^https:\/\/streamcherry\.com\/embed.+$/
 // @include     /^https:\/\/vev\.io\/embed.+$/
-// @version     1.12
+// @version     1.13
 // @description	Hoster Parser
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -201,7 +200,7 @@ var parseVevio = function() {
 
 
 $(document).ready(function () {
-    if (/^https:\/\/openload\.co\/embed\/.+$/.test(window.location.href) || /^https:\/\/oload\.stream\/embed\/.+$/.test(window.location.href) || /^https:\/\/oload\.download\/embed\/.+$/.test(window.location.href)) {
+    if (/^https:\/\/openload\.[^\/]+\/embed\/.+$/.test(window.location.href) || /^https:\/\/oload\.[^\/]+\/embed\/.+$/.test(window.location.href)) {
         parseOpenload();
     } else if (/^https:\/\/vivo\.sx\/.+$/.test(window.location.href)) {
         parseVivo();

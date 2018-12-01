@@ -8,7 +8,7 @@
 // @include     https://bs.to/favorites
 // @include     https://bs.to/random/edit
 // @include     https://bs.to/random
-// @version    	1.13
+// @version    	1.14
 // @description	Log and Settings
 // @author     	Kartoffeleintopf
 // @run-at 		document-start

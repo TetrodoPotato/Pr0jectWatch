@@ -11,7 +11,7 @@
 // @include     /^https:\/\/vidoza\.net\/embed.+$/
 // @include     /^https:\/\/streamcherry\.com\/embed.+$/
 // @include     /^https:\/\/vev\.io\/embed.+$/
-// @version     1.13
+// @version     1.14
 // @description	Hoster Parser
 // @author     	Kartoffeleintopf
 // @run-at 		document-start

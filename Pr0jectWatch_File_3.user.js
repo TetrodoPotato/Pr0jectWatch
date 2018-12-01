@@ -296,7 +296,7 @@ var getEpisodeInfo = function () {
         var target = $(this);
 
         var objhoster = [];
-        target.find('.nowrap a').each(function () {
+        target.find('td:eq(2) a').each(function () {
             objhoster.push($(this).attr("title"));
         });
 

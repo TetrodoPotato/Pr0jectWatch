@@ -252,7 +252,7 @@ var syncFavGet = async function () {
 }
 
 /*CRITICAL*/
-var isLoggedIn = e => !!($('#navigation').length);
+var isLoggedIn = e => !!($('.navigation').length);
 
 /**
  * Controlls the searchbar and checks the {DOM} contentContainer for tables with {DOM} child {id} 1.
@@ -312,7 +312,7 @@ var getFavCatRow = function (name) {
 //Change LoginButton to Username
 var changeIfUsernameLogedIn = async function () {
     if (isLoggedIn()) {
-        var username = $('#navigation').find('strong:first-of-type').html();
+        var username = $('.navigation').find('strong:first-of-type').html();
         $('#login').html('<a title="Logout" href="https://bs.to/?logout&redirect=' + encodeURI(window.location.href) + '">' + username + '</a>').attr('isLoggedIn', 'true');
     }
 }

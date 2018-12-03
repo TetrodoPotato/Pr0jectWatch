@@ -133,5 +133,6 @@ var clearAutoplayBuffer = async function () {
     await setData('lastSeries', 'none');
     await setData('lastSeason', 'none');
     await setData('lastEpisode', 'none');
+    await setData('lastLanguage', 'none');
     await setData('isPlayingPlaylist', false);
 }

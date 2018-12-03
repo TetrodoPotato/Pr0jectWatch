@@ -2,8 +2,8 @@
 // @name        Project Watch - File 4
 // @icon 		https://bs.to/opengraph.jpg
 // @namespace   https://bs.to/
-// @include     /^https:\/\/bs\.to\/serie\/[^\/]+\/\d+\/[^\/\:]+$/
-// @include     /^https:\/\/bs\.to\/serie\/[^\/]+\/\d+\/[^\/\:]+\/+[A-Za-z]+$/
+// @include     /^https:\/\/bs\.to\/serie\/[^\/]+\/\d+\/\d+?[^\/\:]+(\/\w+)?(\/)?$/
+// @include     /^https:\/\/bs\.to\/serie\/[^\/]+\/\d+\/\d+\-[^\/]+\/\w+\/\w+(\/)?$/
 // @version    	1.14
 // @description	Select Hoster
 // @author     	Kartoffeleintopf
@@ -35,7 +35,10 @@ var initHosterList = async function () {
         var hoster = [];
         var hosterLower = [];
         $('.hoster-tabs a').each(function () {
-            hoster.push($(this).text().trim());
+            hoster.push({
+                hosterName: $(this).text().trim(),
+                hosterLink: $(this).attr('href')
+            });
             hosterLower.push($(this).text().toLowerCase().trim());
         });
 
@@ -46,7 +49,7 @@ var initHosterList = async function () {
             if (hosterIndex != -1) {
                 if (errorCode-- < 1) {
                     hasHoster = true;
-                    window.location = window.location + '/' + hoster[hosterIndex];
+                    window.location = '/' + hoster[hosterIndex].hosterLink;
                     return false;
                 }
             }
@@ -79,7 +82,7 @@ var startHoster = async function () {
     var episodeOR = $('#titleGerman small').clone().children().remove().end().text().trim();
     var episodeIndex = $('#episodes .active:first a').text().trim();
     var episodeMax = $('#episodes li:last a').text().trim();
-    var hoster = window.location.pathname.split('/')[5].split('?')[0];
+    var hoster = window.location.pathname.split('/')[6].split('?')[0];
     var redirect = $('.hoster-player:first').attr('href');
 
     if (typeof redirect === 'undefined') {
@@ -150,7 +153,7 @@ var startHoster = async function () {
  * Decide with Pages Loads.
  */
 var initPageStart = async function () {
-    if (/^https:\/\/bs\.to\/serie\/[^\/]+\/\d+\/[^\/\:]+$/.test(window.location.href)) {
+    if (/^https:\/\/bs\.to\/serie\/[^\/]+\/\d+\/\d+?[^\/\:]+(\/\w+)?(\/)?$/.test(window.location.href)) {
         await initHosterList();
     } else {
         makeBlackPage();
@@ -172,7 +175,7 @@ var onDocumentReady = async function () {
     var episodeOR = $('#titleGerman small').clone().children().remove().end().text().trim();
     var episodeIndex = $('#episodes .active:first a').text().trim();
     var episodeMax = $('#episodes li:last a').text().trim();
-    var hoster = window.location.pathname.split('/')[5].split('?')[0];
+    var hoster = window.location.pathname.split('/')[6].split('?')[0];
     var redirect = $('.hoster-player:first').attr('href');
 
     if (typeof redirect === 'undefined') {
@@ -259,6 +262,7 @@ var setForAutoplay = async function () {
     await setData('lastSeries', window.location.pathname.split('/')[2]);
     await setData('lastSeason', window.location.pathname.split('/')[3]);
     await setData('lastEpisode', window.location.pathname.split('/')[4]);
+    await setData('lastLanguage', window.location.pathname.split('/')[5]);
 }
 
 /**

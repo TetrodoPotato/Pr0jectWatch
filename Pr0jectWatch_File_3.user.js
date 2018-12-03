@@ -2,7 +2,7 @@
 // @name        Project Watch - File 3
 // @icon 		https://bs.to/opengraph.jpg
 // @namespace   https://bs.to/
-// @include     /^https:\/\/bs\.to\/serie\/[^\/]+(\/(\d+(\/((unwatch:|watch:)(\d+|all)(\/)?)?)?)?)?$/
+// @include     /^https:\/\/bs\.to\/serie\/[^\/]+(\/(\w+)?(\d+(\/\w+)?(\/((unwatch:|watch:)(\d+|all)(\/)?)?)?)?)?$/
 // @version    	1.14
 // @description	EpisodeList
 // @author     	Kartoffeleintopf
@@ -36,6 +36,7 @@ var onDocumentReady = async function () {
 
     $('#contentContainer').empty().append('<h1 class="mainSiteTitle">' + $('#sp_left h2:first').html() + '</h1>');
     await constructSeasonList(getSeasonObjects());
+    await constructLanguageSelection();
     await constructEpisodeList(getEpisodeInfo());
     constructSideContent();
 
@@ -87,7 +88,7 @@ var onDocumentLoaded = async function () {
  * Check if user is logged in.
  * @return {Boolean}
  */
-var isLoggedIn = e => !!($('#navigation').length);
+var isLoggedIn = e => !!($('.navigation').length);
 
 /**
  * Get Series Id.
@@ -95,12 +96,35 @@ var isLoggedIn = e => !!($('#navigation').length);
  */
 var getSeriesId = e => window.location.pathname.split('/')[2];
 
+var constructLanguageSelection = async function() {
+
+    var LanguageContainer = $('select.series-language:first')
+
+    $(LanguageContainer).removeAttr('style')
+
+    $('#contentContainer').append(LanguageContainer)
+
+    $(LanguageContainer).bind('change', function() {
+
+        var Language = $(this).val();
+
+        window.location = 'https://bs.to/serie/' + getSeriesId() + '/' + getSeason() + '/' + Language;
+
+    })
+
+}
+
 /**
  * Get the Selected Season of Series.
  * @return {Number}
  */
 var getSeason = function () {
     var thisSeason = (window.location.pathname.split('/').length > 3) ? window.location.pathname.split('/')[3] : '1';
+
+    if(isNaN(thisSeason)){
+        return 1;
+    }
+
     return parseInt(((thisSeason !== '') ? thisSeason : '1'));
 }
 
@@ -139,7 +163,7 @@ var setEpisodeEvents = function () {
     });
 
     $('#contentContainer').on('click', '.seriesContainer .nameWatchedContainer', function () {
-        window.location = 'https://bs.to/serie/' + getSeriesId() + '/' + getSeason() + '/' + $(this).closest('*[episodeid]').attr('episodeid');
+        window.location = 'https://bs.to/serie/' + getSeriesId() + '/' + getSeason() + '/' + $(this).closest('*[episodeid]').attr('episodeid') + '/' + getLanguage();
     });
 
     $('#seasonTable').on('click', 'td[href]', function (e) {
@@ -272,9 +296,9 @@ var constructEpisodeList = async function (list) {
 
         var hosterObj = '';
         $.each(curObj.hoster, function (index, value) {
-            var hoster = curObj.hoster[index];
-            var linkLink = 'https://bs.to/serie/' + seriesId + '/' + season + '/' + curObj.episodeId + '/' + hoster;
-            var hostLink = '<a title="Open ' + hoster + '" class="hosterIcon ' + hoster + '" href="' + linkLink + '"></a>';
+            var hosterName = curObj.hoster[index].hosterTitle;
+            var hosterLink = curObj.hoster[index].fullLink;
+            var hostLink = '<a title="Open ' + hosterName + '" class="hosterIcon ' + hosterName + '" href="/' + hosterLink + '"></a>';
 
             hosterObj += hostLink;
         });
@@ -284,6 +308,12 @@ var constructEpisodeList = async function (list) {
     });
 
     $('.active').toggleClass('watched', ($(".seriesContainer:not(.episodeWatched)").length == 0)).toggleClass('unwatched', !$('.active:first').hasClass('watched'));
+}
+
+var getLanguage = function() {
+    var split = window.location.pathname.split('/')
+
+    return $('select.series-language:first').val()
 }
 
 /**
@@ -297,7 +327,10 @@ var getEpisodeInfo = function () {
 
         var objhoster = [];
         target.find('td:eq(2) a').each(function () {
-            objhoster.push($(this).attr("title"));
+            objhoster.push({
+                hosterTitle: $(this).attr("title"),
+                fullLink: $(this).attr("href")
+            });
         });
 
         rows.push({
@@ -305,7 +338,7 @@ var getEpisodeInfo = function () {
             watched: target.hasClass('watched'),
             nameDe: target.find('strong:first-child').text(),
             nameOr: target.find('i:first-child').text(),
-            hoster: objhoster
+            hoster: objhoster,
         });
     });
     return rows;
@@ -333,7 +366,7 @@ var constructSeasonList = async function (obj) {
 
     var partLink = 'https://bs.to/serie/' + getSeriesId() + '/';
     $.each(obj, function (index, value) {
-        $row.append('<td class="' + value.state + '" href="' + (partLink + value.index) + '">' + (value.index ? value.index : 'Specials') + '</a>');
+        $row.append('<td class="' + value.state + '" href="' + (partLink + value.index) + '/' + getLanguage() + '">' + (value.index ? value.index : 'Specials') + '</a>');
     });
 }
 

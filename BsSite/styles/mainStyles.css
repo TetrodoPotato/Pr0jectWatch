@@ -4,38 +4,38 @@
     margin: 0;
     padding: 0;
     font: var(--SiteFont);
-    z-index:-10;
-    outline:0;
+    z-index: -10;
+    outline: 0;
 }
 
-html, body {
-    background-color:var(--BackgroundColor);
-    height:100%;
-    width:100%;
+html,
+body {
+    background-color: var(--BackgroundColor);
+    height: 100%;
+    width: 100%;
 }
 
 /*Main - Menu Styles*/
 
 #topMenu {
     height: 48px;
-    width: 100% ;
-    box-shadow: 0px 3px 4px rgba(0,0,0,0.7);
+    width: 100%;
+    box-shadow: 0px 3px 4px rgba(0, 0, 0, 0.7);
     background-color: var(--MenuBackgroundColor);
     position: fixed;
     top: 0;
     left: 0;
-    min-width:586px;
-    z-index:10;
+    min-width: 586px;
+    z-index: 10;
 }
 
 #subHead {
-    height: 100% ;
+    height: 100%;
     margin: 0 16px;
-
-    width: -moz-calc(100%  - 32px);
-    width: -webkit-calc(100%  - 32px);
-    width: -o-calc(100%  - 32px);
-    width: calc(100%  - 32px);
+    width: -moz-calc(100% - 32px);
+    width: -webkit-calc(100% - 32px);
+    width: -o-calc(100% - 32px);
+    width: calc(100% - 32px);
 }
 
 #subHead div {
@@ -57,131 +57,120 @@ html, body {
 .menuIcon {
     height: 32px;
     width: 32px;
-    border-radius:100px;
-    
-    position:fixed;
-    
+    border-radius: 100px;
+    position: fixed;
     -webkit-transition: background-color 0.2s;
     transition: background-color 0.2s;
-    z-index:11;
-    
-    background-color:var(--MenuIconBackground);
-    
-    cursor:pointer;
-    
+    z-index: 11;
+    background-color: var(--MenuIconBackground);
+    cursor: pointer;
     -webkit-transition: background-color 0.2s;
     transition: background-color 0.2s;
 }
 
 .menuIcon:hover {
-    background-color:var(--MenuIconBackgroundHover);
+    background-color: var(--MenuIconBackgroundHover);
 }
 
 .menuIcon:active {
-    background-color:var(--MenuIconBackgroundClick);
+    background-color: var(--MenuIconBackgroundClick);
 }
 
 .menuIcon svg {
     height: 24px;
     width: 24px;
-    padding:4px;
-    fill:var(--MenuIconColor);
+    padding: 4px;
+    fill: var(--MenuIconColor);
     -webkit-transition: fill 0.5s;
     transition: fill 0.5s;
-    
     -webkit-transition: fill 0.2s;
     transition: fill 0.2s;
 }
 
 .menuIcon:hover svg {
-    fill:var(--MenuIconColorHover);
+    fill: var(--MenuIconColorHover);
 }
 
 .menuIcon:active svg {
-    fill:var(--MenuIconColorClick);
+    fill: var(--MenuIconColorClick);
 }
 
 #logoContainer {
     width: 130px;
     height: 24px;
     margin-top: 12px;
-
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-    
-    font:var(--LogoFont);
-    color:var(--LogoFontColor);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    font: var(--LogoFont);
+    color: var(--LogoFontColor);
 }
 
 #searchContainer {
     height: 28px;
-
-    width: -moz-calc(100%  - 556px);
-    width: -webkit-calc(100%  - 556px);
-    width: -o-calc(100%  - 556px);
-    width: calc(100%  - 556px);
-    
+    width: -moz-calc(100% - 556px);
+    width: -webkit-calc(100% - 556px);
+    width: -o-calc(100% - 556px);
+    width: calc(100% - 556px);
     margin: 0 40px;
-    overflow:hidden;
-
-    padding:10px 0;
+    overflow: hidden;
+    padding: 10px 0;
 }
 
 #searchBox {
     height: 28px;
-    max-width:656px;
-    width:100%;
-    min-width:55px;
+    max-width: 656px;
+    width: 100%;
+    min-width: 55px;
 }
 
 #searchBox input {
-    float:left;
-    height:28px;
+    float: left;
+    height: 28px;
     border-radius: 3px 0 0 3px;
-    border:none;
+    border: none;
     padding: 0 10px 0 10px;
     line-height: 28px;
-    
-    width: -moz-calc(100%  - 55px);
-    width: -webkit-calc(100%  - 55px);
-    width: -o-calc(100%  - 55px);
-    width: calc(100%  - 55px);
-    background-color:var(--MenuSearchBoxBackgroundColor);
-    color:var(--MenuSearchBoxTextColor);
-    font:var(--MenuSearchBoxTextFont);
+    width: -moz-calc(100% - 55px);
+    width: -webkit-calc(100% - 55px);
+    width: -o-calc(100% - 55px);
+    width: calc(100% - 55px);
+    background-color: var(--MenuSearchBoxBackgroundColor);
+    color: var(--MenuSearchBoxTextColor);
+    font: var(--MenuSearchBoxTextFont);
 }
 
-#searchBox input:focus + #searchLogo svg {
-    fill:var(--MenuSearchLogoColorFocus);
+#searchBox input:focus+#searchLogo svg {
+    fill: var(--MenuSearchLogoColorFocus);
 }
+
 #searchBox:hover svg {
-    fill:var(--MenuSearchLogoColorFocus);
+    fill: var(--MenuSearchLogoColorFocus);
 }
-#searchBox input:focus + #searchLogo {
-    background-color:var(--MenuSearchLogoBackgroundColorFocus);
+
+#searchBox input:focus+#searchLogo {
+    background-color: var(--MenuSearchLogoBackgroundColorFocus);
 }
+
 #searchBox:hover #searchLogo {
-    background-color:var(--MenuSearchLogoBackgroundColorFocus);
+    background-color: var(--MenuSearchLogoBackgroundColorFocus);
 }
 
 #searchLogo {
-    height:28px;
-    width:35px;
-    float:right;
-    background-color:var(--MenuSearchLogoBackgroundColor);
+    height: 28px;
+    width: 35px;
+    float: right;
+    background-color: var(--MenuSearchLogoBackgroundColor);
     border-radius: 0 3px 3px 0;
-    
     -webkit-transition: background-color 0.2s;
     transition: background-color 0.2s;
 }
 
 #searchLogo svg {
-    fill:var(--MenuSearchLogoColor);
-    width:28px;
-    height:28px;
-    margin:0 0 0 5px;
-    
+    fill: var(--MenuSearchLogoColor);
+    width: 28px;
+    height: 28px;
+    margin: 0 0 0 5px;
     -webkit-transition: fill 0.2s;
     transition: fill 0.2s;
 }
@@ -193,16 +182,16 @@ html, body {
     margin: 0 16px 0 0;
 }
 
-#autoText{
-    color:var(--MenuAutoplayText);
-    font:var(--MenuAutoplayFont);
-    position:relative;
-    top:-4px;
-    margin:0 5px 0 0;
+#autoText {
+    color: var(--MenuAutoplayText);
+    font: var(--MenuAutoplayFont);
+    position: relative;
+    top: -4px;
+    margin: 0 5px 0 0;
 }
 
 #loginContainer {
-    margin:8px 0;
+    margin: 8px 0;
 }
 
 #loginButton {
@@ -214,8 +203,7 @@ html, body {
     font-weight: 700;
     color: var(--MenuLoginText);
     background-color: var(--MenuLoginBackground);
-    cursor:pointer;
-    
+    cursor: pointer;
     -webkit-transition: color 0.2s, background-color 0.2s;
     transition: color 0.2s, background-color 0.2s;
 }
@@ -231,23 +219,22 @@ html, body {
 }
 
 #login {
-    width:110px;
+    width: 110px;
 }
 
-#login a, #login a:link, #login a:visited {
-    width:100%;   
-    display:block;
-    
+#login a,
+#login a:link,
+#login a:visited {
+    width: 100%;
+    display: block;
     text-decoration: none;
-    font:var(--MenuLoginUsernameFont);
-    font-weight:bold;
+    font: var(--MenuLoginUsernameFont);
+    font-weight: bold;
     color: var(--MenuLoginUsernameColor);
-    line-height:30px;
-    
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-    
+    line-height: 30px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     -webkit-transition: color 0.2s;
     transition: color 0.2s;
 }
@@ -258,22 +245,19 @@ html, body {
 
 #login a:active {
     color: var(--MenuLoginUsernameColorClick);
-} 
+}
 
 #arrowContainer {
-    height:30px;
-    width:20px;
-    padding:13px 10px 0 20px;
-    
-    cursor:pointer;
+    height: 30px;
+    width: 20px;
+    padding: 13px 10px 0 20px;
+    cursor: pointer;
 }
 
 #arrowContainer svg {
-    fill:var(--MenuShowHideContainerColor);
-    
+    fill: var(--MenuShowHideContainerColor);
     -webkit-transition: transform 0.1s, fill 0.2s;
     transition: transform 0.1s, fill 0.2s;
-    
     -moz-transform: rotate(90deg);
     -webkit-transform: rotate(90deg);
     -o-transform: rotate(90deg);
@@ -281,11 +265,11 @@ html, body {
 }
 
 #arrowContainer:hover svg {
-    fill:var(--MenuShowHideContainerColorHover);
+    fill: var(--MenuShowHideContainerColorHover);
 }
 
 #arrowContainer:active svg {
-    fill:var(--MenuShowHideContainerColorClick);
+    fill: var(--MenuShowHideContainerColorClick);
 }
 
 #arrowContainer .off {
@@ -298,73 +282,74 @@ html, body {
 /*Css Checkbox Switch Style*/
 
 .switch {
-  position: relative;
-  display: inline-block;
-  width: 40px;
-  height: 20px;
-  z-index:0;
+    position: relative;
+    display: inline-block;
+    width: 40px;
+    height: 20px;
+    z-index: 0;
 }
 
-.switch input {display:none;}
+.switch input {
+    display: none;
+}
 
 .slider {
-  position: absolute;
-  cursor: pointer;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  background-color: var(--SliderUncheckedBackground);
-  -webkit-transition: .4s;
-  transition: .4s;
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: var(--SliderUncheckedBackground);
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
 .slider:before {
-  position: absolute;
-  content: "";
-  height: 15px;
-  width: 15px;
-  left: 4px;
-  bottom: 3px;
-  background-color: var(--SliderDotColorUnchecked);
-  -webkit-transition: .4s;
-  transition: .4s;
+    position: absolute;
+    content: "";
+    height: 15px;
+    width: 15px;
+    left: 4px;
+    bottom: 3px;
+    background-color: var(--SliderDotColorUnchecked);
+    -webkit-transition: .4s;
+    transition: .4s;
 }
 
-input:checked + .slider {
-  background-color: var(--SliderCheckedBackground);
+input:checked+.slider {
+    background-color: var(--SliderCheckedBackground);
 }
 
-input:focus + .slider {
-  box-shadow: 0 0 1px var(--SliderCheckedBackground);
+input:focus+.slider {
+    box-shadow: 0 0 1px var(--SliderCheckedBackground);
 }
 
-input:checked + .slider:before {
-  -webkit-transform: translateX(17px);
-  -ms-transform: translateX(17px);
-  transform: translateX(17px);
-  background-color: var(--SliderDotColorChecked);
+input:checked+.slider:before {
+    -webkit-transform: translateX(17px);
+    -ms-transform: translateX(17px);
+    transform: translateX(17px);
+    background-color: var(--SliderDotColorChecked);
 }
 
 .slider.round {
-  border-radius: 34px;
+    border-radius: 34px;
 }
 
 .slider.round:before {
-  border-radius: 50%;
-} 
+    border-radius: 50%;
+}
 
 /*Login Dialog Style*/
 
 #loginClickLayer {
-    position:fixed;
-    width:100%;
-    height:100%;
-    top:0;
-    left:100%;
-    background-color:var(--ClickOverlayBackgroundColor);
-    opacity:0;
-        
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 100%;
+    background-color: var(--ClickOverlayBackgroundColor);
+    opacity: 0;
     -webkit-transition: opacity 0.2s ease-out, left 0s linear 0.2s;
     transition: opacity 0.2s ease-out, left 0s linear 0.2s;
 }
@@ -374,113 +359,104 @@ input:checked + .slider:before {
     height: 140px;
     padding: 20px;
     position: fixed;
-    top: 50%; left: 50%;
-    margin-left: 100%; /* (width + padding)/2 */
-    margin-top: -80px; /* (height + padding)/2 */
-    border-radius:3px;
-    z-index:13;
+    top: 50%;
+    left: 50%;
+    margin-left: 100%;
+    /* (width + padding)/2 */
+    margin-top: -80px;
+    /* (height + padding)/2 */
+    border-radius: 3px;
+    z-index: 13;
     box-shadow: 3px 3px 4px #222;
-    
-    background-color:var(--LoginDialogBackgroundColor);
-    
+    background-color: var(--LoginDialogBackgroundColor);
     transition: margin-left 0.5s;
     -webkit-transition: margin-left 0.5s;
 }
 
 #keepLoggedInContainer {
-    width:100%;
-    margin:5px 0;
-    height:20px;
+    width: 100%;
+    margin: 5px 0;
+    height: 20px;
 }
 
 #keepLogText {
-    position:relative;
+    position: relative;
     top: -5px;
     margin: 0 0 0 5px;
-    font-weight:bold;
-    font:var(--LoginKeepLogTextFont);
-    color:var(--LoginKeepLogTextColor);
+    font-weight: bold;
+    font: var(--LoginKeepLogTextFont);
+    color: var(--LoginKeepLogTextColor);
 }
 
 .loginField {
-    width: -moz-calc(100%  - 20px);
-    width: -webkit-calc(100%  - 20px);
-    width: -o-calc(100%  - 20px);
-    width: calc(100%  - 20px);
-    
-    height:28px;
-    border:none;
-    border-radius:3px;
-    background-color:var(--LoginTextBoxBackgroundColor);
-    color:var(--LoginTextBoxTextColor);
+    width: -moz-calc(100% - 20px);
+    width: -webkit-calc(100% - 20px);
+    width: -o-calc(100% - 20px);
+    width: calc(100% - 20px);
+    height: 28px;
+    border: none;
+    border-radius: 3px;
+    background-color: var(--LoginTextBoxBackgroundColor);
+    color: var(--LoginTextBoxTextColor);
     padding: 0 10px;
-    margin:5px 0;
-    line-height:28px;
-    font:var(--LoginTextBoxTextFont);
+    margin: 5px 0;
+    line-height: 28px;
+    font: var(--LoginTextBoxTextFont);
 }
 
 .loginButtons {
-    width:49%;
-    height:28px;
-    border:none;
-    border-radius:30px;
+    width: 49%;
+    height: 28px;
+    border: none;
+    border-radius: 30px;
     margin: 5px 0 0 0;
-    
-    font:var(--LoginButtonsTextFont);
-    color:var(--LoginButtonsTextColor);
-    background-color:var(--LoginButtonBackgroundColor);
-    
-    font-weight:bold;
-    
-    cursor:pointer;
-    
+    font: var(--LoginButtonsTextFont);
+    color: var(--LoginButtonsTextColor);
+    background-color: var(--LoginButtonBackgroundColor);
+    font-weight: bold;
+    cursor: pointer;
     -webkit-transition: color 0.2s, background-color 0.2s;
     transition: color 0.2s, background-color 0.2s;
 }
 
 .loginButtons:hover {
-    background-color:var(--LoginButtonBackgroundColorHover);
+    background-color: var(--LoginButtonBackgroundColorHover);
     color: var(--LoginButtonsTextColorHover);
 }
 
 .loginButtons:hover {
-    background-color:var(--LoginButtonBackgroundColorClick);
+    background-color: var(--LoginButtonBackgroundColorClick);
     color: var(--LoginButtonsTextColorClick);
 }
 
-#loginContainer[ison="true"] #loginClickLayer{
+#loginContainer[ison="true"] #loginClickLayer {
     -webkit-transition: opacity 0.2s ease-out;
     transition: opacity 0.2s ease-out;
-    
     opacity: 1;
-    z-index:12;
-    left:0;
+    z-index: 12;
+    left: 0;
 }
 
-#loginContainer[ison="true"] #loginWindow{
-    margin-left: -110px !important; /* (width + padding)/2 */
+#loginContainer[ison="true"] #loginWindow {
+    margin-left: -110px !important;
+    /* (width + padding)/2 */
 }
 
 /*Side - Menu Styles*/
 
 #sideMenu {
-    position:fixed;
-    width:300px;
-    
-    height: -moz-calc(100%  - 48px);
-    height: -webkit-calc(100%  - 48px);
-    height: -o-calc(100%  - 48px);
-    height: calc(100%  - 48px);
-    
-    top:48px;
-    left:-300px;
-    
+    position: fixed;
+    width: 300px;
+    height: -moz-calc(100% - 48px);
+    height: -webkit-calc(100% - 48px);
+    height: -o-calc(100% - 48px);
+    height: calc(100% - 48px);
+    top: 48px;
+    left: -300px;
     -webkit-transition: left 0.2s ease-out;
     transition: left 0.2s ease-out;
-    
-    z-index:11;
-    
-    background-color:var(--SideMenuBackgroundColor);
+    z-index: 11;
+    background-color: var(--SideMenuBackgroundColor);
     overflow-x: hidden;
     overflow-y: scroll;
 }
@@ -490,97 +466,96 @@ input:checked + .slider:before {
 }
 
 #menuClickLayer {
-    position:fixed;
-    width:100%;
-    height:100%;
-    top:0;
-    left:100%;
-    background-color:var(--ClickOverlayBackgroundColor);
-    opacity:0;
-    
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 100%;
+    background-color: var(--ClickOverlayBackgroundColor);
+    opacity: 0;
     -webkit-transition: opacity 0.2s ease-out, left 0s linear 0.2s;
     transition: opacity 0.2s ease-out, left 0s linear 0.2s;
 }
 
-#menuBurgerContainer[ison="true"] #sideMenu, #menuIconHoverExtender:hover + #sideMenu, #sideMenu:hover {
-    left:0;
+#menuBurgerContainer[ison="true"] #sideMenu,
+#menuIconHoverExtender:hover+#sideMenu,
+#sideMenu:hover {
+    left: 0;
 }
 
-#menuBurgerContainer[ison="true"] #menuClickLayer{
+#menuBurgerContainer[ison="true"] #menuClickLayer {
     -webkit-transition: opacity 0.2s ease-out;
     transition: opacity 0.2s ease-out;
-    
     opacity: 1;
-    z-index:10;
-    left:0;
+    z-index: 10;
+    left: 0;
 }
 
 #sideMenuNavigation {
-    width:100%;
-    height:auto;
+    width: 100%;
+    height: auto;
     border-style: solid;
     border-width: 0 0 1px 0;
     border-color: var(--SideMenuBottomLineColor);
 }
 
 .sideMenuText {
-    height:40px;
-    width:100%;
-    display:block;
-    font:var(--SideMenuTitelTextFont);
-    line-height:40px;
+    height: 40px;
+    width: 100%;
+    display: block;
+    font: var(--SideMenuTitelTextFont);
+    line-height: 40px;
     padding: 0 0 0 10px;
-    color:var(--SideMenuTitelTextFontColor);
-    font-weight:bold;
+    color: var(--SideMenuTitelTextFontColor);
+    font-weight: bold;
 }
 
 .navRow {
-    width:100%;
-    height:40px;
-    cursor:pointer;
-    background-color:var(--SideMenuNavigationBackground);
-    color:var(--SideMenuNavigationTextColor);
-    fill:var(--SideMenuIconColor);
-    
+    width: 100%;
+    height: 40px;
+    cursor: pointer;
+    background-color: var(--SideMenuNavigationBackground);
+    color: var(--SideMenuNavigationTextColor);
+    fill: var(--SideMenuIconColor);
     -webkit-transition: fill 0.2s, color 0.2s, background-color 0.2s;
     transition: fill 0.2s, color 0.2s, background-color 0.2s;
 }
 
-.navRow span  {
-    font:var(--SideMenuNavigationFont);
-    line-height:40px;
-    margin:0 0 0 10px;
+.navRow span {
+    font: var(--SideMenuNavigationFont);
+    line-height: 40px;
+    margin: 0 0 0 10px;
 }
 
-.navRow:hover, a:focus .navRow {
+.navRow:hover,
+a:focus .navRow {
     -webkit-transition: all 0s;
     transition: all 0s;
-    
-    background-color:var(--SideMenuNavigationBackgroundHover);
-    color:var(--SideMenuNavigationTextColorHover);
-    fill:var(--SideMenuIconColorHover);
+    background-color: var(--SideMenuNavigationBackgroundHover);
+    color: var(--SideMenuNavigationTextColorHover);
+    fill: var(--SideMenuIconColorHover);
 }
 
 .navRow:active {
-    background-color:var(--SideMenuNavigationBackgroundClick);
-    color:var(--SideMenuNavigationTextColorClick);
-    fill:var(--SideMenuIconColorClick);
+    background-color: var(--SideMenuNavigationBackgroundClick);
+    color: var(--SideMenuNavigationTextColorClick);
+    fill: var(--SideMenuIconColorClick);
 }
 
 .onSite.navRow {
-    fill:var(--SideMenuIconColorHover);
+    fill: var(--SideMenuIconColorHover);
 }
 
 .navIcon {
-    height:24px;
-    width:24px;
-    padding:8px;
+    height: 24px;
+    width: 24px;
+    padding: 8px;
     margin: 0 0 0 10px;
 }
 
 #favoriteMenu {
-    width:100%;
-    height:auto;
+    width: 100%;
+    height: auto;
 }
 
 .syncButton {
@@ -588,21 +563,20 @@ input:checked + .slider:before {
     width: 100px;
     border: none;
     border-radius: 3px;
-    font:var(--SideMenuSyncButtonTextFont);
+    font: var(--SideMenuSyncButtonTextFont);
     font-weight: bold;
     color: var(--SideMenuSyncButtonTextColor);
     background-color: var(--SideMenuSyncButtonBackgroundColor);
     cursor: pointer;
-    margin:0 5px;
-    
+    margin: 0 5px;
     -webkit-transition: color 0.2s, background-color 0.2s;
     transition: color 0.2s, background-color 0.2s;
 }
 
 #syncbuttons {
-    float:initial !important;
-    width:225px;
-    margin:5px auto 20px auto;
+    float: initial !important;
+    width: 225px;
+    margin: 5px auto 20px auto;
 }
 
 .syncButton:hover {
@@ -615,341 +589,316 @@ input:checked + .slider:before {
     background-color: var(--SideMenuSyncButtonBackgroundColorClick);
 }
 
-#favoriteContainer{
-    width:100%;
-    height:auto;
+#favoriteContainer {
+    width: 100%;
+    height: auto;
 }
 
 .loader {
-    float:initial !important;
+    float: initial !important;
     border: 10px solid var(--LoadingCircle270Color);
     border-top: 10px solid var(--LoadingCircle90Color);
     border-radius: 40px;
     width: 40px;
     height: 40px;
     animation: spin 2s linear infinite;
-    margin:10px auto;
-    z-index:0;
+    margin: 10px auto;
+    z-index: 0;
 }
 
-
 @keyframes spin {
-    0% { transform: rotate(0deg); }
-    100% { transform: rotate(360deg); }
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
 }
 
 #favTable {
     width: 100%;
-    
-    height:auto;
-    
-    border-spacing:0;
-    margin:5px 0px -5px 0px;
+    height: auto;
+    border-spacing: 0;
+    margin: 5px 0px -5px 0px;
 }
 
 .favCatRow td {
-    width:283px;
+    width: 283px;
     padding: 5px 0px 5px 20px;
-    
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-    
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     font: var(--FavoriteMenuCategoryTextFont);
     color: var(--FavoriteMenuCategoryTextColor);
-    font-weight:900;
-    background-color:var(--FavoriteMenuCategoryBackgroundColor);
+    font-weight: 900;
+    background-color: var(--FavoriteMenuCategoryBackgroundColor);
 }
 
 .favRow {
-    fill:var(--FavoriteMenuCloseIconColor);
-    font:var(--FavoriteMenuRowTextFont);
-    background-color:var(--FavoriteMenuRowBackgroundColor);
-    
+    fill: var(--FavoriteMenuCloseIconColor);
+    font: var(--FavoriteMenuRowTextFont);
+    background-color: var(--FavoriteMenuRowBackgroundColor);
     -webkit-transition: background-color 0.2s;
     transition: background-color 0.2s;
 }
 
-.favRow:hover , .favRow:focus{
+.favRow:hover,
+.favRow:focus {
     -webkit-transition: all 0s;
     transition: all 0s;
-    
-    background-color:var(--FavoriteMenuRowBackgroundColorHover);
+    background-color: var(--FavoriteMenuRowBackgroundColorHover);
 }
 
 .favRow:active {
-    background-color:var(--FavoriteMenuRowBackgroundColorClick);
+    background-color: var(--FavoriteMenuRowBackgroundColorClick);
 }
 
 .favRow td:nth-child(3) {
-    width:97%;
+    width: 97%;
 }
 
 .favFirst {
     padding: 5px 0px 5px 20px;
     width: 174px;
-    border-radius:3px;
-    color:var(--FavoriteMenuNameColTextColor);
-    cursor:pointer;
-    font-weight:bold;
-    
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-    
+    border-radius: 3px;
+    color: var(--FavoriteMenuNameColTextColor);
+    cursor: pointer;
+    font-weight: bold;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     -webkit-transition: color 0.2s;
     transition: color 0.2s;
-    
-    line-height:34px;
+    line-height: 34px;
 }
 
-.favFirst:hover{
-    color:var(--FavoriteMenuNameColTextColorHover);
+.favFirst:hover {
+    color: var(--FavoriteMenuNameColTextColorHover);
 }
 
 .favFirst:active {
-    color:var(--FavoriteMenuNameColTextColorClick);
+    color: var(--FavoriteMenuNameColTextColorClick);
 }
 
 .favRow td:nth-child(4) {
-    width:1%; 
+    width: 1%;
 }
 
 .favSeco {
-    color:var(--FavoriteMenuSeasonColTextColor);
-    font-weight:bold;
-    border-radius:3px;
+    color: var(--FavoriteMenuSeasonColTextColor);
+    font-weight: bold;
+    border-radius: 3px;
     width: 100%;
     padding: 5px 20px 5px 0px;
     text-align: center;
-    height:20px;
+    height: 20px;
     line-height: 20px;
 }
 
 .favSeco.favWatched {
-    color:var(--FavoriteMenuSeasonColTextColorWatched);
+    color: var(--FavoriteMenuSeasonColTextColorWatched);
     background-color: var(--FavoriteMenuSeasonColBackgroundcolorWatched);
     border-radius: 50px;
 }
 
 .favRow td:nth-child(2) {
-    width:1%;
+    width: 1%;
 }
 
 .favDel {
-    padding:4px 10px 6px 10px;
+    padding: 4px 10px 6px 10px;
     border-radius: 1000px;
-    background-color:var(--FavoriteMenuCloseColBackgroundColor);
-    cursor:pointer;
+    background-color: var(--FavoriteMenuCloseColBackgroundColor);
+    cursor: pointer;
     width: 10px;
-    height:20px;
-    margin:0 0 0 10px;
-    
+    height: 20px;
+    margin: 0 0 0 10px;
     -webkit-transition: fill 0.2s, background-color 0.2s;
     transition: fill 0.2s, background-color 0.2s;
 }
 
 .favDel:hover {
-    fill:var(--FavoriteMenuCloseIconColorHover);
-    background-color:var(--FavoriteMenuCloseColBackgroundColorHover);
+    fill: var(--FavoriteMenuCloseIconColorHover);
+    background-color: var(--FavoriteMenuCloseColBackgroundColorHover);
 }
 
 .favDel:active {
-    fill:var(--FavoriteMenuCloseIconColorClick);
-    background-color:var(--FavoriteMenuCloseColBackgroundColorClick);
+    fill: var(--FavoriteMenuCloseIconColorClick);
+    background-color: var(--FavoriteMenuCloseColBackgroundColorClick);
 }
 
 .favDel svg {
-    height:10px;
-    width:10px;
+    height: 10px;
+    width: 10px;
 }
 
 .favRow td:nth-child(1) {
-    width:1%;
+    width: 1%;
 }
 
 .favNewEpi {
-    height:43px;
-    width:12px;
-    
+    height: 43px;
+    width: 12px;
     border-radius: 0 20px 20px 0;
-    
-    background-color:var(--FavoriteMenuNoNewEpisodeBackgroundColor);
+    background-color: var(--FavoriteMenuNoNewEpisodeBackgroundColor);
 }
 
 .favNewEpi.hasNew {
-    background-color:var(--FavoriteMenuNewEpisodeBackgroundColor);
+    background-color: var(--FavoriteMenuNewEpisodeBackgroundColor);
 }
 
 .favNewEpi svg {
-    width:12px;
-    height:12px;
-    display:block;
-    margin:16px 0 0 0;
-    fill:transparent;
+    width: 12px;
+    height: 12px;
+    display: block;
+    margin: 16px 0 0 0;
+    fill: transparent;
 }
 
 .favNewEpi.hasFavSynced svg {
-    fill:var(--FavoriteMenuFavoriteCheckedColor);
+    fill: var(--FavoriteMenuFavoriteCheckedColor);
 }
 
 #favMessageLayer {
-    width:100%;
-    height:auto;
-    color:var(--FavoriteMenuMessageTextColor);
-    font:var(--FavoriteMenuMessageTextFont);
-    text-align:center;
-    opacity:0;
-    margin:0 0 5px 0;
-    
+    width: 100%;
+    height: auto;
+    color: var(--FavoriteMenuMessageTextColor);
+    font: var(--FavoriteMenuMessageTextFont);
+    text-align: center;
+    opacity: 0;
+    margin: 0 0 5px 0;
     -webkit-transition: opacity 0.2s ease-out;
     transition: opacity 0.2s ease-out;
 }
 
 /*Content Container Cstyles*/
 
-#noneMenu{
-    padding:48px 0px 0px 0px;
-    width:100%;
-    
+#noneMenu {
+    padding: 48px 0px 0px 0px;
+    width: 100%;
     height: auto;
 }
 
 #mainContent {
-    height:100%;
-    width:auto;
-    position:relative;
-    z-index:0;
+    height: 100%;
+    width: auto;
+    position: relative;
+    z-index: 0;
 }
 
 #sideContainer {
     width: 400px;
     height: auto;
-    float:right;
-    margin-top:0px;
-    overflow:hidden;
-    position:absolute;
-    right:0px;
-    
+    float: right;
+    margin-top: 0px;
+    overflow: hidden;
+    position: absolute;
+    right: 0px;
     -webkit-transition: width 0.1s linear;
     transition: width 0.1s linear;
 }
 
 #sideContainerContent {
     width: 340px;
-    padding:40px 20px 20px 40px;
+    padding: 40px 20px 20px 40px;
 }
 
 #contentContainer {
-    width: -moz-calc(100%  - 480px);
-    width: -webkit-calc(100%  - 480px);
-    width: -o-calc(100%  - 480px);
-    width: calc(100%  - 480px);
-
-    float:left;
-    
-    padding:40px;
-    
+    width: -moz-calc(100% - 480px);
+    width: -webkit-calc(100% - 480px);
+    width: -o-calc(100% - 480px);
+    width: calc(100% - 480px);
+    float: left;
+    padding: 40px;
     -webkit-transition: width 0.1s linear;
     transition: width 0.1s linear;
 }
 
 #contentContainer[ison="true"] {
-    width: -moz-calc(100%  - 80px);
-    width: -webkit-calc(100%  - 80px);
-    width: -o-calc(100%  - 80px);
-    width: calc(100%  - 80px);
+    width: -moz-calc(100% - 80px);
+    width: -webkit-calc(100% - 80px);
+    width: -o-calc(100% - 80px);
+    width: calc(100% - 80px);
 }
 
-#contentContainer[ison="true"] + #sideContainer{
-    width:0px;
+#contentContainer[ison="true"]+#sideContainer {
+    width: 0px;
 }
 
-#prContainer{
-    width:100%;
-    height:auto;
-    
-    background-color:var(--MenuProgressbarBackgroundColor);
+#prContainer {
+    width: 100%;
+    height: auto;
+    background-color: var(--MenuProgressbarBackgroundColor);
 }
 
 #prBar {
-    width:0%;
-    height:0px;
-    float:left;
-    
+    width: 0%;
+    height: 0px;
+    float: left;
     -webkit-transition: height 0.5s;
     transition: height 0.5s;
-    
-    background-color:var(--MenuProgressbarBarColor);
+    background-color: var(--MenuProgressbarBarColor);
 }
 
 .barActive {
-    height:5px !important;
+    height: 5px !important;
 }
 
 #dialogClickLayer {
-    position:fixed;
-    width:100%;
-    height:100%;
-    top:0;
-    left:100%;
-    background-color:var(--ClickOverlayBackgroundColor);
-    opacity:0;
-    
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 100%;
+    background-color: var(--ClickOverlayBackgroundColor);
+    opacity: 0;
     -webkit-transition: opacity 0.2s ease-out, left 0s linear 0.2s;
     transition: opacity 0.2s ease-out, left 0s linear 0.2s;
-    z-index:13;
+    z-index: 13;
 }
 
-#dialogClickLayer[ison="true"]{
+#dialogClickLayer[ison="true"] {
     -webkit-transition: opacity 0.2s ease-out;
     transition: opacity 0.2s ease-out;
-    
     opacity: 1;
-    left:0;
+    left: 0;
 }
 
 #dialogCloseIcon {
-    position:absolute;
-    top:0;
-    right:0;
-    fill:var(--DialogWindowCloseIconColor);
-    width:20px;
-    height:20px;
-    padding:10px;
+    position: absolute;
+    top: 0;
+    right: 0;
+    fill: var(--DialogWindowCloseIconColor);
+    width: 20px;
+    height: 20px;
+    padding: 10px;
     -webkit-transition: fill 0.2s;
     transition: fill 0.2s;
 }
 
 #dialogCloseIcon:hover {
-    fill:var(--DialogWindowCloseIconColorHover);
+    fill: var(--DialogWindowCloseIconColorHover);
 }
 
 #dialogCloseIcon:active {
-    fill:var(--DialogWindowCloseIconColorClick);
+    fill: var(--DialogWindowCloseIconColorClick);
 }
 
 #dialogWindow {
     width: auto;
     height: auto;
-
-    border-radius:3px;
-    background-color:var(--DialogWindowBackgroundColor);
-    overflow:hidden;
-
+    border-radius: 3px;
+    background-color: var(--DialogWindowBackgroundColor);
+    overflow: hidden;
     position: absolute;
     left: 50%;
-    top:50%;
+    top: 50%;
     transform: translate(-50%, -50%);
-    
-    max-height:10px;
-    max-width:0px;
-    
+    max-height: 10px;
+    max-width: 0px;
     -webkit-box-shadow: 0 0 5px #000;
     box-shadow: 0 0 5px #000;
-    
-    padding:5px;
-    
+    padding: 5px;
     -webkit-transition: max-height 0.1s linear 0.2s, max-width 0.1s linear 0.2s;
     transition: max-height 0.1s linear 0.2s, max-width 0.1s linear 0.2s;
 }
@@ -957,332 +906,294 @@ input:checked + .slider:before {
 #dialogClickLayer[ison="true"] #dialogWindow {
     -webkit-transition: max-height 0.3s linear 0.4s, max-width 0.3s linear 0.2s;
     transition: max-height 0.3s linear 0.4s, max-width 0.3s linear 0.2s;
-    
-    max-height:100%;
-    max-width:100%;
+    max-height: 100%;
+    max-width: 100%;
 }
 
 .seriesContainer {
-    width:100%;
-    height:67px;
-    
-    margin:0 0 5px 0;
+    width: 100%;
+    height: 67px;
+    margin: 0 0 5px 0;
 }
 
 .nonButtonContainer {
     /*Minus .buttonContainer width*/
-    width: -moz-calc(100%  - 40px); 
-    width: -webkit-calc(100%  - 40px);
-    width: -o-calc(100%  - 40px);
-    width: calc(100%  - 40px);
-    
+    width: -moz-calc(100% - 40px);
+    width: -webkit-calc(100% - 40px);
+    width: -o-calc(100% - 40px);
+    width: calc(100% - 40px);
     /*Minus .buttonContainer is Higher*/
     height: auto;
-    
-    float:left;
-    margin:12px 0 0 0;
+    float: left;
+    margin: 12px 0 0 0;
 }
 
 .buttonContainer {
-    width:40px;
-    height:67px;
-    float:right;
-    
-    background-color:var(--ListRowSegmentSecondaryBackgroundColor);
-    border-radius:3px 3px 3px 0;
+    width: 40px;
+    height: 67px;
+    float: right;
+    background-color: var(--ListRowSegmentSecondaryBackgroundColor);
+    border-radius: 3px 3px 3px 0;
 }
 
 .nameWatchedContainer {
     width: 100%;
-    
     /*Minus .genrePicContainer height*/
     height: 30px;
-    
-    box-shadow: -2px 2px 4px rgba(0,0,0,0.8);
-    cursor:pointer;
-    overflow:hidden;
+    box-shadow: -2px 2px 4px rgba(0, 0, 0, 0.8);
+    cursor: pointer;
+    overflow: hidden;
 }
 
 .genrePicContainer {
     /*Minus gap width*/
-    width: -moz-calc(100%  - 60px);
-    width: -webkit-calc(100%  - 60px);
-    width: -o-calc(100%  - 60px);
-    width: calc(100%  - 60px);
-    
-    height:25px;
-    float:right;
+    width: -moz-calc(100% - 60px);
+    width: -webkit-calc(100% - 60px);
+    width: -o-calc(100% - 60px);
+    width: calc(100% - 60px);
+    height: 25px;
+    float: right;
 }
 
 .genreTriangeContainer {
-    height:25px;
-    
+    height: 25px;
     /*Minus .pictureContainer width*/
-    width: -moz-calc(100%  - 17.5px);
-    width: -webkit-calc(100%  - 17.5px);
-    width: -o-calc(100%  - 17.5px);
-    width: calc(100%  - 17.5px);
-    
-    float:left;
-    position:relativ;
-    
-    overflow:hidden;
+    width: -moz-calc(100% - 17.5px);
+    width: -webkit-calc(100% - 17.5px);
+    width: -o-calc(100% - 17.5px);
+    width: calc(100% - 17.5px);
+    float: left;
+    position: relativ;
+    overflow: hidden;
 }
 
 .triangle {
-    width:0px;
-    height:0px;
-    
-    margin:-25px 0px 0px 0px;
-    float:left;
-
+    width: 0px;
+    height: 0px;
+    margin: -25px 0px 0px 0px;
+    float: left;
     border-style: solid;
     border-width: 25px 25px 25px 0;
     border-color: transparent var(--ListRowSegmentSecondaryBackgroundColor) transparent transparent;
 }
 
 .genreContainer {
-    width: -moz-calc(100%  - 25px);
-    width: -webkit-calc(100%  - 25px);
-    width: -o-calc(100%  - 25px);
-    width: calc(100%  - 25px);
-    
-    height:25px;
-    float:right;
-    
-    overflow:hidden;
-    white-space:nowrap;
+    width: -moz-calc(100% - 25px);
+    width: -webkit-calc(100% - 25px);
+    width: -o-calc(100% - 25px);
+    width: calc(100% - 25px);
+    height: 25px;
+    float: right;
+    overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
-    
-    background-color:var(--ListRowSegmentSecondaryBackgroundColor);
-    
-    font:var(--ListRowSegmentGenreTextFont);
-    color:var(--ListRowSegmentGenreTextColor);
-    line-height:25px;
-    font-weight:bold;
+    background-color: var(--ListRowSegmentSecondaryBackgroundColor);
+    font: var(--ListRowSegmentGenreTextFont);
+    color: var(--ListRowSegmentGenreTextColor);
+    line-height: 25px;
+    font-weight: bold;
 }
 
 .pictureContainer {
-    height:25px;
-    width:17.5px; /*height * 0.7*/
-    float:right;
-    
-    background-color:var(--ListRowSegmentSecondaryBackgroundColor);
+    height: 25px;
+    width: 17.5px;
+    /*height * 0.7*/
+    float: right;
+    background-color: var(--ListRowSegmentSecondaryBackgroundColor);
 }
 
 .watchedContainer {
-    height:30px;
-    width:10px;
-    
-    float:left;
-    
-    background-color:var(--ListRowSegmentUnwatchedBackgroundColor);
-    border-radius:3px 0 0 3px;
+    height: 30px;
+    width: 10px;
+    float: left;
+    background-color: var(--ListRowSegmentUnwatchedBackgroundColor);
+    border-radius: 3px 0 0 3px;
 }
 
 .watchedSeries {
-    background-color:var(--ListRowSegmentWatchedBackgroundColor);
+    background-color: var(--ListRowSegmentWatchedBackgroundColor);
 }
 
 .titleContainer {
-    height:30px;
-    
+    height: 30px;
     /*Minus .watchedContainer width and padding*/
-    width: -moz-calc(100%  - 50px);
-    width: -webkit-calc(100%  - 50px);
-    width: -o-calc(100%  - 50px);
-    width: calc(100%  - 50px);
-    
-    float:right;
-    
-    background-color:var(--ListRowSegmentPrimaryBackgroundColor);
-    
+    width: -moz-calc(100% - 50px);
+    width: -webkit-calc(100% - 50px);
+    width: -o-calc(100% - 50px);
+    width: calc(100% - 50px);
+    float: right;
+    background-color: var(--ListRowSegmentPrimaryBackgroundColor);
     padding: 0 20px 0 20px;
-    overflow:hidden;
-    white-space:nowrap;
+    overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
-    font:var(--ListRowSegmentTitleTextFont);
-    color:var(--ListRowSegmentTitleTextColor);
-    line-height:30px;
-    font-weight:bold;
-    
+    font: var(--ListRowSegmentTitleTextFont);
+    color: var(--ListRowSegmentTitleTextColor);
+    line-height: 30px;
+    font-weight: bold;
     -webkit-transition: color 0.2s, background-color 0.2s;
     transition: color 0.2s, background-color 0.2s;
 }
 
 .seriesPicture {
-    height:25px;
-    width:17.5px;
-    background-color:var(--ListRowSegmentSecondaryBackgroundColor);
-    
-    margin:0px 0px 0px 0px;
-    
+    height: 25px;
+    width: 17.5px;
+    background-color: var(--ListRowSegmentSecondaryBackgroundColor);
+    margin: 0px 0px 0px 0px;
     -webkit-transition: height 0.5s, width 0.5s, margin 0.5s;
     transition: height 0.5s, width 0.5s, margin 0.5s;
-    
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .seriesPicture[data-id] {
-    background-color:var(--ListRowSegmentNoneLoadedPictureBackgroundColor);
+    background-color: var(--ListRowSegmentNoneLoadedPictureBackgroundColor);
 }
 
 .seriesPicture[data-id]:hover {
-    height:120px;
-    width:84px;
-    margin:-95px 0px 0px -27px;
+    height: 120px;
+    width: 84px;
+    margin: -95px 0px 0px -27px;
 }
 
 .favIcon {
-    width:20px;
-    height:20px;
-    padding:10px 9px 0 11px;
-    cursor:pointer;
+    width: 20px;
+    height: 20px;
+    padding: 10px 9px 0 11px;
+    cursor: pointer;
 }
 
 .seriesTick {
-    width:16px;
-    height:16px;
+    width: 16px;
+    height: 16px;
     padding: 10px 11px 5px 13px;
-    fill:var(--ListRowSegmentTickIconColor);
-    cursor:pointer;
-
+    fill: var(--ListRowSegmentTickIconColor);
+    cursor: pointer;
     -webkit-transition: fill 0.2s;
     transition: fill 0.2s;
 }
 
 .seriesTick:hover {
-    fill:var(--ListRowSegmentTickIconColorHover);
+    fill: var(--ListRowSegmentTickIconColorHover);
 }
 
-.seriesTick:active { 
-    fill:var(--ListRowSegmentTickIconColorClick);
+.seriesTick:active {
+    fill: var(--ListRowSegmentTickIconColorClick);
 }
 
 .tickCheck {
-    fill:var(--ListRowSegmentTickIconColorChecked);
+    fill: var(--ListRowSegmentTickIconColorChecked);
 }
 
 .tickCheck:hover {
-    fill:var(--ListRowSegmentTickIconColorCheckedHover);
+    fill: var(--ListRowSegmentTickIconColorCheckedHover);
 }
 
 .tickCheck:active {
-    fill:var(--ListRowSegmentTickIconColorCheckedClick);
+    fill: var(--ListRowSegmentTickIconColorCheckedClick);
 }
 
-.nameWatchedContainer:hover .titleContainer, .seriesContainer:focus .titleContainer {
+.nameWatchedContainer:hover .titleContainer,
+.seriesContainer:focus .titleContainer {
     -webkit-transition: all 0s;
     transition: all 0s;
-    
-    background-color:var(--ListRowSegmentPrimaryBackgroundColorHover);
-    color:var(--ListRowSegmentTitleTextColorHover);
+    background-color: var(--ListRowSegmentPrimaryBackgroundColorHover);
+    color: var(--ListRowSegmentTitleTextColorHover);
 }
 
 .nameWatchedContainer:active .titleContainer {
-    background-color:var(--ListRowSegmentPrimaryBackgroundColorClick);
-    color:var(--ListRowSegmentTitleTextColorClick);
+    background-color: var(--ListRowSegmentPrimaryBackgroundColorClick);
+    color: var(--ListRowSegmentTitleTextColorClick);
 }
 
 .noFav {
-    fill:var(--ListRowSegmentNoFavIcon);
+    fill: var(--ListRowSegmentNoFavIcon);
     -webkit-transition: fill 0.2s;
     transition: fill 0.2s;
 }
 
 .noFav:hover {
-    fill:var(--ListRowSegmentNoFavIconHover);
+    fill: var(--ListRowSegmentNoFavIconHover);
 }
 
 .noFav:active {
-    fill:var(--ListRowSegmentNoFavIconClick);
+    fill: var(--ListRowSegmentNoFavIconClick);
 }
 
 .Fav {
-    fill:var(--ListRowSegmentFavIcon);
+    fill: var(--ListRowSegmentFavIcon);
     -webkit-transition: fill 0.2s;
     transition: fill 0.2s;
 }
 
 .Fav:hover {
-    fill:var(--ListRowSegmentFavIconHover);
+    fill: var(--ListRowSegmentFavIconHover);
 }
 
 .Fav:active {
-    fill:var(--ListRowSegmentFavIconClick);
+    fill: var(--ListRowSegmentFavIconClick);
 }
 
 .mainSiteTitle {
-    font:var(--MainSiteTitelTextFont);
-    color:var(--MainSiteTitelTextColor);
-    margin:0 0 20px 0;
-    font-weight:bold;
+    font: var(--MainSiteTitelTextFont);
+    color: var(--MainSiteTitelTextColor);
+    margin: 0 0 20px 0;
+    font-weight: bold;
     letter-spacing: 2px;
     white-space: nowrap;
-    overflow:hidden;
+    overflow: hidden;
 }
 
 .sideSiteTitel {
-    font:var(--MainSiteTitelTextFont);
-    color:var(--MainSiteTitelTextColor);
-    margin:0 0 10px 0;
-    font-weight:bold;
+    font: var(--MainSiteTitelTextFont);
+    color: var(--MainSiteTitelTextColor);
+    margin: 0 0 10px 0;
+    font-weight: bold;
     letter-spacing: 2px;
 }
 
 .sortingButton {
-    font:var(--SeriesListSideContainerSortingButtonTextFont);
-    
+    font: var(--SeriesListSideContainerSortingButtonTextFont);
     width: 310px;
-    
-    height:30px;
-    margin:0 0 10px 0;
-    text-decoration:none;
-    overflow:hidden;
-    float:right;
-    
+    height: 30px;
+    margin: 0 0 10px 0;
+    text-decoration: none;
+    overflow: hidden;
+    float: right;
     -webkit-transition: width 0.5s;
     transition: width 0.5s;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .sideTriangle {
-    width:0px;
-    height:0px;
-    
-    margin:-30px 0px 0px 0px;
-    float:left;
-    
+    width: 0px;
+    height: 0px;
+    margin: -30px 0px 0px 0px;
+    float: left;
     border-style: solid;
     border-width: 30px 30px 30px 0;
     border-color: transparent var(--SeriesListSideContainerSortingButtonBackgroundColor) transparent transparent;
-    
     -webkit-transition: border-color 0.2s;
     transition: border-color 0.2s;
 }
 
 .sortingText {
-    width: -moz-calc(100%  - 30px);
-    width: -webkit-calc(100%  - 30px);
-    width: -o-calc(100%  - 30px);
-    width: calc(100%  - 30px);
-    
-    height:100%;
-    
-    line-height:30px;
-    background-color:var(--SeriesListSideContainerSortingButtonBackgroundColor);
-    float:right;
-    color:var(--SeriesListSideContainerSortingButtonTextColor);
-    font-weight:bold;
-    
-    border-radius:0 3px 3px 0;
-    
+    width: -moz-calc(100% - 30px);
+    width: -webkit-calc(100% - 30px);
+    width: -o-calc(100% - 30px);
+    width: calc(100% - 30px);
+    height: 100%;
+    line-height: 30px;
+    background-color: var(--SeriesListSideContainerSortingButtonBackgroundColor);
+    float: right;
+    color: var(--SeriesListSideContainerSortingButtonTextColor);
+    font-weight: bold;
+    border-radius: 0 3px 3px 0;
     -webkit-transition: color 0.2s, background-color 0.2s;
     transition: color 0.2s, background-color 0.2s;
 }
 
 .sortingButton:hover {
-    width:340px;
+    width: 340px;
 }
 
 .sortingButton:hover .sideTriangle {
@@ -1290,8 +1201,8 @@ input:checked + .slider:before {
 }
 
 .sortingButton:hover .sortingText {
-    color:var(--SeriesListSideContainerSortingButtonTextColorHover);
-    background-color:var(--SeriesListSideContainerSortingButtonBackgroundColorHover);
+    color: var(--SeriesListSideContainerSortingButtonTextColorHover);
+    background-color: var(--SeriesListSideContainerSortingButtonBackgroundColorHover);
 }
 
 .sortingButton:active .sideTriangle {
@@ -1299,117 +1210,108 @@ input:checked + .slider:before {
 }
 
 .sortingButton:active .sortingText {
-    color:var(--SeriesListSideContainerSortingButtonTextColorClick);
-    background-color:var(--SeriesListSideContainerSortingButtonBackgroundColorClick);
+    color: var(--SeriesListSideContainerSortingButtonTextColorClick);
+    background-color: var(--SeriesListSideContainerSortingButtonBackgroundColorClick);
 }
 
 .titleContainer i {
-    font:var(--ListRowSegmentTitleTextFont);
-    font-style:italic;
+    font: var(--ListRowSegmentTitleTextFont);
+    font-style: italic;
 }
 
 .titleContainer strong {
-    font:var(--ListRowSegmentTitleTextFont);
-    font-weight:bold;
+    font: var(--ListRowSegmentTitleTextFont);
+    font-weight: bold;
 }
 
 .hosterContainer {
-    width: -moz-calc(100%  - 45px);
-    width: -webkit-calc(100%  - 45px);
-    width: -o-calc(100%  - 45px);
-    width: calc(100%  - 45px);
-    
-    height:25px;
-    float:right;
-    
+    width: -moz-calc(100% - 45px);
+    width: -webkit-calc(100% - 45px);
+    width: -o-calc(100% - 45px);
+    width: calc(100% - 45px);
+    height: 25px;
+    float: right;
     padding: 0 20px 0 0;
-    overflow:hidden;
-    white-space:nowrap;
+    overflow: hidden;
+    white-space: nowrap;
     text-overflow: ellipsis;
-    
-    background-color:var(--ListRowSegmentSecondaryBackgroundColor);
-    
-    font:var(--ListRowSegmentGenreTextFont);
-    color:var(--ListRowSegmentGenreTextColor);
-    line-height:35px;
-    font-weight:bold;
+    background-color: var(--ListRowSegmentSecondaryBackgroundColor);
+    font: var(--ListRowSegmentGenreTextFont);
+    color: var(--ListRowSegmentGenreTextColor);
+    line-height: 35px;
+    font-weight: bold;
 }
 
 .hosterTriangeContainer {
-    height:25px;
-    
+    height: 25px;
     /*Minus .pictureContainer width*/
-    width: -moz-calc(100%  - 25px);
-    width: -webkit-calc(100%  - 25px);
-    width: -o-calc(100%  - 25px);
-    width: calc(100%  - 25px);
-    
-    float:left;
-    position:relativ;
-    
-    overflow:hidden;
+    width: -moz-calc(100% - 25px);
+    width: -webkit-calc(100% - 25px);
+    width: -o-calc(100% - 25px);
+    width: calc(100% - 25px);
+    float: left;
+    position: relativ;
+    overflow: hidden;
 }
 
 .watchIcon {
-    width:24px;
-    height:30px;
-    padding:3px 7px 0px 8px;
-    cursor:pointer;
-    fill:var(--ListRowSegmentNoFavIcon);
-    
+    width: 24px;
+    height: 30px;
+    padding: 3px 7px 0px 8px;
+    cursor: pointer;
+    fill: var(--ListRowSegmentNoFavIcon);
     -webkit-transition: fill 0.2s;
     transition: fill 0.2s;
 }
 
 .watchIcon:hover {
-    fill:var(--ListRowSegmentNoFavIconHover);
+    fill: var(--ListRowSegmentNoFavIconHover);
 }
 
 .watchIcon:active {
-    fill:var(--ListRowSegmentNoFavIconClick);
+    fill: var(--ListRowSegmentNoFavIconClick);
 }
 
 .watchedEpiContainer {
-    height:30px;
-    width:10px;
-    
-    float:left;
-    
-    background-color:var(--ListRowSegmentUnwatchedBackgroundColor);
-    border-radius:3px 0 0 3px;
+    height: 30px;
+    width: 10px;
+    float: left;
+    background-color: var(--ListRowSegmentUnwatchedBackgroundColor);
+    border-radius: 3px 0 0 3px;
 }
 
-.episodeWatched .watchIcon{
-    fill:var(--ListRowSegmentFavIcon);
+.episodeWatched .watchIcon {
+    fill: var(--ListRowSegmentFavIcon);
 }
 
-.episodeWatched .watchIcon:hover{
-    fill:var(--ListRowSegmentFavIconHover);
+.episodeWatched .watchIcon:hover {
+    fill: var(--ListRowSegmentFavIconHover);
 }
 
-.episodeWatched .watchIcon:active{
-    fill:var(--ListRowSegmentFavIconClick);
+.episodeWatched .watchIcon:active {
+    fill: var(--ListRowSegmentFavIconClick);
 }
 
 .episodeWatched .watchedEpiContainer {
-    background-color:var(--ListRowSegmentWatchedBackgroundColor);;
+    background-color: var(--ListRowSegmentWatchedBackgroundColor);
+    ;
 }
 
 .indexCont {
-    color:var(--ListRowSegmentIndexColor);
-    text-align:center;
-    width:40px;
-    font:var(--ListRowSegmentIndexFont);
-    font-weight:bold;
-    margin:5px 0 0 0;
+    color: var(--ListRowSegmentIndexColor);
+    text-align: center;
+    width: 40px;
+    font: var(--ListRowSegmentIndexFont);
+    font-weight: bold;
+    margin: 5px 0 0 0;
 }
 
 .hosterIcon {
     display: inline-block;
-    height:20px;
-    width:20px;
+    height: 20px;
+    width: 20px;
     background-size: 20px 20px;
-    margin:0 7px;
+    margin: 0 7px;
 }
 
 .vivo {
@@ -1469,67 +1371,62 @@ input:checked + .slider:before {
 }
 
 .addAutoplayButton {
-    float:left;
-    height:25px;
-    width:25px;
-    background-color:var(--ListRowSegmentSecondaryBackgroundColor);
-    color:var(--ListRowAddPlaylistIconColor);
+    float: left;
+    height: 25px;
+    width: 25px;
+    background-color: var(--ListRowSegmentSecondaryBackgroundColor);
+    color: var(--ListRowAddPlaylistIconColor);
     text-align: center;
     line-height: 20px;
     font-size: 25px;
     font-weight: 900;
-    
-    cursor:pointer;
-    
+    cursor: pointer;
     -webkit-transition: color 0.2s;
     transition: color 0.2s;
 }
 
 .addAutoplayButton:hover {
-    color:var(--ListRowAddPlaylistIconColorHover);
+    color: var(--ListRowAddPlaylistIconColorHover);
 }
 
 .addAutoplayButton:active {
-    color:var(--ListRowAddPlaylistIconColorClick);
+    color: var(--ListRowAddPlaylistIconColorClick);
 }
 
 #dialogClickLayer[ison="true"] #dialogWindow * {
-    opacity:0;
+    opacity: 0;
     animation: showSeriesTitlePic 0.2s linear forwards;
-    
     -webkit-animation-delay: 0.7s;
     animation-delay: 0.7s;
 }
 
 @keyframes showSeriesTitlePic {
     0% {
-        opacity:0;
+        opacity: 0;
     }
     100% {
-        opacity:1;
+        opacity: 1;
     }
 }
 
 #dialogWindow .imgTable {
-    width:360px;
-    border-spacing:0;
-    
-    table-layout:fixed;
+    width: 360px;
+    border-spacing: 0;
+    table-layout: fixed;
     border: none;
     white-space: nowrap;
-    overflow:hidden;
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 
-#dialogWindow td{
-    padding:0 10px 0 10px;
-    color:var(--DialogWindowTextColor);
-    font:var(--DialogWindowTextFont);
-    font-weight:bold;
-    line-height:30px;
-    
+#dialogWindow td {
+    padding: 0 10px 0 10px;
+    color: var(--DialogWindowTextColor);
+    font: var(--DialogWindowTextFont);
+    font-weight: bold;
+    line-height: 30px;
     white-space: nowrap;
-    overflow:hidden;
+    overflow: hidden;
     text-overflow: ellipsis;
 }
 
@@ -1540,355 +1437,339 @@ input:checked + .slider:before {
 }
 
 #sideContainer img {
-    width:180px;
-    margin:20px auto;
-    display:block;
+    width: 180px;
+    margin: 20px auto;
+    display: block;
 }
 
 #infoText {
-    color:var(--EpisodeListSideContainerInfoDescriptionTextColor);
-    font:var(--EpisodeListSideContainerInfoDescriptionTextFont);
-    text-align:justify;
+    color: var(--EpisodeListSideContainerInfoDescriptionTextColor);
+    font: var(--EpisodeListSideContainerInfoDescriptionTextFont);
+    text-align: justify;
     margin: 0 0 20px 0;
 }
 
 #infoTable {
-    font:var(--EpisodeListSideContainerInfoTableTextFont);
+    font: var(--EpisodeListSideContainerInfoTableTextFont);
 }
 
 #infoTable tr td:first-child {
-    color:var(--EpisodeListSideContainerInfotableTextColorFirst);
-    font-weight:bold;
+    color: var(--EpisodeListSideContainerInfotableTextColorFirst);
+    font-weight: bold;
     padding: 5px 5px 5px 0;
 }
 
 #infoTable tr td:nth-child(2) {
-    color:var(--EpisodeListSideContainerInfotableTextColorSecond);
+    color: var(--EpisodeListSideContainerInfotableTextColorSecond);
 }
 
 #seasonContainer {
-    width: -moz-calc(100%  - 480px);
-    width: -webkit-calc(100%  - 480px);
-    width: -o-calc(100%  - 480px);
-    width: calc(100%  - 480px);
-    
-    height:50px;
-    background-color:red;
-    z-index:0;
-    
-    margin:0 0 20px 0;
-    
-    position:absolute;
-    top:94px;
-    left:40px;
-    
-    background-color:transparent;
+    width: -moz-calc(100% - 480px);
+    width: -webkit-calc(100% - 480px);
+    width: -o-calc(100% - 480px);
+    width: calc(100% - 480px);
+    height: 50px;
+    background-color: red;
+    z-index: 0;
+    margin: 0 0 20px 0;
+    position: absolute;
+    top: 94px;
+    left: 40px;
+    background-color: transparent;
     overflow: hidden;
-    
     -webkit-transition: width 0.1s linear, left 0.1s linear, background-color 0.1s linear;
     transition: width 0.1s linear, left 0.1s linear, background-color 0.1s linear;
 }
 
 #contentContainer[ison="true"] #seasonContainer {
-    width: -moz-calc(100%  - 80px);
-    width: -webkit-calc(100%  - 80px);
-    width: -o-calc(100%  - 80px);
-    width: calc(100%  - 80px);
+    width: -moz-calc(100% - 80px);
+    width: -webkit-calc(100% - 80px);
+    width: -o-calc(100% - 80px);
+    width: calc(100% - 80px);
 }
 
 #seasonContainer.fixedSeason {
     -webkit-transition: width 0.3s linear, left 0.3s linear, background-color 0.3s linear;
     transition: width 0.3s linear, left 0.3s linear, background-color 0.3s linear;
-    
     position: fixed;
-    top:48px;
-    left:0;
-    width:100% !important;
-    background-color:var(--SeasonListFixedBackgroundColor);
-    z-index:1;
+    top: 48px;
+    left: 0;
+    width: 100% !important;
+    background-color: var(--SeasonListFixedBackgroundColor);
+    z-index: 1;
 }
 
-#seasonContainerSpaceTaker { /*Same as #seasonContainer*/
-    height:50px;
-    margin:0 0 20px 0;
+#seasonContainerSpaceTaker {
+    /*Same as #seasonContainer*/
+    height: 50px;
+    margin: 0 0 20px 0;
 }
 
-.fixedSeason + #seasonContainerSpaceTaker {
-    display:none;
+.fixedSeason+#seasonContainerSpaceTaker {
+    display: none;
 }
 
 #seasonTable {
     border-collapse: separate;
     border-spacing: 5px 10px;
-    width: -moz-calc(100%  + 10px);
-    width: -webkit-calc(100%  + 10px);
-    width: -o-calc(100%  + 10px);
-    width: calc(100%  + 10px);
+    width: -moz-calc(100% + 10px);
+    width: -webkit-calc(100% + 10px);
+    width: -o-calc(100% + 10px);
+    width: calc(100% + 10px);
     -webkit-touch-callout: none;
     -webkit-user-select: none;
-    -khtml-user-select: none; 
-    -moz-user-select: none; 
-    -ms-user-select: none; 
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
     user-select: none;
     margin: 0 0 0 -5px;
 }
 
 #seasonTable td {
-    border-radius:3px;
-    color:var(--SeasonListSegmentTextColor);
-    font:var(--SeasonListTextFont);
+    border-radius: 3px;
+    color: var(--SeasonListSegmentTextColor);
+    font: var(--SeasonListTextFont);
     text-decoration: none;
-    font-weight:bold;
-    line-height:12px;
+    font-weight: bold;
+    line-height: 12px;
     text-align: center;
-    width:1%;
-    cursor:pointer;
-    
+    width: 1%;
+    cursor: pointer;
     -webkit-transition: fill 0.2s, background-color 0.2s, color 0.2s;
     transition: fill 0.2s, background-color 0.2s, color 0.2s;
 }
 
 #favSeasonStar {
     padding: 5px 5px 5px 5px;
-    width:0.000000001% !important;
-    background-color:var(--SeasonListSegmentUnwatchedBackgroundColor);
+    width: 0.000000001% !important;
+    background-color: var(--SeasonListSegmentUnwatchedBackgroundColor);
 }
 
 .seasonNoFav {
-    fill:var(--SeasonListFavNoFav);
+    fill: var(--SeasonListFavNoFav);
 }
 
 .seasonNoFav:hover {
-    fill:var(--SeasonListFavNoFavHover);
+    fill: var(--SeasonListFavNoFavHover);
 }
 
 .seasonNoFav:active {
-    fill:var(--SeasonListFavNoFavClick);
+    fill: var(--SeasonListFavNoFavClick);
 }
 
 .seasonFav {
-    fill:var(--SeasonListFavFav);
+    fill: var(--SeasonListFavFav);
 }
 
 .seasonFav:hover {
-    fill:var(--SeasonListFavFavHover);
+    fill: var(--SeasonListFavFavHover);
 }
 
 .seasonFav:active {
-    fill:var(--SeasonListFavFavClick);
+    fill: var(--SeasonListFavFavClick);
 }
 
 .thisSeasonFav {
-    fill:var(--SeasonListFavThisFav);
+    fill: var(--SeasonListFavThisFav);
 }
 
 .thisSeasonFav:hover {
-    fill:var(--SeasonListFavThisFavHover);
+    fill: var(--SeasonListFavThisFavHover);
 }
 
 .thisSeasonFav:active {
-    fill:var(--SeasonListFavThisFavClick);
+    fill: var(--SeasonListFavThisFavClick);
 }
 
 #favSeasonStar svg {
-    width:20px;
-    height:20px;
+    width: 20px;
+    height: 20px;
 }
 
 #seasonTable .watched {
-    background-color:var(--SeasonListSegmentWatchedBackgroundColor);
+    background-color: var(--SeasonListSegmentWatchedBackgroundColor);
 }
 
 #seasonTable .watched:hover {
-    background-color:var(--SeasonListSegmentWatchedBackgroundColorHover);
+    background-color: var(--SeasonListSegmentWatchedBackgroundColorHover);
 }
 
 #seasonTable .watched:active {
-    background-color:var(--SeasonListSegmentWatchedBackgroundColorClick);
+    background-color: var(--SeasonListSegmentWatchedBackgroundColorClick);
 }
 
 #seasonTable .unwatched {
-    background-color:var(--SeasonListSegmentUnwatchedBackgroundColor);
+    background-color: var(--SeasonListSegmentUnwatchedBackgroundColor);
 }
 
 #seasonTable .unwatched:hover {
-    background-color:var(--SeasonListSegmentUnwatchedBackgroundColorHover);
+    background-color: var(--SeasonListSegmentUnwatchedBackgroundColorHover);
 }
 
 #seasonTable .unwatched:active {
-    background-color:var(--SeasonListSegmentUnwatchedBackgroundColorClick);
+    background-color: var(--SeasonListSegmentUnwatchedBackgroundColorClick);
 }
 
 #seasonTable .active {
-    background-color:var(--SeasonListSegmentActiveBackgroundColor);
+    background-color: var(--SeasonListSegmentActiveBackgroundColor);
 }
 
 #seasonTable .active:hover {
-    background-color:var(--SeasonListSegmentActiveBackgroundColorHover);
+    background-color: var(--SeasonListSegmentActiveBackgroundColorHover);
 }
 
 #seasonTable .active:active {
-    background-color:var(--SeasonListSegmentActiveBackgroundColorClick);
+    background-color: var(--SeasonListSegmentActiveBackgroundColorClick);
 }
 
 #seasonTable .watched.active {
-    background-color:var(--SeasonListSegmentActiveWatchedBackgroundColor);
+    background-color: var(--SeasonListSegmentActiveWatchedBackgroundColor);
 }
 
 #seasonTable .watched.active:hover {
-    background-color:var(--SeasonListSegmentActiveWatchedBackgroundColorHover);
+    background-color: var(--SeasonListSegmentActiveWatchedBackgroundColorHover);
 }
 
 #seasonTable .watched.active:active {
-    background-color:var(--SeasonListSegmentActiveWatchedBackgroundColorClick);
+    background-color: var(--SeasonListSegmentActiveWatchedBackgroundColorClick);
 }
 
 .showSeasonText:before {
     content: 'Season '
 }
 
-#watchAll, #unwatchAll {
+#watchAll,
+#unwatchAll {
     background-color: var(--EpisodeListSideContainerWatchButtonBackgroundColor);
-    border:none;
-    width:100px;
-    color:var(--EpisodeListSideContainerWatchButtonTextColor);
-    font:var(--EpisodeListSideContainerWatchButtonTextFont);
+    border: none;
+    width: 100px;
+    color: var(--EpisodeListSideContainerWatchButtonTextColor);
+    font: var(--EpisodeListSideContainerWatchButtonTextFont);
     border-radius: 3px;
-    height:30px;
-    margin:20px 10px 0 60px;
+    height: 30px;
+    margin: 20px 10px 0 60px;
     font-weight: bold;
-    
     -webkit-transition: background-color 0.2s, color 0.2s;
     transition: background-color 0.2s, color 0.2s;
 }
 
 #unwatchAll {
-    margin:20px 60px 0 10px;
+    margin: 20px 60px 0 10px;
 }
 
-#watchAll:hover, #unwatchAll:hover {
-    color:var(--EpisodeListSideContainerWatchButtonTextColorHover);
+#watchAll:hover,
+#unwatchAll:hover {
+    color: var(--EpisodeListSideContainerWatchButtonTextColorHover);
     background-color: var(--EpisodeListSideContainerWatchButtonBackgroundColorHover);
 }
 
-#watchAll:active, #unwatchAll:active {
-    color:var(--EpisodeListSideContainerWatchButtonTextColorClick);
+#watchAll:active,
+#unwatchAll:active {
+    color: var(--EpisodeListSideContainerWatchButtonTextColorClick);
     background-color: var(--EpisodeListSideContainerWatchButtonBackgroundColorClick);
 }
 
-.notShow *{
-    display:none !important;
-    width:0px !important;
+.notShow * {
+    display: none !important;
+    width: 0px !important;
 }
 
 .notShow {
-    width:0px !important;
+    width: 0px !important;
 }
 
 .settingContainer {
-    margin:10px auto 0 auto;
-    width: -moz-calc(100%  - 20px);
-    width: -webkit-calc(100%  - 20px);
-    width: -o-calc(100%  - 20px);
-    width: calc(100%  - 20px);
-    max-height:20px;
-    
+    margin: 10px auto 0 auto;
+    width: -moz-calc(100% - 20px);
+    width: -webkit-calc(100% - 20px);
+    width: -o-calc(100% - 20px);
+    width: calc(100% - 20px);
+    max-height: 20px;
     -webkit-transition: max-height 0.1s linear;
     transition: max-height 0.1s linear;
-    
-    overflow:hidden;
+    overflow: hidden;
     padding: 0 10px 10px 10px
 }
 
 .settingContainer[ison="true"] {
-    max-height:1000px;
+    max-height: 1000px;
 }
 
 #hosterSortContainer div {
-    display:inline-block;
+    display: inline-block;
     line-height: 30px
 }
 
 #hosterSortContainer ul {
-    width:100%;
+    width: 100%;
     list-style-type: none;
-    font:var(--SettingsHosterSortTextFont);
-    
-    cursor:move;
+    font: var(--SettingsHosterSortTextFont);
+    cursor: move;
 }
 
 #hosterSortContainer li {
-    height:30px;
-    width:100%;
-    line-height:30px;
+    height: 30px;
+    width: 100%;
+    line-height: 30px;
     margin: 5px 0;
-    
-    background-color:var(--SettingsHosterSortNameBackgroundColor);
-    border-radius:3px;
-    
-    box-shadow: 0px 0px 7px rgba(0,0,0,0.8);
+    background-color: var(--SettingsHosterSortNameBackgroundColor);
+    border-radius: 3px;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.8);
 }
 
 #hosterSortContainer li.sortableGhost * {
-    display:none;
+    display: none;
 }
 
 #hosterSortContainer li.sortableGhost {
-    background-color:var(--SettingsGhostBackgroundColor);
+    background-color: var(--SettingsGhostBackgroundColor);
 }
 
 #hosterSortContainer .sortIndex {
-    width:30px;
-    background-color:var(--SettingsHosterSortIndexBackgroundColor);
-    color:var(--SettingsHosterSortIndexTextColor);
-    
-    font-weight:bold;
-    border-radius:3px 0 0 3px;
-    text-align:center;
+    width: 30px;
+    background-color: var(--SettingsHosterSortIndexBackgroundColor);
+    color: var(--SettingsHosterSortIndexTextColor);
+    font-weight: bold;
+    border-radius: 3px 0 0 3px;
+    text-align: center;
 }
 
 #hosterSortContainer .hosterName {
-    width: -moz-calc(100%  - 40px);
-    width: -webkit-calc(100%  - 40px);
-    width: -o-calc(100%  - 40px);
-    width: calc(100%  - 40px);
-    
-    padding: 0 0 0 10px;   
-    color:var(--SettingsHosterSortNameTextColor);    
+    width: -moz-calc(100% - 40px);
+    width: -webkit-calc(100% - 40px);
+    width: -o-calc(100% - 40px);
+    width: calc(100% - 40px);
+    padding: 0 0 0 10px;
+    color: var(--SettingsHosterSortNameTextColor);
 }
 
 #hosterSortContainer li[sup="true"] .hosterName {
-    font-weight:bold;
+    font-weight: bold;
 }
 
 .settingHeader {
-    width:100%;
-    height:30px;
-    color:var(--SettingsTitleTextColor);
-    font:var(--SettingsTitleTextFont);
-    line-height:30px;
-    
-    fill:var(--SettingsDropdownArrowColor);
-    
-    cursor:pointer;
+    width: 100%;
+    height: 30px;
+    color: var(--SettingsTitleTextColor);
+    font: var(--SettingsTitleTextFont);
+    line-height: 30px;
+    fill: var(--SettingsDropdownArrowColor);
+    cursor: pointer;
 }
 
 .settingHeader h3 {
-    display:inline;
+    display: inline;
     padding: 0 0 0 10px;
-    position:relative;
-    top:-9px;
+    position: relative;
+    top: -9px;
 }
 
 .settingHeader svg {
-    width:14px;
-    height:14px;
-    
+    width: 14px;
+    height: 14px;
     padding: 8px;
-    
     -webkit-transition: transform 0.1s;
     transition: transform 0.1s;
-    
     -moz-transform: rotate(0deg);
     -webkit-transform: rotate(0deg);
     -o-transform: rotate(0deg);
@@ -1902,226 +1783,211 @@ input:checked + .slider:before {
     transform: rotate(90deg);
 }
 
-body.dragging, body.dragging * {
-  cursor: move !important;
+body.dragging,
+body.dragging * {
+    cursor: move !important;
 }
 
 .dragged {
-  position: absolute;
-  opacity: 0.5;
-  z-index: 2000;
+    position: absolute;
+    opacity: 0.5;
+    z-index: 2000;
 }
 
 #stylesApply {
-    width:100%;
-    height:30px;
-    
-    font:var(--SettingsStyleDropdownTextFont);
-    
-    border:none;
-    background-color:var(--SettingsStyleDropdownBackgroundColor);
-    color:var(--SettingsStyleDropdownTextColor);
+    width: 100%;
+    height: 30px;
+    font: var(--SettingsStyleDropdownTextFont);
+    border: none;
+    background-color: var(--SettingsStyleDropdownBackgroundColor);
+    color: var(--SettingsStyleDropdownTextColor);
     font-weight: bold;
     border-radius: 3px;
-    cursor:pointer;
+    cursor: pointer;
 }
 
-#stylesApply option{
-    background-color:var(--SettingsStyleDropdownOptionBackgroundColor);
-    color:var(--SettingsStyleDropdownOptionTextColor);
+#stylesApply option {
+    background-color: var(--SettingsStyleDropdownOptionBackgroundColor);
+    color: var(--SettingsStyleDropdownOptionTextColor);
 }
 
 #styleColorContainer span {
-    height:20px;
-    font:var(--SettingsStyleDropdownCustomTextFont);
-    display:block;
-    color:var(--SettingsStyleDropdownCustomTextColor);
-    line-height:20px;
-    font-weight:bold;
+    height: 20px;
+    font: var(--SettingsStyleDropdownCustomTextFont);
+    display: block;
+    color: var(--SettingsStyleDropdownCustomTextColor);
+    line-height: 20px;
+    font-weight: bold;
     margin: 10px 0 10px 10px;
 }
 
 #customStyles {
     background-color: var(--SettingsStyleTextFieldBackgroundColor);
-    border:none;
-    height:30px;
-    font:var(--SettingsStyleTextFieldTextFont);
-    line-height: :30px;
-    color:var(--SettingsStyleTextFieldTextColor);
+    border: none;
+    height: 30px;
+    font: var(--SettingsStyleTextFieldTextFont);
+    line-height: 30px;
+    color: var(--SettingsStyleTextFieldTextColor);
     padding: 0 0 0 10px;
-    
-    width: -moz-calc(100%  - 175px);
-    width: -webkit-calc(100%  - 175px);
-    width: -o-calc(100%  - 175px);
-    width: calc(100%  - 175px);
+    width: -moz-calc(100% - 175px);
+    width: -webkit-calc(100% - 175px);
+    width: -o-calc(100% - 175px);
+    width: calc(100% - 175px);
     border-radius: 3px;
     font-weight: bold;
 }
 
 #styleColorContainer button {
-    height:30px;
-    border:none;
+    height: 30px;
+    border: none;
     padding: 0 5px 0 5px;
-    width:160px;
+    width: 160px;
     background-color: var(--SettingsStyleApplyButtonBackgroundColor);
-    color:var(--SettingsStyleApplyButtonTextColor);
-    margin:0 0 0 5px;
+    color: var(--SettingsStyleApplyButtonTextColor);
+    margin: 0 0 0 5px;
     border-radius: 3px;
     font-weight: bold;
-    
     -webkit-transition: background-color 0.2s, color 0.2s;
     transition: background-color 0.2s, color 0.2s;
 }
 
 #styleColorContainer button:hover {
     background-color: var(--SettingsStyleApplyButtonBackgroundColorHover);
-    color:var(--SettingsStyleApplyButtonTextColorHover);
+    color: var(--SettingsStyleApplyButtonTextColorHover);
 }
 
 #styleColorContainer button:active {
     background-color: var(--SettingsStyleApplyButtonBackgroundColorClick);
-    color:var(--SettingsStyleApplyButtonTextColorClick);
+    color: var(--SettingsStyleApplyButtonTextColorClick);
 }
 
-.settingCheckbox, .settingInput {
-    display:block;
-    height:30px;
+.settingCheckbox,
+.settingInput {
+    display: block;
+    height: 30px;
     background-color: var(--SettingsGeneralItemBackgroundColor);
-    font:var(--SettingsGeneralItemTextFont);
-    color:var(--SettingsGeneralItemTextColor);
+    font: var(--SettingsGeneralItemTextFont);
+    color: var(--SettingsGeneralItemTextColor);
     line-height: 30px;
-    margin:5px 0;
+    margin: 5px 0;
     border-radius: 3px;
     overflow: hidden;
     font-weight: bold;
 }
 
 .settingCheckbox .switch {
-    margin:0 50px 0 30px;
-    position:relative;
-    top:5px;
+    margin: 0 50px 0 30px;
+    position: relative;
+    top: 5px;
 }
 
 .settingInput input {
-    height:30px;
-    width:100px;
-    padding:0 0 0 5px;
+    height: 30px;
+    width: 100px;
+    padding: 0 0 0 5px;
     margin: 0 15px 0 0;
     color: var(--SettingsGeneralInputTextColor);
-    font:var(--SettingsGeneralInputTextFont);
-    border:none;
+    font: var(--SettingsGeneralInputTextFont);
+    border: none;
     font-weight: bold;
     background-color: var(--SettingsGeneralInputBackgroundColor);
     text-align: center;
 }
 
 #updateList {
-    height:30px;
-    border:none;
+    height: 30px;
+    border: none;
     padding: 0 5px 0 5px;
-    width:100%;
+    width: 100%;
     background-color: var(--SettingsGeneralButtonBackgroundColor);
-    color:var(--SettingsGeneralButtonTextColor);
+    color: var(--SettingsGeneralButtonTextColor);
     border-radius: 3px;
     font-weight: bold;
     margin: 0 0 5px 0;
-    
     -webkit-transition: background-color 0.2s, color 0.2s;
     transition: background-color 0.2s, color 0.2s;
 }
 
 #updateList:hover {
     background-color: var(--SettingsGeneralButtonBackgroundColorHover);
-    color:var(--SettingsGeneralButtonTextColorHover);
+    color: var(--SettingsGeneralButtonTextColorHover);
 }
 
 #updateList:active {
     background-color: var(--SettingsGeneralButtonBackgroundColorClick);
-    color:var(--SettingsGeneralButtonTextColorClick);
+    color: var(--SettingsGeneralButtonTextColorClick);
 }
 
 #removeLog {
-    height:30px;
-    border:none;
+    height: 30px;
+    border: none;
     padding: 0 5px 0 5px;
-    width:100%;
+    width: 100%;
     background-color: var(--SettingsGeneralButtonBackgroundColor);
-    color:var(--SettingsGeneralButtonTextColor);
+    color: var(--SettingsGeneralButtonTextColor);
     border-radius: 3px;
     font-weight: bold;
     margin: 0 0 5px 0;
-    
     -webkit-transition: background-color 0.2s, color 0.2s;
     transition: background-color 0.2s, color 0.2s;
 }
 
 #removeLog:hover {
     background-color: var(--SettingsGeneralButtonBackgroundColorHover);
-    color:var(--SettingsGeneralButtonTextColorHover);
+    color: var(--SettingsGeneralButtonTextColorHover);
 }
 
 #removeLog:active {
     background-color: var(--SettingsGeneralButtonBackgroundColorClick);
-    color:var(--SettingsGeneralButtonTextColorClick);
+    color: var(--SettingsGeneralButtonTextColorClick);
 }
 
 .lastWatchedButton {
-    font:var(--LastWatchedSideContainerSortingButtonTextFont);
-    
+    font: var(--LastWatchedSideContainerSortingButtonTextFont);
     width: 310px;
-    
-    height:30px;
-    margin:0 0 10px 0;
-    text-decoration:none;
-    overflow:hidden;
-    float:right;
-    
+    height: 30px;
+    margin: 0 0 10px 0;
+    text-decoration: none;
+    overflow: hidden;
+    float: right;
     -webkit-transition: width 0.5s;
     transition: width 0.5s;
-    cursor:pointer;
+    cursor: pointer;
 }
 
 .lastWatchedsideTriangle {
-    width:0px;
-    height:0px;
-    
-    margin:-30px 0px 0px 0px;
-    float:left;
-    
+    width: 0px;
+    height: 0px;
+    margin: -30px 0px 0px 0px;
+    float: left;
     border-style: solid;
     border-width: 30px 30px 30px 0;
     border-color: transparent var(--LastWatchedSideContainerBackgroundColor) transparent transparent;
-    
     -webkit-transition: border-color 0.2s;
     transition: border-color 0.2s;
 }
 
 .lastWatchedText {
-    width: -moz-calc(100%  - 30px);
-    width: -webkit-calc(100%  - 30px);
-    width: -o-calc(100%  - 30px);
-    width: calc(100%  - 30px);
-    
-    height:100%;
-    
-    line-height:30px;
-    background-color:var(--LastWatchedSideContainerBackgroundColor);
-    float:right;
-    color:var(--LastWatchedSideContainerTextColor);
-    font-weight:bold;
-    
-    border-radius:0 3px 3px 0;
-    
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-    
+    width: -moz-calc(100% - 30px);
+    width: -webkit-calc(100% - 30px);
+    width: -o-calc(100% - 30px);
+    width: calc(100% - 30px);
+    height: 100%;
+    line-height: 30px;
+    background-color: var(--LastWatchedSideContainerBackgroundColor);
+    float: right;
+    color: var(--LastWatchedSideContainerTextColor);
+    font-weight: bold;
+    border-radius: 0 3px 3px 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
     -webkit-transition: color 0.2s, background-color 0.2s;
     transition: color 0.2s, background-color 0.2s;
 }
 
 .lastWatchedButton:hover {
-    width:340px;
+    width: 340px;
 }
 
 .lastWatchedButton:hover .lastWatchedsideTriangle {
@@ -2129,8 +1995,8 @@ body.dragging, body.dragging * {
 }
 
 .lastWatchedButton:hover .lastWatchedText {
-    color:var(--LastWatchedSideContainerTextColorHover);
-    background-color:var(--LastWatchedSideContainerBackgroundColorHover);
+    color: var(--LastWatchedSideContainerTextColorHover);
+    background-color: var(--LastWatchedSideContainerBackgroundColorHover);
 }
 
 .lastWatchedButton:active .lastWatchedsideTriangle {
@@ -2138,243 +2004,233 @@ body.dragging, body.dragging * {
 }
 
 .lastWatchedButton:active .lastWatchedText {
-    color:var(--LastWatchedSideContainerTextColorClick);
-    background-color:var(--LastWatchedSideContainerBackgroundColorClick);
+    color: var(--LastWatchedSideContainerTextColorClick);
+    background-color: var(--LastWatchedSideContainerBackgroundColorClick);
 }
 
 #logTable {
-    width:100%;
-    font:var(--LogTableTextFont);
+    width: 100%;
+    font: var(--LogTableTextFont);
 }
 
 #logTable th {
-    background-color:var(--LogTableHeaderBackgroundColor);
-    color:var(--LogTableHeaderTextColor);
+    background-color: var(--LogTableHeaderBackgroundColor);
+    color: var(--LogTableHeaderTextColor);
 }
 
-#logTable th, #logTable td {
-    text-align:center;
+#logTable th,
+#logTable td {
+    text-align: center;
 }
 
 #logTable tr:nth-child(even) {
-    background-color:var(--LogTableEvenRowBackgroundColor);
-    color:var(--LogTableEvenRowTextColor);
+    background-color: var(--LogTableEvenRowBackgroundColor);
+    color: var(--LogTableEvenRowTextColor);
 }
 
 #logTable tr:nth-child(odd) {
-    background-color:var(--LogTableOddRowBackgroundColor);
-    color:var(--LogTableOddRowTextColor);
+    background-color: var(--LogTableOddRowBackgroundColor);
+    color: var(--LogTableOddRowTextColor);
 }
 
 #nextButton {
-    margin:0 auto;
-    height:30px;
-    font:var(--WaitHosterButtonTextFont);
-    color:var(--WaitHosterButtonTextColor);
-    background-color:var(--WaitHosterButtonBackgroundColor);
-    border:none;
-    display:block;
-    padding:0 10px;
+    margin: 0 auto;
+    height: 30px;
+    font: var(--WaitHosterButtonTextFont);
+    color: var(--WaitHosterButtonTextColor);
+    background-color: var(--WaitHosterButtonBackgroundColor);
+    border: none;
+    display: block;
+    padding: 0 10px;
     border-radius: 3px;
-    font-weight:bold;
-    
+    font-weight: bold;
     -webkit-transition: background-color 0.2s, color 0.2s;
     transition: background-color 0.2s, color 0.2s;
 }
 
 #nextButton:hover {
-    color:var(--WaitHosterButtonTextColorHover);
-    background-color:var(--WaitHosterButtonBackgroundColorHover);
+    color: var(--WaitHosterButtonTextColorHover);
+    background-color: var(--WaitHosterButtonBackgroundColorHover);
 }
 
 #nextButton:active {
-    color:var(--WaitHosterButtonTextColorClick);
-    background-color:var(--WaitHosterButtonBackgroundColorClick);
+    color: var(--WaitHosterButtonTextColorClick);
+    background-color: var(--WaitHosterButtonBackgroundColorClick);
 }
 
 #sideAutoplay {
     background-color: var(--EpisodeListAutoplaySideBackgroundColor);
     width: 320px;
-    position:fixed;
-    top:48px;
-    z-index:4;
+    position: fixed;
+    top: 48px;
+    z-index: 4;
     padding: 50px 40px 40px 40px;
 }
 
 #timeInfotext {
-    display:block;
-    height:30px;
-    width:320px;
+    display: block;
+    height: 30px;
+    width: 320px;
     text-align: center;
-    font:var(--EpisodeListAutoplayTextFont);
+    font: var(--EpisodeListAutoplayTextFont);
     font-weight: bold;
     line-height: 30px;
-    
     margin: 40px 0 0px 0;
     border-radius: 3px;
     background-color: var(--EpisodeListAutoplayTextBackgroundColor);
-    color:var(--EpisodeListAutoplayTextColor);
+    color: var(--EpisodeListAutoplayTextColor);
 }
 
 #autoTimeNumber {
-    font:var(--EpisodeListAutoplayTextFont);
-    color:var(--EpisodeListAutoplayNumberTextColor);
+    font: var(--EpisodeListAutoplayTextFont);
+    color: var(--EpisodeListAutoplayNumberTextColor);
     font-weight: 900;
 }
 
-#nextAutoplay, #cancelAutoplay {
+#nextAutoplay,
+#cancelAutoplay {
     background-color: var(--EpisodeListAutoplayButtonTextBackgroundColor);
-    border:none;
-    padding:5px;
-    margin:5px;
-    width:100px;
-    height:30px;
+    border: none;
+    padding: 5px;
+    margin: 5px;
+    width: 100px;
+    height: 30px;
     border-radius: 3px;
-    font:var(--EpisodeListAutoplayButtonTextFont);
-    color:var(--EpisodeListAutoplayButtonTextColor);
+    font: var(--EpisodeListAutoplayButtonTextFont);
+    color: var(--EpisodeListAutoplayButtonTextColor);
     font-weight: bold;
-    
     -webkit-transition: background-color 0.2s, color 0.2s;
     transition: background-color 0.2s, color 0.2s;
 }
 
 #autoplayButton {
-    width:320px;
+    width: 320px;
     text-align: center;
     margin: 0 0 20px 0;
 }
 
-#nextAutoplay:hover, #cancelAutoplay:hover {
+#nextAutoplay:hover,
+#cancelAutoplay:hover {
     background-color: var(--EpisodeListAutoplayButtonTextBackgroundColorHover);
-    color:var(--EpisodeListAutoplayButtonTextColor);
+    color: var(--EpisodeListAutoplayButtonTextColor);
 }
 
-#nextAutoplay:active, #cancelAutoplay:active {
+#nextAutoplay:active,
+#cancelAutoplay:active {
     background-color: var(--EpisodeListAutoplayButtonTextBackgroundColorClick);
-    color:var(--EpisodeListAutoplayButtonTextColor);
+    color: var(--EpisodeListAutoplayButtonTextColor);
 }
 
 #nextEpisodeText {
-    display:block;
-    width:320px;
+    display: block;
+    width: 320px;
     height: 30px;
     text-align: center;
-    font:var(--EpisodeListAutoplayNextInfoTextFont);
+    font: var(--EpisodeListAutoplayNextInfoTextFont);
     line-height: 30px;
-    color:var(--EpisodeListAutoplayNextInfoTextColor);
-    font-weight:bold;
+    color: var(--EpisodeListAutoplayNextInfoTextColor);
+    font-weight: bold;
 }
 
 #searchInfoText {
-    font:var(--SeriesListSearchInfoTextTextFont);
-    color:var(--SeriesListSearchInfoTextTextColor);
+    font: var(--SeriesListSearchInfoTextTextFont);
+    color: var(--SeriesListSearchInfoTextTextColor);
 }
 
 .buttomText {
     position: fixed;
-    width:100%;
+    width: 100%;
     height: 30px;
-    font:var(--SeriesListBottomTextTextFont);
+    font: var(--SeriesListBottomTextTextFont);
     line-height: 30px;
-    
-    left:0;
-    bottom:-30px;
+    left: 0;
+    bottom: -30px;
     background-color: var(--SeriesListBottomTextTextBackgroundcolor);
-    color:var(--SeriesListBottomTextTextColor);
-    font-weight:bold;
+    color: var(--SeriesListBottomTextTextColor);
+    font-weight: bold;
     -webkit-transition: bottom 0.2s;
     transition: bottom 0.2s;
-    
-    z-index:0;
+    z-index: 0;
 }
 
 .buttomText.showBottomText {
-    bottom:0px;
+    bottom: 0px;
 }
 
 #playlistList {
-    width:100%;
+    width: 100%;
     list-style-type: none;
-    font:var(--PlaylistListTextFont);
-    
-    cursor:move;
+    font: var(--PlaylistListTextFont);
+    cursor: move;
 }
 
 #playlistList li {
-    height:30px;
-    width:100%;
-    line-height:30px;
+    height: 30px;
+    width: 100%;
+    line-height: 30px;
     margin: 5px 0;
-    
-    background-color:var(--PlaylistListBackgroundColor);
-    border-radius:3px;
-    
-    box-shadow: 0px 0px 7px rgba(0,0,0,0.8);
+    background-color: var(--PlaylistListBackgroundColor);
+    border-radius: 3px;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.8);
 }
 
 #playlistList li.sortableGhost * {
-    display:none;
+    display: none;
 }
 
 #playlistList li.sortableGhost {
-    background-color:var(--PlaylistListGhostBackgroundColor);
+    background-color: var(--PlaylistListGhostBackgroundColor);
 }
 
 #playlistList div {
-    float:left;
+    float: left;
 }
 
 #playlistList li .delCol {
-    width:20px;
-    height:20px;
-    padding:5px;
-    fill:var(--PlaylistListDeleteIconColor);
-    background-color:var(--PlaylistListDeleteIconBackgroundColor);
-    cursor:pointer;
+    width: 20px;
+    height: 20px;
+    padding: 5px;
+    fill: var(--PlaylistListDeleteIconColor);
+    background-color: var(--PlaylistListDeleteIconBackgroundColor);
+    cursor: pointer;
     border-radius: 0 3px 3px 0;
-    
     -webkit-transition: fill 0.2s;
     transition: fill 0.2s;
 }
 
 #playlistList li .delCol:hover {
-    fill:var(--PlaylistListDeleteIconColorHover);
+    fill: var(--PlaylistListDeleteIconColorHover);
 }
 
 #playlistList li .delCol:active {
-    fill:var(--PlaylistListDeleteIconColorClick);
+    fill: var(--PlaylistListDeleteIconColorClick);
 }
 
-#playlistList li .indexCol{
-    height:30px;
-    width:30px;
+#playlistList li .indexCol {
+    height: 30px;
+    width: 30px;
     line-height: 30px;
-    color:var(--PlaylistListIndexTextColor);
+    color: var(--PlaylistListIndexTextColor);
     background-color: var(--PlaylistListIndexTextBackgroundColor);
     text-align: center;
     font-weight: bold;
-    overflow:hidden;
-    
+    overflow: hidden;
     border-radius: 3px 0 0 3px;
 }
 
-#playlistList li .infoCol{
-    height:30px;
-
-    width: -moz-calc(100%  - 80px);
-    width: -webkit-calc(100%  - 80px);
-    width: -o-calc(100%  - 80px);
-    width: calc(100%  - 80px);
-    
+#playlistList li .infoCol {
+    height: 30px;
+    width: -moz-calc(100% - 80px);
+    width: -webkit-calc(100% - 80px);
+    width: -o-calc(100% - 80px);
+    width: calc(100% - 80px);
     padding: 0 0 0 20px;
-    
     line-height: 30px;
-    color:var(--PlaylistListInfoTextColor);
+    color: var(--PlaylistListInfoTextColor);
     background-color: var(--PlaylistListInfoTextBackgroundColor);
-    
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
 #playlistList li .infoCol .seriesNameCol {
@@ -2391,40 +2247,43 @@ body.dragging, body.dragging * {
     padding: 0 10px 0 0
 }
 
-#PlaylistPlay, #clearAllPlaylist {
-    width:100%;
-    height:30px;
-    font:var(--PlaylistButtonTextFont);
+#PlaylistPlay,
+#clearAllPlaylist {
+    width: 100%;
+    height: 30px;
+    font: var(--PlaylistButtonTextFont);
     font-weight: bold;
-    color:var(--PlaylistButtonTextColor);
+    color: var(--PlaylistButtonTextColor);
     background-color: var(--PlaylistButtonTextBackgroundColor);
-    border:none;
-    margin:3px 0;
+    border: none;
+    margin: 3px 0;
     border-radius: 3px;
     cursor: pointer;
-    
     -webkit-transition: background-color 0.2s, color 0.2s;
     transition: background-color 0.2s, color 0.2s;
 }
 
-#PlaylistPlay:hover, #clearAllPlaylist:hover {
-    color:var(--PlaylistButtonTextColorHover);
+#PlaylistPlay:hover,
+#clearAllPlaylist:hover {
+    color: var(--PlaylistButtonTextColorHover);
     background-color: var(--PlaylistButtonTextBackgroundColorHover);
 }
 
-#PlaylistPlay:active, #clearAllPlaylist:active {
-    color:var(--PlaylistButtonTextColorClick);
+#PlaylistPlay:active,
+#clearAllPlaylist:active {
+    color: var(--PlaylistButtonTextColorClick);
     background-color: var(--PlaylistButtonTextBackgroundColorClick);
 }
 
 #noEntry {
-    font:var(--PlaylistNoEntryTextFont);
-    color:var(--PlaylistNoEntryTextColor);
+    font: var(--PlaylistNoEntryTextFont);
+    color: var(--PlaylistNoEntryTextColor);
 }
 
 /*Favorite Page*/
-#catMainList{
-    width:100%;
+
+#catMainList {
+    width: 100%;
     list-style-type: none;
 }
 
@@ -2433,102 +2292,95 @@ body.dragging, body.dragging * {
 }
 
 .catTitle {
-    width:100%;
-    background-color:var(--FavoriteCategoryTitleTextBackgroundColor);
-    cursor:move;
+    width: 100%;
+    background-color: var(--FavoriteCategoryTitleTextBackgroundColor);
+    cursor: move;
 }
 
 .catMainTitle {
-    font:var(--FavoriteCategoryTitleTextFont);
-    font-weight:bold;
-    color:var(--FavoriteCategoryTitleTextColor);
+    font: var(--FavoriteCategoryTitleTextFont);
+    font-weight: bold;
+    color: var(--FavoriteCategoryTitleTextColor);
     margin: 0 10px 0 20px;
-    line-height:40px;
+    line-height: 40px;
 }
 
 #titleInput {
-    font:var(--FavoriteCategoryTitleTextFont);
+    font: var(--FavoriteCategoryTitleTextFont);
     margin: 0 10px 0 20px;
-    line-height:40px;
+    line-height: 40px;
 }
 
-.catTitle .editDelete { 
-    font:var(--FavoriteCategoryEditDeleteTextFont);
-    color:var(--FavoriteCategoryEditDeleteTextColor);
-    cursor:pointer;
+.catTitle .editDelete {
+    font: var(--FavoriteCategoryEditDeleteTextFont);
+    color: var(--FavoriteCategoryEditDeleteTextColor);
+    cursor: pointer;
 }
 
-.catTitle .editDelete:hover { 
-    color:var(--FavoriteCategoryEditDeleteTextColorHover);
+.catTitle .editDelete:hover {
+    color: var(--FavoriteCategoryEditDeleteTextColorHover);
 }
 
-.catTitle .editDelete:active { 
-    color:var(--FavoriteCategoryEditDeleteTextColorClick);
+.catTitle .editDelete:active {
+    color: var(--FavoriteCategoryEditDeleteTextColorClick);
 }
 
 .catList {
-    width:100%;
+    width: 100%;
     list-style-type: none;
-    font:var(--FavoriteCategoryListTextFont);
-    
-    cursor:move;
+    font: var(--FavoriteCategoryListTextFont);
+    cursor: move;
     margin: 0 0 50px 0;
 }
 
 .catList li {
-    height:30px;
-    width:100%;
-    line-height:30px;
+    height: 30px;
+    width: 100%;
+    line-height: 30px;
     margin: 5px 0;
-    
-    background-color:var(--FavoriteCategoryListBackgroundColor);
-    border-radius:3px;
-    
-    box-shadow: 0px 0px 7px rgba(0,0,0,0.8);
+    background-color: var(--FavoriteCategoryListBackgroundColor);
+    border-radius: 3px;
+    box-shadow: 0px 0px 7px rgba(0, 0, 0, 0.8);
 }
 
 .catList li div {
-    float:left;
-    line-height:30px;
+    float: left;
+    line-height: 30px;
 }
 
 .catFavTitle {
-    height:30px;
+    height: 30px;
     padding: 0 0 0 20px;
-    width: -moz-calc(100%  - 170px);
-    width: -webkit-calc(100%  - 170px);
-    width: -o-calc(100%  - 170px);
-    width: calc(100%  - 170px);
-    
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
-    
-    color:var(--FavoriteCategoryListTitleTextColor);
+    width: -moz-calc(100% - 170px);
+    width: -webkit-calc(100% - 170px);
+    width: -o-calc(100% - 170px);
+    width: calc(100% - 170px);
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    color: var(--FavoriteCategoryListTitleTextColor);
     font-weight: bold;
 }
 
 .emptyCat {
-    height:30px;
-    width:100%;
+    height: 30px;
+    width: 100%;
     padding: 0 0 0 20px;
-    color:var(--FavoriteCategoryListTitleTextColor);
+    color: var(--FavoriteCategoryListTitleTextColor);
     font-weight: bold;
-    
-    overflow:hidden;
-    white-space:nowrap;
-    text-overflow:ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
 }
 
-.catFavSeason  {
-    height:30px;
-    width:120px;
-    color:var(--FavoriteCategoryListSeasonTextColor);
+.catFavSeason {
+    height: 30px;
+    width: 120px;
+    color: var(--FavoriteCategoryListSeasonTextColor);
     background-color: var(--FavoriteCategoryListSeasonBackgroundColor);
     text-align: center;
     font-weight: bold;
-    overflow:hidden;
-    
+    overflow: hidden;
     border-radius: 0 3px 3px 0;
 }
 
@@ -2536,27 +2388,26 @@ body.dragging, body.dragging * {
     background-color: var(--FavoriteCategoryListSeasonBackgroundColorWatched);
 }
 
-.catFavIndex  {
-    height:30px;
-    width:30px;
-    color:var(--FavoriteCategoryListIndexTextColor);
+.catFavIndex {
+    height: 30px;
+    width: 30px;
+    color: var(--FavoriteCategoryListIndexTextColor);
     background-color: var(--FavoriteCategoryListIndexBackgroundColor);
     text-align: center;
     font-weight: bold;
-    overflow:hidden;
-    
+    overflow: hidden;
     border-radius: 3px 0 0 3px;
 }
 
 #addCat {
-    width:100%;
-    height:30px;
-    font:var(--FavoriteCategoryAddCategoryButtonTextFont);
+    width: 100%;
+    height: 30px;
+    font: var(--FavoriteCategoryAddCategoryButtonTextFont);
     font-weight: bold;
-    color:var(--FavoriteCategoryAddCategoryButtonTextColor);
+    color: var(--FavoriteCategoryAddCategoryButtonTextColor);
     background-color: var(--FavoriteCategoryAddCategoryButtonBackgroundColor);
-    border:none;
-    margin:3px 0;
+    border: none;
+    margin: 3px 0;
     border-radius: 3px;
     cursor: pointer;
     margin: 20px 0 0 0;
@@ -2565,12 +2416,12 @@ body.dragging, body.dragging * {
 }
 
 #addCat:hover {
-    color:var(--FavoriteCategoryAddCategoryButtonTextColorHover);
+    color: var(--FavoriteCategoryAddCategoryButtonTextColorHover);
     background-color: var(--FavoriteCategoryAddCategoryButtonBackgroundColorHover);
 }
 
 #addCat:active {
-    color:var(--FavoriteCategoryAddCategoryButtonTextColorClick);
+    color: var(--FavoriteCategoryAddCategoryButtonTextColorClick);
     background-color: var(--FavoriteCategoryAddCategoryButtonBackgroundColorClick);
 }
 
@@ -2607,5 +2458,18 @@ fieldset {
     margin: 0 0 10px 0;
 }
 
+.series-language {
+    font: var(--SeasonListTextFont);
+    width: 100%;
+    margin: 0 0 5px 0;
+    background-color: var(--ListRowSegmentPrimaryBackgroundColor);
+    border: none;
+    color: #FFF;
+    padding: 5px;
+}
+
 /*Pseudo Style need for fakelistener*/
-body {opacity:1 !important;}
+
+body {
+    opacity: 1 !important;
+}

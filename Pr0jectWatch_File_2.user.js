@@ -23,7 +23,7 @@ initBsPage();
 /**
  * Check if Logged in.
  */
-var isLoggedIn = e => !!($('#navigation').length);
+var isLoggedIn = e => !!($('.navigation').length)
 
 /**
  * InitPage API - Loads Serieslist is needed. Start Build main and Side Content if Finished.

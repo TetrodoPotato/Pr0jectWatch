@@ -453,6 +453,7 @@ var initPlaylistCont = async function () {
                 await setData('lastSeries', 'notNot');
                 await setData('lastSeason', 'notNot');
                 await setData('lastEpisode', 'notNot');
+                await getData('lastLanguage', 'notNot');
                 await setData('isPlayingPlaylist', true);
 
                 window.location = 'https://bs.to/?next';

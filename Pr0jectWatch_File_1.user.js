@@ -25,6 +25,7 @@ var redirectStart = async function () {
     var series = await getData('lastSeries', 'none');
     var season = await getData('lastSeason', 'none');
     var episode = await getData('lastEpisode', 'none');
+    var language = await getData('lastLanguage', 'none');
 
     //Check error on cookies and fuck you
     if (/^https:\/\/bs.to(\/home)?\/?$/.test(window.location.href)) {
@@ -50,7 +51,7 @@ var redirectStart = async function () {
     } else if (/^https:\/\/bs.to\/\?logout[^]*$/.test(window.location.href)) {
         await setData('beforeLogout', jDecode(getGetter('redirect', 'https://bs.to/')));
         window.location = 'https://bs.to/logout';
-    } else if (series === 'none' || season === 'none' || episode === 'none') {
+    } else if (series === 'none' || season === 'none' || episode === 'none' || language === 'none') {
         alert('Enable cookies!!!');
         await setData('autoplay', false);
         await setData('errorCode', 0);
@@ -60,7 +61,7 @@ var redirectStart = async function () {
         await setData('errorCode', await getData('errorCode', 0) + 1);
 
         //And try it again
-        window.location = 'https://bs.to/serie/' + series + '/' + season + '/' + episode;
+        window.location = 'https://bs.to/serie/' + series + '/' + season + '/' + episode + '/' + language + '/';
     } else if (/^https:\/\/bs.to\/\?next[^\/]*$/.test(window.location.href)) {
         //Errorcode reset
         await setData('errorCode', 0);
@@ -98,7 +99,7 @@ var redirectStart = async function () {
         }
 
         //Open the last season for next episode
-        window.location = 'https://bs.to/serie/' + series + '/' + season;
+        window.location = 'https://bs.to/serie/' + series + '/' + season + '/' + language;
     }
 }
 

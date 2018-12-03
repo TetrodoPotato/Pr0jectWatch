@@ -1,3 +1,11 @@
+[TITLE]Changelog V-1.15 [Dec 03, 2018]
+[TEXT]Es gibt jetzt mehrere Sprachen. Alles sollte soweit wieder funktionieren... glaube ich.
+[TEXT]Zurzeit arbeite ich an einer überarbeiteten version dieses Skripts. Stabiler, schneller, besser, nächstes Jahr.
+[LIST]Vivo als hoster wird nicht mehr unterstützt. Nun ja ... irgendwann wieder.
+[LIST]Sprachen. Neue auswahl in der Episodenauswahl. Geduld wenn zurzeit keine Hoster verfügbar sind. Die kommen irgendwann... denke ich.
+[LIST]Auch verabschiedet haben sich 4h meiner Freizeit ... -,-
+[LIST]Ach man. Ließt doch eh keiner. Heute hatte ich massiven Dünnschiss. Warscheinlich esse ich nur Mist.
+
 [TITLE]Changelog V-1.13 [Sep 24, 2018]
 [TEXT]Uiii. Scheinen wohl wieder ein paar zu benutzen. Schreibt mich gerne bei Fehlern oder Fragen an.
 [TEXT]Deine Tampermonkey-Einstellungen - 'Externals Aktualisierungsintervall' bitte auf 'immer' stellen dies sollte Fehler bei zukünftigen Updates verringern.

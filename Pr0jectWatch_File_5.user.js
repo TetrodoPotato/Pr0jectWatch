@@ -8,7 +8,7 @@
 // @include     https://bs.to/favorites
 // @include     https://bs.to/random/edit
 // @include     https://bs.to/random
-// @version    	1.14
+// @version    	1.15
 // @description	Log and Settings
 // @author     	Kartoffeleintopf
 // @run-at 		document-start
@@ -394,6 +394,7 @@ var initPlaylistCont = async function () {
                         seriesName: $(this).find('.seriesNameCol:first').text().trim(),
                         episodeName: $(this).find('.episodeCol:first span:first').text().trim(),
                         episodeIndex: parseInt($(this).attr('data-episodeindex')),
+                        language: $(this).find('.episodeCol:first span:nth(1)').text().trim(),
                     });
                 });
 
@@ -453,7 +454,7 @@ var initPlaylistCont = async function () {
                 await setData('lastSeries', 'notNot');
                 await setData('lastSeason', 'notNot');
                 await setData('lastEpisode', 'notNot');
-                await getData('lastLanguage', 'notNot');
+                await setData('lastLanguage', 'notNot');
                 await setData('isPlayingPlaylist', true);
 
                 window.location = 'https://bs.to/?next';

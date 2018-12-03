@@ -256,7 +256,7 @@ var setEpisodeEvents = function () {
             var episodeDE = target.find('.titleContainer:first strong:first').text().trim();
             var episodeOR = target.find('.titleContainer:first i:first').text().trim();
 
-            await setPlayList(getSeriesId(), getSeason(), target.attr('episodeid'), seriesName, ((episodeDE != '') ? episodeDE : episodeOR), parseInt(target.find('.indexCont').text()));
+            await setPlayList(getSeriesId(), getSeason(), target.attr('episodeid'), seriesName, ((episodeDE != '') ? episodeDE : episodeOR), parseInt(target.find('.indexCont').text()), getLanguage());
 
             addBottomText('Added Episode ' + target.find('.indexCont').text() + ' To The Playlist', 2000);
         })();

@@ -86,13 +86,16 @@ var redirectStart = async function () {
                     return;
                 }
             } else {
+                
                 await setData('lastSeries', firstPlaylist[0].seriesID);
                 await setData('lastSeason', firstPlaylist[0].season);
                 await setData('lastEpisode', firstPlaylist[0].episodeID);
+                await setData('lastLanguage', firstPlaylist[0].language);
 
                 series = firstPlaylist[0].seriesID;
                 season = firstPlaylist[0].season;
                 episode = firstPlaylist[0].episodeID;
+                language = firstPlaylist[0].language;
 
                 await setData('autoplay', true);
             }

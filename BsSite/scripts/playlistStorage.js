@@ -23,7 +23,7 @@ var savePlayList = async function (FullObjectListArray) {
 /**
  * Fuck it.
  */
-var setPlayList = async function (seriesId, season, episodeid, seriesName, episodename, index) {
+var setPlayList = async function (seriesId, season, episodeid, seriesName, episodename, index, language) {
     var list = await getFullPlayList();
     list.push({
         seriesID: seriesId,
@@ -32,6 +32,7 @@ var setPlayList = async function (seriesId, season, episodeid, seriesName, episo
         seriesName: seriesName,
         episodeName: episodename,
         episodeIndex: index,
+        language: language,
     });
 
     await savePlayList(list);
